@@ -12,7 +12,7 @@ namespace LFramework
     public sealed class LFrameworkLinkedList<T> : ICollection<T>, IEnumerable<T>, ICollection, IEnumerable
     {
         private readonly LinkedList<T> _linkedList;
-        private readonly Queue<LinkedListNode<T>> _cachedNodes;
+        private readonly Queue<LinkedListNode<T>> _cachedNodeQueue;
 
         /// <summary>
         /// 初始化游戏框架链表类的新实例。
@@ -20,7 +20,7 @@ namespace LFramework
         public LFrameworkLinkedList()
         {
             _linkedList = new LinkedList<T>();
-            _cachedNodes = new Queue<LinkedListNode<T>>();
+            _cachedNodeQueue = new Queue<LinkedListNode<T>>();
         }
 
         /// <summary>
@@ -28,10 +28,7 @@ namespace LFramework
         /// </summary>
         public int Count
         {
-            get
-            {
-                return _linkedList.Count;
-            }
+            get { return _linkedList.Count; }
         }
 
         /// <summary>
@@ -39,10 +36,7 @@ namespace LFramework
         /// </summary>
         public int CachedNodeCount
         {
-            get
-            {
-                return _cachedNodes.Count;
-            }
+            get { return _cachedNodeQueue.Count; }
         }
 
         /// <summary>
@@ -50,10 +44,7 @@ namespace LFramework
         /// </summary>
         public LinkedListNode<T> First
         {
-            get
-            {
-                return _linkedList.First;
-            }
+            get { return _linkedList.First; }
         }
 
         /// <summary>
@@ -61,10 +52,7 @@ namespace LFramework
         /// </summary>
         public LinkedListNode<T> Last
         {
-            get
-            {
-                return _linkedList.Last;
-            }
+            get { return _linkedList.Last; }
         }
 
         /// <summary>
@@ -72,10 +60,7 @@ namespace LFramework
         /// </summary>
         public bool IsReadOnly
         {
-            get
-            {
-                return ((ICollection<T>)_linkedList).IsReadOnly;
-            }
+            get { return ((ICollection<T>)_linkedList).IsReadOnly; }
         }
 
         /// <summary>
@@ -83,10 +68,7 @@ namespace LFramework
         /// </summary>
         public object SyncRoot
         {
-            get
-            {
-                return ((ICollection)_linkedList).SyncRoot;
-            }
+            get { return ((ICollection)_linkedList).SyncRoot; }
         }
 
         /// <summary>
@@ -94,10 +76,7 @@ namespace LFramework
         /// </summary>
         public bool IsSynchronized
         {
-            get
-            {
-                return ((ICollection)_linkedList).IsSynchronized;
-            }
+            get { return ((ICollection)_linkedList).IsSynchronized; }
         }
 
         /// <summary>
@@ -208,7 +187,7 @@ namespace LFramework
         /// </summary>
         public void ClearCachedNodes()
         {
-            _cachedNodes.Clear();
+            _cachedNodeQueue.Clear();
         }
 
         /// <summary>
@@ -331,9 +310,9 @@ namespace LFramework
         private LinkedListNode<T> AcquireNode(T value)
         {
             LinkedListNode<T> node = null;
-            if (_cachedNodes.Count > 0)
+            if (_cachedNodeQueue.Count > 0)
             {
-                node = _cachedNodes.Dequeue();
+                node = _cachedNodeQueue.Dequeue();
                 node.Value = value;
             }
             else
@@ -347,7 +326,7 @@ namespace LFramework
         private void ReleaseNode(LinkedListNode<T> node)
         {
             node.Value = default(T);
-            _cachedNodes.Enqueue(node);
+            _cachedNodeQueue.Enqueue(node);
         }
 
         /// <summary>
@@ -400,10 +379,7 @@ namespace LFramework
             /// </summary>
             public T Current
             {
-                get
-                {
-                    return m_Enumerator.Current;
-                }
+                get { return m_Enumerator.Current; }
             }
 
             /// <summary>
@@ -411,10 +387,7 @@ namespace LFramework
             /// </summary>
             object IEnumerator.Current
             {
-                get
-                {
-                    return m_Enumerator.Current;
-                }
+                get { return m_Enumerator.Current; }
             }
 
             /// <summary>

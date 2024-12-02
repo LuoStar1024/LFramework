@@ -9,9 +9,9 @@ namespace LFramework
     /// <typeparam name="T">要序列化的数据类型。</typeparam>
     public abstract class LFrameworkSerializer<T>
     {
-        private readonly Dictionary<byte, SerializeCallback> _serializeCallbacks;
-        private readonly Dictionary<byte, DeserializeCallback> _deserializeCallbacks;
-        private readonly Dictionary<byte, TryGetValueCallback> _tryGetValueCallbacks;
+        private readonly Dictionary<byte, SerializeCallback> _serializeCallbackDict;
+        private readonly Dictionary<byte, DeserializeCallback> _deserializeCallbackDict;
+        private readonly Dictionary<byte, TryGetValueCallback> _tryGetValueCallbackDict;
         private byte _latestSerializeCallbackVersion;
 
         /// <summary>
@@ -19,9 +19,9 @@ namespace LFramework
         /// </summary>
         public LFrameworkSerializer()
         {
-            _serializeCallbacks = new Dictionary<byte, SerializeCallback>();
-            _deserializeCallbacks = new Dictionary<byte, DeserializeCallback>();
-            _tryGetValueCallbacks = new Dictionary<byte, TryGetValueCallback>();
+            _serializeCallbackDict = new Dictionary<byte, SerializeCallback>();
+            _deserializeCallbackDict = new Dictionary<byte, DeserializeCallback>();
+            _tryGetValueCallbackDict = new Dictionary<byte, TryGetValueCallback>();
             _latestSerializeCallbackVersion = 0;
         }
 
@@ -61,7 +61,7 @@ namespace LFramework
                 throw new LFrameworkException("Serialize callback is invalid.");
             }
 
-            _serializeCallbacks[version] = callback;
+            _serializeCallbackDict[version] = callback;
             if (version > _latestSerializeCallbackVersion)
             {
                 _latestSerializeCallbackVersion = version;
@@ -80,7 +80,7 @@ namespace LFramework
                 throw new LFrameworkException("Deserialize callback is invalid.");
             }
 
-            _deserializeCallbacks[version] = callback;
+            _deserializeCallbackDict[version] = callback;
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace LFramework
                 throw new LFrameworkException("Try get value callback is invalid.");
             }
 
-            _tryGetValueCallbacks[version] = callback;
+            _tryGetValueCallbackDict[version] = callback;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace LFramework
         /// <returns>是否序列化数据成功。</returns>
         public bool Serialize(Stream stream, T data)
         {
-            if (_serializeCallbacks.Count <= 0)
+            if (_serializeCallbackDict.Count <= 0)
             {
                 throw new LFrameworkException("No serialize callback registered.");
             }
@@ -129,7 +129,7 @@ namespace LFramework
             stream.WriteByte(header[2]);
             stream.WriteByte(version);
             SerializeCallback callback = null;
-            if (!_serializeCallbacks.TryGetValue(version, out callback))
+            if (!_serializeCallbackDict.TryGetValue(version, out callback))
             {
                 throw new LFrameworkException(Utility.Text.Format("Serialize callback '{0}' is not exist.", version));
             }
@@ -150,12 +150,14 @@ namespace LFramework
             byte header2 = (byte)stream.ReadByte();
             if (header0 != header[0] || header1 != header[1] || header2 != header[2])
             {
-                throw new LFrameworkException(Utility.Text.Format("Header is invalid, need '{0}{1}{2}', current '{3}{4}{5}'.", (char)header[0], (char)header[1], (char)header[2], (char)header0, (char)header1, (char)header2));
+                throw new LFrameworkException(Utility.Text.Format(
+                    "Header is invalid, need '{0}{1}{2}', current '{3}{4}{5}'.", (char)header[0], (char)header[1],
+                    (char)header[2], (char)header0, (char)header1, (char)header2));
             }
 
             byte version = (byte)stream.ReadByte();
             DeserializeCallback callback = null;
-            if (!_deserializeCallbacks.TryGetValue(version, out callback))
+            if (!_deserializeCallbackDict.TryGetValue(version, out callback))
             {
                 throw new LFrameworkException(Utility.Text.Format("Deserialize callback '{0}' is not exist.", version));
             }
@@ -184,7 +186,7 @@ namespace LFramework
 
             byte version = (byte)stream.ReadByte();
             TryGetValueCallback callback = null;
-            if (!_tryGetValueCallbacks.TryGetValue(version, out callback))
+            if (!_tryGetValueCallbackDict.TryGetValue(version, out callback))
             {
                 return false;
             }

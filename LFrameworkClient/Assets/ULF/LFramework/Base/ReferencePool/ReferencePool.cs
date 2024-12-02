@@ -8,7 +8,9 @@ namespace LFramework
     /// </summary>
     public static partial class ReferencePool
     {
-        private static readonly Dictionary<Type, ReferenceCollection> ReferenceCollections = new Dictionary<Type, ReferenceCollection>();
+        private static readonly Dictionary<Type, ReferenceCollection> ReferenceCollectionDict =
+            new Dictionary<Type, ReferenceCollection>();
+
         private static bool _enableStrictCheck = false;
 
         /// <summary>
@@ -16,14 +18,8 @@ namespace LFramework
         /// </summary>
         public static bool EnableStrictCheck
         {
-            get
-            {
-                return _enableStrictCheck;
-            }
-            set
-            {
-                _enableStrictCheck = value;
-            }
+            get { return _enableStrictCheck; }
+            set { _enableStrictCheck = value; }
         }
 
         /// <summary>
@@ -31,10 +27,7 @@ namespace LFramework
         /// </summary>
         public static int Count
         {
-            get
-            {
-                return ReferenceCollections.Count;
-            }
+            get { return ReferenceCollectionDict.Count; }
         }
 
         /// <summary>
@@ -46,12 +39,16 @@ namespace LFramework
             int index = 0;
             ReferencePoolInfo[] results = null;
 
-            lock (ReferenceCollections)
+            lock (ReferenceCollectionDict)
             {
-                results = new ReferencePoolInfo[ReferenceCollections.Count];
-                foreach (KeyValuePair<Type, ReferenceCollection> referenceCollection in ReferenceCollections)
+                results = new ReferencePoolInfo[ReferenceCollectionDict.Count];
+                foreach (KeyValuePair<Type, ReferenceCollection> referenceCollection in ReferenceCollectionDict)
                 {
-                    results[index++] = new ReferencePoolInfo(referenceCollection.Key, referenceCollection.Value.UnusedReferenceCount, referenceCollection.Value.UsingReferenceCount, referenceCollection.Value.AcquireReferenceCount, referenceCollection.Value.ReleaseReferenceCount, referenceCollection.Value.AddReferenceCount, referenceCollection.Value.RemoveReferenceCount);
+                    results[index++] = new ReferencePoolInfo(referenceCollection.Key,
+                        referenceCollection.Value.UnusedReferenceCount, referenceCollection.Value.UsingReferenceCount,
+                        referenceCollection.Value.AcquireReferenceCount,
+                        referenceCollection.Value.ReleaseReferenceCount, referenceCollection.Value.AddReferenceCount,
+                        referenceCollection.Value.RemoveReferenceCount);
                 }
             }
 
@@ -63,14 +60,14 @@ namespace LFramework
         /// </summary>
         public static void ClearAll()
         {
-            lock (ReferenceCollections)
+            lock (ReferenceCollectionDict)
             {
-                foreach (KeyValuePair<Type, ReferenceCollection> referenceCollection in ReferenceCollections)
+                foreach (KeyValuePair<Type, ReferenceCollection> referenceCollection in ReferenceCollectionDict)
                 {
                     referenceCollection.Value.RemoveAll();
                 }
 
-                ReferenceCollections.Clear();
+                ReferenceCollectionDict.Clear();
             }
         }
 
@@ -191,7 +188,8 @@ namespace LFramework
 
             if (!typeof(IReference).IsAssignableFrom(referenceType))
             {
-                throw new LFrameworkException(Utility.Text.Format("Reference type '{0}' is invalid.", referenceType.FullName));
+                throw new LFrameworkException(Utility.Text.Format("Reference type '{0}' is invalid.",
+                    referenceType.FullName));
             }
         }
 
@@ -203,12 +201,12 @@ namespace LFramework
             }
 
             ReferenceCollection referenceCollection = null;
-            lock (ReferenceCollections)
+            lock (ReferenceCollectionDict)
             {
-                if (!ReferenceCollections.TryGetValue(referenceType, out referenceCollection))
+                if (!ReferenceCollectionDict.TryGetValue(referenceType, out referenceCollection))
                 {
                     referenceCollection = new ReferenceCollection(referenceType);
-                    ReferenceCollections.Add(referenceType, referenceCollection);
+                    ReferenceCollectionDict.Add(referenceType, referenceCollection);
                 }
             }
 

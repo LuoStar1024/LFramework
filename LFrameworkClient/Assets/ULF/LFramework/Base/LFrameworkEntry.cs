@@ -8,7 +8,8 @@ namespace LFramework
     /// </summary>
     public static class LFrameworkEntry
     {
-        private static readonly LFrameworkLinkedList<LFrameworkModule> LFrameworkModules = new LFrameworkLinkedList<LFrameworkModule>();
+        private static readonly LFrameworkLinkedList<LFrameworkModule> LFrameworkModuleList =
+            new LFrameworkLinkedList<LFrameworkModule>();
 
         /// <summary>
         /// 所有游戏框架模块轮询。
@@ -17,7 +18,7 @@ namespace LFramework
         /// <param name="realElapseSeconds">真实流逝时间，以秒为单位。</param>
         public static void Update(float elapseSeconds, float realElapseSeconds)
         {
-            foreach (LFrameworkModule module in LFrameworkModules)
+            foreach (LFrameworkModule module in LFrameworkModuleList)
             {
                 module.Update(elapseSeconds, realElapseSeconds);
             }
@@ -28,12 +29,14 @@ namespace LFramework
         /// </summary>
         public static void Shutdown()
         {
-            for (LinkedListNode<LFrameworkModule> current = LFrameworkModules.Last; current != null; current = current.Previous)
+            for (LinkedListNode<LFrameworkModule> current = LFrameworkModuleList.Last;
+                 current != null;
+                 current = current.Previous)
             {
                 current.Value.Shutdown();
             }
 
-            LFrameworkModules.Clear();
+            LFrameworkModuleList.Clear();
             ReferencePool.ClearAll();
             Utility.Marshal.FreeCachedHGlobal();
             LFrameworkLog.SetLogHelper(null);
@@ -50,19 +53,24 @@ namespace LFramework
             Type interfaceType = typeof(T);
             if (!interfaceType.IsInterface)
             {
-                throw new LFrameworkException(Utility.Text.Format("You must get module by interface, but '{0}' is not.", interfaceType.FullName));
+                throw new LFrameworkException(Utility.Text.Format("You must get module by interface, but '{0}' is not.",
+                    interfaceType.FullName));
             }
 
             if (!interfaceType.FullName.StartsWith("LFramework.", StringComparison.Ordinal))
             {
-                throw new LFrameworkException(Utility.Text.Format("You must get a Game Framework module, but '{0}' is not.", interfaceType.FullName));
+                throw new LFrameworkException(
+                    Utility.Text.Format("You must get a Game Framework module, but '{0}' is not.",
+                        interfaceType.FullName));
             }
 
-            string moduleName = Utility.Text.Format("{0}.{1}", interfaceType.Namespace, interfaceType.Name.Substring(1));
+            string moduleName =
+                Utility.Text.Format("{0}.{1}", interfaceType.Namespace, interfaceType.Name.Substring(1));
             Type moduleType = Type.GetType(moduleName);
             if (moduleType == null)
             {
-                throw new LFrameworkException(Utility.Text.Format("Can not find Game Framework module type '{0}'.", moduleName));
+                throw new LFrameworkException(Utility.Text.Format("Can not find Game Framework module type '{0}'.",
+                    moduleName));
             }
 
             return GetModule(moduleType) as T;
@@ -76,7 +84,7 @@ namespace LFramework
         /// <remarks>如果要获取的游戏框架模块不存在，则自动创建该游戏框架模块。</remarks>
         private static LFrameworkModule GetModule(Type moduleType)
         {
-            foreach (LFrameworkModule module in LFrameworkModules)
+            foreach (LFrameworkModule module in LFrameworkModuleList)
             {
                 if (module.GetType() == moduleType)
                 {
@@ -100,7 +108,7 @@ namespace LFramework
                 throw new LFrameworkException(Utility.Text.Format("Can not create module '{0}'.", moduleType.FullName));
             }
 
-            LinkedListNode<LFrameworkModule> current = LFrameworkModules.First;
+            LinkedListNode<LFrameworkModule> current = LFrameworkModuleList.First;
             while (current != null)
             {
                 if (module.Priority > current.Value.Priority)
@@ -113,11 +121,11 @@ namespace LFramework
 
             if (current != null)
             {
-                LFrameworkModules.AddBefore(current, module);
+                LFrameworkModuleList.AddBefore(current, module);
             }
             else
             {
-                LFrameworkModules.AddLast(module);
+                LFrameworkModuleList.AddLast(module);
             }
 
             return module;

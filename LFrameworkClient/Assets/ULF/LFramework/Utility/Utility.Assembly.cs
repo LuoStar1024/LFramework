@@ -11,7 +11,9 @@ namespace LFramework
         public static class Assembly
         {
             private static readonly System.Reflection.Assembly[] Assemblies = null;
-            private static readonly Dictionary<string, Type> CachedTypes = new Dictionary<string, Type>(StringComparer.Ordinal);
+
+            private static readonly Dictionary<string, Type> CachedTypeDict =
+                new Dictionary<string, Type>(StringComparer.Ordinal);
 
             static Assembly()
             {
@@ -72,7 +74,7 @@ namespace LFramework
                     throw new LFrameworkException("Type name is invalid.");
                 }
 
-                if (CachedTypes.TryGetValue(typeName, out var type))
+                if (CachedTypeDict.TryGetValue(typeName, out var type))
                 {
                     return type;
                 }
@@ -80,7 +82,7 @@ namespace LFramework
                 type = Type.GetType(typeName);
                 if (type != null)
                 {
-                    CachedTypes.Add(typeName, type);
+                    CachedTypeDict.Add(typeName, type);
                     return type;
                 }
 
@@ -89,7 +91,7 @@ namespace LFramework
                     type = Type.GetType(Text.Format("{0}, {1}", typeName, assembly.FullName));
                     if (type != null)
                     {
-                        CachedTypes.Add(typeName, type);
+                        CachedTypeDict.Add(typeName, type);
                         return type;
                     }
                 }
