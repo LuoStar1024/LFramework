@@ -1,0 +1,219 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.CSharp\\Luban.CSharp.csproj": {}
+  },
+  "projects": {
+    "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\Luban.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\Luban.Core.csproj",
+        "projectName": "Luban.Core",
+        "projectPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\Luban.Core.csproj",
+        "packagesPath": "C:\\Users\\LuoSt\\.nuget\\packages\\",
+        "outputPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\NuGet.Config",
+          "C:\\Users\\LuoSt\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "NLog": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            },
+            "Scriban": {
+              "target": "Package",
+              "version": "[5.7.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.CSharp\\Luban.CSharp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.CSharp\\Luban.CSharp.csproj",
+        "projectName": "Luban.CSharp",
+        "projectPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.CSharp\\Luban.CSharp.csproj",
+        "packagesPath": "C:\\Users\\LuoSt\\.nuget\\packages\\",
+        "outputPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.CSharp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\NuGet.Config",
+          "C:\\Users\\LuoSt\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\Luban.Core.csproj": {
+                "projectPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\Luban.Core.csproj",
+                "excludeAssets": "runtime"
+              },
+              "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.DataValidator.Builtin\\Luban.DataValidator.Builtin.csproj": {
+                "projectPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.DataValidator.Builtin\\Luban.DataValidator.Builtin.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "NLog": {
+              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[5.2.2, )"
+            },
+            "Scriban": {
+              "include": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[5.7.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.DataValidator.Builtin\\Luban.DataValidator.Builtin.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.DataValidator.Builtin\\Luban.DataValidator.Builtin.csproj",
+        "projectName": "Luban.DataValidator.Builtin",
+        "projectPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.DataValidator.Builtin\\Luban.DataValidator.Builtin.csproj",
+        "packagesPath": "C:\\Users\\LuoSt\\.nuget\\packages\\",
+        "outputPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.DataValidator.Builtin\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\NuGet.Config",
+          "C:\\Users\\LuoSt\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\Luban.Core.csproj": {
+                "projectPath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Core\\Luban.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

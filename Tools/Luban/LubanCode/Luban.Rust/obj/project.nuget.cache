@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2uEBAmawjSM=",
+  "success": true,
+  "projectFilePath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.Rust\\Luban.Rust.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LuoSt\\.nuget\\packages\\nlog\\5.2.2\\nlog.5.2.2.nupkg.sha512",
+    "C:\\Users\\LuoSt\\.nuget\\packages\\scriban\\5.7.0\\scriban.5.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

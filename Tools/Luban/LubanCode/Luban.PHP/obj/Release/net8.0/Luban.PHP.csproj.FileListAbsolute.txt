@@ -1,0 +1,16 @@
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Templates\common\php\enum.sbn
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Templates\php-json\schema.sbn
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.PHP.deps.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.PHP.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.PHP.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.csproj.AssemblyReference.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.GeneratedMSBuildEditorConfig.editorconfig
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.AssemblyInfoInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.AssemblyInfo.cs
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.csproj.CoreCompileInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.sourcelink.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.csproj.Up2Date
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\refint\Luban.PHP.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\Luban.PHP.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.PHP\obj\Release\net8.0\ref\Luban.PHP.dll

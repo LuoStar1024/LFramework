@@ -1,0 +1,14 @@
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.L10N.deps.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.L10N.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.L10N.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.csproj.AssemblyReference.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.GeneratedMSBuildEditorConfig.editorconfig
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.AssemblyInfoInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.AssemblyInfo.cs
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.csproj.CoreCompileInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.sourcelink.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.csproj.Up2Date
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\refint\Luban.L10N.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\Luban.L10N.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.L10N\obj\Release\net8.0\ref\Luban.L10N.dll

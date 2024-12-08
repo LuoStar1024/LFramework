@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "dgSpecHash": "wMXw551dRws=",
+  "success": true,
+  "projectFilePath": "D:\\UnityWorkSpace\\LFramework\\Tools\\Luban\\LubanCode\\Luban.MsgPack\\Luban.MsgPack.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\LuoSt\\.nuget\\packages\\messagepack\\2.6.100-alpha\\messagepack.2.6.100-alpha.nupkg.sha512",
+    "C:\\Users\\LuoSt\\.nuget\\packages\\messagepack.annotations\\2.6.100-alpha\\messagepack.annotations.2.6.100-alpha.nupkg.sha512",
+    "C:\\Users\\LuoSt\\.nuget\\packages\\microsoft.net.stringtools\\17.4.0\\microsoft.net.stringtools.17.4.0.nupkg.sha512",
+    "C:\\Users\\LuoSt\\.nuget\\packages\\nlog\\5.2.2\\nlog.5.2.2.nupkg.sha512",
+    "C:\\Users\\LuoSt\\.nuget\\packages\\scriban\\5.7.0\\scriban.5.7.0.nupkg.sha512",
+    "C:\\Users\\LuoSt\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\LuoSt\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "包 \"MessagePack\" 2.6.100-alpha 具有已知的 中 严重性漏洞，https://github.com/advisories/GHSA-4qm4-8hg2-g2xm",
+      "libraryId": "MessagePack",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}
