@@ -1,0 +1,9 @@
+using UnityEngine;
+
+namespace Launcher
+{
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        
+    }
+}

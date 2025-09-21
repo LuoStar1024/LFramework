@@ -1,0 +1,9 @@
+using UnityEngine;
+
+namespace GameLogic
+{
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "name": "LFramework.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:e1a701ea7bd671d4c862bafa7397e006",
+        "GUID:4d1926c9df5b052469a1c63448b7609a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

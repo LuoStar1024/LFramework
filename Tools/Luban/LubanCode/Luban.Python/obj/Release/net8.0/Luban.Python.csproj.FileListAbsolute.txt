@@ -1,0 +1,15 @@
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Templates\python-json\schema.sbn
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.Python.deps.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.Python.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.Python.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.csproj.AssemblyReference.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.GeneratedMSBuildEditorConfig.editorconfig
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.AssemblyInfoInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.AssemblyInfo.cs
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.csproj.CoreCompileInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.sourcelink.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Py.4247F3A5.Up2Date
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\refint\Luban.Python.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\Luban.Python.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Python\obj\Release\net8.0\ref\Luban.Python.dll

@@ -1,0 +1,15 @@
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Templates\gdscript-json\schema.sbn
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.Gdscript.deps.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.Gdscript.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.Gdscript.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.csproj.AssemblyReference.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.GeneratedMSBuildEditorConfig.editorconfig
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.AssemblyInfoInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.AssemblyInfo.cs
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.csproj.CoreCompileInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.sourcelink.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gd.7DD0B9BC.Up2Date
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\refint\Luban.Gdscript.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\Luban.Gdscript.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.Gdscript\obj\Release\net8.0\ref\Luban.Gdscript.dll

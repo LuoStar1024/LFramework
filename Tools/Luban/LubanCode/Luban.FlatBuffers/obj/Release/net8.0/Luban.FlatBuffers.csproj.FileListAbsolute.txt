@@ -1,0 +1,15 @@
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Templates\flatbuffers\schema.sbn
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.FlatBuffers.deps.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.FlatBuffers.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanDll\Luban.FlatBuffers.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.csproj.AssemblyReference.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.GeneratedMSBuildEditorConfig.editorconfig
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.AssemblyInfoInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.AssemblyInfo.cs
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.csproj.CoreCompileInputs.cache
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.sourcelink.json
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.Fl.F4B8511B.Up2Date
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\refint\Luban.FlatBuffers.dll
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\Luban.FlatBuffers.pdb
+D:\UnityWorkSpace\LFramework\Tools\Luban\LubanCode\Luban.FlatBuffers\obj\Release\net8.0\ref\Luban.FlatBuffers.dll
