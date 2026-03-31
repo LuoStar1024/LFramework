@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace LFramework
 {
@@ -87,7 +88,19 @@ namespace LFramework
             /// <returns>指定类型的数据。</returns>
             public T GetData<T>() where T : Variable
             {
-                return (T)_data;
+                if (_data == null)
+                {
+                    return null;
+                }
+
+                if (_data is T value)
+                {
+                    return value;
+                }
+
+                throw new LFrameworkException(Utility.Text.Format(
+                    "Data node '{0}' data type mismatch, expected '{1}', actual '{2}'.", FullName,
+                    typeof(T).Name, _data.Type != null ? _data.Type.Name : _data.GetType().Name));
             }
 
             /// <summary>
@@ -145,20 +158,7 @@ namespace LFramework
                     throw new LFrameworkException("Name is invalid.");
                 }
 
-                if (_childs == null)
-                {
-                    return false;
-                }
-
-                foreach (DataNode child in _childs)
-                {
-                    if (child.Name == name)
-                    {
-                        return true;
-                    }
-                }
-
-                return false;
+                return GetChildDataNode(name) != null;
             }
 
             /// <summary>
@@ -183,20 +183,7 @@ namespace LFramework
                     throw new LFrameworkException("Name is invalid.");
                 }
 
-                if (_childs == null)
-                {
-                    return null;
-                }
-
-                foreach (DataNode child in _childs)
-                {
-                    if (child.Name == name)
-                    {
-                        return child;
-                    }
-                }
-
-                return null;
+                return GetChildDataNode(name);
             }
 
             /// <summary>
@@ -206,7 +193,12 @@ namespace LFramework
             /// <returns>指定名称的子数据结点，如果对应名称的子数据结点已存在，则返回已存在的子数据结点，否则增加子数据结点。</returns>
             public IDataNode GetOrAddChild(string name)
             {
-                DataNode node = (DataNode)GetChild(name);
+                if (!IsValidName(name))
+                {
+                    throw new LFrameworkException("Name is invalid.");
+                }
+
+                DataNode node = GetChildDataNode(name);
                 if (node != null)
                 {
                     return node;
@@ -283,7 +275,12 @@ namespace LFramework
             /// <param name="name">子数据结点名称。</param>
             public void RemoveChild(string name)
             {
-                DataNode node = (DataNode)GetChild(name);
+                if (!IsValidName(name))
+                {
+                    throw new LFrameworkException("Name is invalid.");
+                }
+
+                DataNode node = GetChildDataNode(name);
                 if (node == null)
                 {
                     return;
@@ -356,6 +353,24 @@ namespace LFramework
                 }
 
                 return true;
+            }
+
+            private DataNode GetChildDataNode(string name)
+            {
+                if (_childs == null)
+                {
+                    return null;
+                }
+
+                foreach (DataNode child in _childs)
+                {
+                    if (child.Name == name)
+                    {
+                        return child;
+                    }
+                }
+
+                return null;
             }
 
             void IReference.Clear()

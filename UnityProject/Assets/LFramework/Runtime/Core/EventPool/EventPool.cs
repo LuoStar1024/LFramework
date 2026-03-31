@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace LFramework
@@ -7,14 +7,15 @@ namespace LFramework
     /// 事件池。
     /// </summary>
     /// <typeparam name="T">事件类型。</typeparam>
-    internal sealed partial class EventPool<T> where T : BaseEventArgs
+    internal sealed partial class EventPool
     {
-        private readonly LFrameworkMultiDictionary<int, EventHandler<T>> _eventHandlers;
+        private readonly LFrameworkMultiDictionary<int, Delegate> _eventHandlers;
         private readonly Queue<Event> _events;
-        private readonly Dictionary<object, LinkedListNode<EventHandler<T>>> _cachedNodes;
-        private readonly Dictionary<object, LinkedListNode<EventHandler<T>>> _tempNodes;
+        private readonly Dictionary<int, LinkedListNode<Delegate>> _cachedNodes;
+        private readonly Dictionary<int, LinkedListNode<Delegate>> _tempNodes;
         private readonly EventPoolMode _eventPoolMode;
-        private EventHandler<T> _defaultHandler;
+        private Action<int> _defaultHandler;
+        private readonly Dictionary<string, object> _eventGroupDict;
 
         /// <summary>
         /// 初始化事件池的新实例。
@@ -22,12 +23,13 @@ namespace LFramework
         /// <param name="mode">事件池模式。</param>
         public EventPool(EventPoolMode mode)
         {
-            _eventHandlers = new LFrameworkMultiDictionary<int, EventHandler<T>>();
+            _eventHandlers = new LFrameworkMultiDictionary<int, Delegate>();
             _events = new Queue<Event>();
-            _cachedNodes = new Dictionary<object, LinkedListNode<EventHandler<T>>>();
-            _tempNodes = new Dictionary<object, LinkedListNode<EventHandler<T>>>();
+            _cachedNodes = new Dictionary<int, LinkedListNode<Delegate>>();
+            _tempNodes = new Dictionary<int, LinkedListNode<Delegate>>();
             _eventPoolMode = mode;
             _defaultHandler = null;
+            _eventGroupDict = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -58,7 +60,7 @@ namespace LFramework
                 while (_events.Count > 0)
                 {
                     Event eventNode = _events.Dequeue();
-                    HandleEvent(eventNode.Sender, eventNode.EventArgs);
+                    eventNode.HandleEvent();
                     ReferencePool.Release(eventNode);
                 }
             }
@@ -74,6 +76,7 @@ namespace LFramework
             _cachedNodes.Clear();
             _tempNodes.Clear();
             _defaultHandler = null;
+            _eventGroupDict.Clear();
         }
 
         /// <summary>
@@ -94,7 +97,7 @@ namespace LFramework
         /// <returns>事件处理函数的数量。</returns>
         public int Count(int id)
         {
-            LFrameworkLinkedListRange<EventHandler<T>> range = default(LFrameworkLinkedListRange<EventHandler<T>>);
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
             if (_eventHandlers.TryGetValue(id, out range))
             {
                 return range.Count;
@@ -109,7 +112,7 @@ namespace LFramework
         /// <param name="id">事件类型编号。</param>
         /// <param name="handler">要检查的事件处理函数。</param>
         /// <returns>是否存在事件处理函数。</returns>
-        public bool Check(int id, EventHandler<T> handler)
+        public bool Check(int id, Delegate handler)
         {
             if (handler == null)
             {
@@ -124,7 +127,133 @@ namespace LFramework
         /// </summary>
         /// <param name="id">事件类型编号。</param>
         /// <param name="handler">要订阅的事件处理函数。</param>
-        public void Subscribe(int id, EventHandler<T> handler)
+        public void Subscribe(int id, Action handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        public void Subscribe<TArg1>(int id, Action<TArg1> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        public void Subscribe<TArg1, TArg2>(int id, Action<TArg1, TArg2> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        public void Subscribe<TArg1, TArg2, TArg3>(int id, Action<TArg1, TArg2, TArg3> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4>(int id, Action<TArg1, TArg2, TArg3, TArg4> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        /// <typeparam name="TArg8">事件参数8类型。</typeparam>
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
+        {
+            SubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要订阅的事件处理函数。</param>
+        public void SubscribeDelegate(int id, Delegate handler)
         {
             if (handler == null)
             {
@@ -155,7 +284,133 @@ namespace LFramework
         /// </summary>
         /// <param name="id">事件类型编号。</param>
         /// <param name="handler">要取消订阅的事件处理函数。</param>
-        public void Unsubscribe(int id, EventHandler<T> handler)
+        public void Unsubscribe(int id, Action handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        public void Unsubscribe<TArg1>(int id, Action<TArg1> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        public void Unsubscribe<TArg1, TArg2>(int id, Action<TArg1, TArg2> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        public void Unsubscribe<TArg1, TArg2, TArg3>(int id, Action<TArg1, TArg2, TArg3> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4>(int id, Action<TArg1, TArg2, TArg3, TArg4> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        /// <typeparam name="TArg8">事件参数8类型。</typeparam>
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
+        {
+            UnsubscribeDelegate(id, handler);
+        }
+        
+        /// <summary>
+        /// 取消订阅事件处理函数。
+        /// </summary>
+        /// <param name="id">事件类型编号。</param>
+        /// <param name="handler">要取消订阅的事件处理函数。</param>
+        public void UnsubscribeDelegate(int id, Delegate handler)
         {
             if (handler == null)
             {
@@ -164,7 +419,7 @@ namespace LFramework
 
             if (_cachedNodes.Count > 0)
             {
-                foreach (KeyValuePair<object, LinkedListNode<EventHandler<T>>> cachedNode in _cachedNodes)
+                foreach (KeyValuePair<int, LinkedListNode<Delegate>> cachedNode in _cachedNodes)
                 {
                     if (cachedNode.Value != null && cachedNode.Value.Value == handler)
                     {
@@ -174,7 +429,7 @@ namespace LFramework
 
                 if (_tempNodes.Count > 0)
                 {
-                    foreach (KeyValuePair<object, LinkedListNode<EventHandler<T>>> cachedNode in _tempNodes)
+                    foreach (KeyValuePair<int, LinkedListNode<Delegate>> cachedNode in _tempNodes)
                     {
                         _cachedNodes[cachedNode.Key] = cachedNode.Value;
                     }
@@ -188,12 +443,12 @@ namespace LFramework
                 throw new LFrameworkException(Utility.Text.Format("Event '{0}' not exists specified handler.", id));
             }
         }
-
+        
         /// <summary>
         /// 设置默认事件处理函数。
         /// </summary>
         /// <param name="handler">要设置的默认事件处理函数。</param>
-        public void SetDefaultHandler(EventHandler<T> handler)
+        public void SetDefaultHandler(Action<int> handler)
         {
             _defaultHandler = handler;
         }
@@ -201,16 +456,186 @@ namespace LFramework
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
-        /// <param name="sender">事件源。</param>
-        /// <param name="e">事件参数。</param>
-        public void Fire(object sender, T e)
+        /// <param name="id">事件Id。</param>
+        public void Fire(int id)
         {
-            if (e == null)
+            Event eventNode = EventArgs.Create(id, HandleEvent);
+            lock (_events)
             {
-                throw new LFrameworkException("Event is invalid.");
+                _events.Enqueue(eventNode);
             }
-
-            Event eventNode = Event.Create(sender, e);
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        public void Fire<TArg1>(int id, TArg1 arg1)
+        {
+            Event eventNode = EventArgs<TArg1>.Create(id, arg1, HandleEvent);
+            lock (_events)
+            {
+                _events.Enqueue(eventNode);
+            }
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        public void Fire<TArg1, TArg2>(int id, TArg1 arg1, TArg2 arg2)
+        {
+            Event eventNode = EventArgs<TArg1, TArg2>.Create(id, arg1, arg2, HandleEvent);
+            lock (_events)
+            {
+                _events.Enqueue(eventNode);
+            }
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        public void Fire<TArg1, TArg2, TArg3>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        {
+            Event eventNode = EventArgs<TArg1, TArg2, TArg3>.Create(id, arg1, arg2, arg3, HandleEvent);
+            lock (_events)
+            {
+                _events.Enqueue(eventNode);
+            }
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        public void Fire<TArg1, TArg2, TArg3, TArg4>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+        {
+            Event eventNode = EventArgs<TArg1, TArg2, TArg3, TArg4>.Create(id, arg1, arg2, arg3, arg4, HandleEvent);
+            lock (_events)
+            {
+                _events.Enqueue(eventNode);
+            }
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+        {
+            Event eventNode = EventArgs<TArg1, TArg2, TArg3, TArg4, TArg5>.Create(id, arg1, arg2, arg3, arg4, arg5, HandleEvent);
+            lock (_events)
+            {
+                _events.Enqueue(eventNode);
+            }
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+        {
+            Event eventNode = EventArgs<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>.Create(id, arg1, arg2, arg3, arg4, arg5, arg6, HandleEvent);
+            lock (_events)
+            {
+                _events.Enqueue(eventNode);
+            }
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <param name="arg7">事件参数7。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+        {
+            Event eventNode = EventArgs<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>.Create(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7, HandleEvent);
+            lock (_events)
+            {
+                _events.Enqueue(eventNode);
+            }
+        }
+        
+        /// <summary>
+        /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <param name="arg7">事件参数7。</param>
+        /// <param name="arg8">事件参数8。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        /// <typeparam name="TArg8">事件参数8类型。</typeparam>
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
+        {
+            Event eventNode = EventArgs<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>.Create(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, HandleEvent);
             lock (_events)
             {
                 _events.Enqueue(eventNode);
@@ -220,53 +645,597 @@ namespace LFramework
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
-        /// <param name="sender">事件源。</param>
-        /// <param name="e">事件参数。</param>
-        public void FireNow(object sender, T e)
+        /// <param name="id">事件Id。</param>
+        public void FireNow(int id)
         {
-            if (e == null)
-            {
-                throw new LFrameworkException("Event is invalid.");
-            }
-
-            HandleEvent(sender, e);
+            HandleEvent(id);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        public void FireNow<TArg1>(int id, TArg1 arg1)
+        {
+            HandleEvent(id, arg1);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        public void FireNow<TArg1, TArg2>(int id, TArg1 arg1, TArg2 arg2)
+        {
+            HandleEvent(id, arg1, arg2);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        public void FireNow<TArg1, TArg2, TArg3>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        {
+            HandleEvent(id, arg1, arg2, arg3);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+        {
+            HandleEvent(id, arg1, arg2, arg3, arg4);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+        {
+            HandleEvent(id, arg1, arg2, arg3, arg4, arg5);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+        {
+            HandleEvent(id, arg1, arg2, arg3, arg4, arg5, arg6);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <param name="arg7">事件参数7。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+        {
+            HandleEvent(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+        }
+        
+        /// <summary>
+        /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <param name="arg7">事件参数7。</param>
+        /// <param name="arg8">事件参数8。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        /// <typeparam name="TArg8">事件参数8类型。</typeparam>
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
+        {
+            HandleEvent(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
         }
 
         /// <summary>
+        /// 注册事件组。
+        /// </summary>
+        /// <param name="group">事件组实例。</param>
+        /// <typeparam name="T">事件组接口类型。</typeparam>
+        public void RegisterGroup<T>(T group)
+        {
+            string groupName = typeof(T).FullName;
+            if (groupName != null)
+            {
+                _eventGroupDict.Add(groupName, group);
+            }
+        }
+
+        /// <summary>
+        /// 获取事件组。
+        /// </summary>
+        /// <typeparam name="T">事件组接口类型。</typeparam>
+        /// <returns>事件组实例。</returns>
+        public T FireGroup<T>()
+        {
+            string groupName = typeof(T).FullName;
+            if (groupName != null && _eventGroupDict.TryGetValue(groupName, out var group))
+            {
+                return (T)group;
+            }
+
+            return default(T);
+        }
+        
+        /// <summary>
         /// 处理事件结点。
         /// </summary>
-        /// <param name="sender">事件源。</param>
-        /// <param name="e">事件参数。</param>
-        private void HandleEvent(object sender, T e)
+        /// <param name="id">事件Id。</param>
+        private void HandleEvent(int id)
         {
             bool noHandlerException = false;
-            LFrameworkLinkedListRange<EventHandler<T>> range = default(LFrameworkLinkedListRange<EventHandler<T>>);
-            if (_eventHandlers.TryGetValue(e.Id, out range))
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
             {
-                LinkedListNode<EventHandler<T>> current = range.First;
+                LinkedListNode<Delegate> current = range.First;
                 while (current != null && current != range.Terminal)
                 {
-                    _cachedNodes[e] = current.Next != range.Terminal ? current.Next : null;
-                    current.Value(sender, e);
-                    current = _cachedNodes[e];
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action action)
+                    {
+                        action();
+                    }
+                    current = _cachedNodes[id];
                 }
 
-                _cachedNodes.Remove(e);
+                _cachedNodes.Remove(id);
             }
             else if (_defaultHandler != null)
             {
-                _defaultHandler(sender, e);
+                _defaultHandler(id);
             }
             else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
             {
                 noHandlerException = true;
             }
 
-            ReferencePool.Release(e);
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        private void HandleEvent<TArg1>(int id, TArg1 arg1)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1> action)
+                    {
+                        action(arg1);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
 
             if (noHandlerException)
             {
-                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", e.Id));
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        private void HandleEvent<TArg1, TArg2>(int id, TArg1 arg1, TArg2 arg2)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1, TArg2> action)
+                    {
+                        action(arg1, arg2);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
+
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        private void HandleEvent<TArg1, TArg2, TArg3>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1, TArg2, TArg3> action)
+                    {
+                        action(arg1, arg2, arg3);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
+
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        private void HandleEvent<TArg1, TArg2, TArg3, TArg4>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1, TArg2, TArg3, TArg4> action)
+                    {
+                        action(arg1, arg2, arg3, arg4);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
+
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        private void HandleEvent<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1, TArg2, TArg3, TArg4, TArg5> action)
+                    {
+                        action(arg1, arg2, arg3, arg4, arg5);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
+
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        private void HandleEvent<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> action)
+                    {
+                        action(arg1, arg2, arg3, arg4, arg5, arg6);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
+
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <param name="arg7">事件参数7。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        private void HandleEvent<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> action)
+                    {
+                        action(arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
+
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
+            }
+        }
+        
+        /// <summary>
+        /// 处理事件结点。
+        /// </summary>
+        /// <param name="id">事件Id。</param>
+        /// <param name="arg1">事件参数1。</param>
+        /// <param name="arg2">事件参数2。</param>
+        /// <param name="arg3">事件参数3。</param>
+        /// <param name="arg4">事件参数4。</param>
+        /// <param name="arg5">事件参数5。</param>
+        /// <param name="arg6">事件参数6。</param>
+        /// <param name="arg7">事件参数7。</param>
+        /// <param name="arg8">事件参数8。</param>
+        /// <typeparam name="TArg1">事件参数1类型。</typeparam>
+        /// <typeparam name="TArg2">事件参数2类型。</typeparam>
+        /// <typeparam name="TArg3">事件参数3类型。</typeparam>
+        /// <typeparam name="TArg4">事件参数4类型。</typeparam>
+        /// <typeparam name="TArg5">事件参数5类型。</typeparam>
+        /// <typeparam name="TArg6">事件参数6类型。</typeparam>
+        /// <typeparam name="TArg7">事件参数7类型。</typeparam>
+        /// <typeparam name="TArg8">事件参数8类型。</typeparam>
+        private void HandleEvent<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
+        {
+            bool noHandlerException = false;
+            LFrameworkLinkedListRange<Delegate> range = default(LFrameworkLinkedListRange<Delegate>);
+            if (_eventHandlers.TryGetValue(id, out range))
+            {
+                LinkedListNode<Delegate> current = range.First;
+                while (current != null && current != range.Terminal)
+                {
+                    _cachedNodes[id] = current.Next != range.Terminal ? current.Next : null;
+                    if (current.Value is Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> action)
+                    {
+                        action(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+                    }
+                    current = _cachedNodes[id];
+                }
+
+                _cachedNodes.Remove(id);
+            }
+            else if (_defaultHandler != null)
+            {
+                _defaultHandler(id);
+            }
+            else if ((_eventPoolMode & EventPoolMode.AllowNoHandler) == 0)
+            {
+                noHandlerException = true;
+            }
+
+            if (noHandlerException)
+            {
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not allow no handler.", id));
             }
         }
     }

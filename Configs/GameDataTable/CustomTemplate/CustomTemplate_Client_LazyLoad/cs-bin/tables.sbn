@@ -1,0 +1,59 @@
+using Luban;
+using SimpleJSON;
+
+{{namespace_with_grace_begin __namespace}}
+    public partial class {{__name}}
+    {
+        #region The Tables
+
+        {{~for table in __tables ~}}
+    {{~if table.comment != '' ~}}
+        /// <summary>
+        /// {{escape_comment table.comment}}
+        /// </summary>
+    {{~end~}}
+        private {{table.full_name}} m_{{table.name}};
+        public {{table.full_name}} {{format_property_name __code_style table.name}} 
+        {
+            get
+            {
+                if (m_{{table.name}} == null)
+                {
+                    m_{{table.name}} = new {{table.full_name}}(m_DefaultLoader("{{table.output_data_file}}"));
+                    m_{{table.name}}.ResolveRef(this);
+                }
+                return m_{{table.name}};
+            }
+            set
+            {
+                m_{{table.name}} = value;
+                m_{{table.name}}.ResolveRef(this);
+            }
+        }
+        {{~end~}}
+
+        #endregion
+
+        private System.Func<string, ByteBuf> m_DefaultLoader;
+
+        public {{__name}}(System.Func<string, ByteBuf> loader)
+        {
+            SetDefaultLoader(loader);
+            Init();
+        }
+        
+        public void SetDefaultLoader(System.Func<string, ByteBuf> loader)
+        {
+            m_DefaultLoader = null;
+            m_DefaultLoader = loader;
+        }
+
+        public {{__name}}(System.Func<string, JSONNode> loader)
+        {
+        }
+
+        //public partial void Init();
+
+        public void Init(){}
+    }
+{{namespace_with_grace_end __namespace}}

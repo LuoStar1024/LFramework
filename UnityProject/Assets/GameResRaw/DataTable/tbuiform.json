@@ -1,0 +1,9 @@
+[
+  {
+    "id": 1,
+    "asset_name": "MenuForm",
+    "group_name": 2,
+    "allow_multi_instance": false,
+    "pause_covered_form": false
+  }
+]

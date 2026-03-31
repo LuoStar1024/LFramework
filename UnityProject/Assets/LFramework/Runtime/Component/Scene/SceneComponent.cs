@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace LFramework
 {
@@ -8,7 +9,7 @@ namespace LFramework
     /// 场景组件。
     /// </summary>
     [DisallowMultipleComponent]
-    [AddComponentMenu("Game Framework/Scene")]
+    [AddComponentMenu("LFramework/Scene")]
     public sealed class SceneComponent : MonoBehaviour, ILFrameworkModule, ISceneManager
     {
         private List<string> _loadedSceneAssetNames;
@@ -17,7 +18,23 @@ namespace LFramework
         private LoadSceneCallbacks _loadSceneCallbacks;
         private UnloadSceneCallbacks _unloadSceneCallbacks;
         private IResourceManager _resourceManager;
+        
+        
+        private readonly SortedDictionary<string, int> _sceneOrder = new SortedDictionary<string, int>(StringComparer.Ordinal);
+        private Camera _mainCamera = null;
+        private Scene _frameworkScene = default(Scene);
 
+        /// <summary>
+        /// 获取当前场景主摄像机。
+        /// </summary>
+        public Camera MainCamera
+        {
+            get
+            {
+                return _mainCamera;
+            }
+        }
+        
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
@@ -30,6 +47,13 @@ namespace LFramework
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<ISceneManager>(this);
+            
+            _frameworkScene = SceneManager.GetSceneAt(0);
+            if (!_frameworkScene.IsValid())
+            {
+                Log.Fatal("Game Framework scene is invalid.");
+                return;
+            }
         }
 
         private void Start()
@@ -71,6 +95,36 @@ namespace LFramework
             _loadedSceneAssetNames.Clear();
             _loadingSceneAssetNames.Clear();
             _unloadingSceneAssetNames.Clear();
+        }
+        
+        /// <summary>
+        /// 获取场景名称。
+        /// </summary>
+        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <returns>场景名称。</returns>
+        public static string GetSceneName(string sceneAssetName)
+        {
+            if (string.IsNullOrEmpty(sceneAssetName))
+            {
+                Log.Error("Scene asset name is invalid.");
+                return null;
+            }
+
+            int sceneNamePosition = sceneAssetName.LastIndexOf('/');
+            if (sceneNamePosition + 1 >= sceneAssetName.Length)
+            {
+                Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
+                return null;
+            }
+
+            string sceneName = sceneAssetName.Substring(sceneNamePosition + 1);
+            sceneNamePosition = sceneName.LastIndexOf(".unity");
+            if (sceneNamePosition > 0)
+            {
+                sceneName = sceneName.Substring(0, sceneNamePosition);
+            }
+
+            return sceneName;
         }
 
         /// <summary>
@@ -197,6 +251,12 @@ namespace LFramework
         /// <returns>场景资源是否存在。</returns>
         public bool HasScene(string sceneAssetName)
         {
+            if (string.IsNullOrEmpty(sceneAssetName))
+            {
+                Log.Error("Scene asset name is invalid.");
+                return false;
+            }
+            
             return _resourceManager.HasAsset(sceneAssetName) != HasAssetResult.NotExist;
         }
 
@@ -204,9 +264,12 @@ namespace LFramework
         /// 加载场景。
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
-        public void LoadScene(string sceneAssetName)
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        public void LoadScene(string sceneAssetName, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null)
         {
-            LoadScene(sceneAssetName, ResourceConstant.DefaultPriority, null);
+            LoadScene(sceneAssetName, ResourceConstant.DefaultPriority, null, progressCallback, loadSuccessCallBack);
         }
 
         /// <summary>
@@ -214,9 +277,12 @@ namespace LFramework
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
         /// <param name="priority">加载场景资源的优先级。</param>
-        public void LoadScene(string sceneAssetName, int priority)
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        public void LoadScene(string sceneAssetName, int priority, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null)
         {
-            LoadScene(sceneAssetName, priority, null);
+            LoadScene(sceneAssetName, priority, null, progressCallback, loadSuccessCallBack);
         }
 
         /// <summary>
@@ -224,9 +290,12 @@ namespace LFramework
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadScene(string sceneAssetName, object userData)
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        public void LoadScene(string sceneAssetName, object userData, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null)
         {
-            LoadScene(sceneAssetName, ResourceConstant.DefaultPriority, userData);
+            LoadScene(sceneAssetName, ResourceConstant.DefaultPriority, userData, progressCallback, loadSuccessCallBack);
         }
 
         /// <summary>
@@ -235,7 +304,10 @@ namespace LFramework
         /// <param name="sceneAssetName">场景资源名称。</param>
         /// <param name="priority">加载场景资源的优先级。</param>
         /// <param name="userData">用户自定义数据。</param>
-        public void LoadScene(string sceneAssetName, int priority, object userData)
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        public void LoadScene(string sceneAssetName, int priority, object userData, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null)
         {
             if (string.IsNullOrEmpty(sceneAssetName))
             {
@@ -266,7 +338,8 @@ namespace LFramework
             }
 
             _loadingSceneAssetNames.Add(sceneAssetName);
-            _resourceManager.LoadScene(sceneAssetName, priority, _loadSceneCallbacks, userData);
+            _resourceManager.LoadScene(sceneAssetName, priority, _loadSceneCallbacks,
+                LoadSceneInfo.Create(userData, progressCallback, loadSuccessCallBack));
         }
 
         /// <summary>
@@ -315,19 +388,130 @@ namespace LFramework
 
             _unloadingSceneAssetNames.Add(sceneAssetName);
             _resourceManager.UnloadScene(sceneAssetName, _unloadSceneCallbacks, userData);
+            
+            _sceneOrder.Remove(sceneAssetName);
+        }
+
+        /// <summary>
+        /// 设置场景顺序。
+        /// </summary>
+        /// <param name="sceneAssetName">场景资源名称。</param>
+        /// <param name="sceneOrder">要设置的场景顺序。</param>
+        public void SetSceneOrder(string sceneAssetName, int sceneOrder)
+        {
+            if (string.IsNullOrEmpty(sceneAssetName))
+            {
+                Log.Error("Scene asset name is invalid.");
+                return;
+            }
+
+            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
+            {
+                Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
+                return;
+            }
+
+            if (SceneIsLoading(sceneAssetName))
+            {
+                _sceneOrder[sceneAssetName] = sceneOrder;
+                return;
+            }
+
+            if (SceneIsLoaded(sceneAssetName))
+            {
+                _sceneOrder[sceneAssetName] = sceneOrder;
+                RefreshSceneOrder();
+                return;
+            }
+
+            Log.Error("Scene '{0}' is not loaded or loading.", sceneAssetName);
+        }
+
+        /// <summary>
+        /// 刷新当前场景主摄像机。
+        /// </summary>
+        public void RefreshMainCamera()
+        {
+            _mainCamera = Camera.main;
+        }
+
+        private void RefreshSceneOrder()
+        {
+            if (_sceneOrder.Count > 0)
+            {
+                string maxSceneName = null;
+                int maxSceneOrder = 0;
+                foreach (KeyValuePair<string, int> sceneOrder in _sceneOrder)
+                {
+                    if (SceneIsLoading(sceneOrder.Key))
+                    {
+                        continue;
+                    }
+
+                    if (maxSceneName == null)
+                    {
+                        maxSceneName = sceneOrder.Key;
+                        maxSceneOrder = sceneOrder.Value;
+                        continue;
+                    }
+
+                    if (sceneOrder.Value > maxSceneOrder)
+                    {
+                        maxSceneName = sceneOrder.Key;
+                        maxSceneOrder = sceneOrder.Value;
+                    }
+                }
+
+                if (maxSceneName == null)
+                {
+                    SetActiveScene(_frameworkScene);
+                    return;
+                }
+
+                Scene scene = SceneManager.GetSceneByName(GetSceneName(maxSceneName));
+                if (!scene.IsValid())
+                {
+                    Log.Error("Active scene '{0}' is invalid.", maxSceneName);
+                    return;
+                }
+
+                SetActiveScene(scene);
+            }
+            else
+            {
+                SetActiveScene(_frameworkScene);
+            }
+        }
+
+        private void SetActiveScene(Scene activeScene)
+        {
+            Scene lastActiveScene = SceneManager.GetActiveScene();
+            if (lastActiveScene != activeScene)
+            {
+                SceneManager.SetActiveScene(activeScene);
+            }
+
+            RefreshMainCamera();
         }
 
         private void LoadSceneSuccessCallback(string sceneAssetName, float duration, object userData)
         {
             _loadingSceneAssetNames.Remove(sceneAssetName);
             _loadedSceneAssetNames.Add(sceneAssetName);
-            // if (_loadSceneSuccessEventHandler != null)
-            // {
-            //     LoadSceneSuccessEventArgs loadSceneSuccessEventArgs =
-            //         LoadSceneSuccessEventArgs.Create(sceneAssetName, duration, userData);
-            //     _loadSceneSuccessEventHandler(this, loadSceneSuccessEventArgs);
-            //     ReferencePool.Release(loadSceneSuccessEventArgs);
-            // }
+            
+            if (!_sceneOrder.ContainsKey(sceneAssetName))
+            {
+                _sceneOrder.Add(sceneAssetName, 0);
+            }
+            RefreshSceneOrder();
+            
+            LoadSceneInfo loadSceneInfo = (LoadSceneInfo)userData;
+            if (loadSceneInfo == null)
+            {
+                throw new LFrameworkException("Load scene info is invalid.");
+            }
+
+            loadSceneInfo.LoadSuccessCallBack?.Invoke(true);
         }
 
         private void LoadSceneFailureCallback(string sceneAssetName, LoadResourceStatus status, string errorMessage,
@@ -337,55 +521,42 @@ namespace LFramework
             string appendErrorMessage =
                 Utility.Text.Format("Load scene failure, scene asset name '{0}', status '{1}', error message '{2}'.",
                     sceneAssetName, status, errorMessage);
-            // if (_loadSceneFailureEventHandler != null)
-            // {
-            //     LoadSceneFailureEventArgs loadSceneFailureEventArgs =
-            //         LoadSceneFailureEventArgs.Create(sceneAssetName, appendErrorMessage, userData);
-            //     _loadSceneFailureEventHandler(this, loadSceneFailureEventArgs);
-            //     ReferencePool.Release(loadSceneFailureEventArgs);
-            //     return;
-            // }
+            Log.Error(appendErrorMessage);
 
-            throw new LFrameworkException(appendErrorMessage);
+            LoadSceneInfo loadSceneInfo = (LoadSceneInfo)userData;
+            if (loadSceneInfo == null)
+            {
+                throw new LFrameworkException("Load scene info is invalid.");
+            }
+
+            loadSceneInfo.LoadSuccessCallBack?.Invoke(false);
         }
 
         private void LoadSceneUpdateCallback(string sceneAssetName, float progress, object userData)
         {
-            // if (_loadSceneUpdateEventHandler != null)
-            // {
-            //     LoadSceneUpdateEventArgs loadSceneUpdateEventArgs =
-            //         LoadSceneUpdateEventArgs.Create(sceneAssetName, progress, userData);
-            //     _loadSceneUpdateEventHandler(this, loadSceneUpdateEventArgs);
-            //     ReferencePool.Release(loadSceneUpdateEventArgs);
-            // }
+            LoadSceneInfo loadSceneInfo = (LoadSceneInfo)userData;
+            if (loadSceneInfo == null)
+            {
+                throw new LFrameworkException("Load scene info is invalid.");
+            }
+
+            loadSceneInfo.ProgressCallback?.Invoke(progress);
         }
 
         private void UnloadSceneSuccessCallback(string sceneAssetName, object userData)
         {
             _unloadingSceneAssetNames.Remove(sceneAssetName);
             _loadedSceneAssetNames.Remove(sceneAssetName);
-            // if (_unloadSceneSuccessEventHandler != null)
-            // {
-            //     UnloadSceneSuccessEventArgs unloadSceneSuccessEventArgs =
-            //         UnloadSceneSuccessEventArgs.Create(sceneAssetName, userData);
-            //     _unloadSceneSuccessEventHandler(this, unloadSceneSuccessEventArgs);
-            //     ReferencePool.Release(unloadSceneSuccessEventArgs);
-            // }
+            
+            _sceneOrder.Remove(sceneAssetName);
+            RefreshSceneOrder();
         }
 
         private void UnloadSceneFailureCallback(string sceneAssetName, object userData)
         {
             _unloadingSceneAssetNames.Remove(sceneAssetName);
-            // if (_unloadSceneFailureEventHandler != null)
-            // {
-            //     UnloadSceneFailureEventArgs unloadSceneFailureEventArgs =
-            //         UnloadSceneFailureEventArgs.Create(sceneAssetName, userData);
-            //     _unloadSceneFailureEventHandler(this, unloadSceneFailureEventArgs);
-            //     ReferencePool.Release(unloadSceneFailureEventArgs);
-            //     return;
-            // }
-
-            throw new LFrameworkException(Utility.Text.Format("Unload scene failure, scene asset name '{0}'.",
+            
+            Log.Error(Utility.Text.Format("Unload scene failure, scene asset name '{0}'.",
                 sceneAssetName));
         }
     }

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 10001,
+    "asset_name": "weapon_player",
+    "group_name": 2,
+    "priority": 0,
+    "loop": false,
+    "volume": 1,
+    "spatial_blend": 0,
+    "max_distance": 100
+  },
+  {
+    "id": 1,
+    "asset_name": "music_menu",
+    "group_name": 1,
+    "priority": 0,
+    "loop": true,
+    "volume": 1,
+    "spatial_blend": 0,
+    "max_distance": 100
+  },
+  {
+    "id": 2,
+    "asset_name": "music_background",
+    "group_name": 1,
+    "priority": 0,
+    "loop": true,
+    "volume": 1,
+    "spatial_blend": 0,
+    "max_distance": 100
+  },
+  {
+    "id": 1001,
+    "asset_name": "click",
+    "group_name": 3,
+    "priority": 0,
+    "loop": false,
+    "volume": 1,
+    "spatial_blend": 0,
+    "max_distance": 100
+  }
+]

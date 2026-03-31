@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 24
-  productGUID: 5fc5582b413e27542b51108efe5d3e4a
+  productGUID: 959da8988f6384f45b22c6abc17a10aa
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: UnityProject
+  productName: LFramework
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -669,11 +669,20 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: ENABLE_LOG
-    Standalone: ENABLE_LOG
-    WebGL: ENABLE_LOG
-    Windows Store Apps: ENABLE_LOG
-    iPhone: ENABLE_LOG
+    Android: ENABLE_LOG;TextMeshPro;ENABLE_HYBRIDCLR
+    EmbeddedLinux: TextMeshPro
+    GameCoreXboxOne: TextMeshPro
+    Lumin: TextMeshPro
+    Nintendo Switch: TextMeshPro
+    PS4: TextMeshPro
+    PS5: TextMeshPro
+    Stadia: TextMeshPro
+    Standalone: ENABLE_LOG;TextMeshPro;ENABLE_HYBRIDCLR
+    WebGL: ENABLE_LOG;TextMeshPro;ENABLE_HYBRIDCLR
+    Windows Store Apps: ENABLE_LOG;TextMeshPro;ENABLE_HYBRIDCLR
+    XboxOne: TextMeshPro
+    iPhone: ENABLE_LOG;TextMeshPro;ENABLE_HYBRIDCLR
+    tvOS: TextMeshPro
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

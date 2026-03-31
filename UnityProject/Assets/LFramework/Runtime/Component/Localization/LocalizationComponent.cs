@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+using Cysharp.Threading.Tasks;
+using LFramework.Localization;
 using UnityEngine;
 
 namespace LFramework
@@ -11,7 +14,12 @@ namespace LFramework
     [AddComponentMenu("LFramework/Localization")]
     public sealed partial class LocalizationComponent : MonoBehaviour, ILFrameworkModule, ILocalizationManager
     {
+        [SerializeField]
+        private List<string> allLanguage = new List<string>();
+        
         private Language _language;
+        private LanguageSource _languageSource;
+        private IResourceManager _resourceManager;
 
         /// <summary>
         /// 获取或设置本地化语言。
@@ -26,7 +34,14 @@ namespace LFramework
                     throw new LFrameworkException("Language is invalid.");
                 }
 
-                _language = value;
+                if (_language == Language.Unspecified)
+                {
+                    _language = value;
+                }
+                else
+                {
+                    SetLanguage(value);
+                }
             }
         }
 
@@ -87,6 +102,19 @@ namespace LFramework
             }
         }
         
+        private LanguageSourceData SourceData
+        {
+            get
+            {
+                if (_languageSource == null)
+                {
+                    _languageSource = gameObject.AddComponent<LanguageSource>();
+                }
+
+                return _languageSource.SourceData;
+            }
+        }
+        
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
@@ -103,11 +131,13 @@ namespace LFramework
 
         private void Start()
         {
+            _resourceManager = LFrameworkEntry.GetModule<IResourceManager>();
         }
 
         public void OnInit()
         {
             _language = Language.Unspecified;
+            _resourceManager = null;
         }
 
         public void OnUpdate(float elapseSeconds, float realElapseSeconds)
@@ -119,6 +149,117 @@ namespace LFramework
         /// </summary>
         public void Shutdown()
         {
+        }
+        
+        /// <summary>
+        /// 加载完整的语言资源包。
+        /// </summary>
+        /// <param name="assetName">要加载的资源包名称</param>
+        public async UniTask LoadLanguageTotalAsset(string assetName)
+        {
+#if UNITY_EDITOR
+            if (_resourceManager.ResourceMode == ResourceMode.EditorSimulate)
+            {
+                Localization.LocalizationManager.RegisterSourceInEditor();
+                UpdateAllLanguages();
+                SourceData.Awake();
+                return;
+            }
+#endif
+            
+            SourceData.Awake();
+            TextAsset assetTextAsset = await _resourceManager.LoadAsset<TextAsset>(assetName, 10);
+
+            if (assetTextAsset == null)
+            {
+                Log.Warning($"没有加载到语言总表");
+                return;
+            }
+
+            Log.Info($"加载语言总表成功");
+
+            UseLocalizationCsv(assetTextAsset.text, true);
+        }
+
+        // /// <summary>
+        // /// 加载语言分表。
+        // /// </summary>
+        // /// <param name="language">语言类型。</param>
+        // /// <param name="setCurrent">是否立刻设置成当前语言。</param>
+        // /// <param name="fromInit">是否初始化Inner语言。</param>
+        // public async UniTask LoadLanguage(string language, bool setCurrent = false, bool fromInit = false)
+        // {
+        //     TextAsset assetTextAsset = await _resourceManager.LoadAsset<TextAsset>(language, 10);
+        //
+        //     if (assetTextAsset == null)
+        //     {
+        //         Log.Warning($"没有加载到语言总表");
+        //         return;
+        //     }
+        //
+        //     Log.Info($"加载语言总表成功");
+        //
+        //     UseLocalizationCSV(assetTextAsset.text, true);
+        // }
+        
+        /// <summary>
+        /// 检查指定语言是否可用。
+        /// </summary>
+        /// <param name="language">要检查的语言名称。</param>
+        /// <returns>如果语言可用返回true，否则false。</returns>
+        public bool CheckLanguage(Language language)
+        {
+            return allLanguage.Contains(language.ToString());
+        }
+
+        /// <summary>
+        /// 设置当前语言（通过枚举值）。
+        /// </summary>
+        /// <param name="language">要设置的语言枚举值。</param>
+        /// <param name="load">是否立即加载语言资源。</param>
+        /// <returns>设置是否成功。</returns>
+        public bool SetLanguage(Language language, bool load = false)
+        {
+            if (!CheckLanguage(language))
+            {
+                Log.Warning($"当前没有这个语言无法切换到此语言 {language}");
+                return false;
+            }
+
+            // if (_language == language)
+            // {
+            //     return true;
+            // }
+
+            Log.Info($"设置当前语言 = {language}");
+            Localization.LocalizationManager.CurrentLanguage = language.ToString();
+            _language = language;
+            return true;
+        }
+        
+        private void UseLocalizationCsv(string text, bool isLocalizeAll = false)
+        {
+            SourceData.Import_CSV(string.Empty, text, eSpreadsheetUpdateMode.Merge, ',');
+            if (isLocalizeAll)
+            {
+                Localization.LocalizationManager.LocalizeAll();
+            }
+
+            UpdateAllLanguages();
+        }
+        
+        /// <summary>
+        /// 检查并初始化所有语言的Id。
+        /// </summary>
+        private void UpdateAllLanguages()
+        {
+            allLanguage.Clear();
+            List<string> allLanguages = Localization.LocalizationManager.GetAllLanguages();
+            foreach (var language in allLanguages)
+            {
+                var newLanguage = Regex.Replace(language, @"[\r\n]", "");
+                allLanguage.Add(newLanguage);
+            }
         }
     }
 }

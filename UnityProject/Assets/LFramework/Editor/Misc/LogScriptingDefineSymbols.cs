@@ -40,7 +40,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 禁用所有日志脚本宏定义。
         /// </summary>
-        [MenuItem("LFramework/Log Scripting Define Symbols/Disable All Logs", false, 30)]
+        [MenuItem("LFramework/Log Scripting Define Symbols/Disable All Logs", false, 40)]
         public static void DisableAllLogs()
         {
             ScriptingDefineSymbols.RemoveScriptingDefineSymbol(EnableLogScriptingDefineSymbol);
@@ -59,7 +59,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 开启所有日志脚本宏定义。
         /// </summary>
-        [MenuItem("LFramework/Log Scripting Define Symbols/Enable All Logs", false, 31)]
+        [MenuItem("LFramework/Log Scripting Define Symbols/Enable All Logs", false, 41)]
         public static void EnableAllLogs()
         {
             DisableAllLogs();
@@ -69,7 +69,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 开启调试及以上级别的日志脚本宏定义。
         /// </summary>
-        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Debug And Above Logs", false, 32)]
+        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Debug And Above Logs", false, 42)]
         public static void EnableDebugAndAboveLogs()
         {
             SetAboveLogScriptingDefineSymbol(EnableDebugAndAboveLogScriptingDefineSymbol);
@@ -78,7 +78,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 开启信息及以上级别的日志脚本宏定义。
         /// </summary>
-        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Info And Above Logs", false, 33)]
+        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Info And Above Logs", false, 43)]
         public static void EnableInfoAndAboveLogs()
         {
             SetAboveLogScriptingDefineSymbol(EnableInfoAndAboveLogScriptingDefineSymbol);
@@ -87,7 +87,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 开启警告及以上级别的日志脚本宏定义。
         /// </summary>
-        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Warning And Above Logs", false, 34)]
+        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Warning And Above Logs", false, 44)]
         public static void EnableWarningAndAboveLogs()
         {
             SetAboveLogScriptingDefineSymbol(EnableWarningAndAboveLogScriptingDefineSymbol);
@@ -96,7 +96,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 开启错误及以上级别的日志脚本宏定义。
         /// </summary>
-        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Error And Above Logs", false, 35)]
+        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Error And Above Logs", false, 45)]
         public static void EnableErrorAndAboveLogs()
         {
             SetAboveLogScriptingDefineSymbol(EnableErrorAndAboveLogScriptingDefineSymbol);
@@ -105,7 +105,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 开启严重错误及以上级别的日志脚本宏定义。
         /// </summary>
-        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Fatal And Above Logs", false, 36)]
+        [MenuItem("LFramework/Log Scripting Define Symbols/Enable Fatal And Above Logs", false, 46)]
         public static void EnableFatalAndAboveLogs()
         {
             SetAboveLogScriptingDefineSymbol(EnableFatalAndAboveLogScriptingDefineSymbol);

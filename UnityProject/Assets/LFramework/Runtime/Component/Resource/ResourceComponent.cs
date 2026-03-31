@@ -30,6 +30,12 @@ namespace LFramework
         
         [SerializeField]
         private string defaultPackageName = "DefaultPackage";
+        
+        [SerializeField]
+        private int downloadingMaxNum = 10;
+        
+        [SerializeField]
+        private int failedTryAgain = 3;
 
         [SerializeField]
         private long milliseconds = 30;
@@ -65,6 +71,9 @@ namespace LFramework
         private bool _forceUnloadUnusedAssets = false;
         private bool _preorderUnloadUnusedAssets = false;
         private bool _performGCCollect = false;
+
+        private string _packageVersion;
+        private ResourceDownloaderOperation _downloader;
         
         /// <summary>
         /// 资源包列表。
@@ -80,6 +89,9 @@ namespace LFramework
         /// 正在加载的资源列表。
         /// </summary>
         private HashSet<string> _assetLoadingHashSet = null;
+
+
+        private Dictionary<string, SceneHandle> _subScenes = null;
 
         /// <summary>
         /// 获取资源模式。
@@ -199,6 +211,24 @@ namespace LFramework
             get => maxUnloadUnusedAssetsInterval;
             set => maxUnloadUnusedAssetsInterval = value;
         }
+
+        /// <summary>
+        /// 当前最新的包裹版本。
+        /// </summary>
+        public string PackageVersion
+        {
+            get => _packageVersion;
+            set => _packageVersion = value;
+        }
+
+        /// <summary>
+        /// 资源下载器，用于下载当前资源版本所有的资源包文件。
+        /// </summary>
+        public ResourceDownloaderOperation Downloader
+        {
+            get => _downloader;
+            set => _downloader = value;
+        }
         
         /// <summary>
         /// 获取游戏框架模块优先级。
@@ -217,11 +247,21 @@ namespace LFramework
             LFrameworkEntry.RegisterModule<IResourceManager>(this);
         }
 
+        private void Start()
+        {
+            var configManager = LFrameworkEntry.GetModule<IConfigManager>();
+            _updatePrefixUrl = configManager.UpdateConfig.GetResDownLoadPath();
+            _fallbackUpdatePrefixUrl = configManager.UpdateConfig.GetFallbackResDownLoadPath();
+            
+            Initialize();
+        }
+
         public void OnInit()
         {
             _packageDict = new Dictionary<string, ResourcePackage>();
             _assetInfoDict = new Dictionary<string, AssetInfo>();
             _assetLoadingHashSet = new HashSet<string>();
+            _subScenes = new Dictionary<string, SceneHandle>();
         }
 
         /// <summary>
@@ -374,6 +414,89 @@ namespace LFramework
             return initializationOperation;
         }
 
+        /// <summary>
+        /// 获取当前资源包版本。
+        /// </summary>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        /// <returns>资源包版本。</returns>
+        public string GetPackageVersion(string customPackageName = "")
+        {
+            var package = string.IsNullOrEmpty(customPackageName)
+                ? YooAssets.GetPackage(DefaultPackageName)
+                : YooAssets.GetPackage(customPackageName);
+            if (package == null)
+            {
+                return string.Empty;
+            }
+
+            return package.GetPackageVersion();
+        }
+        
+        /// <summary>
+        /// 异步更新最新包的版本。
+        /// </summary>
+        /// <param name="appendTimeTicks">请求URL是否需要带时间戳。</param>
+        /// <param name="timeout">超时时间。</param>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        /// <returns>请求远端包裹的最新版本操作句柄。</returns>
+        public RequestPackageVersionOperation RequestPackageVersionAsync(bool appendTimeTicks = false, int timeout = 60,
+            string customPackageName = "")
+        {
+            var package = string.IsNullOrEmpty(customPackageName)
+                ? YooAssets.GetPackage(DefaultPackageName)
+                : YooAssets.GetPackage(customPackageName);
+            return package.RequestPackageVersionAsync(appendTimeTicks, timeout);
+        }
+        
+        /// <summary>
+        /// 向网络端请求并更新清单
+        /// </summary>
+        /// <param name="packageVersion">更新的包裹版本</param>
+        /// <param name="timeout">超时时间（默认值：60秒）</param>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        public UpdatePackageManifestOperation UpdatePackageManifestAsync(string packageVersion, int timeout = 60, string customPackageName = "")
+        {
+            var package = string.IsNullOrEmpty(customPackageName)
+                ? YooAssets.GetPackage(this.DefaultPackageName)
+                : YooAssets.GetPackage(customPackageName);
+            return package.UpdatePackageManifestAsync(packageVersion, timeout);
+        }
+        
+        /// <summary>
+        /// 创建资源下载器，用于下载当前资源版本所有的资源包文件。
+        /// </summary>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        public ResourceDownloaderOperation CreateResourceDownloader(string customPackageName = "")
+        {
+            ResourcePackage package = null;
+            if (string.IsNullOrEmpty(customPackageName))
+            {
+                package = YooAssets.GetPackage(this.DefaultPackageName);
+            }
+            else
+            {
+                package = YooAssets.GetPackage(customPackageName);
+            }
+
+            Downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
+            return Downloader;
+        }
+        
+        /// <summary>
+        /// 清理包裹未使用的缓存文件。
+        /// </summary>
+        /// <param name="clearMode">文件清理方式。</param>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        public ClearCacheFilesOperation ClearCacheFilesAsync(
+            EFileClearMode clearMode = EFileClearMode.ClearUnusedBundleFiles,
+            string customPackageName = "")
+        {
+            var package = string.IsNullOrEmpty(customPackageName)
+                ? YooAssets.GetPackage(DefaultPackageName)
+                : YooAssets.GetPackage(customPackageName);
+            return package.ClearCacheFilesAsync(EFileClearMode.ClearUnusedBundleFiles);
+        }
+        
         /// <summary>
         /// 检查资源是否存在。
         /// </summary>

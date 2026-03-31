@@ -76,21 +76,30 @@ namespace LFramework
         /// 加载场景。
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
-        void LoadScene(string sceneAssetName);
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        void LoadScene(string sceneAssetName, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null);
 
         /// <summary>
         /// 加载场景。
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
         /// <param name="priority">加载场景资源的优先级。</param>
-        void LoadScene(string sceneAssetName, int priority);
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        void LoadScene(string sceneAssetName, int priority, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null);
 
         /// <summary>
         /// 加载场景。
         /// </summary>
         /// <param name="sceneAssetName">场景资源名称。</param>
         /// <param name="userData">用户自定义数据。</param>
-        void LoadScene(string sceneAssetName, object userData);
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        void LoadScene(string sceneAssetName, object userData, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null);
 
         /// <summary>
         /// 加载场景。
@@ -98,7 +107,10 @@ namespace LFramework
         /// <param name="sceneAssetName">场景资源名称。</param>
         /// <param name="priority">加载场景资源的优先级。</param>
         /// <param name="userData">用户自定义数据。</param>
-        void LoadScene(string sceneAssetName, int priority, object userData);
+        /// <param name="progressCallback">加载进度回调。</param>
+        /// <param name="loadSuccessCallBack">加载完成回调。</param>
+        void LoadScene(string sceneAssetName, int priority, object userData, Action<float> progressCallback = null,
+            Action<bool> loadSuccessCallBack = null);
 
         /// <summary>
         /// 卸载场景。

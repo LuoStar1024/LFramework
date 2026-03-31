@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root Version="v2.1">
+  <Common ShowPackageView="True" ShowEditorAlias="True" UniqueBundleName="True" />
+  <Package PackageName="DefaultPackage" PackageDesc="默认" AutoAddressable="False" LocationToLower="False" IncludeAssetGUID="False" IgnoreRuleName="NormalIgnoreRule">
+    <Group GroupActiveRule="EnableGroup" GroupName="Actor" GroupDesc="实体" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Actor" CollectGUID="d6e584ab0ddef134c885b7e7b95755b0" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Audio" GroupDesc="音效" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Audio" CollectGUID="7fd472a9f193e5c4b8e59988aef5b7af" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="DataTable" GroupDesc="数据表" AssetTags="PRELOAD">
+      <Collector CollectPath="Assets/GameResRaw/DataTable" CollectGUID="87139da3d4239a8478f106abd410214c" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Dll" GroupDesc="脚本" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Dll" CollectGUID="630a417b673fece49a77ecb639dd11de" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Font" GroupDesc="字体" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Font" CollectGUID="daea003600599b841bc06e7d155cea76" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="GameEntry" GroupDesc="热更组件" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/GameEntry" CollectGUID="ba5adecb7d80acd40adf44b0eeda077b" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Localization" GroupDesc="本地化文本" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Localization" CollectGUID="868b5394579f56c47a667a3ea5f402cd" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Material" GroupDesc="材质球" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Material" CollectGUID="bf7a60979385372459dc540f564d7660" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Scene" GroupDesc="场景" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Scene" CollectGUID="1947ed5c14c62374f84b5bb411192ea1" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Sprite" GroupDesc="精灵图" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Sprite" CollectGUID="06c5c8348a219f2449259358afa6da36" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Texture" GroupDesc="纹理图" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/Texture" CollectGUID="5f83eafc39aad7e47ac61f74114f1bce" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="UIForm" GroupDesc="界面预制体" AssetTags="">
+      <Collector CollectPath="Assets/GameResRaw/UIForm" CollectGUID="5ecde620fe744dd41bc1b819cfc864fb" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="" />
+    </Group>
+    <Group GroupActiveRule="EnableGroup" GroupName="Launcher" GroupDesc="启动" AssetTags="Launcher">
+      <Collector CollectPath="Assets/Launcher/Res" CollectGUID="59a5eaae0e679944baa825aa32d310b6" CollectType="MainAssetCollector" AddressRule="AddressByFileName" PackRule="PackDirectory" FilterRule="CollectAll" UserData="" AssetTags="Launcher" />
+    </Group>
+  </Package>
+</root>

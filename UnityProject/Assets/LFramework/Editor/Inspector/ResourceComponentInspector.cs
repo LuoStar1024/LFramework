@@ -18,6 +18,8 @@ namespace LFramework.Editor
         private SerializedProperty _loadResourceWayWebGL = null;
         private SerializedProperty _encryptionType = null;
         private SerializedProperty _defaultPackageName = null;
+        private SerializedProperty _downloadingMaxNum = null;
+        private SerializedProperty _failedTryAgain = null;
         private SerializedProperty _milliseconds = null;
         private SerializedProperty _assetAutoReleaseInterval = null;
         private SerializedProperty _assetCapacity = null;
@@ -100,6 +102,8 @@ namespace LFramework.Editor
             
             EditorGUI.BeginDisabledGroup(EditorApplication.isPlayingOrWillChangePlaymode);
             {
+                EditorGUILayout.PropertyField(_downloadingMaxNum);
+                EditorGUILayout.PropertyField(_failedTryAgain);
                 EditorGUILayout.IntSlider("Milliseconds", _milliseconds.intValue, 1, 60);
             }
             EditorGUI.EndDisabledGroup();
@@ -232,6 +236,8 @@ namespace LFramework.Editor
             _loadResourceWayWebGL = serializedObject.FindProperty("loadResourceWayWebGL");
             _encryptionType = serializedObject.FindProperty("encryptionType");
             _defaultPackageName = serializedObject.FindProperty("defaultPackageName");
+            _downloadingMaxNum = serializedObject.FindProperty("downloadingMaxNum");
+            _failedTryAgain = serializedObject.FindProperty("failedTryAgain");
             _milliseconds = serializedObject.FindProperty("milliseconds");
             _assetAutoReleaseInterval = serializedObject.FindProperty("assetAutoReleaseInterval");
             _assetCapacity = serializedObject.FindProperty("assetCapacity");

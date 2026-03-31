@@ -83,6 +83,7 @@ namespace LFramework
         /// </summary>
         public void Shutdown()
         {
+            _cacheAddTimerList.Clear();
             _cacheRemoveTimerList.Clear();
             _cacheRemoveUnscaledTimerList.Clear();
             

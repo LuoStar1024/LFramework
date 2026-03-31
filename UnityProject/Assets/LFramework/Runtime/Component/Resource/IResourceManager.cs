@@ -145,6 +145,24 @@ namespace LFramework
         }
 
         /// <summary>
+        /// 当前最新的包裹版本。
+        /// </summary>
+        string PackageVersion
+        {
+            get;
+            set; 
+        }
+
+        /// <summary>
+        /// 资源下载器，用于下载当前资源版本所有的资源包文件。
+        /// </summary>
+        ResourceDownloaderOperation Downloader
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
         /// 设置对象池管理器。
         /// </summary>
         /// <param name="objectPoolManager">对象池管理器。</param>
@@ -161,6 +179,47 @@ namespace LFramework
         /// <param name="packageName">资源包名称。</param>
         UniTask<InitializationOperation> InitPackage(string packageName);
 
+        /// <summary>
+        /// 获取当前资源包版本。
+        /// </summary>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        /// <returns>资源包版本。</returns>
+        string GetPackageVersion(string customPackageName = "");
+
+        /// <summary>
+        /// 异步更新最新包的版本。
+        /// </summary>
+        /// <param name="appendTimeTicks">请求URL是否需要带时间戳。</param>
+        /// <param name="timeout">超时时间。</param>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        /// <returns>请求远端包裹的最新版本操作句柄。</returns>
+        RequestPackageVersionOperation RequestPackageVersionAsync(bool appendTimeTicks = false, int timeout = 60,
+            string customPackageName = "");
+
+        /// <summary>
+        /// 向网络端请求并更新清单
+        /// </summary>
+        /// <param name="packageVersion">更新的包裹版本</param>
+        /// <param name="timeout">超时时间（默认值：60秒）</param>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        UpdatePackageManifestOperation UpdatePackageManifestAsync(string packageVersion, int timeout = 60,
+            string customPackageName = "");
+
+        /// <summary>
+        /// 创建资源下载器，用于下载当前资源版本所有的资源包文件。
+        /// </summary>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        ResourceDownloaderOperation CreateResourceDownloader(string customPackageName = "");
+
+        /// <summary>
+        /// 清理包裹未使用的缓存文件。
+        /// </summary>
+        /// <param name="clearMode">文件清理方式。</param>
+        /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
+        ClearCacheFilesOperation ClearCacheFilesAsync(
+            EFileClearMode clearMode = EFileClearMode.ClearUnusedBundleFiles,
+            string customPackageName = "");
+        
         /// <summary>
         /// 检查资源是否存在。
         /// </summary>

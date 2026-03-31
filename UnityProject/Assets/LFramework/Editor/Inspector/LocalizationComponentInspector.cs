@@ -8,6 +8,12 @@ namespace LFramework.Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+            
+            if (!EditorApplication.isPlaying)
+            {
+                EditorGUILayout.HelpBox("Available during runtime only.", MessageType.Info);
+                return;
+            }
 
             serializedObject.Update();
 

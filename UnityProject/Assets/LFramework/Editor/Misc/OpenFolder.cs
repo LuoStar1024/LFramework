@@ -12,7 +12,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 打开 Data Path 文件夹。
         /// </summary>
-        [MenuItem("LFramework/Open Folder/Data Path", false, 10)]
+        [MenuItem("LFramework/Open Folder/Data Path", false, 30)]
         public static void OpenFolderDataPath()
         {
             Execute(Application.dataPath);
@@ -21,7 +21,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 打开 Persistent Data Path 文件夹。
         /// </summary>
-        [MenuItem("LFramework/Open Folder/Persistent Data Path", false, 11)]
+        [MenuItem("LFramework/Open Folder/Persistent Data Path", false, 31)]
         public static void OpenFolderPersistentDataPath()
         {
             Execute(Application.persistentDataPath);
@@ -30,7 +30,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 打开 Streaming Assets Path 文件夹。
         /// </summary>
-        [MenuItem("LFramework/Open Folder/Streaming Assets Path", false, 12)]
+        [MenuItem("LFramework/Open Folder/Streaming Assets Path", false, 32)]
         public static void OpenFolderStreamingAssetsPath()
         {
             Execute(Application.streamingAssetsPath);
@@ -39,7 +39,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 打开 Temporary Cache Path 文件夹。
         /// </summary>
-        [MenuItem("LFramework/Open Folder/Temporary Cache Path", false, 13)]
+        [MenuItem("LFramework/Open Folder/Temporary Cache Path", false, 33)]
         public static void OpenFolderTemporaryCachePath()
         {
             Execute(Application.temporaryCachePath);
@@ -50,7 +50,7 @@ namespace LFramework.Editor
         /// <summary>
         /// 打开 Console Log Path 文件夹。
         /// </summary>
-        [MenuItem("LFramework/Open Folder/Console Log Path", false, 14)]
+        [MenuItem("LFramework/Open Folder/Console Log Path", false, 34)]
         public static void OpenFolderConsoleLogPath()
         {
             Execute(System.IO.Path.GetDirectoryName(Application.consoleLogPath));

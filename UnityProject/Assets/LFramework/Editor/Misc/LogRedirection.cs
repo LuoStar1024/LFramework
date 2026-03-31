@@ -1,5 +1,4 @@
-﻿#if !UNITY_2019_1_OR_NEWER
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using UnityEditor;
@@ -15,6 +14,7 @@ namespace LFramework.Editor
     internal static class LogRedirection
     {
         private static readonly Regex LogRegex = new Regex(@" \(at (.+)\:(\d+)\)\r?\n");
+        private static readonly string[] RedirectionFiles = { "DefaultLogHelper.cs", "LFrameworkLog.cs", "Log.cs" };
 
         [OnOpenAsset(0)]
         private static bool OnOpenAsset(int instanceId, int line)
@@ -25,48 +25,100 @@ namespace LFramework.Editor
                 return false;
             }
 
-            if (!selectedStackTrace.Contains("UnityLFramework.Runtime.DefaultLogHelper:Log"))
+            if (!selectedStackTrace.Contains("LFramework.DefaultLogHelper:Log"))
             {
                 return false;
             }
+
+            string assetPath = AssetDatabase.GetAssetPath(instanceId);
+            if (!ShouldRedirect(assetPath))
+            {
+                return false;
+            }
+
+            if (!TryGetRedirectInfo(selectedStackTrace, out string filePath, out int targetLine))
+            {
+                return false;
+            }
+
+            InternalEditorUtility.OpenFileAtLineExternal(filePath, targetLine);
+            return true;
+        }
+
+        private static bool ShouldRedirect(string assetPath)
+        {
+            if (string.IsNullOrEmpty(assetPath))
+            {
+                return true;
+            }
+
+            string fileName = Path.GetFileName(assetPath);
+            for (int i = 0; i < RedirectionFiles.Length; i++)
+            {
+                if (string.Equals(fileName, RedirectionFiles[i], System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static bool TryGetRedirectInfo(string selectedStackTrace, out string filePath, out int line)
+        {
+            filePath = null;
+            line = 0;
 
             Match match = LogRegex.Match(selectedStackTrace);
-            if (!match.Success)
+            while (match.Success)
             {
-                return false;
-            }
-
-            if (!match.Groups[1].Value.Contains("DefaultLogHelper.cs"))
-            {
-                return false;
-            }
-
-            match = match.NextMatch();
-            if (!match.Success)
-            {
-                return false;
-            }
-
-            if (match.Groups[1].Value.Contains("LFrameworkLog.cs"))
-            {
-                match = match.NextMatch();
-                if (!match.Success)
+                string relativePath = match.Groups[1].Value;
+                string fileName = Path.GetFileName(relativePath);
+                if (!IsRedirectionFile(fileName))
                 {
-                    return false;
+                    if (!TryGetAbsolutePath(relativePath, out filePath))
+                    {
+                        return false;
+                    }
+
+                    return int.TryParse(match.Groups[2].Value, out line);
+                }
+
+                match = match.NextMatch();
+            }
+
+            return false;
+        }
+
+        private static bool IsRedirectionFile(string fileName)
+        {
+            for (int i = 0; i < RedirectionFiles.Length; i++)
+            {
+                if (string.Equals(fileName, RedirectionFiles[i], System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
                 }
             }
 
-            if (match.Groups[1].Value.Contains("Log.cs"))
+            return false;
+        }
+
+        private static bool TryGetAbsolutePath(string relativePath, out string filePath)
+        {
+            filePath = null;
+            if (relativePath.StartsWith("Assets/"))
             {
-                match = match.NextMatch();
-                if (!match.Success)
-                {
-                    return false;
-                }
+                filePath = Path.Combine(Application.dataPath, relativePath.Substring(7));
+                return true;
             }
 
-            InternalEditorUtility.OpenFileAtLineExternal(Path.Combine(Application.dataPath, match.Groups[1].Value.Substring(7)), int.Parse(match.Groups[2].Value));
-            return true;
+            if (relativePath.StartsWith("Packages/"))
+            {
+                filePath = Path.Combine(Path.GetDirectoryName(Application.dataPath), relativePath);
+                return true;
+            }
+
+            return false;
         }
 
         private static string GetSelectedStackTrace()
@@ -102,7 +154,7 @@ namespace LFramework.Editor
             }
 
             FieldInfo activeTextFieldInfo =
- consoleWindowType.GetField("_activeText", BindingFlags.Instance | BindingFlags.NonPublic);
+ consoleWindowType.GetField("m_ActiveText", BindingFlags.Instance | BindingFlags.NonPublic);
             if (activeTextFieldInfo == null)
             {
                 return null;
@@ -112,5 +164,3 @@ namespace LFramework.Editor
         }
     }
 }
-
-#endif
