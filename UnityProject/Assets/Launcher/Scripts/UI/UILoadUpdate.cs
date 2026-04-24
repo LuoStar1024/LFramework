@@ -9,56 +9,33 @@ namespace Launcher
     public class UILoadUpdate : UIBase
     {
         [SerializeField]
-        public Button _btn_clear;
+        private Scrollbar scrollbarProgress;
 
         [SerializeField]
-        public Scrollbar _obj_progress;
+        private Text textDesc;
 
         [SerializeField]
-        public Text _label_desc;
+        private Text textAppId;
 
         [SerializeField]
-        public Text _label_appid;
-
-        [SerializeField]
-        public Text _label_resid;
-
-        public virtual void Start()
-        {
-            _btn_clear.onClick.AddListener(OnClear);
-            _btn_clear.gameObject.SetActive(true);
-            OnUpdateUIProgress(0f);
-        }
+        private Text textResId;
 
         public override void OnEnter(object param)
         {
+            base.OnEnter(param);
             if (param == null)
             {
                 return;
             }
 
-            base.OnEnter(param);
-            _label_desc.text = param.ToString();
+            textDesc.text = param.ToString();
+            RefreshProgress(0f);
         }
 
         internal void OnRefreshVersion(string appId, string resId)
         {
-            _label_appid.text = string.Format(LoadText.Instance.Label_App_id, appId);
-            _label_resid.text = string.Format(LoadText.Instance.Label_Res_id, resId);
-        }
-
-        /// <summary>
-        /// 清空本地缓存
-        /// </summary>
-        public virtual void OnClear()
-        {
-            LauncherMgr.ShowMessageBox(LoadText.Instance.Label_Clear_Comfirm, MessageShowType.TwoButton,
-                LoadStyle.StyleEnum.Style_Clear,
-                () =>
-                {
-                    // GameModule.Resource.ClearUnusedCacheFilesAsync();
-                    Application.Quit();
-                }, () => { });
+            textAppId.text = string.Format(LoadText.Instance.LabelAppId, appId);
+            textResId.text = string.Format(LoadText.Instance.LabelResId, resId);
         }
 
         /// <summary>
@@ -67,9 +44,13 @@ namespace Launcher
         /// <param name="progress">当前进度。</param>
         internal virtual void OnUpdateUIProgress(float progress)
         {
-            _obj_progress.gameObject.SetActive(true);
+            RefreshProgress(progress);
+        }
 
-            _obj_progress.size = progress;
+        internal void RefreshProgress(float progress)
+        {
+            scrollbarProgress.gameObject.SetActive(true);
+            scrollbarProgress.size = progress;
         }
     }
 }

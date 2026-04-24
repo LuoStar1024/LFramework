@@ -461,7 +461,6 @@ namespace LFramework
             if (IsLoadingAudio(serialId))
             {
                 _audiosToReleaseOnLoad.Add(serialId);
-                _audiosBeingLoaded.Remove(serialId);
                 return true;
             }
 
@@ -523,6 +522,11 @@ namespace LFramework
         /// <param name="fadeOutSeconds">声音淡出时间，以秒为单位。</param>
         public void PauseAudio(int serialId, float fadeOutSeconds)
         {
+            if (IsLoadingAudio(serialId))
+            {
+                return;
+            }
+
             foreach (KeyValuePair<string, AudioGroup> audioGroup in _audioGroups)
             {
                 if (audioGroup.Value.PauseAudio(serialId, fadeOutSeconds))
@@ -550,6 +554,11 @@ namespace LFramework
         /// <param name="fadeInSeconds">声音淡入时间，以秒为单位。</param>
         public void ResumeAudio(int serialId, float fadeInSeconds)
         {
+            if (IsLoadingAudio(serialId))
+            {
+                return;
+            }
+
             foreach (KeyValuePair<string, AudioGroup> audioGroup in _audioGroups)
             {
                 if (audioGroup.Value.ResumeAudio(serialId, fadeInSeconds))

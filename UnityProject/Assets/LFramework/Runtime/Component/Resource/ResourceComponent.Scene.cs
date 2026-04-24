@@ -97,13 +97,35 @@ namespace LFramework
             }
 
             float duration = Time.time;
-            var subScene = YooAssets.LoadSceneAsync(sceneAssetName, LoadSceneMode.Additive, LocalPhysicsMode.None, false,
-                (uint)priority);
+            SceneHandle subScene;
+            if (string.IsNullOrEmpty(packageName))
+            {
+                subScene = YooAssets.LoadSceneAsync(sceneAssetName, LoadSceneMode.Additive, LocalPhysicsMode.None, false,
+                    (uint)priority);
+            }
+            else
+            {
+                var package = YooAssets.GetPackage(packageName);
+                if (package == null)
+                {
+                    throw new LFrameworkException($"The package does not exist. Package Name :{packageName}");
+                }
+
+                subScene = package.LoadSceneAsync(sceneAssetName, LoadSceneMode.Additive, LocalPhysicsMode.None, false,
+                    (uint)priority);
+            }
             
             subScene.Completed += handle =>
             {
                 duration = Time.time - duration;
-                loadSceneCallbacks.LoadSceneSuccessCallback(sceneAssetName, duration, userData);
+                if (handle.Status == EOperationStatus.Succeed && handle.SceneObject.IsValid() && handle.SceneObject.isLoaded)
+                {
+                    loadSceneCallbacks.LoadSceneSuccessCallback(sceneAssetName, duration, userData);
+                    return;
+                }
+
+                loadSceneCallbacks.LoadSceneFailureCallback?.Invoke(sceneAssetName, LoadResourceStatus.AssetError,
+                    handle.LastError, userData);
             };
 
             if (loadSceneCallbacks.LoadSceneUpdateCallback != null)
@@ -155,14 +177,22 @@ namespace LFramework
             _subScenes.TryGetValue(sceneAssetName, out SceneHandle subScene);
             if (subScene != null)
             {
-                subScene.UnloadAsync();
-                subScene.UnloadAsync().Completed += @base =>
+                var unloadOperation = subScene.UnloadAsync();
+                unloadOperation.Completed += @base =>
                 {
-                    _subScenes.Remove(sceneAssetName);
-                    
-                    unloadSceneCallbacks.UnloadSceneSuccessCallback.Invoke(sceneAssetName, userData);
+                    if (@base.Status == EOperationStatus.Succeed)
+                    {
+                        _subScenes.Remove(sceneAssetName);
+                        unloadSceneCallbacks.UnloadSceneSuccessCallback.Invoke(sceneAssetName, userData);
+                        return;
+                    }
+
+                    unloadSceneCallbacks.UnloadSceneFailureCallback?.Invoke(sceneAssetName, userData);
                 };
+                return;
             }
+
+            unloadSceneCallbacks.UnloadSceneFailureCallback?.Invoke(sceneAssetName, userData);
         }
 
         private async UniTaskVoid InvokeProgress(SceneHandle sceneHandle,

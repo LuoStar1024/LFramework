@@ -82,14 +82,26 @@ namespace GameLogic
         /// <returns>ByteBuf</returns>
         private ByteBuf LoadByteBuf(string file)
         {
-            TextAsset textAsset = GameEntry.Resource.LoadExistAsset<TextAsset>(AssetUtility.GetDataTableAsset(file));
+            string assetPath = AssetUtility.GetDataTableAsset(file);
+            TextAsset textAsset = GameEntry.Resource.LoadExistAsset<TextAsset>(assetPath);
+            if (textAsset == null)
+            {
+                throw new LFrameworkException($"Data table asset is not loaded: {assetPath}");
+            }
+
             byte[] bytes = textAsset.bytes;
             return new ByteBuf(bytes);
         }
 
         private JSONNode LoadJsonNode(string file)
         {
-            TextAsset textAsset = GameEntry.Resource.LoadExistAsset<TextAsset>(AssetUtility.GetDataTableAsset(file));
+            string assetPath = AssetUtility.GetDataTableAsset(file);
+            TextAsset textAsset = GameEntry.Resource.LoadExistAsset<TextAsset>(assetPath);
+            if (textAsset == null)
+            {
+                throw new LFrameworkException($"Data table asset is not loaded: {assetPath}");
+            }
+
             return JSON.Parse(textAsset.text);
         }
     }

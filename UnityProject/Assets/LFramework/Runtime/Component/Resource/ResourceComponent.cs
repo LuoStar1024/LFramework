@@ -317,8 +317,8 @@ namespace LFramework
             if (defaultPackage == null)
             {
                 defaultPackage = YooAssets.CreatePackage(packageName);
-                YooAssets.SetDefaultPackage(defaultPackage);
             }
+            YooAssets.SetDefaultPackage(defaultPackage);
 
             IObjectPoolManager objectPoolManager = LFrameworkEntry.GetModule<IObjectPoolManager>();
             SetObjectPoolManager(objectPoolManager);
@@ -494,7 +494,7 @@ namespace LFramework
             var package = string.IsNullOrEmpty(customPackageName)
                 ? YooAssets.GetPackage(DefaultPackageName)
                 : YooAssets.GetPackage(customPackageName);
-            return package.ClearCacheFilesAsync(EFileClearMode.ClearUnusedBundleFiles);
+            return package.ClearCacheFilesAsync(clearMode);
         }
         
         /// <summary>
@@ -511,7 +511,7 @@ namespace LFramework
 
             AssetInfo assetInfo = GetAssetInfo(assetName, packageName);
 
-            if (!CheckAssetValid(assetName))
+            if (!CheckAssetValid(assetName, packageName))
             {
                 return HasAssetResult.Valid;
             }
@@ -521,7 +521,7 @@ namespace LFramework
                 return HasAssetResult.NotExist;
             }
 
-            if (IsNeedDownloadFromRemote(assetInfo))
+            if (IsNeedDownloadFromRemote(assetInfo, packageName))
             {
                 return HasAssetResult.AssetOnline;
             }

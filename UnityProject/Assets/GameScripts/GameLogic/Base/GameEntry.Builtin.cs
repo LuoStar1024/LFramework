@@ -133,7 +133,7 @@ namespace GameLogic
         /// <summary>
         /// 获取定时器组件。
         /// </summary>
-        public static ITimerManager Unity
+        public static IUnityWrapperManager Unity
         {
             get;
             private set;
@@ -155,7 +155,7 @@ namespace GameLogic
             Setting = LFrameworkEntry.GetModule<ISettingManager>();
             Audio = LFrameworkEntry.GetModule<IAudioManager>();
             Timer = LFrameworkEntry.GetModule<ITimerManager>();
-            Unity = LFrameworkEntry.GetModule<ITimerManager>();
+            Unity = LFrameworkEntry.GetModule<IUnityWrapperManager>();
         }
     }
 }

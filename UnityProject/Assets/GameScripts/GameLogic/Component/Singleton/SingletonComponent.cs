@@ -47,7 +47,15 @@ namespace GameLogic
             {
                 foreach (var item in _gameObjectDict)
                 {
-                    Destroy(item.Value);
+                    if(item.Value != null)
+                    {
+                        bool isMono = item.Value.TryGetComponent<ISingleton>(out var s);
+                        if(isMono)
+                        {
+                            s.Release();
+                        }
+                        Destroy(item.Value);
+                    }
                 }
                 
                 _gameObjectDict.Clear();
@@ -57,7 +65,7 @@ namespace GameLogic
             {
                 for (int i = _singletonList.Count - 1; i >= 0; i--)
                 {
-                    _singletonList[i].Release(false);
+                    _singletonList[i].Release();
                 }
                 
                 _singletonList.Clear();
@@ -85,8 +93,9 @@ namespace GameLogic
         {
             if (singleton != null && _singletonList.Contains(singleton))
             {
-                _singletonList.Remove(singleton);
                 ReleaseLifeCycle(singleton);
+                singleton.Release();
+                _singletonList.Remove(singleton);
             }
         }
 
@@ -97,6 +106,16 @@ namespace GameLogic
         /// <param name="go">Behaviour单例</param>
         public void RegisterSingleton(ISingleton singleton, GameObject go)
         {
+            if (singleton == null)
+            {
+                throw new LFrameworkException("Singleton is invalid.");
+            }
+
+            if (go == null)
+            {
+                throw new LFrameworkException("Game object is invalid.");
+            }
+
             if (_gameObjectDict.TryAdd(go.name, go))
             {
                 RegisterLifeCycle(singleton);
@@ -110,10 +129,22 @@ namespace GameLogic
         /// <param name="go">Behaviour单例</param>
         public void ReleaseSingleton(ISingleton singleton, GameObject go)
         {
+            if (singleton == null)
+            {
+                throw new LFrameworkException("Singleton is invalid.");
+            }
+
+            if (go == null)
+            {
+                throw new LFrameworkException("Game object is invalid.");
+            }
+
             if (_gameObjectDict != null && _gameObjectDict.ContainsKey(go.name))
             {
-                _gameObjectDict.Remove(go.name);
                 ReleaseLifeCycle(singleton);
+                singleton.Release();
+                _gameObjectDict.Remove(go.name);
+                Destroy(go);
             }
         }
 
@@ -127,7 +158,7 @@ namespace GameLogic
             GameObject go = null;
             if (_gameObjectDict != null)
             {
-                _gameObjectDict.TryGetValue(name, out go);
+                _gameObjectDict.TryGetValue(goName, out go);
             }
 
             return go;

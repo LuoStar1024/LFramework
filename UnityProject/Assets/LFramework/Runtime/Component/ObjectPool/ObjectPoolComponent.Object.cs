@@ -139,14 +139,15 @@ namespace LFramework
             /// </summary>
             public void Unspawn()
             {
-                _object.OnUnspawn();
-                _object.LastUseTime = DateTime.UtcNow;
-                _spawnCount--;
-                if (_spawnCount < 0)
+                if (_spawnCount <= 0)
                 {
-                    throw new LFrameworkException(Utility.Text.Format("Object '{0}' spawn count is less than 0.",
+                    throw new LFrameworkException(Utility.Text.Format("Object '{0}' spawn count is less than 1.",
                         Name));
                 }
+
+                _spawnCount--;
+                _object.OnUnspawn();
+                _object.LastUseTime = DateTime.UtcNow;
             }
 
             /// <summary>

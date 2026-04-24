@@ -256,6 +256,11 @@ namespace LFramework
                 Log.Error("Scene asset name is invalid.");
                 return false;
             }
+
+            if (_resourceManager == null)
+            {
+                throw new LFrameworkException("You must set resource manager first.");
+            }
             
             return _resourceManager.HasAsset(sceneAssetName) != HasAssetResult.NotExist;
         }
@@ -388,8 +393,6 @@ namespace LFramework
 
             _unloadingSceneAssetNames.Add(sceneAssetName);
             _resourceManager.UnloadScene(sceneAssetName, _unloadSceneCallbacks, userData);
-            
-            _sceneOrder.Remove(sceneAssetName);
         }
 
         /// <summary>
@@ -512,6 +515,7 @@ namespace LFramework
             }
 
             loadSceneInfo.LoadSuccessCallBack?.Invoke(true);
+            ReferencePool.Release(loadSceneInfo);
         }
 
         private void LoadSceneFailureCallback(string sceneAssetName, LoadResourceStatus status, string errorMessage,
@@ -530,6 +534,7 @@ namespace LFramework
             }
 
             loadSceneInfo.LoadSuccessCallBack?.Invoke(false);
+            ReferencePool.Release(loadSceneInfo);
         }
 
         private void LoadSceneUpdateCallback(string sceneAssetName, float progress, object userData)

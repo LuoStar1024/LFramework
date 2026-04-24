@@ -20,7 +20,7 @@ namespace LFramework.Editor
                 guiHandler = (searchContext) =>
                 {
                     DrawHybridCLRSettings();
-                    var settings = ConfigComponent.EdiotrUpdateConfig;
+                    var settings = ConfigComponent.EditorUpdateConfig;
                     var serializedObject = new SerializedObject(settings);
 
                     EditorGUILayout.PropertyField(serializedObject.FindProperty("projectName"));
@@ -79,7 +79,7 @@ namespace LFramework.Editor
                 // 状态显示
                 bool isHybridCLREnabled =
 #if ENABLE_HYBRIDCLR
-                true;
+                    true;
 #else
                     false;
 #endif

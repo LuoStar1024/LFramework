@@ -9,14 +9,14 @@ namespace GameLogic
 {
     public class UguiForm : UIFormLogic
     {
-        public const int DepthFactor = 100;
+        public const int DepthFactor = 10;
 
         private Canvas _cachedCanvas = null;
 
         private readonly List<ParticleSystemRenderer> _cachedParticleSystemRenderersContainer = new List<ParticleSystemRenderer>();
 
         private readonly List<Canvas> _cachedCanvasContainer = new List<Canvas>();
-        
+
         private UIWidgetContainer _uiWidgetContainer;
         private EventContainer _eventContainer;
         private ResourceContainer _resourceContainer;
@@ -66,10 +66,10 @@ namespace GameLogic
                 t.sortingOrder += deltaDepth;
             }
             _cachedParticleSystemRenderersContainer.Clear();
-            
+
             _uiWidgetContainer?.OnDepthChanged(uiGroupDepth, depthInUIGroup);
         }
-        
+
         private void ClearUIForm()
         {
             if (_eventContainer != null)
@@ -242,7 +242,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -254,7 +254,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -267,7 +267,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -281,7 +281,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -296,7 +296,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -312,7 +312,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -329,7 +329,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -347,7 +347,7 @@ namespace GameLogic
         {
             SubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -368,7 +368,7 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -380,7 +380,7 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -393,7 +393,7 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -407,7 +407,7 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -422,7 +422,7 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -438,7 +438,7 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -455,7 +455,7 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -473,14 +473,14 @@ namespace GameLogic
         {
             UnsubscribeDelegate(id, handler);
         }
-        
+
         public void UnsubscribeAll()
         {
             if (_eventContainer == null)
                 return;
             _eventContainer.UnsubscribeAll();
         }
-        
+
         private void SubscribeDelegate(int id, Delegate handler)
         {
             if (_eventContainer == null)
@@ -489,7 +489,7 @@ namespace GameLogic
             }
             _eventContainer.Subscribe(id, handler);
         }
-        
+
         private void UnsubscribeDelegate(int id, Delegate handler)
         {
             if (_eventContainer == null)
@@ -505,7 +505,7 @@ namespace GameLogic
             }
             return await _resourceContainer.LoadAsset<T>(assetName);
         }
-        
+
         public void UnloadAsset(UnityEngine.Object asset)
         {
             if (_resourceContainer == null)

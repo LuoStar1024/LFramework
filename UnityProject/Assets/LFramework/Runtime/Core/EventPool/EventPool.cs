@@ -86,7 +86,11 @@ namespace LFramework
         {
             lock (_events)
             {
-                _events.Clear();
+                while (_events.Count > 0)
+                {
+                    Event eventNode = _events.Dequeue();
+                    ReferencePool.Release(eventNode);
+                }
             }
         }
 
@@ -421,7 +425,7 @@ namespace LFramework
             {
                 foreach (KeyValuePair<int, LinkedListNode<Delegate>> cachedNode in _cachedNodes)
                 {
-                    if (cachedNode.Value != null && cachedNode.Value.Value == handler)
+                    if (cachedNode.Key == id && cachedNode.Value != null && cachedNode.Value.Value == handler)
                     {
                         _tempNodes.Add(cachedNode.Key, cachedNode.Value.Next);
                     }
@@ -805,7 +809,7 @@ namespace LFramework
             string groupName = typeof(T).FullName;
             if (groupName != null)
             {
-                _eventGroupDict.Add(groupName, group);
+                _eventGroupDict[groupName] = group;
             }
         }
 
@@ -822,7 +826,8 @@ namespace LFramework
                 return (T)group;
             }
 
-            return default(T);
+            throw new LFrameworkException(Utility.Text.Format("Event group '{0}' is not exist.",
+                typeof(T).FullName));
         }
         
         /// <summary>

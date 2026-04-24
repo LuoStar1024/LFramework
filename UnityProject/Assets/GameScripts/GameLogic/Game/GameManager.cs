@@ -11,7 +11,7 @@ namespace GameLogic
     {
         private float _enemyInterval = 1.5f;
         private float _timer;
-        
+
         private ResourceContainer _resourceContainer = null;
         private IObjectPool<GoPoolObject> _goObjectPool = null;
         private Dictionary<string, GameObject> _prefabDict = new Dictionary<string, GameObject>();
@@ -34,10 +34,20 @@ namespace GameLogic
 
         protected override void OnRelease()
         {
+            if (_goObjectPool != null)
+            {
+                var childCount = transform.childCount;
+                for (var i = childCount - 1; i >= 0; i--)
+                {
+                    Destroy(transform.GetChild(i).gameObject);
+                }
+
+                _goObjectPool.ReleaseAllUnused();
+                _goObjectPool = null;
+            }
+
             ReferencePool.Release(_resourceContainer);
             _resourceContainer = null;
-            _goObjectPool.ReleaseAllUnused();
-            GameEntry.ObjectPool.DestroyObjectPool(_goObjectPool);
         }
 
         private void Start()
@@ -49,7 +59,7 @@ namespace GameLogic
             // Log.Error($"{itemDatas.Name}");
             var x = GameEntry.DataTable.TbSound.Get(1);
             Debug.LogError(x.GroupName.ToString());
-            
+
             _score = 0;
             _timer = -1000;
             InitManager().Forget();
@@ -61,7 +71,7 @@ namespace GameLogic
             {
                 return;
             }
-            
+
             // 产生敌机
             _timer += Time.deltaTime;
             if (_timer >= _enemyInterval)
@@ -75,25 +85,25 @@ namespace GameLogic
         {
             var playerPrefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Player"));
             _prefabDict.Add("Player", playerPrefab);
-            
+
             var bulletPrefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("PlayerBullet"));
             _prefabDict.Add("PlayerBullet", bulletPrefab);
-            
+
             var enemy1Prefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_1"));
             _prefabDict.Add("Enemy_1", enemy1Prefab);
-            
+
             var enemy2Prefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_2"));
             _prefabDict.Add("Enemy_2", enemy2Prefab);
-            
+
             var enemyBossPrefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_Boss"));
             _prefabDict.Add("Enemy_Boss", enemyBossPrefab);
-            
+
             // 产生玩家
             CreatePlayer(playerPrefab);
 
             _timer = 0;
         }
-        
+
         private void CreatePlayer(GameObject playerPrefab)
         {
             var go = Instantiate(playerPrefab, transform, true);
@@ -122,7 +132,7 @@ namespace GameLogic
             var goObject = _goObjectPool.Spawn(enemyName);
             if (goObject == null)
             {
-                if(!_prefabDict.TryGetValue(enemyName, out var goPrefab))
+                if (!_prefabDict.TryGetValue(enemyName, out var goPrefab))
                 {
                     // 需要加载资源
                     Log.Error($"{enemyName} Asset is null");
@@ -143,7 +153,7 @@ namespace GameLogic
             var goObject = _goObjectPool.Spawn("PlayerBullet");
             if (goObject == null)
             {
-                if(!_prefabDict.TryGetValue("PlayerBullet", out var goPrefab))
+                if (!_prefabDict.TryGetValue("PlayerBullet", out var goPrefab))
                 {
                     // 需要加载资源
                     Log.Error("PlayerBullet Asset is null");
@@ -172,7 +182,7 @@ namespace GameLogic
                 logic.SetScore(_score);
             }
         }
-        
+
         public void GameOver()
         {
             _isGameOver = true;
@@ -191,7 +201,7 @@ namespace GameLogic
 
         public void RestartGame()
         {
-            if(!_prefabDict.TryGetValue("Player", out var goPrefab))
+            if (!_prefabDict.TryGetValue("Player", out var goPrefab))
             {
                 // 需要加载资源
                 Log.Error($"Player Asset is null");

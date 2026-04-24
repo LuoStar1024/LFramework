@@ -12,6 +12,8 @@ namespace LFramework.Editor
         private static readonly string[] ResourceModeNames = new string[]
             { "Package", "Updatable", "WebPlayMode" };
 
+        private const int ResourceModePopupOffset = (int)ResourceMode.Package;
+
         private SerializedProperty _isEditorSimulate = null;
         private SerializedProperty _resourceMode = null;
         private SerializedProperty _updatableWhilePlaying = null;
@@ -62,16 +64,16 @@ namespace LFramework.Editor
                     if (selectedIndex != _resourceModeIndex)
                     {
                         _resourceModeIndex = selectedIndex;
-                        _resourceMode.enumValueIndex = selectedIndex + 1;
+                        _resourceMode.enumValueIndex = selectedIndex + ResourceModePopupOffset;
                     }
                 }
 
-                if (_resourceMode.enumValueIndex == 2)
+                if (_resourceMode.enumValueIndex == (int)ResourceMode.Updatable)
                 {
                     EditorGUILayout.PropertyField(_updatableWhilePlaying);
                 }
                 
-                if (_resourceMode.enumValueIndex == 3)
+                if (_resourceMode.enumValueIndex == (int)ResourceMode.WebPlayMode)
                 {
                     EditorGUILayout.PropertyField(_loadResourceWayWebGL);
                 }
@@ -253,7 +255,7 @@ namespace LFramework.Editor
 
         private void RefreshModes()
         {
-            _resourceModeIndex = _resourceMode.enumValueIndex > 0 ? _resourceMode.enumValueIndex - 1 : 0;
+            _resourceModeIndex = Mathf.Clamp(_resourceMode.enumValueIndex - ResourceModePopupOffset, 0, ResourceModeNames.Length - 1);
         }
 
         private void RefreshTypeNames()

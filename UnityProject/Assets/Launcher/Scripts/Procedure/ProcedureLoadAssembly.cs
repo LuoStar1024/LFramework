@@ -19,7 +19,6 @@ namespace Launcher
     /// </summary>
     public class ProcedureLoadAssembly : ProcedureBase
     {
-        private bool _enableAddressable = true;
         public override bool UseNativeDialog => true;
         private int _loadAssetCount;
         private int _loadMetadataAssetCount;
@@ -89,15 +88,7 @@ namespace Launcher
                 {
                     foreach (string hotUpdateDllName in _setting.HotUpdateAssemblies)
                     {
-                        var assetLocation = hotUpdateDllName;
-                        if (!_enableAddressable)
-                        {
-                            assetLocation = Utility.Path.GetRegularPath(
-                                Path.Combine(
-                                    "Assets",
-                                    _setting.AssemblyTextAssetPath,
-                                    $"{hotUpdateDllName}{_setting.AssemblyTextAssetExtension}"));
-                        }
+                        var assetLocation = GetAssemblyAssetLocation(hotUpdateDllName);
 
                         // 逐个加载热更程序集文本资源，再通过 Assembly.Load 注入运行时。
                         Log.Debug($"LoadAsset: [ {assetLocation} ]");
@@ -132,6 +123,27 @@ namespace Launcher
                 return;
             }
             AllAssemblyLoadComplete();
+        }
+
+        protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
+        {
+            base.OnLeave(procedureOwner, isShutdown);
+
+            _loadAssetCount = 0;
+            _loadMetadataAssetCount = 0;
+            _failureAssetCount = 0;
+            _failureMetadataAssetCount = 0;
+            _loadAssemblyComplete = false;
+            _loadMetadataAssemblyComplete = false;
+            _loadAssemblyWait = false;
+            _loadMetadataAssemblyWait = false;
+            _mainLogicAssembly = null;
+            _hotfixAssemblyList = null;
+            _procedureOwner = null;
+            _setting = null;
+            _resComponent = null;
+            _configComponent = null;
+            _settingComponent = null;
         }
 
         private void AllAssemblyLoadComplete()
@@ -232,6 +244,15 @@ namespace Launcher
             _resComponent.UnloadAsset(textAsset);
         }
 
+        private string GetAssemblyAssetLocation(string dllName)
+        {
+            return Utility.Path.GetRegularPath(
+                Path.Combine(
+                    "Assets",
+                    _setting.AssemblyTextAssetPath,
+                    $"{dllName}{_setting.AssemblyTextAssetExtension}"));
+        }
+
         /// <summary>
         /// 为Aot Assembly加载原始metadata， 这个代码放Aot或者热更新都行。
         /// 一旦加载后，如果AOT泛型函数对应native实现不存在，则自动替换为解释模式执行。
@@ -250,16 +271,7 @@ namespace Launcher
             }
             foreach (string aotDllName in _setting.AotMetaAssemblies)
             {
-                var assetLocation = aotDllName;
-                if (!_enableAddressable)
-                {
-                    assetLocation = Utility.Path.GetRegularPath(
-                        Path.Combine(
-                            "Assets",
-                            _setting.AssemblyTextAssetPath,
-                            $"{aotDllName}{_setting.AssemblyTextAssetExtension}"));
-                }
-
+                var assetLocation = GetAssemblyAssetLocation(aotDllName);
 
                 Log.Debug($"LoadMetadataAsset: [ {assetLocation} ]");
                 _loadMetadataAssetCount++;

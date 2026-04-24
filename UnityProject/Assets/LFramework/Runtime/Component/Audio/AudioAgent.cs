@@ -273,12 +273,20 @@ namespace LFramework
         {
             StopAllCoroutines();
 
+            if (_isPaused)
+            {
+                _isPaused = false;
+                _audioSource.Stop();
+                return;
+            }
+
             if (fadeOutSeconds > 0f && gameObject.activeInHierarchy)
             {
                 StartCoroutine(StopCo(fadeOutSeconds));
             }
             else
             {
+                _isPaused = false;
                 _audioSource.Stop();
             }
         }
@@ -343,12 +351,17 @@ namespace LFramework
         /// </summary>
         public void Reset()
         {
+            StopAllCoroutines();
+            _isPaused = false;
+            _audioSource.Stop();
+
             if (_audioAsset != null)
             {
                 _audioRelease.ReleaseAudioAsset(_audioAsset);
                 _audioAsset = null;
             }
 
+            _serialId = 0;
             _setAudioAssetTime = DateTime.MinValue;
             Time = AudioConstant.DefaultTime;
             MuteInAudioGroup = AudioConstant.DefaultMute;
@@ -371,15 +384,14 @@ namespace LFramework
         public bool SetAudioAsset(object audioAsset)
         {
             Reset();
-            _audioAsset = audioAsset;
-            _setAudioAssetTime = DateTime.UtcNow;
-            
             AudioClip audioClip = audioAsset as AudioClip;
             if (audioClip == null)
             {
                 return false;
             }
 
+            _audioAsset = audioAsset;
+            _setAudioAssetTime = DateTime.UtcNow;
             _audioSource.clip = audioClip;
             return true;
         }
@@ -472,6 +484,7 @@ namespace LFramework
         private IEnumerator StopCo(float fadeOutSeconds)
         {
             yield return FadeToVolume(_audioSource, 0f, fadeOutSeconds);
+            _isPaused = false;
             _audioSource.Stop();
         }
 

@@ -137,7 +137,6 @@ namespace LFramework
         public void OnInit()
         {
             _language = Language.Unspecified;
-            _resourceManager = null;
         }
 
         public void OnUpdate(float elapseSeconds, float realElapseSeconds)
@@ -157,6 +156,16 @@ namespace LFramework
         /// <param name="assetName">要加载的资源包名称</param>
         public async UniTask LoadLanguageTotalAsset(string assetName)
         {
+            if (_resourceManager == null)
+            {
+                _resourceManager = LFrameworkEntry.GetModule<IResourceManager>();
+            }
+
+            if (_resourceManager == null)
+            {
+                throw new LFrameworkException("Resource manager is invalid.");
+            }
+
 #if UNITY_EDITOR
             if (_resourceManager.ResourceMode == ResourceMode.EditorSimulate)
             {

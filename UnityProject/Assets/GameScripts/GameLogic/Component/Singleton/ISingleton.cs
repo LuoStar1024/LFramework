@@ -10,12 +10,11 @@ namespace GameLogic
         // void Init();
 
         /// <summary>
-        /// 释放自己
+        /// 释放单例
         /// </summary>
-        /// <param name="isSelf">自己主动释放</param>
-        void Release(bool isSelf = false);
+        void Release();
     }
-    
+
     public interface ISingletonUpdate
     {
         /// <summary>

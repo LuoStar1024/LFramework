@@ -83,7 +83,6 @@ namespace LFramework
         /// </summary>
         public void Shutdown()
         {
-            _cacheAddTimerList.Clear();
             _cacheRemoveTimerList.Clear();
             _cacheRemoveUnscaledTimerList.Clear();
             
@@ -100,6 +99,16 @@ namespace LFramework
         /// <returns>定时器Id。</returns>
         public int AddTimer(float time, Action callback, bool isUnscaled = false, int repeatCount = 1)
         {
+            if (time <= 0f)
+            {
+                throw new LFrameworkException("Time is invalid.");
+            }
+
+            if (callback == null)
+            {
+                throw new LFrameworkException("Callback is invalid.");
+            }
+
             _serialId++;
 
             Timer timer = Timer.Create(_serialId, time, callback, isUnscaled, repeatCount);
@@ -120,6 +129,16 @@ namespace LFramework
         public int AddTimer(float time, Action<object[]> callback, bool isUnscaled = false, int repeatCount = 1,
             params object[] args)
         {
+            if (time <= 0f)
+            {
+                throw new LFrameworkException("Time is invalid.");
+            }
+
+            if (callback == null)
+            {
+                throw new LFrameworkException("Callback is invalid.");
+            }
+
             _serialId++;
 
             Timer timer = Timer.Create(_serialId, time, callback, isUnscaled, repeatCount, args);
@@ -162,7 +181,7 @@ namespace LFramework
         public bool IsRunningTimer(int timerId)
         {
             Timer timer = GetTimer(timerId);
-            return timer is { IsRunning: true };
+            return timer is { IsRunning: true, IsNeedRemove: false };
         }
 
         /// <summary>
@@ -202,6 +221,15 @@ namespace LFramework
                     return;
                 }
             }
+
+            for (int i = 0, len = _cacheAddTimerList.Count; i < len; i++)
+            {
+                if (_cacheAddTimerList[i].ID == timerId)
+                {
+                    _cacheAddTimerList[i].IsNeedRemove = true;
+                    return;
+                }
+            }
         }
 
         /// <summary>
@@ -209,6 +237,9 @@ namespace LFramework
         /// </summary>
         public void RemoveAllTimer()
         {
+            _cacheRemoveTimerList.Clear();
+            _cacheRemoveUnscaledTimerList.Clear();
+
             for (int i = 0, len = _timerList.Count; i < len; i++)
             {
                 ReferencePool.Release(_timerList[i]);
@@ -222,6 +253,13 @@ namespace LFramework
             }
 
             _unscaledTimerList.Clear();
+
+            for (int i = 0, len = _cacheAddTimerList.Count; i < len; i++)
+            {
+                ReferencePool.Release(_cacheAddTimerList[i]);
+            }
+
+            _cacheAddTimerList.Clear();
         }
 
         private void InsertTimer(Timer timer)
@@ -278,6 +316,14 @@ namespace LFramework
                 if (_unscaledTimerList[i].ID == timerId)
                 {
                     return _unscaledTimerList[i];
+                }
+            }
+
+            for (int i = 0, len = _cacheAddTimerList.Count; i < len; i++)
+            {
+                if (_cacheAddTimerList[i].ID == timerId)
+                {
+                    return _cacheAddTimerList[i];
                 }
             }
 

@@ -46,7 +46,7 @@ namespace Launcher
             _loadedFlag.Clear();
 
             // 预加载阶段主要展示配置和启动资源的加载进度。
-            LauncherMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.Label_Load_Load_Progress, 0));
+            LauncherMgr.ShowUI<UILoadUpdate>(Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, 0));
 
             // GameEvent.Send("UILoadUpdate.RefreshVersion");
 
@@ -57,6 +57,9 @@ namespace Launcher
         {
             base.OnLeave(procedureOwner, isShutdown);
 
+            _progress = 0f;
+            _loadedFlag.Clear();
+            _procedureOwner = null;
             _resComponent = null;
         }
 
@@ -82,7 +85,7 @@ namespace Launcher
 
             if (_loadedFlag.Count != 0)
             {
-                LauncherMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.Label_Load_Load_Progress, (float)loadCount / totalCount * 100));
+                LauncherMgr.ShowUI<UILoadUpdate>(Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, (float)loadCount / totalCount * 100));
             }
             else
             {
@@ -92,11 +95,11 @@ namespace Launcher
 
                 if (Math.Abs(_progress - 1f) < 0.001f)
                 {
-                    LauncherMgr.Show(UIDefine.UILoadUpdate, LoadText.Instance.Label_Load_Load_Complete);
+                    LauncherMgr.ShowUI<UILoadUpdate>(LoadText.Instance.LabelLoadLoadComplete);
                 }
                 else
                 {
-                    LauncherMgr.Show(UIDefine.UILoadUpdate, Utility.Text.Format(LoadText.Instance.Label_Load_Load_Progress, progressStr));
+                    LauncherMgr.ShowUI<UILoadUpdate>(Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, progressStr));
                 }
             }
 

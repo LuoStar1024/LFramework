@@ -17,12 +17,19 @@ namespace Launcher
             _procedureOwner = procedureOwner;
             Log.Info("清理未使用的缓存文件！");
 
-            LauncherMgr.Show(UIDefine.UILoadUpdate, $"清理未使用的缓存文件...");
+            LauncherMgr.ShowUI<UILoadUpdate>("清理未使用的缓存文件...");
 
             var resComponent = LFrameworkEntry.GetModule<IResourceManager>();
             // 清理完成后再恢复主流程，避免缓存回收过程中触发后续资源加载。
             var operation = resComponent.ClearCacheFilesAsync();
             operation.Completed += Operation_Completed;
+        }
+
+        protected override void OnLeave(ProcedureOwner procedureOwner, bool isShutdown)
+        {
+            base.OnLeave(procedureOwner, isShutdown);
+
+            _procedureOwner = null;
         }
 
 
@@ -31,7 +38,7 @@ namespace Launcher
         /// </summary>
         private void Operation_Completed(YooAsset.AsyncOperationBase obj)
         {
-            LauncherMgr.Show(UIDefine.UILoadUpdate, $"清理完成 即将进入游戏...");
+            LauncherMgr.ShowUI<UILoadUpdate>("清理完成 即将进入游戏...");
 
             ChangeState<ProcedurePreload>(_procedureOwner);
         }

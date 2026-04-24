@@ -53,7 +53,7 @@ namespace LFramework.Editor
             {
                 SettingsUtil.Enable = true;
 #if ENABLE_HYBRIDCLR
-            UpdateConfigEditor.ForceUpdateAssemblies();
+                UpdateConfigEditor.ForceUpdateAssemblies();
 #endif
             }
 
@@ -147,9 +147,9 @@ namespace LFramework.Editor
 #if ENABLE_HYBRIDCLR
         var target = EditorUserBuildSettings.activeBuildTarget;
         string aotAssembliesSrcDir = SettingsUtil.GetAssembliesPostIl2CppStripDir(target);
-        string aotAssembliesDstDir = Application.dataPath +"/"+ ConfigComponent.EdiotrUpdateConfig.AssemblyTextAssetPath;
+        string aotAssembliesDstDir = Application.dataPath +"/"+ ConfigComponent.EditorUpdateConfig.AssemblyTextAssetPath;
 
-        foreach (var dll in ConfigComponent.EdiotrUpdateConfig.AotMetaAssemblies)
+        foreach (var dll in ConfigComponent.EditorUpdateConfig.AotMetaAssemblies)
         {
             string srcDllPath = $"{aotAssembliesSrcDir}/{dll}";
             if (!System.IO.File.Exists(srcDllPath))
@@ -170,7 +170,7 @@ namespace LFramework.Editor
         var target = EditorUserBuildSettings.activeBuildTarget;
 
         string hotfixDllSrcDir = SettingsUtil.GetHotUpdateDllsOutputDirByTarget(target);
-        string hotfixAssembliesDstDir = Application.dataPath +"/"+ ConfigComponent.EdiotrUpdateConfig.AssemblyTextAssetPath;
+        string hotfixAssembliesDstDir = Application.dataPath +"/"+ ConfigComponent.EditorUpdateConfig.AssemblyTextAssetPath;
         foreach (var dll in SettingsUtil.HotUpdateAssemblyFilesExcludePreserved)
         {
             string dllPath = $"{hotfixDllSrcDir}/{dll}";

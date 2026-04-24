@@ -74,7 +74,7 @@ namespace GameEditor
         /// </summary>
         public static void CopyStreamingAssetsFiles()
         {
-            if (!ConfigComponent.EdiotrUpdateConfig.IsAutoAssetCopeToBuildAddress())
+            if (!ConfigComponent.EditorUpdateConfig.IsAutoAssetCopeToBuildAddress())
             {
                 Debug.Log("UpdateSetting.IsAutoAssetCopeToBuildAddress关闭,并不会生产到打包目录中");
                 return;
@@ -83,7 +83,7 @@ namespace GameEditor
             string streamingAssetsPath = Application.streamingAssetsPath;
 
             // 目标路径，可以是任何你想要的目录
-            string targetPath =  ConfigComponent.EdiotrUpdateConfig.GetBuildAddress();
+            string targetPath =  ConfigComponent.EditorUpdateConfig.GetBuildAddress();
 
             // 判断目标路径是相对路径还是绝对路径
             if (!System.IO.Path.IsPathRooted(targetPath))
@@ -210,7 +210,7 @@ namespace GameEditor
                 
                 scriptableBuildParameters.BuiltinShadersBundleName = GetBuiltinShaderBundleName("DefaultPackage");
                 // TODO
-                // scriptableBuildParameters.ReplaceAssetPathWithAddress = ConfigComponent.EdiotrUpdateConfig.GetReplaceAssetPathWithAddress();
+                // scriptableBuildParameters.ReplaceAssetPathWithAddress = ConfigComponent.EditorUpdateConfig.GetReplaceAssetPathWithAddress();
             }
             
             buildParameters.BuildOutputRoot = AssetBundleBuilderHelper.GetDefaultBuildOutputRoot();

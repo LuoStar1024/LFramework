@@ -16,7 +16,7 @@ namespace Launcher
         {
             Log.Info("下载完成!!!");
 
-            LauncherMgr.Show(UIDefine.UILoadUpdate, $"下载完成...");
+            LauncherMgr.ShowUI<UILoadUpdate>("下载完成...");
 
             // 下载完成后将最新版本写入本地，供离线回退或下次启动使用。
             var resComponent = LFrameworkEntry.GetModule<IResourceManager>();

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace LFramework
 {
     /// <summary>
-    /// 有限状态机组件。
+    /// 游戏配置组件。
     /// </summary>
     /// [DisallowMultipleComponent]
     [AddComponentMenu("LFramework/Setting")]
@@ -18,7 +18,8 @@ namespace LFramework
         {
             get
             {
-                return -1;
+                Log.Warning("Setting count is not supported by PlayerPrefs.");
+                return 0;
             }
         }
         
@@ -106,6 +107,7 @@ namespace LFramework
         /// <returns>指定的游戏配置项是否存在。</returns>
         public bool HasSetting(string settingName)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.HasKey(settingName);
         }
 
@@ -116,6 +118,7 @@ namespace LFramework
         /// <returns>是否移除指定游戏配置项成功。</returns>
         public bool RemoveSetting(string settingName)
         {
+            CheckSettingName(settingName);
             if (!PlayerPrefs.HasKey(settingName))
             {
                 return false;
@@ -140,6 +143,7 @@ namespace LFramework
         /// <returns>读取的布尔值。</returns>
         public bool GetBool(string settingName)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetInt(settingName) != 0;
         }
 
@@ -151,6 +155,7 @@ namespace LFramework
         /// <returns>读取的布尔值。</returns>
         public bool GetBool(string settingName, bool defaultValue)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetInt(settingName, defaultValue ? 1 : 0) != 0;
         }
 
@@ -161,6 +166,7 @@ namespace LFramework
         /// <param name="value">要写入的布尔值。</param>
         public void SetBool(string settingName, bool value)
         {
+            CheckSettingName(settingName);
             PlayerPrefs.SetInt(settingName, value ? 1 : 0);
         }
 
@@ -171,6 +177,7 @@ namespace LFramework
         /// <returns>读取的整数值。</returns>
         public int GetInt(string settingName)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetInt(settingName);
         }
 
@@ -182,6 +189,7 @@ namespace LFramework
         /// <returns>读取的整数值。</returns>
         public int GetInt(string settingName, int defaultValue)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetInt(settingName, defaultValue);
         }
 
@@ -192,6 +200,7 @@ namespace LFramework
         /// <param name="value">要写入的整数值。</param>
         public void SetInt(string settingName, int value)
         {
+            CheckSettingName(settingName);
             PlayerPrefs.SetInt(settingName, value);
         }
 
@@ -202,6 +211,7 @@ namespace LFramework
         /// <returns>读取的浮点数值。</returns>
         public float GetFloat(string settingName)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetFloat(settingName);
         }
 
@@ -213,6 +223,7 @@ namespace LFramework
         /// <returns>读取的浮点数值。</returns>
         public float GetFloat(string settingName, float defaultValue)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetFloat(settingName, defaultValue);
         }
 
@@ -223,6 +234,7 @@ namespace LFramework
         /// <param name="value">要写入的浮点数值。</param>
         public void SetFloat(string settingName, float value)
         {
+            CheckSettingName(settingName);
             PlayerPrefs.SetFloat(settingName, value);
         }
 
@@ -233,6 +245,7 @@ namespace LFramework
         /// <returns>读取的字符串值。</returns>
         public string GetString(string settingName)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetString(settingName);
         }
 
@@ -244,6 +257,7 @@ namespace LFramework
         /// <returns>读取的字符串值。</returns>
         public string GetString(string settingName, string defaultValue)
         {
+            CheckSettingName(settingName);
             return PlayerPrefs.GetString(settingName, defaultValue);
         }
 
@@ -254,6 +268,7 @@ namespace LFramework
         /// <param name="value">要写入的字符串值。</param>
         public void SetString(string settingName, string value)
         {
+            CheckSettingName(settingName);
             PlayerPrefs.SetString(settingName, value);
         }
 
@@ -265,6 +280,7 @@ namespace LFramework
         /// <returns>读取的对象。</returns>
         public T GetObject<T>(string settingName)
         {
+            CheckSettingName(settingName);
             return Utility.Json.ToObject<T>(GetString(settingName));
         }
 
@@ -276,6 +292,8 @@ namespace LFramework
         /// <returns>读取的对象。</returns>
         public object GetObject(Type objectType, string settingName)
         {
+            CheckObjectType(objectType);
+            CheckSettingName(settingName);
             return Utility.Json.ToObject(objectType, GetString(settingName));
         }
 
@@ -288,6 +306,7 @@ namespace LFramework
         /// <returns>读取的对象。</returns>
         public T GetObject<T>(string settingName, T defaultObj)
         {
+            CheckSettingName(settingName);
             string json = GetString(settingName, null);
             if (json == null)
             {
@@ -306,6 +325,8 @@ namespace LFramework
         /// <returns>读取的对象。</returns>
         public object GetObject(Type objectType, string settingName, object defaultObj)
         {
+            CheckObjectType(objectType);
+            CheckSettingName(settingName);
             string json = GetString(settingName, null);
             if (json == null)
             {
@@ -323,6 +344,7 @@ namespace LFramework
         /// <param name="obj">要写入的对象。</param>
         public void SetObject<T>(string settingName, T obj)
         {
+            CheckSettingName(settingName);
             PlayerPrefs.SetString(settingName, Utility.Json.ToJson(obj));
         }
 
@@ -333,7 +355,24 @@ namespace LFramework
         /// <param name="obj">要写入的对象。</param>
         public void SetObject(string settingName, object obj)
         {
+            CheckSettingName(settingName);
             PlayerPrefs.SetString(settingName, Utility.Json.ToJson(obj));
+        }
+
+        private static void CheckSettingName(string settingName)
+        {
+            if (string.IsNullOrEmpty(settingName))
+            {
+                throw new LFrameworkException("Setting name is invalid.");
+            }
+        }
+
+        private static void CheckObjectType(Type objectType)
+        {
+            if (objectType == null)
+            {
+                throw new LFrameworkException("Object type is invalid.");
+            }
         }
     }
 }

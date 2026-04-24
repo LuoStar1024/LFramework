@@ -162,6 +162,13 @@ namespace LFramework
                     throw new LFrameworkException("Object is invalid.");
                 }
 
+                if (_objectMap.ContainsKey(obj.Target))
+                {
+                    throw new LFrameworkException(Utility.Text.Format(
+                        "Object pool '{0}' already contains target '{1}'.", new TypeNamePair(typeof(T), Name),
+                        obj.Target));
+                }
+
                 Object<T> internalObject = Object<T>.Create(obj, spawned);
                 _objects.Add(obj.Name, internalObject);
                 _objectMap.Add(obj.Target, internalObject);

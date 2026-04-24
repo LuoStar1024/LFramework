@@ -417,5 +417,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LFramework
       objectReference: {fileID: 0}
+    - target: {fileID: 5638515171505201909, guid: 04b896721c396b740b8500e301a66497, type: 3}
+      propertyPath: resourceMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638515171505201909, guid: 04b896721c396b740b8500e301a66497, type: 3}
+      propertyPath: encryptionType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5638515171505201909, guid: 04b896721c396b740b8500e301a66497, type: 3}
+      propertyPath: isEditorSimulate
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04b896721c396b740b8500e301a66497, type: 3}

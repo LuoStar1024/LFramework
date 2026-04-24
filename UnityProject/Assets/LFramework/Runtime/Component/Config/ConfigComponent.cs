@@ -69,11 +69,11 @@ namespace LFramework
             }
         }
         
-        public static UpdateConfig EdiotrUpdateConfig
+        public static UpdateConfig EditorUpdateConfig
         {
             get
             {
-                return Instance.updateConfig;
+                return Instance != null ? Instance.updateConfig : null;
             }
         }
 #endif

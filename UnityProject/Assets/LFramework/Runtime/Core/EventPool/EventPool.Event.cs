@@ -61,6 +61,7 @@ namespace LFramework
             public override void Clear()
             {
                 _arg1 = default(TArg1);
+                _handleEvent = null;
             }
         }
         
@@ -89,6 +90,7 @@ namespace LFramework
             {
                 _arg1 = default(TArg1);
                 _arg2 = default(TArg2);
+                _handleEvent = null;
             }
         }
         
@@ -120,6 +122,7 @@ namespace LFramework
                 _arg1 = default(TArg1);
                 _arg2 = default(TArg2);
                 _arg3 = default(TArg3);
+                _handleEvent = null;
             }
         }
         
@@ -154,6 +157,7 @@ namespace LFramework
                 _arg2 = default(TArg2);
                 _arg3 = default(TArg3);
                 _arg4 = default(TArg4);
+                _handleEvent = null;
             }
         }
         
@@ -191,6 +195,7 @@ namespace LFramework
                 _arg3 = default(TArg3);
                 _arg4 = default(TArg4);
                 _arg5 = default(TArg5);
+                _handleEvent = null;
             }
         }
         
@@ -231,6 +236,7 @@ namespace LFramework
                 _arg4 = default(TArg4);
                 _arg5 = default(TArg5);
                 _arg6 = default(TArg6);
+                _handleEvent = null;
             }
         }
         
@@ -274,6 +280,7 @@ namespace LFramework
                 _arg5 = default(TArg5);
                 _arg6 = default(TArg6);
                 _arg7 = default(TArg7);
+                _handleEvent = null;
             }
         }
         
@@ -320,6 +327,7 @@ namespace LFramework
                 _arg6 = default(TArg6);
                 _arg7 = default(TArg7);
                 _arg8 = default(TArg8);
+                _handleEvent = null;
             }
         }
     }

@@ -7,7 +7,8 @@ namespace GameLogic
     public class SingletonBehaviour<T> : MonoBehaviour, ISingleton where T : SingletonBehaviour<T>, new()
     {
         private static T _instance;
-        
+        private bool _isRelease;
+
         /// <summary>
         /// 实例
         /// </summary>
@@ -47,8 +48,9 @@ namespace GameLogic
                     if (_instance == null)
                     {
                         Debug.LogError($"Can't create SingletonBehaviour<{typeof(T)}>");
+                        return null;
                     }
-                    
+
                     _instance.Init();
                 }
 
@@ -58,9 +60,9 @@ namespace GameLogic
 
         protected virtual void OnDestroy()
         {
-            if (this == _instance)
+            if (!_isRelease && _instance == this && GameEntry.Singleton != null)
             {
-                Release(false);
+                GameEntry.Singleton.ReleaseSingleton(this, this.gameObject);
             }
         }
 
@@ -68,29 +70,26 @@ namespace GameLogic
         {
             // 注册进入模块
             GameEntry.Singleton.RegisterSingleton(_instance, _instance.gameObject);
+            _isRelease = false;
             OnInit();
         }
-        
+
         protected virtual void OnInit()
         {
         }
-        
-        public void Release(bool isSelf = true)
+
+        public void Release()
         {
+            _isRelease = true;
+
             if (_instance != null)
             {
                 OnRelease();
-                
-                // 主动调用这个，需要销毁游戏对象，否则是直接消耗对象等OnDestroy调用
-                if (isSelf)
-                {
-                    Destroy(_instance.gameObject);
-                }
-                GameEntry.Singleton.ReleaseSingleton(_instance, _instance.gameObject);
+
                 _instance = null;
             }
         }
-        
+
         protected virtual void OnRelease()
         {
         }

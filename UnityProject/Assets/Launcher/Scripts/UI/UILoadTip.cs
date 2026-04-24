@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
-using System;
 
 namespace Launcher
 {
@@ -9,88 +9,84 @@ namespace Launcher
     /// </summary>
     public class UILoadTip : UIBase
     {
-        public Button _btn_update;
-        public Button _btn_ignore;
-        public Button _btn_package;
-        public Text _label_desc;
+        [SerializeField]
+        private Button btnConfirm;
 
-        public Action OnOk;
-        public Action OnCancel;
-        public MessageShowType Showtype = MessageShowType.None;
+        [SerializeField]
+        private Button btnUpdate;
 
-        void Start()
+        [SerializeField]
+        private Button btnCancel;
+
+        [SerializeField]
+        private Text textDesc;
+
+        public Action OnConfirmClick { get; set; }
+        public Action OnUpdateClick { get; set; }
+        public Action OnCancelClick { get; set; }
+
+        private void Start()
         {
-            _btn_update.onClick.AddListener(OnGameUpdate);
-            _btn_ignore.onClick.AddListener(OnGameIgnore);
-            _btn_package.onClick.AddListener(OnInvoke);
+            btnConfirm.onClick.AddListener(OnClickConfirmButton);
+            btnUpdate.onClick.AddListener(OnClickUpdateButton);
+            btnCancel.onClick.AddListener(OnClickCancelButton);
         }
 
         public override void OnEnter(object data)
         {
-            _btn_ignore.gameObject.SetActive(false);
-            _btn_package.gameObject.SetActive(false);
-            _btn_update.gameObject.SetActive(false);
-            switch (Showtype)
-            {
-                case MessageShowType.OneButton:
-                    _btn_update.gameObject.SetActive(true);
-                    break;
-                case MessageShowType.TwoButton:
-                    _btn_update.gameObject.SetActive(true);
-                    _btn_ignore.gameObject.SetActive(true);
-                    break;
-                case MessageShowType.ThreeButton:
-                    _btn_ignore.gameObject.SetActive(true);
-                    _btn_package.gameObject.SetActive(true);
-                    _btn_package.gameObject.SetActive(true);
-                    break;
-            }
+            base.OnEnter(data);
+            OnConfirmClick = null;
+            OnUpdateClick = null;
+            OnCancelClick = null;
 
-            _label_desc.text = data.ToString();
+            btnConfirm.gameObject.SetActive(false);
+            btnUpdate.gameObject.SetActive(false);
+            btnCancel.gameObject.SetActive(false);
+            textDesc.text = data?.ToString();
         }
 
-        private void OnGameUpdate()
+        public void SetAllCallback(Action onConfirm, Action onUpdate, Action onCancel)
         {
-            if (OnOk == null)
-            {
-                _label_desc.text = "<color=#BA3026>该按钮不应该存在</color>";
-            }
-            else
-            {
-                OnOk();
-                _OnClose();
-            }
-        }
+            btnConfirm.gameObject.SetActive(false);
+            btnUpdate.gameObject.SetActive(false);
+            btnCancel.gameObject.SetActive(false);
 
-        private void OnGameIgnore()
-        {
-            if (OnCancel == null)
+            OnConfirmClick = onConfirm;
+            OnUpdateClick = onUpdate;
+            OnCancelClick = onCancel;
+
+            if (onConfirm != null)
             {
-                _label_desc.text = "<color=#BA3026>该按钮不应该存在</color>";
+                btnConfirm.gameObject.SetActive(true);
             }
-            else
+
+            if (onUpdate != null)
             {
-                OnCancel();
-                _OnClose();
+                btnUpdate.gameObject.SetActive(true);
+            }
+
+            if (onCancel != null)
+            {
+                btnCancel.gameObject.SetActive(true);
             }
         }
 
-        private void OnInvoke()
+        private void OnClickConfirmButton()
         {
-            if (OnOk == null)
-            {
-                _label_desc.text = "<color=#BA3026>该按钮不应该存在</color>";
-            }
-            else
-            {
-                OnOk();
-                _OnClose();
-            }
+            OnConfirmClick?.Invoke();
+            Close();
         }
 
-        private void _OnClose()
+        private void OnClickUpdateButton()
         {
-            LauncherMgr.Hide(UIDefine.UILoadTip);
+            OnUpdateClick?.Invoke();
+            Close();
+        }
+
+        private void OnClickCancelButton()
+        {
+            OnCancelClick?.Invoke();
+            Close();
         }
     }
 }

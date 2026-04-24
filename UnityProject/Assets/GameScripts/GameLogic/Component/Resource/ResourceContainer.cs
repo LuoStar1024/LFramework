@@ -30,7 +30,6 @@ namespace GameLogic
         {
             UnloadAllAssets();
             _assetList.Clear();
-            _cancellationTokenSource = null;
             Owner = null;
         }
         
@@ -64,6 +63,7 @@ namespace GameLogic
             if (_cancellationTokenSource != null)
             {
                 _cancellationTokenSource.Cancel();
+                _cancellationTokenSource.Dispose();
                 _cancellationTokenSource = null;
             }
         }

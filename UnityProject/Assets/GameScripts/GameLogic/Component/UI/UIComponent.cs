@@ -439,7 +439,7 @@ namespace GameLogic
                 throw new LFrameworkException("Results is invalid.");
             }
 
-            results.Clear();
+            _internalUIFormResults.Clear();
             foreach (KeyValuePair<string, UIGroup> uiGroup in _uiGroups)
             {
                 uiGroup.Value.InternalGetUIForms(uiFormAssetName, _internalUIFormResults);
@@ -483,7 +483,7 @@ namespace GameLogic
                 throw new LFrameworkException("Results is invalid.");
             }
 
-            results.Clear();
+            _internalUIFormResults.Clear();
             foreach (KeyValuePair<string, UIGroup> uiGroup in _uiGroups)
             {
                 uiGroup.Value.InternalGetAllUIForms(_internalUIFormResults);
@@ -949,7 +949,10 @@ namespace GameLogic
         public void ReleaseUIForm(object uiFormAsset, object uiFormInstance)
         {
             _resourceManager.UnloadAsset(uiFormAsset);
-            Destroy((UnityEngine.Object)uiFormInstance);
+            if (uiFormInstance != null)
+            {
+                Destroy((UnityEngine.Object)uiFormInstance);
+            }
         }
 
         private void InternalOpenUIForm(int serialId, string uiFormAssetName, UIGroup uiGroup, object uiFormInstance,
@@ -976,7 +979,7 @@ namespace GameLogic
                 //     ReferencePool.Release(openUIFormSuccessEventArgs);
                 // }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
                 // if (_openUIFormFailureEventHandler != null)
                 // {
@@ -1031,6 +1034,7 @@ namespace GameLogic
             if (_uiFormsToReleaseOnLoad.Contains(openUIFormInfo.SerialId))
             {
                 _uiFormsToReleaseOnLoad.Remove(openUIFormInfo.SerialId);
+                ReferencePool.Release(openUIFormInfo);
                 return;
             }
 
@@ -1049,6 +1053,7 @@ namespace GameLogic
             //     return;
             // }
 
+            ReferencePool.Release(openUIFormInfo);
             throw new LFrameworkException(appendErrorMessage);
         }
 

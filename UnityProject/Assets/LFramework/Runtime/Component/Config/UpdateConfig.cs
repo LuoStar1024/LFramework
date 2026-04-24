@@ -62,7 +62,7 @@ namespace LFramework
         public List<string> HotUpdateAssemblies = new List<string>() {"GameDataTable.dll", "GameLogic.dll" };
 
         [Header("Need manual setting!")]
-        public List<string> AotMetaAssemblies = new List<string>() { "mscorlib.dll", "System.dll", "System.Core.dll", "TEngine.Runtime.dll" ,"UniTask.dll", "YooAsset.dll"};
+        public List<string> AotMetaAssemblies = new List<string>() { "mscorlib.dll", "System.dll", "System.Core.dll", "LFramework.Runtime.dll" ,"UniTask.dll", "YooAsset.dll"};
 
         /// <summary>
         /// Dll of main business logic assembly
@@ -97,7 +97,7 @@ namespace LFramework
         private string FallbackResDownLoadPath = "http://127.0.0.1:8082";
 
         /// <summary>
-        /// 是否自动你讲打包资源复制到打包后的StreamingAssets地址
+        /// 是否自动将打包资源复制到打包后的StreamingAssets地址
         /// </summary>
         [Header("构建资源设置")]
         [SerializeField]

@@ -43,21 +43,17 @@ namespace GameLogic
             GameEntry.Singleton.RegisterSingleton(_instance);
             OnInit();
         }
-        
+
         protected virtual void OnInit()
         {
         }
 
-        public virtual void Release(bool isSelf = true)
+        public virtual void Release()
         {
             if (_instance != null)
             {
                 OnRelease();
-                
-                if (isSelf)
-                {
-                    GameEntry.Singleton.ReleaseSingleton(_instance);
-                }
+
                 _instance = null;
             }
         }
