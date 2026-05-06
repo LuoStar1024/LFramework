@@ -8,7 +8,7 @@
         private readonly LoadSceneSuccessCallback _loadSceneSuccessCallback;
         private readonly LoadSceneFailureCallback _loadSceneFailureCallback;
         private readonly LoadSceneUpdateCallback _loadSceneUpdateCallback;
-        
+
         /// <summary>
         /// 初始化加载场景回调函数集的新实例。
         /// </summary>
@@ -17,13 +17,14 @@
             : this(loadSceneSuccessCallback, null, null)
         {
         }
-        
+
         /// <summary>
         /// 初始化加载场景回调函数集的新实例。
         /// </summary>
         /// <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
         /// <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-        public LoadSceneCallbacks(LoadSceneSuccessCallback loadSceneSuccessCallback, LoadSceneUpdateCallback loadSceneUpdateCallback)
+        public LoadSceneCallbacks(LoadSceneSuccessCallback loadSceneSuccessCallback,
+            LoadSceneUpdateCallback loadSceneUpdateCallback)
             : this(loadSceneSuccessCallback, null, loadSceneUpdateCallback)
         {
         }
@@ -33,7 +34,8 @@
         /// </summary>
         /// <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
         /// <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
-        public LoadSceneCallbacks(LoadSceneSuccessCallback loadSceneSuccessCallback, LoadSceneFailureCallback loadSceneFailureCallback)
+        public LoadSceneCallbacks(LoadSceneSuccessCallback loadSceneSuccessCallback,
+            LoadSceneFailureCallback loadSceneFailureCallback)
             : this(loadSceneSuccessCallback, loadSceneFailureCallback, null)
         {
         }
@@ -44,7 +46,8 @@
         /// <param name="loadSceneSuccessCallback">加载场景成功回调函数。</param>
         /// <param name="loadSceneFailureCallback">加载场景失败回调函数。</param>
         /// <param name="loadSceneUpdateCallback">加载场景更新回调函数。</param>
-        public LoadSceneCallbacks(LoadSceneSuccessCallback loadSceneSuccessCallback, LoadSceneFailureCallback loadSceneFailureCallback, LoadSceneUpdateCallback loadSceneUpdateCallback)
+        public LoadSceneCallbacks(LoadSceneSuccessCallback loadSceneSuccessCallback,
+            LoadSceneFailureCallback loadSceneFailureCallback, LoadSceneUpdateCallback loadSceneUpdateCallback)
         {
             if (loadSceneSuccessCallback == null)
             {
@@ -61,10 +64,7 @@
         /// </summary>
         public LoadSceneSuccessCallback LoadSceneSuccessCallback
         {
-            get
-            {
-                return _loadSceneSuccessCallback;
-            }
+            get { return _loadSceneSuccessCallback; }
         }
 
         /// <summary>
@@ -72,10 +72,7 @@
         /// </summary>
         public LoadSceneFailureCallback LoadSceneFailureCallback
         {
-            get
-            {
-                return _loadSceneFailureCallback;
-            }
+            get { return _loadSceneFailureCallback; }
         }
 
         /// <summary>
@@ -83,10 +80,7 @@
         /// </summary>
         public LoadSceneUpdateCallback LoadSceneUpdateCallback
         {
-            get
-            {
-                return _loadSceneUpdateCallback;
-            }
+            get { return _loadSceneUpdateCallback; }
         }
     }
 }

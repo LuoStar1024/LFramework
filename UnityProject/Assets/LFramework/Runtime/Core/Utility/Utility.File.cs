@@ -159,7 +159,9 @@ namespace LFramework
                     return $"{(length / 1024f):F2} KB";
                 }
 
-                return length < 1024 * 1024 * 1024 ? $"{(length / 1024f / 1024f):F2} MB" : $"{(length / 1024f / 1024f / 1024f):F2} GB";
+                return length < 1024 * 1024 * 1024
+                    ? $"{(length / 1024f / 1024f):F2} MB"
+                    : $"{(length / 1024f / 1024f / 1024f):F2} GB";
             }
 
             public static string GetByteLengthString(long byteLength)

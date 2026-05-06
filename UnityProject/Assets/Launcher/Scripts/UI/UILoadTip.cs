@@ -9,17 +9,13 @@ namespace Launcher
     /// </summary>
     public class UILoadTip : UIBase
     {
-        [SerializeField]
-        private Button btnConfirm;
+        [SerializeField] private Button btnConfirm;
 
-        [SerializeField]
-        private Button btnUpdate;
+        [SerializeField] private Button btnUpdate;
 
-        [SerializeField]
-        private Button btnCancel;
+        [SerializeField] private Button btnCancel;
 
-        [SerializeField]
-        private Text textDesc;
+        [SerializeField] private Text textDesc;
 
         public Action OnConfirmClick { get; set; }
         public Action OnUpdateClick { get; set; }

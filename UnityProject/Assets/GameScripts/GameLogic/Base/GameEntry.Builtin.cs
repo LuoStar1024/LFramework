@@ -10,134 +10,74 @@ namespace GameLogic
         /// <summary>
         /// 获取游戏基础组件。
         /// </summary>
-        public static IBaseManager Base
-        {
-            get;
-            private set;
-        }
+        public static IBaseManager Base { get; private set; }
 
-        public static IConfigManager Config
-        {
-            get;
-            private set;
-        }
+        public static IConfigManager Config { get; private set; }
 
         /// <summary>
         /// 获取数据结点组件。
         /// </summary>
-        public static IDataNodeManager DataNode
-        {
-            get;
-            private set;
-        }
+        public static IDataNodeManager DataNode { get; private set; }
 
         /// <summary>
         /// 获取调试组件。
         /// </summary>
-        public static IDebuggerManager Debugger
-        {
-            get;
-            private set;
-        }
+        public static IDebuggerManager Debugger { get; private set; }
 
         /// <summary>
         /// 获取事件组件。
         /// </summary>
-        public static IEventManager Event
-        {
-            get;
-            private set;
-        }
+        public static IEventManager Event { get; private set; }
 
         /// <summary>
         /// 获取有限状态机组件。
         /// </summary>
-        public static IFsmManager Fsm
-        {
-            get;
-            private set;
-        }
+        public static IFsmManager Fsm { get; private set; }
 
         /// <summary>
         /// 获取本地化组件。
         /// </summary>
-        public static ILocalizationManager Localization
-        {
-            get;
-            private set;
-        }
+        public static ILocalizationManager Localization { get; private set; }
 
         /// <summary>
         /// 获取对象池组件。
         /// </summary>
-        public static IObjectPoolManager ObjectPool
-        {
-            get;
-            private set;
-        }
+        public static IObjectPoolManager ObjectPool { get; private set; }
 
         /// <summary>
         /// 获取流程组件。
         /// </summary>
-        public static IProcedureManager Procedure
-        {
-            get;
-            private set;
-        }
+        public static IProcedureManager Procedure { get; private set; }
 
         /// <summary>
         /// 获取资源组件。
         /// </summary>
-        public static IResourceManager Resource
-        {
-            get;
-            private set;
-        }
+        public static IResourceManager Resource { get; private set; }
 
         /// <summary>
         /// 获取场景组件。
         /// </summary>
-        public static ISceneManager Scene
-        {
-            get;
-            private set;
-        }
+        public static ISceneManager Scene { get; private set; }
 
         /// <summary>
         /// 获取配置组件。
         /// </summary>
-        public static ISettingManager Setting
-        {
-            get;
-            private set;
-        }
+        public static ISettingManager Setting { get; private set; }
 
         /// <summary>
         /// 获取声音组件。
         /// </summary>
-        public static IAudioManager Audio
-        {
-            get;
-            private set;
-        }
+        public static IAudioManager Audio { get; private set; }
 
         /// <summary>
         /// 获取定时器组件。
         /// </summary>
-        public static ITimerManager Timer
-        {
-            get;
-            private set;
-        }
-        
+        public static ITimerManager Timer { get; private set; }
+
         /// <summary>
         /// 获取定时器组件。
         /// </summary>
-        public static IUnityWrapperManager Unity
-        {
-            get;
-            private set;
-        }
+        public static IUnityWrapperManager Unity { get; private set; }
 
         private static void InitBuiltinComponents()
         {

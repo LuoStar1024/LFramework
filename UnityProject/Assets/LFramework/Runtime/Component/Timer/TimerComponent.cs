@@ -17,39 +17,30 @@ namespace LFramework
         private readonly List<Timer> _cacheAddTimerList = new List<Timer>();
         private readonly List<int> _cacheRemoveTimerList = new List<int>();
         private readonly List<int> _cacheRemoveUnscaledTimerList = new List<int>();
-        
+
         /// <summary>
         /// 获取定时器数量。
         /// </summary>
         public int TimerCount
         {
-            get
-            {
-                return _timerList.Count;
-            }
+            get { return _timerList.Count; }
         }
-        
+
         /// <summary>
         /// 获取不受时间缩放定时器数量。
         /// </summary>
         public int UnscaledTimerCount
         {
-            get
-            {
-                return _unscaledTimerList.Count;
-            }
+            get { return _unscaledTimerList.Count; }
         }
-        
+
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
 
         private void Awake()
@@ -72,8 +63,9 @@ namespace LFramework
             {
                 InsertTimer(_cacheAddTimerList[i]);
             }
+
             _cacheAddTimerList.Clear();
-            
+
             UpdateTimer(elapseSeconds);
             UpdateUnscaledTimer(realElapseSeconds);
         }
@@ -85,7 +77,7 @@ namespace LFramework
         {
             _cacheRemoveTimerList.Clear();
             _cacheRemoveUnscaledTimerList.Clear();
-            
+
             RemoveAllTimer();
         }
 
@@ -113,7 +105,7 @@ namespace LFramework
 
             Timer timer = Timer.Create(_serialId, time, callback, isUnscaled, repeatCount);
             _cacheAddTimerList.Add(timer);
-            
+
             return timer.ID;
         }
 
@@ -143,7 +135,7 @@ namespace LFramework
 
             Timer timer = Timer.Create(_serialId, time, callback, isUnscaled, repeatCount, args);
             _cacheAddTimerList.Add(timer);
-            
+
             return timer.ID;
         }
 
@@ -156,7 +148,7 @@ namespace LFramework
             Timer timer = GetTimer(timerId);
             if (timer != null)
             {
-                timer.IsRunning = false;  
+                timer.IsRunning = false;
             }
         }
 
@@ -346,7 +338,7 @@ namespace LFramework
                 {
                     continue;
                 }
-                
+
                 timer.CurTime -= elapseSeconds;
                 if (timer.CurTime <= 0)
                 {
@@ -358,6 +350,7 @@ namespace LFramework
                     {
                         timer.CallbackArgs?.Invoke(timer.Args);
                     }
+
                     timer.RepeatCount--;
 
                     if (timer.RepeatCount != 0)
@@ -388,7 +381,7 @@ namespace LFramework
                 LoopCallInBadFrame();
             }
         }
-        
+
         private void LoopCallInBadFrame()
         {
             bool isLoopCall = false;
@@ -400,7 +393,7 @@ namespace LFramework
                 {
                     continue;
                 }
-                
+
                 if (timer.CurTime <= 0)
                 {
                     if (timer.Callback != null)
@@ -411,8 +404,9 @@ namespace LFramework
                     {
                         timer.CallbackArgs?.Invoke(timer.Args);
                     }
+
                     timer.RepeatCount--;
-                    
+
                     if (timer.RepeatCount != 0)
                     {
                         timer.CurTime += timer.Time;
@@ -450,7 +444,7 @@ namespace LFramework
                 {
                     continue;
                 }
-                
+
                 timer.CurTime -= realElapseSeconds;
                 if (timer.CurTime <= 0)
                 {
@@ -462,6 +456,7 @@ namespace LFramework
                     {
                         timer.CallbackArgs?.Invoke(timer.Args);
                     }
+
                     timer.RepeatCount--;
 
                     if (timer.RepeatCount != 0)
@@ -504,7 +499,7 @@ namespace LFramework
                 {
                     continue;
                 }
-                
+
                 if (timer.CurTime <= 0)
                 {
                     if (timer.Callback != null)
@@ -515,8 +510,9 @@ namespace LFramework
                     {
                         timer.CallbackArgs?.Invoke(timer.Args);
                     }
+
                     timer.RepeatCount--;
-                    
+
                     if (timer.RepeatCount != 0)
                     {
                         timer.CurTime += timer.Time;
@@ -537,7 +533,7 @@ namespace LFramework
                 LoopCallUnscaledInBadFrame();
             }
         }
-        
+
         public TimerInfo[] GetTimersInfo()
         {
             List<TimerInfo> results = new List<TimerInfo>(_timerList.Count);
@@ -557,10 +553,10 @@ namespace LFramework
                         timer.RepeatCount, timer.CurTime));
                 }
             }
-            
+
             return results.ToArray();
         }
-        
+
         public TimerInfo[] GetUnscaledTimersInfo()
         {
             List<TimerInfo> results = new List<TimerInfo>(_unscaledTimerList.Count);
@@ -580,7 +576,7 @@ namespace LFramework
                         timer.RepeatCount, timer.CurTime));
                 }
             }
-            
+
             return results.ToArray();
         }
     }

@@ -10,18 +10,12 @@ namespace LFramework
         /// <summary>
         /// 获取事件处理函数的数量。
         /// </summary>
-        int EventHandlerCount
-        {
-            get;
-        }
+        int EventHandlerCount { get; }
 
         /// <summary>
         /// 获取事件数量。
         /// </summary>
-        int EventCount
-        {
-            get;
-        }
+        int EventCount { get; }
 
         /// <summary>
         /// 获取事件处理函数的数量。
@@ -44,7 +38,7 @@ namespace LFramework
         /// <param name="id">事件类型编号。</param>
         /// <param name="handler">要订阅的事件处理函数。</param>
         void Subscribe(int id, Action handler);
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -52,7 +46,7 @@ namespace LFramework
         /// <param name="handler">要订阅的事件处理函数。</param>
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         void Subscribe<TArg1>(int id, Action<TArg1> handler);
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -61,7 +55,7 @@ namespace LFramework
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         void Subscribe<TArg1, TArg2>(int id, Action<TArg1, TArg2> handler);
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -71,7 +65,7 @@ namespace LFramework
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         void Subscribe<TArg1, TArg2, TArg3>(int id, Action<TArg1, TArg2, TArg3> handler);
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -82,7 +76,7 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         void Subscribe<TArg1, TArg2, TArg3, TArg4>(int id, Action<TArg1, TArg2, TArg3, TArg4> handler);
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -94,7 +88,7 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler);
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -106,8 +100,9 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler);
-        
+        void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler);
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -120,8 +115,9 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler);
-        
+        void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler);
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -135,7 +131,8 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler);
+        void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler);
 
         /// <summary>
         /// 订阅事件处理函数。
@@ -143,14 +140,14 @@ namespace LFramework
         /// <param name="id">事件类型编号。</param>
         /// <param name="handler">要订阅的事件处理函数。</param>
         void Subscribe(int id, Delegate handler);
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
         /// <param name="id">事件类型编号。</param>
         /// <param name="handler">要取消订阅的事件处理函数。</param>
         void Unsubscribe(int id, Action handler);
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -158,7 +155,7 @@ namespace LFramework
         /// <param name="handler">要取消订阅的事件处理函数。</param>
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         void Unsubscribe<TArg1>(int id, Action<TArg1> handler);
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -167,7 +164,7 @@ namespace LFramework
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         void Unsubscribe<TArg1, TArg2>(int id, Action<TArg1, TArg2> handler);
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -177,7 +174,7 @@ namespace LFramework
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         void Unsubscribe<TArg1, TArg2, TArg3>(int id, Action<TArg1, TArg2, TArg3> handler);
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -188,7 +185,7 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         void Unsubscribe<TArg1, TArg2, TArg3, TArg4>(int id, Action<TArg1, TArg2, TArg3, TArg4> handler);
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -200,7 +197,7 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler);
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -212,8 +209,9 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler);
-        
+        void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler);
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -226,8 +224,9 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler);
-        
+        void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler);
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -241,8 +240,9 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler);
-        
+        void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler);
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -269,7 +269,7 @@ namespace LFramework
         /// <param name="arg1">事件参数1。</param>
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         void Fire<TArg1>(int id, TArg1 arg1);
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -279,7 +279,7 @@ namespace LFramework
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         void Fire<TArg1, TArg2>(int id, TArg1 arg1, TArg2 arg2);
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -291,7 +291,7 @@ namespace LFramework
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         void Fire<TArg1, TArg2, TArg3>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3);
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -305,7 +305,7 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         void Fire<TArg1, TArg2, TArg3, TArg4>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4);
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -320,8 +320,9 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5);
-        
+        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4,
+            TArg5 arg5);
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -338,8 +339,9 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6);
-        
+        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4,
+            TArg5 arg5, TArg6 arg6);
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -358,8 +360,9 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7);
-        
+        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7);
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -380,14 +383,15 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8);
+        void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8);
 
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
         /// <param name="id">事件Id。</param>
         void FireNow(int id);
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -395,7 +399,7 @@ namespace LFramework
         /// <param name="arg1">事件参数1。</param>
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         void FireNow<TArg1>(int id, TArg1 arg1);
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -405,7 +409,7 @@ namespace LFramework
         /// <typeparam name="TArg1">事件参数1类型。</typeparam>
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         void FireNow<TArg1, TArg2>(int id, TArg1 arg1, TArg2 arg2);
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -417,7 +421,7 @@ namespace LFramework
         /// <typeparam name="TArg2">事件参数2类型。</typeparam>
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         void FireNow<TArg1, TArg2, TArg3>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3);
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -431,7 +435,7 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         void FireNow<TArg1, TArg2, TArg3, TArg4>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4);
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -446,8 +450,9 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5);
-        
+        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4,
+            TArg5 arg5);
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -464,8 +469,9 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6);
-        
+        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4,
+            TArg5 arg5, TArg6 arg6);
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -484,8 +490,9 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7);
-        
+        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7);
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -506,7 +513,8 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8);
+        void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8);
 
         /// <summary>
         /// 注册事件组。
@@ -514,7 +522,7 @@ namespace LFramework
         /// <param name="group">事件组实例。</param>
         /// <typeparam name="T">事件组接口类型。</typeparam>
         void RegisterGroup<T>(T group);
-        
+
         /// <summary>
         /// 获取事件组。
         /// </summary>

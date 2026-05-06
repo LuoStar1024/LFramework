@@ -9,7 +9,7 @@ namespace LFramework
         /// 未指定。
         /// </summary>
         Unspecified = 0,
-        
+
         /// <summary>
         /// 编辑器下的模拟模式。
         /// </summary>

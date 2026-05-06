@@ -20,14 +20,15 @@ namespace LFramework
                 {
                     _instance = FindObjectOfType<RootComponent>();
                 }
+
                 return _instance;
             }
         }
-        
+
         private void Awake()
         {
             _instance = this;
-            
+
             Application.lowMemory += OnLowMemory;
         }
 
@@ -36,18 +37,18 @@ namespace LFramework
             // 驱动整个框架。
             LFrameworkEntry.OnUpdate(Time.deltaTime, Time.unscaledDeltaTime);
         }
-        
+
         private void OnApplicationQuit()
         {
             Application.lowMemory -= OnLowMemory;
             StopAllCoroutines();
         }
-        
+
         private void OnDestroy()
         {
             LFrameworkEntry.Shutdown();
         }
-        
+
         private void OnLowMemory()
         {
             Log.Info("Low memory reported...");
@@ -64,7 +65,7 @@ namespace LFramework
                 resourceManager.ForceUnloadUnusedAssets(true);
             }
         }
-        
+
         /// <summary>
         /// 关闭游戏框架。
         /// </summary>

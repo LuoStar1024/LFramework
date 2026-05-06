@@ -33,53 +33,35 @@ namespace LFramework
             _repeatCount = repeatCount;
             _curTime = curTime;
         }
-        
+
         public int Id
         {
-            get
-            {
-                return _id;
-            }
+            get { return _id; }
         }
-        
+
         public string ClassName
         {
-            get
-            {
-                return _className;
-            }
+            get { return _className; }
         }
-        
+
         public string MethodName
         {
-            get
-            {
-                return _methodName;
-            }
+            get { return _methodName; }
         }
-        
+
         public float Time
         {
-            get
-            {
-                return _time;
-            }
+            get { return _time; }
         }
-        
+
         public int RepeatCount
         {
-            get
-            {
-                return _repeatCount;
-            }
+            get { return _repeatCount; }
         }
-        
+
         public float CurTime
         {
-            get
-            {
-                return _curTime;
-            }
+            get { return _curTime; }
         }
     }
 }

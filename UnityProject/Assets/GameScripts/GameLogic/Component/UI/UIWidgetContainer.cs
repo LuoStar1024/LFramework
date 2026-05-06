@@ -8,11 +8,7 @@ namespace GameLogic
         private readonly List<UIWidget> _uiWidgets = new List<UIWidget>();
         public List<UIWidget> UIWidgets => _uiWidgets;
 
-        public UguiForm Owner
-        {
-            get;
-            private set;
-        }
+        public UguiForm Owner { get; private set; }
 
         public static UIWidgetContainer Create(UguiForm owner)
         {
@@ -33,10 +29,13 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Can't add empty!");
             }
+
             if (_uiWidgets.Contains(uiWidget))
             {
-                throw new LFrameworkException(Utility.Text.Format("Can't duplicate add UIWidget : '{0}'!", uiWidget.CachedTransform.name));
+                throw new LFrameworkException(Utility.Text.Format("Can't duplicate add UIWidget : '{0}'!",
+                    uiWidget.CachedTransform.name));
             }
+
             _uiWidgets.Add(uiWidget);
             uiWidget.OnInit(userData);
         }
@@ -47,9 +46,11 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Can't remove empty!");
             }
+
             if (!_uiWidgets.Remove(uiWidget))
             {
-                throw new LFrameworkException(Utility.Text.Format("UIWidget : '{0}' not in container.", uiWidget.CachedTransform.name));
+                throw new LFrameworkException(Utility.Text.Format("UIWidget : '{0}' not in container.",
+                    uiWidget.CachedTransform.name));
             }
         }
 
@@ -73,14 +74,19 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Can't open empty!");
             }
+
             if (!_uiWidgets.Contains(uiWidget))
             {
-                throw new LFrameworkException(Utility.Text.Format("Can't open UIWidget, UIWidget '{0}' not in the container '{1}'!", uiWidget.name, Owner.Name));
+                throw new LFrameworkException(Utility.Text.Format(
+                    "Can't open UIWidget, UIWidget '{0}' not in the container '{1}'!", uiWidget.name, Owner.Name));
             }
+
             if (uiWidget.IsOpen)
             {
-                throw new LFrameworkException(Utility.Text.Format("Can't open UIWidget, UIWidget '{0}' is already opened!", uiWidget.name));
+                throw new LFrameworkException(
+                    Utility.Text.Format("Can't open UIWidget, UIWidget '{0}' is already opened!", uiWidget.name));
             }
+
             uiWidget.OnOpen(userData);
         }
 
@@ -101,14 +107,19 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Can't open empty!");
             }
+
             if (!_uiWidgets.Contains(uiWidget))
             {
-                throw new LFrameworkException(Utility.Text.Format("Can't open UIWidget, UIWidget '{0}' not in the container '{1}'!", uiWidget.name, Owner.Name));
+                throw new LFrameworkException(Utility.Text.Format(
+                    "Can't open UIWidget, UIWidget '{0}' not in the container '{1}'!", uiWidget.name, Owner.Name));
             }
+
             if (!uiWidget.IsOpen)
             {
-                throw new LFrameworkException(Utility.Text.Format("Can't close UIWidget, UIWidget '{0}' is not opened!", uiWidget.name));
+                throw new LFrameworkException(Utility.Text.Format("Can't close UIWidget, UIWidget '{0}' is not opened!",
+                    uiWidget.name));
             }
+
             uiWidget.OnClose(isShutdown, userData);
         }
 

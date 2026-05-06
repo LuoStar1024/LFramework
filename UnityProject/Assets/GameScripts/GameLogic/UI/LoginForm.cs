@@ -13,7 +13,7 @@ namespace GameLogic
             _procedureLogin.LoginGame();
             Close();
         }
-        
+
         protected internal override void OnOpen(object userData)
         {
             base.OnOpen(userData);
@@ -29,7 +29,7 @@ namespace GameLogic
         protected internal override void OnClose(bool isShutdown, object userData)
         {
             _procedureLogin = null;
-            
+
             base.OnClose(isShutdown, userData);
         }
     }

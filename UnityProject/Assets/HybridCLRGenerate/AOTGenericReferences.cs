@@ -370,6 +370,7 @@ public class AOTGenericReferences : UnityEngine.MonoBehaviour
 		// object LFramework.IFsm<object>.GetData<object>(string)
 		// System.Void LFramework.IFsm<object>.SetData<object>(string,object)
 		// LFramework.IObjectPool<object> LFramework.IObjectPoolManager.CreateSingleSpawnObjectPool<object>(string)
+		// bool LFramework.IObjectPoolManager.DestroyObjectPool<object>(LFramework.IObjectPool<object>)
 		// System.Void LFramework.IProcedureManager.StartProcedure<object>()
 		// Cysharp.Threading.Tasks.UniTask<object> LFramework.IResourceManager.LoadAsset<object>(string,int,System.Threading.CancellationToken,string)
 		// object LFramework.IResourceManager.LoadExistAsset<object>(string,string)

@@ -19,7 +19,7 @@ namespace Launcher
         private float _lastUpdateDownloadedSize;
         private float _totalSpeed;
         private int _speedSampleCount;
-        
+
         private IResourceManager _resComponent;
 
         private float CurrentSpeed
@@ -41,7 +41,7 @@ namespace Launcher
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            
+
             _procedureOwner = procedureOwner;
             _resComponent = LFrameworkEntry.GetModule<IResourceManager>();
 

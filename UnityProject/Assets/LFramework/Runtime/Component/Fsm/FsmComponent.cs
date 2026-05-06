@@ -37,10 +37,7 @@ namespace LFramework
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return 1;
-            }
+            get { return 1; }
         }
 
         private void Awake()

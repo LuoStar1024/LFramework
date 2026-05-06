@@ -16,7 +16,7 @@ namespace LFramework
         /// 获取系统语言。
         /// </summary>
         Language SystemLanguage { get; }
-        
+
         /// <summary>
         /// 加载语言总表。
         /// </summary>
@@ -29,14 +29,14 @@ namespace LFramework
         // /// <param name="setCurrent">是否立刻设置成当前语言。</param>
         // /// <param name="fromInit">是否初始化Inner语言。</param>
         // public UniTask LoadLanguage(string language, bool setCurrent = false, bool fromInit = false);
-        
+
         /// <summary>
         /// 检查是否存在该语言。
         /// </summary>
         /// <param name="language">语言。</param>
         /// <returns>是否已加载。</returns>
         public bool CheckLanguage(Language language);
-        
+
         /// <summary>
         /// 设置当前语言。
         /// </summary>

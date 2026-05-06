@@ -13,16 +13,13 @@ namespace LFramework
     {
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
 
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<IUnityWrapperManager>(this);
-            
+
             // 防止裁剪引用。
             // 如果在主工程无引用，link.xml的防裁剪也无效。
             // 最好是AOT显示保留引用，Preserve有可能还会裁成员变量。
@@ -35,7 +32,7 @@ namespace LFramework
 
             RegisterType<Rigidbody>();
             RegisterType<Rigidbody2D>();
-        
+
             RegisterType<Ray>();
             RegisterType<Ray2D>();
 
@@ -57,7 +54,7 @@ namespace LFramework
         foreach (var _ in WebCamTexture.devices)
         {
         } 
-        */ 
+        */
 #endif
         }
 
@@ -75,7 +72,7 @@ namespace LFramework
         public void Shutdown()
         {
         }
-        
+
         private void RegisterType<T>()
         {
 #if UNITY_EDITOR && false

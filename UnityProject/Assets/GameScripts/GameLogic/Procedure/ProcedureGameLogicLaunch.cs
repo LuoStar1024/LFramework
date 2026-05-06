@@ -8,24 +8,25 @@ namespace GameLogic
     public class ProcedureGameLogicLaunch : ProcedureBase
     {
         private bool _isInitOver = false;
-        
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            
+
             _isInitOver = false;
-            
+
             // 重新建立游戏侧音频组，和启动器阶段的默认音频职责分离。
             InitAudio();
 
             // 初始化正式游戏所需的 UI 分组。
             InitUI();
-            
+
             // 加载游戏本地化资源，完成后才允许进入登录界面。
             InitLocalization();
         }
 
-        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
+        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds,
+            float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 
@@ -33,7 +34,7 @@ namespace GameLogic
             {
                 return;
             }
-            
+
             // 游戏基础组件就绪后，正式进入登录流程。
             ChangeState<ProcedureLogin>(procedureOwner);
         }

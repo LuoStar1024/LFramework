@@ -17,19 +17,19 @@ MonoBehaviour:
   - GameDataTable.dll
   - GameLogic.dll
   AotMetaAssemblies:
-  - mscorlib.dll
-  - System.dll
-  - System.Core.dll
   - LFramework.Runtime.dll
+  - System.Core.dll
+  - System.dll
   - UniTask.dll
   - UnityEngine.CoreModule.dll
+  - mscorlib.dll
   LogicMainDllName: GameLogic.dll
   AssemblyTextAssetExtension: .bytes
   AssemblyTextAssetPath: GameResRaw/Dll
   UpdateStyle: 1
   UpdateNotice: 1
-  ResDownLoadPath: http://127.0.0.1:8081
-  FallbackResDownLoadPath: http://127.0.0.1:8082
+  ResDownLoadPath: http://192.168.1.61:80
+  FallbackResDownLoadPath: http://192.168.1.61:81
   isAutoAssetCopeToBuildAddress: 0
-  BuildAddress: ../../Builds/Unity_Data/StreamingAssets
+  BuildAddress: ../../BuildBundles/Unity_Data/StreamingAssets
   ReplaceAssetPathWithAddress: 0

@@ -16,7 +16,7 @@ namespace GameLogic
     public class DataTableComponent : MonoBehaviour, ILFrameworkModule, IDataTableManager
     {
         private bool _init = false;
-    
+
         private Tables _tables;
 
         public Tables Tables
@@ -50,7 +50,7 @@ namespace GameLogic
         public void Shutdown()
         {
         }
-        
+
         /// <summary>
         /// 加载配置。
         /// </summary>
@@ -62,6 +62,7 @@ namespace GameLogic
             {
                 return;
             }
+
             Type loaderReturnType = loadMethodInfo.GetParameters()[0].ParameterType.GetGenericArguments()[1];
             if (loaderReturnType == typeof(ByteBuf))
             {
@@ -74,7 +75,7 @@ namespace GameLogic
                 _init = true;
             }
         }
-    
+
         /// <summary>
         /// 加载二进制配置。
         /// </summary>

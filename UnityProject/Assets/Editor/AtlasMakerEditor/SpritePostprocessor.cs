@@ -67,10 +67,13 @@ namespace GameEditor
                 {
                     AssetDatabase.DeleteAsset(res);
                 }
+
                 if (isDelete)
                 {
-                    Debug.LogError($"<color=red>针对 {config.sourceAtlasRootDir} 路径下资源</color>\n<color=red>移除了空格和同名资源，请检查重新合入相关资源</color>");
+                    Debug.LogError(
+                        $"<color=red>针对 {config.sourceAtlasRootDir} 路径下资源</color>\n<color=red>移除了空格和同名资源，请检查重新合入相关资源</color>");
                 }
+
                 AssetDatabase.Refresh();
             }
         }
@@ -123,7 +126,8 @@ namespace GameEditor
                 if (ShouldProcessAsset(asset))
                 {
                     // 检查文件名是否包含空格、是否存在同名资源、是否需要修改导入设置
-                    if (!isDelete && (CheckFileNameContainsSpace(asset) || CheckDuplicateAssetName(asset) || ChangeSpriteTextureType(asset)))
+                    if (!isDelete && (CheckFileNameContainsSpace(asset) || CheckDuplicateAssetName(asset) ||
+                                      ChangeSpriteTextureType(asset)))
                     {
                         continue;
                     }
@@ -147,8 +151,9 @@ namespace GameEditor
             {
                 return false;
             }
+
             bool isChange = false;
-            
+
             // 设置为 Sprite 类型
             if (importer.textureType != TextureImporterType.Sprite)
             {
@@ -177,6 +182,7 @@ namespace GameEditor
                 LogProcessed("[Sprite Import Changed Reimport]", path);
                 importer.SaveAndReimport();
             }
+
             return isChange;
         }
 
@@ -196,6 +202,7 @@ namespace GameEditor
                 Debug.LogError($"<color=red>发现资源名存在空格: {assetPath}</color>");
                 return true;
             }
+
             return false;
         }
 
@@ -212,7 +219,7 @@ namespace GameEditor
             string rootDir = "";
             var tempRootDirArr = new List<string>(AtlasConfiguration.Instance.sourceAtlasRootDir);
             tempRootDirArr.AddRange(AtlasConfiguration.Instance.rootChildAtlasDir);
-            
+
             // 查找资源所属的根目录
             foreach (var rootPath in tempRootDirArr)
             {
@@ -221,9 +228,10 @@ namespace GameEditor
                 {
                     continue;
                 }
+
                 rootDir = tempPath;
             }
-            
+
             if (string.IsNullOrEmpty(rootDir))
             {
                 return false;
@@ -234,7 +242,7 @@ namespace GameEditor
                 .Where(CheckIsValidImageFile)
                 .ToArray();
             var normalizedCurrentPath = Path.GetFullPath(assetPath).Replace("\\", "/");
-            
+
             foreach (var file in filesInDirectory)
             {
                 var normalizedFile = Path.GetFullPath(file).Replace("\\", "/");
@@ -289,10 +297,12 @@ namespace GameEditor
                 // 处理新路径（导入）
                 if (ShouldProcessAsset(newPaths[i]))
                 {
-                    if (CheckFileNameContainsSpace(newPaths[i]) || CheckDuplicateAssetName(newPaths[i]) || ChangeSpriteTextureType(newPaths[i]))
+                    if (CheckFileNameContainsSpace(newPaths[i]) || CheckDuplicateAssetName(newPaths[i]) ||
+                        ChangeSpriteTextureType(newPaths[i]))
                     {
                         continue;
                     }
+
                     EditorSpriteSaveInfo.OnImportSprite(newPaths[i]);
                     LogProcessed("[Moved To]", newPaths[i]);
                     EditorSpriteSaveInfo.MarkParentAtlasesDirty(newPaths[i], false);
@@ -344,8 +354,10 @@ namespace GameEditor
                 {
                     continue;
                 }
+
                 return true;
             }
+
             return false;
         }
 
@@ -364,6 +376,7 @@ namespace GameEditor
                     return true;
                 }
             }
+
             return false;
         }
 

@@ -13,154 +13,92 @@ namespace LFramework
         /// <summary>
         /// 获取资源模式。
         /// </summary>
-        ResourceMode ResourceMode
-        {
-            get;
-        }
+        ResourceMode ResourceMode { get; }
 
         /// <summary>
         /// 是否边玩边下载。
         /// </summary>
-        bool UpdatableWhilePlaying
-        {
-            get;
-        }
-        
+        bool UpdatableWhilePlaying { get; }
+
         /// <summary>
         /// WebGL平台加载本地资源/加载远程资源。
         /// </summary>
-        LoadResourceWayWebGL LoadResourceWayWebGL
-        {
-            get;
-        }
-        
+        LoadResourceWayWebGL LoadResourceWayWebGL { get; }
+
         /// <summary>
         /// 资源加密方式。
         /// </summary>
-        EncryptionType EncryptionType
-        {
-            get;
-        }
-        
+        EncryptionType EncryptionType { get; }
+
         /// <summary>
         /// 获取或设置资源更新下载地址。
         /// </summary>
-        string UpdatePrefixUrl
-        {
-            get;
-        }
-        
+        string UpdatePrefixUrl { get; }
+
         /// <summary>
         /// 获取或设置资源更新下载地址。
         /// </summary>
-        string FallbackUpdatePrefixUrl
-        {
-            get;
-        }
-        
+        string FallbackUpdatePrefixUrl { get; }
+
         /// <summary>
         /// 获取当前资源适用的游戏版本号。
         /// </summary>
-        string ApplicableGameVersion
-        {
-            get;
-        }
+        string ApplicableGameVersion { get; }
 
         /// <summary>
         /// 获取当前内部资源版本号。
         /// </summary>
-        int InternalResourceVersion
-        {
-            get;
-        }
+        int InternalResourceVersion { get; }
 
         /// <summary>
         /// 获取正在应用的资源包路径。
         /// </summary>
-        string DefaultPackageName
-        {
-            get;
-        }
+        string DefaultPackageName { get; }
 
         /// <summary>
         /// 获取或设置异步系统参数，每帧执行消耗的最大时间切片（单位：毫秒）。
         /// </summary>
-        long Milliseconds
-        {
-            get;
-        }
+        long Milliseconds { get; }
 
         /// <summary>
         /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
         /// </summary>
-        float AssetAutoReleaseInterval
-        {
-            get;
-            set;
-        }
+        float AssetAutoReleaseInterval { get; set; }
 
         /// <summary>
         /// 获取或设置资源对象池的容量。
         /// </summary>
-        int AssetCapacity
-        {
-            get;
-            set;
-        }
+        int AssetCapacity { get; set; }
 
         /// <summary>
         /// 获取或设置资源对象池对象过期秒数。
         /// </summary>
-        float AssetExpireTime
-        {
-            get;
-            set;
-        }
+        float AssetExpireTime { get; set; }
 
         /// <summary>
         /// 获取或设置资源对象池的优先级。
         /// </summary>
-        int AssetPriority
-        {
-            get;
-            set;
-        }
-        
+        int AssetPriority { get; set; }
+
         /// <summary>
         /// 获取或设置无用资源释放的最小间隔时间，以秒为单位。
         /// </summary>
-        float MinUnloadUnusedAssetsInterval
-        {
-            get;
-            set;
-        }
+        float MinUnloadUnusedAssetsInterval { get; set; }
 
         /// <summary>
         /// 获取或设置无用资源释放的最大间隔时间，以秒为单位。
         /// </summary>
-        float MaxUnloadUnusedAssetsInterval
-        {
-            get;
-            set;
-        }
+        float MaxUnloadUnusedAssetsInterval { get; set; }
 
         /// <summary>
         /// 当前最新的包裹版本。
         /// </summary>
-        string PackageVersion
-        {
-            get;
-            set; 
-        }
+        string PackageVersion { get; set; }
 
         /// <summary>
         /// 资源下载器，用于下载当前资源版本所有的资源包文件。
         /// </summary>
-        ResourceDownloaderOperation Downloader
-        {
-            get;
-            set;
-        }
+        ResourceDownloaderOperation Downloader { get; set; }
 
         /// <summary>
         /// 设置对象池管理器。
@@ -172,7 +110,7 @@ namespace LFramework
         /// 初始化资源。
         /// </summary>
         void Initialize();
-        
+
         /// <summary>
         /// 初始化操作。
         /// </summary>
@@ -219,7 +157,7 @@ namespace LFramework
         ClearCacheFilesOperation ClearCacheFilesAsync(
             EFileClearMode clearMode = EFileClearMode.ClearUnusedBundleFiles,
             string customPackageName = "");
-        
+
         /// <summary>
         /// 检查资源是否存在。
         /// </summary>
@@ -243,7 +181,8 @@ namespace LFramework
         /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
-        void LoadAsset(string assetName, int priority, LoadAssetCallbacks loadAssetCallbacks, object userData, string packageName = "");
+        void LoadAsset(string assetName, int priority, LoadAssetCallbacks loadAssetCallbacks, object userData,
+            string packageName = "");
 
         /// <summary>
         /// 异步加载资源。
@@ -254,7 +193,8 @@ namespace LFramework
         /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
-        void LoadAsset(string assetName, Type assetType, int priority, LoadAssetCallbacks loadAssetCallbacks, object userData, string packageName = "");
+        void LoadAsset(string assetName, Type assetType, int priority, LoadAssetCallbacks loadAssetCallbacks,
+            object userData, string packageName = "");
 
         /// <summary>
         /// 异步加载资源。
@@ -263,8 +203,9 @@ namespace LFramework
         /// <param name="callback">回调函数。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
         /// <typeparam name="T">要加载资源的类型。</typeparam>
-        UniTaskVoid LoadAsset<T>(string assetName, Action<T> callback, string packageName = "") where T : UnityEngine.Object;
-        
+        UniTaskVoid LoadAsset<T>(string assetName, Action<T> callback, string packageName = "")
+            where T : UnityEngine.Object;
+
         /// <summary>
         /// 异步加载资源。
         /// </summary>
@@ -274,7 +215,8 @@ namespace LFramework
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
         /// <typeparam name="T">要加载资源的类型。</typeparam>
         /// <returns>异步资源实例。</returns>
-        UniTask<T> LoadAsset<T>(string assetName, int priority, CancellationToken cancellationToken = default, string packageName = "") where T : UnityEngine.Object;
+        UniTask<T> LoadAsset<T>(string assetName, int priority, CancellationToken cancellationToken = default,
+            string packageName = "") where T : UnityEngine.Object;
 
         /// <summary>
         /// 加载已有资源。
@@ -284,13 +226,13 @@ namespace LFramework
         /// <typeparam name="T">要加载资源的类型。</typeparam>
         /// <returns>资源实例。</returns>
         T LoadExistAsset<T>(string assetName, string packageName = null) where T : UnityEngine.Object;
-        
+
         /// <summary>
         /// 卸载资源。
         /// </summary>
         /// <param name="asset">要卸载的资源。</param>
         void UnloadAsset(object asset);
-        
+
         /// <summary>
         /// 资源回收（卸载引用计数为零的资源）
         /// </summary>
@@ -314,7 +256,7 @@ namespace LFramework
         /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
         void LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks, string packageName = "");
-        
+
         /// <summary>
         /// 异步加载场景。
         /// </summary>
@@ -322,8 +264,9 @@ namespace LFramework
         /// <param name="priority">加载场景资源的优先级。</param>
         /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
-        void LoadScene(string sceneAssetName, int priority, LoadSceneCallbacks loadSceneCallbacks, string packageName = "");
-        
+        void LoadScene(string sceneAssetName, int priority, LoadSceneCallbacks loadSceneCallbacks,
+            string packageName = "");
+
         /// <summary>
         /// 异步加载场景。
         /// </summary>
@@ -331,8 +274,9 @@ namespace LFramework
         /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
-        void LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks, object userData, string packageName = "");
-        
+        void LoadScene(string sceneAssetName, LoadSceneCallbacks loadSceneCallbacks, object userData,
+            string packageName = "");
+
         /// <summary>
         /// 异步加载场景。
         /// </summary>
@@ -341,15 +285,16 @@ namespace LFramework
         /// <param name="loadSceneCallbacks">加载场景回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
-        void LoadScene(string sceneAssetName, int priority, LoadSceneCallbacks loadSceneCallbacks, object userData, string packageName = "");
-        
+        void LoadScene(string sceneAssetName, int priority, LoadSceneCallbacks loadSceneCallbacks, object userData,
+            string packageName = "");
+
         /// <summary>
         /// 异步卸载场景。
         /// </summary>
         /// <param name="sceneAssetName">要卸载场景资源的名称。</param>
         /// <param name="unloadSceneCallbacks">卸载场景回调函数集。</param>
         void UnloadScene(string sceneAssetName, UnloadSceneCallbacks unloadSceneCallbacks);
-        
+
         /// <summary>
         /// 异步卸载场景。
         /// </summary>

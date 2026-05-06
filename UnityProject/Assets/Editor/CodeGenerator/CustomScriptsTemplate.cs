@@ -30,7 +30,7 @@ namespace GameEditor
             if (paths.Count != 0) CreateScriptFile(paths, GameLogicScriptTemplate);
             else EditorUtility.DisplayDialog("提示", "请选择文件夹", "确定");
         }
-        
+
         [MenuItem("Assets/Create/C# Script GameBattle", false, 73)]
         private static void CreateGameBattleCustomScript()
         {

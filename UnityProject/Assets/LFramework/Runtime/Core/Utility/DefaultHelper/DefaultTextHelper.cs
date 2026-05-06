@@ -10,8 +10,7 @@ namespace LFramework
     {
         private const int StringBuilderCapacity = 1024;
 
-        [ThreadStatic] 
-        private static StringBuilder _cachedStringBuilder = null;
+        [ThreadStatic] private static StringBuilder _cachedStringBuilder = null;
 
         /// <summary>
         /// 获取格式化字符串。

@@ -102,42 +102,23 @@ namespace HybridCLR.Editor.Installer
             }
             Directory.CreateDirectory(dir);
         }
-
-        private static void CopyWithCheckLongFile(string srcFile, string dstFile)
-        {
-            var maxPathLength = 255;
-#if UNITY_EDITOR_OSX
-            maxPathLength = 1024;
-#endif
-            if (srcFile.Length > maxPathLength)
-            {
-                UnityEngine.Debug.LogError($"srcFile:{srcFile} path is too long. skip copy!");
-                return;
-            }
-            if (dstFile.Length > maxPathLength)
-            {
-                UnityEngine.Debug.LogError($"dstFile:{dstFile} path is too long. skip copy!");
-                return;
-            }
-            File.Copy(srcFile, dstFile);
-        }
-
         public static void CopyDir(string src, string dst, bool log = false)
         {
             if (log)
             {
                 UnityEngine.Debug.Log($"[BashUtil] CopyDir {src} => {dst}");
             }
-            RemoveDir(dst);
-            Directory.CreateDirectory(dst);
-            foreach(var file in Directory.GetFiles(src))
+            if (Directory.Exists(dst))
             {
-                CopyWithCheckLongFile(file, $"{dst}/{Path.GetFileName(file)}");
+                RemoveDir(dst);
             }
-            foreach(var subDir in Directory.GetDirectories(src))
+            else
             {
-                CopyDir(subDir, $"{dst}/{Path.GetFileName(subDir)}");
+                string parentDir = Path.GetDirectoryName(Path.GetFullPath(dst));
+                Directory.CreateDirectory(parentDir);
             }
+
+            UnityEditor.FileUtil.CopyFileOrDirectory(src, dst);
         }
     }
 }

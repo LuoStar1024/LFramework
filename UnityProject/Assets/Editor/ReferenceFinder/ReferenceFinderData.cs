@@ -39,9 +39,15 @@ namespace GameEditor
             ".controller"
         };
 
-        private static readonly Regex GuidRegex = new Regex("guid: ([a-z0-9]{32})", RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.IgnoreCase);
-        private readonly Dictionary<(AssetDescription, AssetDescription), int> _dictCache = new Dictionary<(AssetDescription, AssetDescription), int>();
-        private readonly List<Dictionary<string, AssetDescription>> _threadAssetDict = new List<Dictionary<string, AssetDescription>>();
+        private static readonly Regex GuidRegex = new Regex("guid: ([a-z0-9]{32})",
+            RegexOptions.Singleline | RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        private readonly Dictionary<(AssetDescription, AssetDescription), int> _dictCache =
+            new Dictionary<(AssetDescription, AssetDescription), int>();
+
+        private readonly List<Dictionary<string, AssetDescription>> _threadAssetDict =
+            new List<Dictionary<string, AssetDescription>>();
+
         private readonly List<Thread> _threadList = new List<Thread>();
         private int _curReadAssetCount;
         private int _totalCount;
@@ -74,7 +80,8 @@ namespace GameEditor
                 while (!allThreadFinish)
                 {
                     if (_curReadAssetCount % 500 == 0 &&
-                        EditorUtility.DisplayCancelableProgressBar("Updating", $"Handle {_curReadAssetCount}", (float)_curReadAssetCount / _totalCount))
+                        EditorUtility.DisplayCancelableProgressBar("Updating", $"Handle {_curReadAssetCount}",
+                            (float)_curReadAssetCount / _totalCount))
                     {
                         EditorUtility.ClearProgressBar();
                         foreach (Thread i in _threadList)
@@ -298,7 +305,10 @@ namespace GameEditor
             if (assetDict.TryGetValue(guid, out AssetDescription ad) && ad.state != AssetState.Invalid)
             {
                 if (File.Exists(ad.path))
-                    ad.state = ad.assetDependencyHashString != File.GetLastWriteTime(ad.path).ToString(CultureInfo.InvariantCulture) ? AssetState.Changed : AssetState.Normal;
+                    ad.state = ad.assetDependencyHashString !=
+                               File.GetLastWriteTime(ad.path).ToString(CultureInfo.InvariantCulture)
+                        ? AssetState.Changed
+                        : AssetState.Normal;
                 else
                     ad.state = AssetState.Missing;
             }

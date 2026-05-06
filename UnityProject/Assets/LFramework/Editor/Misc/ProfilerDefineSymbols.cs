@@ -9,13 +9,13 @@ namespace LFramework.Editor
     {
         private const string EnableFirstProfiler = "FIRST_PROFILER";
         private const string EnableDinProfiler = "DIN_PROFILER";
-        
+
         private static readonly string[] AllProfilerDefineSymbols = new string[]
         {
             EnableFirstProfiler,
             EnableDinProfiler,
         };
-        
+
         /// <summary>
         /// 禁用所有日志脚本宏定义。
         /// </summary>

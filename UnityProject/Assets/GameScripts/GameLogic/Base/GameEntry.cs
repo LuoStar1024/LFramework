@@ -33,11 +33,11 @@ namespace GameLogic
             procedureManager.Initialize(LFrameworkEntry.GetModule<IFsmManager>(), procedures);
 
             yield return new WaitForEndOfFrame();
-            
+
             InitComponents();
-            
+
             EventHelper.OnInit();
-            
+
             procedureManager.StartProcedure<ProcedureGameLogicLaunch>();
         }
 

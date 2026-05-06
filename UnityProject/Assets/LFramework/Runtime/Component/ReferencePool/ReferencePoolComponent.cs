@@ -9,24 +9,21 @@ namespace LFramework
     [AddComponentMenu("LFramework/ReferencePool")]
     public sealed class ReferencePoolComponent : MonoBehaviour
     {
-        [SerializeField]
-        private ReferenceStrictCheckType enableStrictCheck = ReferenceStrictCheckType.AlwaysEnable;
+        [SerializeField] private ReferenceStrictCheckType enableStrictCheck = ReferenceStrictCheckType.AlwaysEnable;
 
         /// <summary>
         /// 获取或设置是否开启强制检查。
         /// </summary>
         public bool EnableStrictCheck
         {
-            get
-            {
-                return ReferencePool.EnableStrictCheck;
-            }
+            get { return ReferencePool.EnableStrictCheck; }
             set
             {
                 ReferencePool.EnableStrictCheck = value;
                 if (value)
                 {
-                    Log.Info("Strict checking is enabled for the Reference Pool. It will drastically affect the performance.");
+                    Log.Info(
+                        "Strict checking is enabled for the Reference Pool. It will drastically affect the performance.");
                 }
             }
         }

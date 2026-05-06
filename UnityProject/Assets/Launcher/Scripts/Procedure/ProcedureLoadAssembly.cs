@@ -32,7 +32,7 @@ namespace Launcher
         private List<Assembly> _hotfixAssemblyList;
         private ProcedureOwner _procedureOwner;
         private UpdateConfig _setting;
-        
+
         private IResourceManager _resComponent;
         private IConfigManager _configComponent;
         private ISettingManager _settingComponent;
@@ -45,13 +45,13 @@ namespace Launcher
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            
+
             _resComponent = LFrameworkEntry.GetModule<IResourceManager>();
             _configComponent = LFrameworkEntry.GetModule<IConfigManager>();
             _settingComponent = LFrameworkEntry.GetModule<ISettingManager>();
-            
+
             _setting = _configComponent.UpdateConfig;
-            
+
             Log.Debug("HybridCLR ProcedureLoadAssembly OnEnter");
             _procedureOwner = procedureOwner;
             // 程序集加载量较大，使用异步流程避免阻塞启动器界面刷新。
@@ -118,10 +118,12 @@ namespace Launcher
             {
                 return;
             }
+
             if (!_loadMetadataAssemblyComplete)
             {
                 return;
             }
+
             AllAssemblyLoadComplete();
         }
 
@@ -228,6 +230,7 @@ namespace Launcher
                 {
                     _mainLogicAssembly = assembly;
                 }
+
                 _hotfixAssemblyList.Add(assembly);
                 Log.Debug($"Assembly [ {assembly.GetName().Name} ] loaded");
             }
@@ -241,6 +244,7 @@ namespace Launcher
             {
                 _loadAssemblyComplete = _loadAssemblyWait && 0 == _loadAssetCount;
             }
+
             _resComponent.UnloadAsset(textAsset);
         }
 
@@ -269,6 +273,7 @@ namespace Launcher
                 _loadMetadataAssemblyComplete = true;
                 return;
             }
+
             foreach (string aotDllName in _setting.AotMetaAssemblies)
             {
                 var assetLocation = GetAssemblyAssetLocation(aotDllName);
@@ -277,6 +282,7 @@ namespace Launcher
                 _loadMetadataAssetCount++;
                 _resComponent.LoadAsset<TextAsset>(assetLocation, LoadMetadataAssetSuccess);
             }
+
             _loadMetadataAssemblyWait = true;
         }
 
@@ -299,10 +305,11 @@ namespace Launcher
             {
                 byte[] dllBytes = textAsset.bytes;
 #if ENABLE_HYBRIDCLR
-                    // 加载assembly对应的dll，会自动为它hook。一旦Aot泛型函数的native函数不存在，用解释器版本代码
-                    HomologousImageMode mode = HomologousImageMode.SuperSet;
-                    LoadImageErrorCode err = (LoadImageErrorCode)HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly(dllBytes,mode); 
-                    Log.Warning($"LoadMetadataForAOTAssembly:{assetName}. mode:{mode} ret:{err}");
+                // 加载assembly对应的dll，会自动为它hook。一旦Aot泛型函数的native函数不存在，用解释器版本代码
+                HomologousImageMode mode = HomologousImageMode.SuperSet;
+                LoadImageErrorCode err =
+                    (LoadImageErrorCode)HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly(dllBytes, mode);
+                Log.Warning($"LoadMetadataForAOTAssembly:{assetName}. mode:{mode} ret:{err}");
 #endif
             }
             catch (Exception e)
@@ -315,6 +322,7 @@ namespace Launcher
             {
                 _loadMetadataAssemblyComplete = _loadMetadataAssemblyWait && 0 == _loadMetadataAssetCount;
             }
+
             _resComponent.UnloadAsset(textAsset);
         }
     }

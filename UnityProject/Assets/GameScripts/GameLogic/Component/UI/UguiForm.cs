@@ -13,7 +13,8 @@ namespace GameLogic
 
         private Canvas _cachedCanvas = null;
 
-        private readonly List<ParticleSystemRenderer> _cachedParticleSystemRenderersContainer = new List<ParticleSystemRenderer>();
+        private readonly List<ParticleSystemRenderer> _cachedParticleSystemRenderersContainer =
+            new List<ParticleSystemRenderer>();
 
         private readonly List<Canvas> _cachedCanvasContainer = new List<Canvas>();
 
@@ -53,18 +54,21 @@ namespace GameLogic
         {
             int oldDepth = Depth;
             base.OnDepthChanged(uiGroupDepth, depthInUIGroup);
-            int deltaDepth = UIGroup.DepthFactor * uiGroupDepth + DepthFactor * depthInUIGroup - oldDepth + OriginalDepth;
+            int deltaDepth = UIGroup.DepthFactor * uiGroupDepth + DepthFactor * depthInUIGroup - oldDepth +
+                             OriginalDepth;
             GetComponentsInChildren(true, _cachedCanvasContainer);
             for (int i = 0; i < _cachedCanvasContainer.Count; i++)
             {
                 _cachedCanvasContainer[i].sortingOrder += deltaDepth;
             }
+
             _cachedCanvasContainer.Clear();
             GetComponentsInChildren(true, _cachedParticleSystemRenderersContainer);
             foreach (var t in _cachedParticleSystemRenderersContainer)
             {
                 t.sortingOrder += deltaDepth;
             }
+
             _cachedParticleSystemRenderersContainer.Clear();
 
             _uiWidgetContainer?.OnDepthChanged(uiGroupDepth, depthInUIGroup);
@@ -77,11 +81,13 @@ namespace GameLogic
                 ReferencePool.Release(_eventContainer);
                 _eventContainer = null;
             }
+
             if (_uiWidgetContainer != null)
             {
                 ReferencePool.Release(_uiWidgetContainer);
                 _uiWidgetContainer = null;
             }
+
             if (_resourceContainer != null)
             {
                 ReferencePool.Release(_resourceContainer);
@@ -112,6 +118,7 @@ namespace GameLogic
                 RemoveAllUIWidget();
                 ClearUIForm();
             }
+
             base.OnClose(isShutdown, userData);
         }
 
@@ -157,6 +164,7 @@ namespace GameLogic
             {
                 _uiWidgetContainer = UIWidgetContainer.Create(this);
             }
+
             _uiWidgetContainer.AddUIWidget(auiWidget, userData);
         }
 
@@ -166,6 +174,7 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Container is empty!");
             }
+
             _uiWidgetContainer.RemoveUIWidget(auiWidget);
         }
 
@@ -188,6 +197,7 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Container is empty!");
             }
+
             _uiWidgetContainer.OpenUIWidget(auiWidget, userData);
         }
 
@@ -203,6 +213,7 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Container is empty!");
             }
+
             _uiWidgetContainer.DynamicOpenUIWidget(auiWidget, userData);
         }
 
@@ -212,6 +223,7 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Container is empty!");
             }
+
             _uiWidgetContainer.CloseUIWidget(uiWidget, userData, isShutdown);
         }
 
@@ -292,7 +304,8 @@ namespace GameLogic
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
         {
             SubscribeDelegate(id, handler);
         }
@@ -308,7 +321,8 @@ namespace GameLogic
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
         {
             SubscribeDelegate(id, handler);
         }
@@ -325,7 +339,8 @@ namespace GameLogic
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
         {
             SubscribeDelegate(id, handler);
         }
@@ -343,7 +358,8 @@ namespace GameLogic
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
         {
             SubscribeDelegate(id, handler);
         }
@@ -418,7 +434,8 @@ namespace GameLogic
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
         {
             UnsubscribeDelegate(id, handler);
         }
@@ -434,7 +451,8 @@ namespace GameLogic
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
         {
             UnsubscribeDelegate(id, handler);
         }
@@ -451,7 +469,8 @@ namespace GameLogic
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
         {
             UnsubscribeDelegate(id, handler);
         }
@@ -469,7 +488,8 @@ namespace GameLogic
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
         {
             UnsubscribeDelegate(id, handler);
         }
@@ -487,6 +507,7 @@ namespace GameLogic
             {
                 _eventContainer = EventContainer.Create(this);
             }
+
             _eventContainer.Subscribe(id, handler);
         }
 
@@ -503,6 +524,7 @@ namespace GameLogic
             {
                 _resourceContainer = ResourceContainer.Create(this);
             }
+
             return await _resourceContainer.LoadAsset<T>(assetName);
         }
 

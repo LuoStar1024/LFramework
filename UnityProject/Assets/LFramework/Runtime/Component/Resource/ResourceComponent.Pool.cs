@@ -3,7 +3,7 @@ namespace LFramework
     public sealed partial class ResourceComponent
     {
         private IObjectPool<AssetObject> _assetPool;
-        
+
         /// <summary>
         /// 获取或设置资源对象池自动释放可释放对象的间隔秒数。
         /// </summary>
@@ -39,7 +39,7 @@ namespace LFramework
             get => _assetPool.Priority;
             set => _assetPool.Priority = value;
         }
-        
+
         /// <summary>
         /// 设置对象池管理器。
         /// </summary>
@@ -50,7 +50,7 @@ namespace LFramework
             {
                 throw new LFrameworkException("Object pool manager is invalid.");
             }
-            
+
             _assetPool = objectPoolManager.CreateMultiSpawnObjectPool<AssetObject>("Asset Pool");
             AssetAutoReleaseInterval = assetAutoReleaseInterval;
             AssetCapacity = assetCapacity;

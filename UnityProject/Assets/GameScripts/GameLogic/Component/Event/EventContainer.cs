@@ -5,14 +5,11 @@ namespace GameLogic
 {
     public class EventContainer : IReference
     {
-        private readonly LFrameworkMultiDictionary<int, Delegate> _eventHandlerDict = new LFrameworkMultiDictionary<int, Delegate>();
-        
-        public object Owner
-        {
-            get;
-            private set;
-        }
-        
+        private readonly LFrameworkMultiDictionary<int, Delegate> _eventHandlerDict =
+            new LFrameworkMultiDictionary<int, Delegate>();
+
+        public object Owner { get; private set; }
+
         public static EventContainer Create(object owner)
         {
             EventContainer eventContainer = ReferencePool.Acquire<EventContainer>();
@@ -33,6 +30,7 @@ namespace GameLogic
             {
                 throw new LFrameworkException("Event handler is invalid.");
             }
+
             _eventHandlerDict.Add(id, handler);
             GameEntry.Event.Subscribe(id, handler);
         }
@@ -41,11 +39,13 @@ namespace GameLogic
         {
             if (!_eventHandlerDict.Remove(id, handler))
             {
-                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not exists specified handler.", id.ToString()));
+                throw new LFrameworkException(Utility.Text.Format("Event '{0}' not exists specified handler.",
+                    id.ToString()));
             }
+
             GameEntry.Event.Unsubscribe(id, handler);
         }
-        
+
         public void UnsubscribeAll()
         {
             if (_eventHandlerDict.Count > 0)
@@ -65,6 +65,7 @@ namespace GameLogic
                         }
                     }
                 }
+
                 _eventHandlerDict.Clear();
             }
         }

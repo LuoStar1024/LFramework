@@ -15,7 +15,7 @@ namespace GameEditor
             Debug.Log($"执行转表：{path}");
             ShellHelper.RunByPath(path);
         }
-        
+
         /// <summary>
         /// 打开 Data Path 文件夹。
         /// </summary>

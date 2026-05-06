@@ -14,9 +14,8 @@ namespace LFramework
     [AddComponentMenu("LFramework/Localization")]
     public sealed partial class LocalizationComponent : MonoBehaviour, ILFrameworkModule, ILocalizationManager
     {
-        [SerializeField]
-        private List<string> allLanguage = new List<string>();
-        
+        [SerializeField] private List<string> allLanguage = new List<string>();
+
         private Language _language;
         private LanguageSource _languageSource;
         private IResourceManager _resourceManager;
@@ -101,7 +100,7 @@ namespace LFramework
                 };
             }
         }
-        
+
         private LanguageSourceData SourceData
         {
             get
@@ -114,7 +113,7 @@ namespace LFramework
                 return _languageSource.SourceData;
             }
         }
-        
+
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
@@ -123,7 +122,7 @@ namespace LFramework
         {
             get { return 0; }
         }
-        
+
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<ILocalizationManager>(this);
@@ -149,7 +148,7 @@ namespace LFramework
         public void Shutdown()
         {
         }
-        
+
         /// <summary>
         /// 加载完整的语言资源包。
         /// </summary>
@@ -175,7 +174,7 @@ namespace LFramework
                 return;
             }
 #endif
-            
+
             SourceData.Awake();
             TextAsset assetTextAsset = await _resourceManager.LoadAsset<TextAsset>(assetName, 10);
 
@@ -210,7 +209,7 @@ namespace LFramework
         //
         //     UseLocalizationCSV(assetTextAsset.text, true);
         // }
-        
+
         /// <summary>
         /// 检查指定语言是否可用。
         /// </summary>
@@ -245,7 +244,7 @@ namespace LFramework
             _language = language;
             return true;
         }
-        
+
         private void UseLocalizationCsv(string text, bool isLocalizeAll = false)
         {
             SourceData.Import_CSV(string.Empty, text, eSpreadsheetUpdateMode.Merge, ',');
@@ -256,7 +255,7 @@ namespace LFramework
 
             UpdateAllLanguages();
         }
-        
+
         /// <summary>
         /// 检查并初始化所有语言的Id。
         /// </summary>

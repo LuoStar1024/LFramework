@@ -23,7 +23,7 @@ namespace Launcher
         private readonly bool _needProLoadConfig = true;
 
         private ProcedureOwner _procedureOwner;
-        
+
         private IResourceManager _resComponent;
 
         /// <summary>
@@ -85,7 +85,8 @@ namespace Launcher
 
             if (_loadedFlag.Count != 0)
             {
-                LauncherMgr.ShowUI<UILoadUpdate>(Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, (float)loadCount / totalCount * 100));
+                LauncherMgr.ShowUI<UILoadUpdate>(Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress,
+                    (float)loadCount / totalCount * 100));
             }
             else
             {
@@ -99,7 +100,8 @@ namespace Launcher
                 }
                 else
                 {
-                    LauncherMgr.ShowUI<UILoadUpdate>(Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress, progressStr));
+                    LauncherMgr.ShowUI<UILoadUpdate>(Utility.Text.Format(LoadText.Instance.LabelLoadLoadProgress,
+                        progressStr));
                 }
             }
 
@@ -165,7 +167,8 @@ namespace Launcher
             _resComponent.LoadAsset(location, 100, _preLoadAssetCallbacks, null);
         }
 
-        private void OnPreLoadAssetFailure(string assetName, LoadResourceStatus status, string errormessage, object userdata)
+        private void OnPreLoadAssetFailure(string assetName, LoadResourceStatus status, string errormessage,
+            object userdata)
         {
             Log.Warning("Can not preload asset from '{0}' with error message '{1}'.", assetName, errormessage);
             _loadedFlag[assetName] = true;

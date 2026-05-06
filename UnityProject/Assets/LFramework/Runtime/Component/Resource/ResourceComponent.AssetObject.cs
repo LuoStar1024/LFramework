@@ -40,6 +40,7 @@ namespace LFramework
                     {
                         handle.Dispose();
                     }
+
                     handle = null;
                 }
             }

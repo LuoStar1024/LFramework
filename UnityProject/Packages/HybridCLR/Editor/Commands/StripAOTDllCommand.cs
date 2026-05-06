@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.Networking.UnityWebRequest;
 
 namespace HybridCLR.Editor.Commands
 {
@@ -136,8 +135,8 @@ namespace HybridCLR.Editor.Commands
                     options = buildOptions,
                     target = target,
                     targetGroup = BuildPipeline.GetBuildTargetGroup(target),
-#if UNITY_2021_1_OR_NEWER
-                    subtarget = (int)EditorUserBuildSettings.standaloneBuildSubtarget,
+#if UNITY_SERVER
+                    subtarget = (int)StandaloneBuildSubtarget.Server,
 #endif
                 };
 

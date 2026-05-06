@@ -11,26 +11,20 @@ namespace LFramework
     /// </summary>
     public sealed class AudioGroup : MonoBehaviour, IAudioGroup
     {
-        [SerializeField]
-        private AudioMixerGroup audioMixerGroup = null;
-        
-        [SerializeField]
-        private string audioGroupName;
-        
-        [SerializeField]
-        private bool avoidBeingReplacedBySamePriority;
-        
-        [SerializeField]
-        private bool mute;
-        
-        [SerializeField]
-        private float volume;
-        
-        [SerializeField]
-        private int audioAgentCount = 1;
-        
+        [SerializeField] private AudioMixerGroup audioMixerGroup = null;
+
+        [SerializeField] private string audioGroupName;
+
+        [SerializeField] private bool avoidBeingReplacedBySamePriority;
+
+        [SerializeField] private bool mute;
+
+        [SerializeField] private float volume;
+
+        [SerializeField] private int audioAgentCount = 1;
+
         private List<AudioAgent> _audioAgents;
-        
+
         /// <summary>
         /// 获取或设置声音组辅助器所在的混音组。
         /// </summary>
@@ -151,10 +145,11 @@ namespace LFramework
                     audioAgent.AudioMixerGroup = AudioMixerGroup;
                 }
             }
+
             audioAgent.AudioGroup = this;
             audioAgent.SerialId = 0;
             audioAgent.Reset();
-            
+
             _audioAgents.Add(audioAgent);
             audioAgentCount = _audioAgents.Count;
         }
@@ -201,7 +196,7 @@ namespace LFramework
                 errorCode = PlayAudioErrorCode.IgnoredDueToLowPriority;
                 return null;
             }
-            
+
             if (!candidateAgent.SetAudioAsset(audioAsset))
             {
                 errorCode = PlayAudioErrorCode.SetAudioAssetFailure;

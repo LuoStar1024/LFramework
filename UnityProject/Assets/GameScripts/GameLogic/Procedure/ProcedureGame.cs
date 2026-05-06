@@ -8,13 +8,13 @@ namespace GameLogic
     public class ProcedureGame : ProcedureBase
     {
         private bool _isReturn = false;
-        
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            
+
             _isReturn = false;
-            
+
             // 进入游戏流程时开始监听返回菜单事件。
             GameEntry.Event.Subscribe(EventGroupUI.ReturnMenuId, OnReturnMenu);
 
@@ -29,7 +29,7 @@ namespace GameLogic
         protected override void OnLeave(IFsm<IProcedureManager> procedureOwner, bool isShutdown)
         {
             base.OnLeave(procedureOwner, isShutdown);
-            
+
             // 离开游戏流程时解除事件和界面占用，避免重复订阅或残留 UI。
             GameEntry.Event.Unsubscribe(EventGroupUI.ReturnMenuId, OnReturnMenu);
             var forms = GameEntry.UI.GetUIForms(AssetUtility.GetUIFormAsset("GameInfoForm"));
@@ -39,7 +39,8 @@ namespace GameLogic
             }
         }
 
-        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
+        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds,
+            float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 

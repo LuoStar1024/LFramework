@@ -9,23 +9,16 @@ namespace LFramework
     [AddComponentMenu("LFramework/Config")]
     public sealed partial class ConfigComponent : MonoBehaviour, ILFrameworkModule, IConfigManager
     {
-        [SerializeField]
-        private UpdateConfig updateConfig;
+        [SerializeField] private UpdateConfig updateConfig;
 
         public UpdateConfig UpdateConfig
         {
-            get
-            {
-                return updateConfig;
-            }
+            get { return updateConfig; }
         }
-        
+
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
 
         private void Awake()
@@ -47,7 +40,7 @@ namespace LFramework
         public void Shutdown()
         {
         }
-        
+
 #if UNITY_EDITOR
         private static ConfigComponent _instance;
 
@@ -68,13 +61,10 @@ namespace LFramework
                 return _instance;
             }
         }
-        
+
         public static UpdateConfig EditorUpdateConfig
         {
-            get
-            {
-                return Instance != null ? Instance.updateConfig : null;
-            }
+            get { return Instance != null ? Instance.updateConfig : null; }
         }
 #endif
     }

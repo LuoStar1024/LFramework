@@ -13,6 +13,7 @@ namespace LFramework.Editor
     {
         private const string ConstantSettingScriptPath =
             "Assets/GameScripts/GameLogic/Definition/Constant/Constant.Setting.cs";
+
         private const string LauncherProcedureScriptPath =
             "Assets/Launcher/Scripts/Procedure/ProcedureLaunch.cs";
 
@@ -245,7 +246,8 @@ namespace LFramework.Editor
             return File.ReadAllText(fullPath);
         }
 
-        private static object EnsureAudioMixerGroup(AudioMixer audioMixer, Dictionary<string, object> groupControllerMap,
+        private static object EnsureAudioMixerGroup(AudioMixer audioMixer,
+            Dictionary<string, object> groupControllerMap,
             string parentPath, string groupName, ref bool modified)
         {
             string groupPath = Utility.Text.Format("{0}/{1}", parentPath, groupName);
@@ -277,7 +279,8 @@ namespace LFramework.Editor
         }
 
         // 先删掉多余分组，再补缺失分组，保证脚本配置减少数量时也能同步到 AudioMixer。
-        private static bool RemoveRedundantAudioMixerGroups(AudioMixer audioMixer, Dictionary<string, object> groupControllerMap,
+        private static bool RemoveRedundantAudioMixerGroups(AudioMixer audioMixer,
+            Dictionary<string, object> groupControllerMap,
             HashSet<string> expectedGroupPaths)
         {
             List<string> redundantPaths = CollectRedundantGroupPaths(groupControllerMap, expectedGroupPaths);
@@ -327,17 +330,20 @@ namespace LFramework.Editor
                     continue;
                 }
 
-                if (expectedGroupPaths.Contains(groupPath) || IsGeneratedTopLevelGroup(groupPath, groupControllerMap.Keys))
+                if (expectedGroupPaths.Contains(groupPath) ||
+                    IsGeneratedTopLevelGroup(groupPath, groupControllerMap.Keys))
                 {
                     managedTopLevelGroupPaths.Add(groupPath);
                 }
             }
 
-            HashSet<string> managedTopLevelGroupPathSet = new HashSet<string>(managedTopLevelGroupPaths, StringComparer.Ordinal);
+            HashSet<string> managedTopLevelGroupPathSet =
+                new HashSet<string>(managedTopLevelGroupPaths, StringComparer.Ordinal);
             List<string> redundantPaths = new List<string>();
             foreach (string groupPath in groupControllerMap.Keys)
             {
-                if (string.Equals(groupPath, "Master", StringComparison.Ordinal) || expectedGroupPaths.Contains(groupPath))
+                if (string.Equals(groupPath, "Master", StringComparison.Ordinal) ||
+                    expectedGroupPaths.Contains(groupPath))
                 {
                     continue;
                 }
@@ -446,7 +452,8 @@ namespace LFramework.Editor
         {
             Dictionary<long, AudioMixerGroupAssetInfo> groupInfos = new Dictionary<long, AudioMixerGroupAssetInfo>();
             long masterGroupId = 0L;
-            string mixerFullPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Application.dataPath), mixerAssetPath));
+            string mixerFullPath =
+                Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Application.dataPath), mixerAssetPath));
             if (!File.Exists(mixerFullPath))
             {
                 return new Dictionary<long, string>();
@@ -521,14 +528,16 @@ namespace LFramework.Editor
         }
 
         private static void CollectAudioMixerGroupPaths(long groupId, string parentPath,
-            Dictionary<long, AudioMixerGroupAssetInfo> groupInfos, Dictionary<long, string> results, HashSet<long> visited)
+            Dictionary<long, AudioMixerGroupAssetInfo> groupInfos, Dictionary<long, string> results,
+            HashSet<long> visited)
         {
             if (!visited.Add(groupId))
             {
                 return;
             }
 
-            if (!groupInfos.TryGetValue(groupId, out AudioMixerGroupAssetInfo groupInfo) || string.IsNullOrEmpty(groupInfo.Name))
+            if (!groupInfos.TryGetValue(groupId, out AudioMixerGroupAssetInfo groupInfo) ||
+                string.IsNullOrEmpty(groupInfo.Name))
             {
                 return;
             }
@@ -629,8 +638,8 @@ namespace LFramework.Editor
             }
 
             return childPath.Length > parentPath.Length
-                && childPath.StartsWith(parentPath, StringComparison.Ordinal)
-                && childPath[parentPath.Length] == '/';
+                   && childPath.StartsWith(parentPath, StringComparison.Ordinal)
+                   && childPath[parentPath.Length] == '/';
         }
 
         private static MethodInfo GetAudioMixerMethod(AudioMixer audioMixer, string methodName)

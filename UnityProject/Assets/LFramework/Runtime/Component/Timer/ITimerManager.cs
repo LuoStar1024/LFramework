@@ -10,19 +10,13 @@ namespace LFramework
         /// <summary>
         /// 获取定时器数量。
         /// </summary>
-        int TimerCount
-        {
-            get;
-        }
-        
+        int TimerCount { get; }
+
         /// <summary>
         /// 获取不受时间缩放定时器数量。
         /// </summary>
-        int UnscaledTimerCount
-        {
-            get;
-        }
-        
+        int UnscaledTimerCount { get; }
+
         /// <summary>
         /// 添加定时器。
         /// </summary>
@@ -32,7 +26,7 @@ namespace LFramework
         /// <param name="repeatCount">调用次数，小于等于0为无限。</param>
         /// <returns>定时器Id。</returns>
         int AddTimer(float time, Action callback, bool isUnscaled = false, int repeatCount = 1);
-        
+
         /// <summary>
         /// 添加定时器。
         /// </summary>
@@ -42,7 +36,8 @@ namespace LFramework
         /// <param name="repeatCount">调用次数，小于等于0为无限。</param>
         /// <param name="args">传参。（避免闭包）</param>
         /// <returns>定时器Id。</returns>
-        int AddTimer(float time, Action<object[]> callback, bool isUnscaled = false, int repeatCount = 1,  params object[] args);
+        int AddTimer(float time, Action<object[]> callback, bool isUnscaled = false, int repeatCount = 1,
+            params object[] args);
 
         /// <summary>
         /// 暂停计时器。
@@ -68,7 +63,7 @@ namespace LFramework
         /// </summary>
         /// <param name="timerId">计时器Id。</param>
         void ResetTimer(int timerId);
-        
+
         /// <summary>
         /// 移除计时器。
         /// </summary>

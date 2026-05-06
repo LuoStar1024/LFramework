@@ -16,7 +16,7 @@ namespace LFramework
             /// ID
             /// </summary>
             public int ID { get; private set; }
-            
+
             /// <summary>
             /// 定时时间。
             /// </summary>
@@ -26,7 +26,7 @@ namespace LFramework
             /// 计时结束回调函数。
             /// </summary>
             public Action Callback { get; private set; }
-            
+
             /// <summary>
             /// 计时结束回调函数。
             /// </summary>
@@ -36,12 +36,12 @@ namespace LFramework
             /// 是否使用非缩放的时间。
             /// </summary>
             public bool IsUnscaled { get; private set; }
-            
+
             /// <summary>
             /// 重复次数。
             /// </summary>
             public int RepeatCount { get; set; }
-            
+
             /// <summary>
             /// 回调参数。
             /// </summary>
@@ -86,7 +86,7 @@ namespace LFramework
                 timer.CurTime = time;
                 return timer;
             }
-            
+
             /// <summary>
             /// 创建定时器。
             /// </summary>
@@ -97,7 +97,8 @@ namespace LFramework
             /// <param name="repeatCount">调用次数。</param>
             /// <param name="args">回调参数。</param>
             /// <returns>定时器。</returns>
-            public static Timer Create(int id, float time, Action<object[]> callback, bool isUnscaled, int repeatCount, params object[] args)
+            public static Timer Create(int id, float time, Action<object[]> callback, bool isUnscaled, int repeatCount,
+                params object[] args)
             {
                 Timer timer = ReferencePool.Acquire<Timer>();
                 timer.ID = id;

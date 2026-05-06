@@ -9,7 +9,7 @@ namespace GameLogic
             // ChangeScene
             public const string ChangeSceneNameKey = "ChangeSceneName";
             public const string ChangeSceneFormKey = "ChangeSceneForm";
-            
+
             public const string Language = "Setting.Language";
 
             // Audio
@@ -23,7 +23,9 @@ namespace GameLogic
             public const string SoundMuted = "Setting.SoundMuted";
             public const string SoundVolume = "Setting.SoundVolume";
             public const string UISoundMuted = "Setting.UISoundMuted";
+
             public const string UISoundVolume = "Setting.UISoundVolume";
+
             // 组名和代理数量
             public static readonly Dictionary<string, int> AudioGroupDict = new Dictionary<string, int>()
             {
@@ -31,8 +33,8 @@ namespace GameLogic
                 { AudioGroupSound, 5 },
                 { AudioGroupUISound, 3 }
             };
-            
-            
+
+
             // UI
             // DepthFactor = 1000
             public const string UIGroupBackground = "Background";
@@ -42,6 +44,7 @@ namespace GameLogic
             public const string UIGroupTop = "Top";
             public const string UIGroupEffect = "Effect";
             public const string UIGroupDebug = "Debug";
+
             public static readonly string[] UIGroupNames = new[]
             {
                 UIGroupBackground, UIGroupNormal, UIGroupPopTip, UIGroupGuide, UIGroupTop,

@@ -14,10 +14,10 @@ namespace GameLogic
 
             public const string UILayerName = "UI";
             public static readonly int UILayerId = LayerMask.NameToLayer(UILayerName);
-            
+
             public const string PlayerLayerName = "Player";
             public static readonly int PlayerLayerId = LayerMask.NameToLayer(PlayerLayerName);
-            
+
             public const string EnemyLayerName = "Enemy";
             public static readonly int EnemyLayerId = LayerMask.NameToLayer(EnemyLayerName);
         }

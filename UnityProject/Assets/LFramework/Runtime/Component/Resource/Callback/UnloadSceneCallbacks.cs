@@ -22,7 +22,8 @@
         /// </summary>
         /// <param name="unloadSceneSuccessCallback">卸载场景成功回调函数。</param>
         /// <param name="unloadSceneFailureCallback">卸载场景失败回调函数。</param>
-        public UnloadSceneCallbacks(UnloadSceneSuccessCallback unloadSceneSuccessCallback, UnloadSceneFailureCallback unloadSceneFailureCallback)
+        public UnloadSceneCallbacks(UnloadSceneSuccessCallback unloadSceneSuccessCallback,
+            UnloadSceneFailureCallback unloadSceneFailureCallback)
         {
             if (unloadSceneSuccessCallback == null)
             {
@@ -38,10 +39,7 @@
         /// </summary>
         public UnloadSceneSuccessCallback UnloadSceneSuccessCallback
         {
-            get
-            {
-                return _unloadSceneSuccessCallback;
-            }
+            get { return _unloadSceneSuccessCallback; }
         }
 
         /// <summary>
@@ -49,10 +47,7 @@
         /// </summary>
         public UnloadSceneFailureCallback UnloadSceneFailureCallback
         {
-            get
-            {
-                return _unloadSceneFailureCallback;
-            }
+            get { return _unloadSceneFailureCallback; }
         }
     }
 }

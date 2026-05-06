@@ -10,12 +10,12 @@ namespace GameEditor
     public partial class ToolbarExtender
     {
         private static GUIContent _switchSceneBtContent;
-        
+
         private static List<string> _switchSceneAssetList;
-        
+
         private const string SwitchSceneLauncherPath = "Assets/Launcher/Scenes";
         private const string SwitchSceneOtherPath = "Assets/GameResRaw/Scenes";
-        
+
         static void InitSwitchScene()
         {
             _switchSceneAssetList = new List<string>();
@@ -28,22 +28,24 @@ namespace GameEditor
 
         static void ToolbarGUISwitchScene()
         {
-            if (EditorGUILayout.DropdownButton(_switchSceneBtContent, FocusType.Passive, EditorStyles.toolbarPopup, GUILayout.MaxWidth(150)))
+            if (EditorGUILayout.DropdownButton(_switchSceneBtContent, FocusType.Passive, EditorStyles.toolbarPopup,
+                    GUILayout.MaxWidth(150)))
             {
                 DrawSwitchSceneDropdownMenus();
             }
         }
-        
+
         private static void OnSceneOpened(Scene scene, OpenSceneMode mode)
         {
             _switchSceneBtContent.text = "当前场景: " + scene.name;
         }
-        
+
         static void DrawSwitchSceneDropdownMenus()
         {
             GenericMenu popMenu = new GenericMenu();
             popMenu.allowDuplicateNames = true;
-            var sceneGuids = AssetDatabase.FindAssets("t:Scene", new string[] { SwitchSceneLauncherPath, SwitchSceneOtherPath });
+            var sceneGuids = AssetDatabase.FindAssets("t:Scene",
+                new string[] { SwitchSceneLauncherPath, SwitchSceneOtherPath });
             var sceneGuidList = sceneGuids.ToList();
             var allGuids = AssetDatabase.FindAssets("t:Scene", null);
             for (int i = 0; i < allGuids.Length; i++)
@@ -53,6 +55,7 @@ namespace GameEditor
                     sceneGuidList.Add(allGuids[i]);
                 }
             }
+
             _switchSceneAssetList.Clear();
             for (int i = 0; i < sceneGuidList.Count; i++)
             {
@@ -70,9 +73,10 @@ namespace GameEditor
 
                 popMenu.AddItem(new GUIContent(displayName), false, menuIdx => { SwitchScene((int)menuIdx); }, i);
             }
+
             popMenu.ShowAsContext();
         }
-        
+
         private static void SwitchScene(int menuIdx)
         {
             if (menuIdx >= 0 && menuIdx < _switchSceneAssetList.Count)
@@ -81,7 +85,8 @@ namespace GameEditor
                 var curScene = SceneManager.GetActiveScene();
                 if (curScene.isDirty)
                 {
-                    int opIndex = EditorUtility.DisplayDialogComplex("警告", $"当前场景 {curScene.name} 未保存,是否保存?", "保存", "取消", "不保存");
+                    int opIndex =
+                        EditorUtility.DisplayDialogComplex("警告", $"当前场景 {curScene.name} 未保存,是否保存?", "保存", "取消", "不保存");
                     switch (opIndex)
                     {
                         case 0:
@@ -89,11 +94,13 @@ namespace GameEditor
                             {
                                 return;
                             }
+
                             break;
                         case 1:
                             return;
                     }
                 }
+
                 EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
             }
         }

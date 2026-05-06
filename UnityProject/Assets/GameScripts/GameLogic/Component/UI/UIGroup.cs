@@ -12,9 +12,9 @@ namespace GameLogic
     public sealed partial class UIGroup : MonoBehaviour, IUIGroup
     {
         public const int DepthFactor = 1000;
-        
+
         private Canvas _cachedCanvas = null;
-        
+
         private string _name;
         private int _depth;
         private bool _pause;
@@ -88,12 +88,12 @@ namespace GameLogic
         {
             _cachedCanvas = gameObject.GetOrAddComponent<Canvas>();
             gameObject.GetOrAddComponent<GraphicRaycaster>();
-            
+
             _pause = false;
             _uiFormInfos = new LFrameworkLinkedList<UIFormInfo>();
             _cachedNode = null;
         }
-        
+
         private void Start()
         {
             _cachedCanvas.overrideSorting = true;

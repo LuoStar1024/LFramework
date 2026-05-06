@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<obfuz>
+  <assembly name="GameLogic">
+    <type name="*" inherit="UnityEngine.MonoBehaviour" obName="false" applyToMembers="all" />
+    <type name="*" inherit="LFramework.ILFrameworkModule" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IReference" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IAudioAgent" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IAudioGroup" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IAudioManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IAudioRelease" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IBaseManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IConfigManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IDataNode" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IDataNodeManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IDebuggerManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IDebuggerWindow" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IDebuggerWindowGroup" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IEventManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IFsm`1" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IFsmManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.ILocalizationManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IObjectPool`1" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IObjectPoolManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IProcedureManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IResourceManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.ISceneManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.ISettingManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.ITimerManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.IUnityWrapperManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.LFrameworkLog/ILogHelper" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Utility/Json/IJsonHelper" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Utility/Text/ITextHelper" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.ObjectBase" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.FsmState`1" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.LFrameworkEventArgs" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.ProcedureBase" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Variable" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Variable`1" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.ILanguageSource" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.ILocalizationParamsManager" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.IResourceManager_Bundles" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.I2BasePersistentStorage" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.ILocalizeTarget" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.LocalizeTarget`1" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.ILocalizeTargetDescriptor" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="LFramework.Localization.LocalizeTargetDesc`1" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="Launcher.ProcedureBase" obName="false" applyToMembers="methodname" />
+    <type name="*" inherit="Launcher.UIBase" obName="false" applyToMembers="methodname" />
+    <type name="GameLogic.Procedure*" obName="false" applyToMembers="methodname" />
+  </assembly>
+  <assembly name="GameDataTable">
+    <type name="*" obName="false" applyToMembers="field,property,methodname" />
+  </assembly>
+</obfuz>

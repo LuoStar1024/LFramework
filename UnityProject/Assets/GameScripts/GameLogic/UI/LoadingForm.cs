@@ -5,9 +5,8 @@ namespace GameLogic
 {
     public class LoadingForm : UguiForm
     {
-        [SerializeField] 
-        private Slider progress;
-        
+        [SerializeField] private Slider progress;
+
         public void SetProgress(float value)
         {
             // if (value > 0.9f)
@@ -17,7 +16,7 @@ namespace GameLogic
 
             progress.value = value;
         }
-        
+
         protected internal override void OnOpen(object userData)
         {
             base.OnOpen(userData);

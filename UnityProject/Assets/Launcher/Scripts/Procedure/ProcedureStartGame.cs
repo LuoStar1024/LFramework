@@ -9,15 +9,12 @@ namespace Launcher
     /// </summary>
     public class ProcedureStartGame : ProcedureBase
     {
-        public override bool UseNativeDialog
-        {
-            get;
-        }
+        public override bool UseNativeDialog { get; }
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
         {
             base.OnEnter(procedureOwner);
-            
+
             // 当前项目通过实例化 GameEntry 预制体触发 Awake/Start，进入热更侧流程。
             LoadGameEntry();
         }
@@ -29,7 +26,7 @@ namespace Launcher
             var go = Object.Instantiate(gameEntryPrefab, RootComponent.Instance.transform, true);
             go.transform.position = Vector3.zero;
             go.transform.rotation = new Quaternion(0, 0, 0, 0);
-            
+
             // 游戏入口接管后，启动器界面即可整体隐藏。
             LauncherMgr.HideAll();
         }

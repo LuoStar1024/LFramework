@@ -43,8 +43,7 @@ namespace LFramework
         /// <summary>
         /// 项目名称。
         /// </summary>
-        [SerializeField]
-        private string projectName = "Demo";
+        [SerializeField] private string projectName = "Demo";
 
         public bool Enable
         {
@@ -59,10 +58,12 @@ namespace LFramework
         }
 
         [Header("Auto sync with [HybridCLRGlobalSettings]")]
-        public List<string> HotUpdateAssemblies = new List<string>() {"GameDataTable.dll", "GameLogic.dll" };
+        public List<string> HotUpdateAssemblies = new List<string>() { "GameDataTable.dll", "GameLogic.dll" };
 
-        [Header("Need manual setting!")]
-        public List<string> AotMetaAssemblies = new List<string>() { "mscorlib.dll", "System.dll", "System.Core.dll", "LFramework.Runtime.dll" ,"UniTask.dll", "YooAsset.dll"};
+        [Header("Need manual setting!")] public List<string> AotMetaAssemblies = new List<string>()
+        {
+            "mscorlib.dll", "System.dll", "System.Core.dll", "LFramework.Runtime.dll", "UniTask.dll", "YooAsset.dll"
+        };
 
         /// <summary>
         /// Dll of main business logic assembly
@@ -79,43 +80,37 @@ namespace LFramework
         /// </summary>
         public string AssemblyTextAssetPath = "GameResRaw/Dll";
 
-        [Header("更新设置")]
-        public UpdateStyle UpdateStyle = UpdateStyle.Force;
+        [Header("更新设置")] public UpdateStyle UpdateStyle = UpdateStyle.Force;
 
         public UpdateNotice UpdateNotice = UpdateNotice.Notice;
 
         /// <summary>
         /// 资源服务器地址。
         /// </summary>
-        [SerializeField]
-        private string ResDownLoadPath = "http://127.0.0.1:8081";
+        [SerializeField] private string ResDownLoadPath = "http://127.0.0.1:8081";
 
         /// <summary>
         /// 资源服务备用地址。
         /// </summary>
-        [SerializeField]
-        private string FallbackResDownLoadPath = "http://127.0.0.1:8082";
+        [SerializeField] private string FallbackResDownLoadPath = "http://127.0.0.1:8082";
 
         /// <summary>
         /// 是否自动将打包资源复制到打包后的StreamingAssets地址
         /// </summary>
-        [Header("构建资源设置")]
-        [SerializeField]
-        private bool isAutoAssetCopeToBuildAddress = false;
-        
+        [Header("构建资源设置")] [SerializeField] private bool isAutoAssetCopeToBuildAddress = false;
+
         /// <summary>
         /// 打包程序资源地址
         /// </summary>
-        [SerializeField]
-        private string BuildAddress = "../../Builds/Unity_Data/StreamingAssets";
-        
+        [SerializeField] private string BuildAddress = "../../BuildBundles/Unity_Data/StreamingAssets";
+
         /// <summary>
         /// 是否使用可寻址资源代替资源路径
         /// 说明：开启此项可以节省运行时清单占用的内存！
         /// </summary>
         [SerializeField, Tooltip("是否使用可寻址资源代替资源路径 说明：开启此项可以节省运行时清单占用的内存！")]
         private bool ReplaceAssetPathWithAddress = false;
-        
+
         /// <summary>
         /// 是否自动你讲打包资源复制到打包后的StreamingAssets地址
         /// </summary>
@@ -124,7 +119,7 @@ namespace LFramework
         {
             return isAutoAssetCopeToBuildAddress;
         }
-        
+
         /// <summary>
         /// 获取打包程序资源地址
         /// </summary>
@@ -139,7 +134,7 @@ namespace LFramework
         /// </summary>
         /// <returns></returns>
         public bool GetReplaceAssetPathWithAddress() => ReplaceAssetPathWithAddress;
-        
+
         /// <summary>
         /// 获取资源下载路径。
         /// </summary>
@@ -185,13 +180,13 @@ namespace LFramework
 
                 case RuntimePlatform.Android:
                     return "Android";
-                
+
                 case RuntimePlatform.WebGLPlayer:
                     return "WebGL";
 
                 case RuntimePlatform.PS5:
                     return "PS5";
-                
+
                 default:
                     throw new NotSupportedException($"Platform '{Application.platform.ToString()}' is not supported.");
             }

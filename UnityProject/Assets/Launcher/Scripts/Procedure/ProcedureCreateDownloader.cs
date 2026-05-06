@@ -73,7 +73,8 @@ namespace Launcher
                 sizeMb = Mathf.Clamp(sizeMb, 0.1f, float.MaxValue);
                 _totalSizeMb = sizeMb.ToString("f1");
 
-                LauncherMgr.ShowMessageBox($"Found update patch files, Total count {_totalDownloadCount} Total size {_totalSizeMb}MB",
+                LauncherMgr.ShowMessageBox(
+                    $"Found update patch files, Total count {_totalDownloadCount} Total size {_totalSizeMb}MB",
                     StartDownFile, Application.Quit);
             }
         }

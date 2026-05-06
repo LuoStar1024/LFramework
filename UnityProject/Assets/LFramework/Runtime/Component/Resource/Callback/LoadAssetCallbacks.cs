@@ -23,7 +23,8 @@
         /// </summary>
         /// <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
         /// <param name="loadAssetFailureCallback">加载资源失败回调函数。</param>
-        public LoadAssetCallbacks(LoadAssetSuccessCallback loadAssetSuccessCallback, LoadAssetFailureCallback loadAssetFailureCallback)
+        public LoadAssetCallbacks(LoadAssetSuccessCallback loadAssetSuccessCallback,
+            LoadAssetFailureCallback loadAssetFailureCallback)
             : this(loadAssetSuccessCallback, loadAssetFailureCallback, null)
         {
         }
@@ -33,7 +34,8 @@
         /// </summary>
         /// <param name="loadAssetSuccessCallback">加载资源成功回调函数。</param>
         /// <param name="loadAssetUpdateCallback">加载资源更新回调函数。</param>
-        public LoadAssetCallbacks(LoadAssetSuccessCallback loadAssetSuccessCallback, LoadAssetUpdateCallback loadAssetUpdateCallback)
+        public LoadAssetCallbacks(LoadAssetSuccessCallback loadAssetSuccessCallback,
+            LoadAssetUpdateCallback loadAssetUpdateCallback)
             : this(loadAssetSuccessCallback, null, loadAssetUpdateCallback)
         {
         }
@@ -62,10 +64,7 @@
         /// </summary>
         public LoadAssetSuccessCallback LoadAssetSuccessCallback
         {
-            get
-            {
-                return _loadAssetSuccessCallback;
-            }
+            get { return _loadAssetSuccessCallback; }
         }
 
         /// <summary>
@@ -73,10 +72,7 @@
         /// </summary>
         public LoadAssetFailureCallback LoadAssetFailureCallback
         {
-            get
-            {
-                return _loadAssetFailureCallback;
-            }
+            get { return _loadAssetFailureCallback; }
         }
 
         /// <summary>
@@ -84,10 +80,7 @@
         /// </summary>
         public LoadAssetUpdateCallback LoadAssetUpdateCallback
         {
-            get
-            {
-                return _loadAssetUpdateCallback;
-            }
+            get { return _loadAssetUpdateCallback; }
         }
     }
 }

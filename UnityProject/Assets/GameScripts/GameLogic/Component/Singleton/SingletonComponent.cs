@@ -11,13 +11,10 @@ namespace GameLogic
         private readonly List<ISingleton> _singletonList = new List<ISingleton>();
         private readonly List<ISingletonUpdate> _singletonUpdateList = new List<ISingletonUpdate>();
         private readonly Dictionary<string, GameObject> _gameObjectDict = new Dictionary<string, GameObject>();
-        
+
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
 
         private void Awake()
@@ -27,7 +24,6 @@ namespace GameLogic
 
         public void OnInit()
         {
-            
         }
 
         public void OnUpdate(float elapseSeconds, float realElapseSeconds)
@@ -47,30 +43,31 @@ namespace GameLogic
             {
                 foreach (var item in _gameObjectDict)
                 {
-                    if(item.Value != null)
+                    if (item.Value != null)
                     {
                         bool isMono = item.Value.TryGetComponent<ISingleton>(out var s);
-                        if(isMono)
+                        if (isMono)
                         {
                             s.Release();
                         }
+
                         Destroy(item.Value);
                     }
                 }
-                
+
                 _gameObjectDict.Clear();
             }
-            
+
             if (_singletonList != null)
             {
                 for (int i = _singletonList.Count - 1; i >= 0; i--)
                 {
                     _singletonList[i].Release();
                 }
-                
+
                 _singletonList.Clear();
             }
-            
+
             _singletonUpdateList.Clear();
         }
 

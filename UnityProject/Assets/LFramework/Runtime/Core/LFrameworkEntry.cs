@@ -18,7 +18,7 @@ namespace LFramework
 
         private static readonly LFrameworkLinkedList<ILFrameworkModule> ModuleLinkedList =
             new LFrameworkLinkedList<ILFrameworkModule>();
-        
+
         private static readonly List<ILFrameworkModule> UpdateModuleExecuteList =
             new List<ILFrameworkModule>(DesignModuleCount);
 
@@ -75,16 +75,16 @@ namespace LFramework
                 throw new LFrameworkException(Utility.Text.Format("You must get module by interface, but '{0}' is not.",
                     interfaceType.FullName));
             }
-            
+
             if (ModuleDict.TryGetValue(interfaceType, out var module))
             {
                 return module as T;
             }
-            
+
             throw new LFrameworkException(Utility.Text.Format("Can not find LFramework module type '{0}'.",
                 interfaceType.FullName));
         }
-        
+
         /// <summary>
         /// 注册游戏框架模块。
         /// </summary>
@@ -128,7 +128,7 @@ namespace LFramework
             _isExecuteListDirty = true;
             module.OnInit();
         }
-        
+
         /// <summary>
         /// 构造执行队列。
         /// </summary>

@@ -6,7 +6,7 @@ namespace LFramework.Editor
     internal sealed class ConfigComponentInspector : LFrameworkInspector
     {
         private SerializedProperty _updateConfig = null;
-        
+
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
@@ -20,9 +20,9 @@ namespace LFramework.Editor
                 EditorGUILayout.PropertyField(_updateConfig);
             }
             EditorGUI.EndDisabledGroup();
-            
+
             serializedObject.ApplyModifiedProperties();
-            
+
             Repaint();
         }
 
@@ -32,14 +32,14 @@ namespace LFramework.Editor
 
             RefreshTypeNames();
         }
-        
+
         private void OnEnable()
         {
             _updateConfig = serializedObject.FindProperty("updateConfig");
 
             RefreshTypeNames();
         }
-        
+
         private void RefreshTypeNames()
         {
             serializedObject.ApplyModifiedProperties();

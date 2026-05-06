@@ -18,38 +18,33 @@ namespace GameEditor
         /// 生成的图集输出目录。
         /// 所有自动生成的 SpriteAtlas 文件将保存到此目录。
         /// </summary>
-        [Header("目录设置")]
-        [Tooltip("生成的图集输出目录")]
+        [Header("目录设置")] [Tooltip("生成的图集输出目录")]
         public string outputAtlasDir = "Assets/GameResArt/Atlas";
 
         /// <summary>
         /// 需要生成图集的UI根目录数组。
         /// 系统会扫描这些目录下的所有图片资源，并按目录结构自动生成对应的图集。
         /// </summary>
-        [Tooltip("需要生成图集的UI根目录")]
-        public string[] sourceAtlasRootDir = new string[] { "Assets/GameResRaw/Sprite" };
+        [Tooltip("需要生成图集的UI根目录")] public string[] sourceAtlasRootDir = new string[] { "Assets/GameResRaw/Sprite" };
 
         /// <summary>
         /// 以当前目录的子级生成子级图集的目录数组。
         /// 这些目录下的每个子文件夹会生成一个独立的图集，而不是按完整路径生成。
         /// </summary>
-        [Tooltip("以当前目录的子级生成子级图集")]
-        public string[] rootChildAtlasDir = new string[] { };
+        [Tooltip("以当前目录的子级生成子级图集")] public string[] rootChildAtlasDir = new string[] { };
 
         /// <summary>
         /// 每张图都单独生成图集的目录数组。
         /// 这些目录下的每张图片都会生成一个独立的图集文件。
         /// 适用于大图或需要单独管理的资源。
         /// </summary>
-        [Tooltip("每张图都单独生成图集")]
-        public string[] singleAtlasDir = new string[] { };
+        [Tooltip("每张图都单独生成图集")] public string[] singleAtlasDir = new string[] { };
 
         /// <summary>
         /// 不需要生成图集的UI目录数组。
         /// 这些目录下的图片资源将被排除，不会被打入任何图集。
         /// </summary>
-        [Tooltip("不需要生成图集的UI目录")]
-        public string[] excludeFolder = new string[] { };
+        [Tooltip("不需要生成图集的UI目录")] public string[] excludeFolder = new string[] { };
 
         #endregion
 
@@ -59,8 +54,7 @@ namespace GameEditor
         /// Android 平台的纹理压缩格式。
         /// 默认使用 ASTC_6x6，在质量和压缩率之间取得平衡。
         /// </summary>
-        [Header("平台格式设置")]
-        public TextureImporterFormat androidFormat = TextureImporterFormat.ASTC_6x6;
+        [Header("平台格式设置")] public TextureImporterFormat androidFormat = TextureImporterFormat.ASTC_6x6;
 
         /// <summary>
         /// iOS 平台的纹理压缩格式。
@@ -82,8 +76,7 @@ namespace GameEditor
         /// 图集中精灵之间的间距（像素）。
         /// 用于防止精灵边缘出现渗色问题。
         /// </summary>
-        [Header("PackingSetting")]
-        public int padding = 2;
+        [Header("PackingSetting")] public int padding = 2;
 
         /// <summary>
         /// 是否允许旋转精灵以获得更好的打包效率。
@@ -110,9 +103,7 @@ namespace GameEditor
         /// 纹理压缩质量（0-100）。
         /// 值越高质量越好，但文件体积也越大。
         /// </summary>
-        [Header("其他设置")]
-        [Range(0, 100)]
-        public int compressionQuality = 50;
+        [Header("其他设置")] [Range(0, 100)] public int compressionQuality = 50;
 
         /// <summary>
         /// 是否自动生成图集。
@@ -140,8 +131,7 @@ namespace GameEditor
         /// 是否检查 Mipmap 导入设置。
         /// 启用后会在导入精灵时检查并修正 Mipmap 设置。
         /// </summary>
-        [Header("Sprite导入设置")]
-        public bool checkMipmaps = true;
+        [Header("Sprite导入设置")] public bool checkMipmaps = true;
 
         /// <summary>
         /// 是否为精灵启用 Mipmap。
@@ -158,8 +148,7 @@ namespace GameEditor
         /// 文件路径中包含这些关键词的资源将被排除，不会被打入图集。
         /// 常用于排除临时文件或待删除的资源。
         /// </summary>
-        [Header("排除关键词")]
-        public string[] excludeKeywords = { "_Delete", "_Temp" };
+        [Header("排除关键词")] public string[] excludeKeywords = { "_Delete", "_Temp" };
 
         #endregion
     }

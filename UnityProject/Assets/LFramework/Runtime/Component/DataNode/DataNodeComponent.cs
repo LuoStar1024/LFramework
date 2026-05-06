@@ -15,28 +15,22 @@ namespace LFramework
 
         private const string RootName = "<Root>";
         private DataNode _root;
-        
+
         /// <summary>
         /// 获取根数据结点。
         /// </summary>
         public IDataNode Root
         {
-            get
-            {
-                return _root;
-            }
+            get { return _root; }
         }
-        
+
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
 
         private void Awake()

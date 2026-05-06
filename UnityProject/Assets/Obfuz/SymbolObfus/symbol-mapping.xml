@@ -1,0 +1,687 @@
+<mapping>
+  <assembly name="GameDataTable" />
+  <assembly name="GameLogic">
+    <type fullName="$Obfuz$ConstFieldHolder$0" newFullName="$M" status="Renamed">
+      <field signature="int $Obfuz$RVA_Value0" newName="$Y" />
+      <field signature="int $Obfuz$RVA_Value1" newName="$z" />
+      <field signature="int $Obfuz$RVA_Value2" newName="$Z" />
+      <field signature="int $Obfuz$RVA_Value3" newName="$aA" />
+      <field signature="int $Obfuz$RVA_Value4" newName="$AA" />
+      <field signature="int $Obfuz$RVA_Value5" newName="$bA" />
+      <field signature="int $Obfuz$RVA_Value6" newName="$BA" />
+      <field signature="int $Obfuz$RVA_Value7" newName="$cA" />
+      <field signature="int $Obfuz$RVA_Value8" newName="$CA" />
+      <field signature="int $Obfuz$RVA_Value9" newName="$dA" />
+      <field signature="int $Obfuz$RVA_Value10" newName="$DA" />
+      <field signature="int $Obfuz$RVA_Value11" newName="$eA" />
+      <field signature="int $Obfuz$RVA_Value12" newName="$EA" />
+      <field signature="int $Obfuz$RVA_Value13" newName="$fA" />
+      <field signature="int $Obfuz$RVA_Value14" newName="$FA" />
+      <field signature="int $Obfuz$RVA_Value15" newName="$gA" />
+      <field signature="int $Obfuz$RVA_Value16" newName="$GA" />
+      <field signature="int $Obfuz$RVA_Value17" newName="$hA" />
+      <field signature="int $Obfuz$RVA_Value18" newName="$HA" />
+      <field signature="string $Obfuz$RVA_Value19" newName="$iA" />
+      <field signature="int $Obfuz$RVA_Value20" newName="$IA" />
+      <field signature="int $Obfuz$RVA_Value21" newName="$jA" />
+      <field signature="int $Obfuz$RVA_Value22" newName="$JA" />
+      <field signature="int $Obfuz$RVA_Value23" newName="$kA" />
+      <field signature="int $Obfuz$RVA_Value24" newName="$KA" />
+      <field signature="int $Obfuz$RVA_Value25" newName="$lA" />
+      <field signature="int $Obfuz$RVA_Value26" newName="$LA" />
+      <field signature="int $Obfuz$RVA_Value27" newName="$mA" />
+      <field signature="int $Obfuz$RVA_Value28" newName="$MA" />
+      <field signature="int $Obfuz$RVA_Value29" newName="$nA" />
+      <field signature="int $Obfuz$RVA_Value30" newName="$NA" />
+      <field signature="int $Obfuz$RVA_Value31" newName="$oA" />
+      <field signature="int $Obfuz$RVA_Value32" newName="$OA" />
+      <field signature="int $Obfuz$RVA_Value33" newName="$pA" />
+      <field signature="int $Obfuz$RVA_Value34" newName="$PA" />
+      <field signature="int $Obfuz$RVA_Value35" newName="$qA" />
+      <field signature="int $Obfuz$RVA_Value36" newName="$QA" />
+      <field signature="int $Obfuz$RVA_Value37" newName="$rA" />
+      <field signature="int $Obfuz$RVA_Value38" newName="$RA" />
+      <field signature="int $Obfuz$RVA_Value39" newName="$sA" />
+      <field signature="int $Obfuz$RVA_Value40" newName="$SA" />
+      <field signature="int $Obfuz$RVA_Value41" newName="$tA" />
+      <field signature="int $Obfuz$RVA_Value42" newName="$TA" />
+      <field signature="int $Obfuz$RVA_Value43" newName="$uA" />
+      <field signature="int $Obfuz$RVA_Value44" newName="$UA" />
+      <field signature="int $Obfuz$RVA_Value45" newName="$vA" />
+      <field signature="int $Obfuz$RVA_Value46" newName="$VA" />
+      <field signature="int $Obfuz$RVA_Value47" newName="$wA" />
+      <field signature="int $Obfuz$RVA_Value48" newName="$WA" />
+      <field signature="int $Obfuz$RVA_Value49" newName="$xA" />
+      <field signature="int $Obfuz$RVA_Value50" newName="$XA" />
+      <field signature="int $Obfuz$RVA_Value51" newName="$yA" />
+      <field signature="int $Obfuz$RVA_Value52" newName="$YA" />
+      <field signature="int $Obfuz$RVA_Value53" newName="$zA" />
+      <field signature="int $Obfuz$RVA_Value54" newName="$ZA" />
+      <field signature="int $Obfuz$RVA_Value55" newName="$ab" />
+      <field signature="int $Obfuz$RVA_Value56" newName="$Ab" />
+      <field signature="int $Obfuz$RVA_Value57" newName="$bb" />
+      <field signature="int $Obfuz$RVA_Value58" newName="$Bb" />
+      <field signature="int $Obfuz$RVA_Value59" newName="$cb" />
+      <field signature="int $Obfuz$RVA_Value60" newName="$Cb" />
+      <field signature="int $Obfuz$RVA_Value61" newName="$db" />
+      <field signature="int $Obfuz$RVA_Value62" newName="$Db" />
+      <field signature="int $Obfuz$RVA_Value63" newName="$eb" />
+      <field signature="int $Obfuz$RVA_Value64" newName="$Eb" />
+      <field signature="int $Obfuz$RVA_Value65" newName="$fb" />
+      <field signature="int $Obfuz$RVA_Value66" newName="$Fb" />
+      <field signature="int $Obfuz$RVA_Value67" newName="$gb" />
+      <field signature="int $Obfuz$RVA_Value68" newName="$Gb" />
+      <field signature="int $Obfuz$RVA_Value69" newName="$hb" />
+      <field signature="int $Obfuz$RVA_Value70" newName="$Hb" />
+      <field signature="int $Obfuz$RVA_Value71" newName="$ib" />
+      <field signature="int $Obfuz$RVA_Value72" newName="$Ib" />
+      <field signature="int $Obfuz$RVA_Value73" newName="$jb" />
+      <field signature="int $Obfuz$RVA_Value74" newName="$Jb" />
+      <field signature="int $Obfuz$RVA_Value75" newName="$kb" />
+      <field signature="int $Obfuz$RVA_Value76" newName="$Kb" />
+      <field signature="int $Obfuz$RVA_Value77" newName="$lb" />
+      <field signature="int $Obfuz$RVA_Value78" newName="$Lb" />
+      <field signature="int $Obfuz$RVA_Value79" newName="$mb" />
+      <field signature="int $Obfuz$RVA_Value80" newName="$Mb" />
+      <field signature="int $Obfuz$RVA_Value81" newName="$nb" />
+      <field signature="int $Obfuz$RVA_Value82" newName="$Nb" />
+      <field signature="int $Obfuz$RVA_Value83" newName="$ob" />
+      <field signature="int $Obfuz$RVA_Value84" newName="$Ob" />
+      <field signature="int $Obfuz$RVA_Value85" newName="$pb" />
+      <field signature="int $Obfuz$RVA_Value86" newName="$Pb" />
+      <field signature="int $Obfuz$RVA_Value87" newName="$qb" />
+      <field signature="int $Obfuz$RVA_Value88" newName="$Qb" />
+      <field signature="int $Obfuz$RVA_Value89" newName="$rb" />
+      <field signature="int $Obfuz$RVA_Value90" newName="$Rb" />
+      <field signature="int $Obfuz$RVA_Value91" newName="$sb" />
+      <field signature="int $Obfuz$RVA_Value92" newName="$Sb" />
+      <field signature="int $Obfuz$RVA_Value93" newName="$tb" />
+      <field signature="int $Obfuz$RVA_Value94" newName="$Tb" />
+      <field signature="int $Obfuz$RVA_Value95" newName="$ub" />
+      <field signature="int $Obfuz$RVA_Value96" newName="$Ub" />
+      <field signature="int $Obfuz$RVA_Value97" newName="$vb" />
+      <field signature="int $Obfuz$RVA_Value98" newName="$Vb" />
+      <field signature="int $Obfuz$RVA_Value99" newName="$wb" />
+      <field signature="int $Obfuz$RVA_Value100" newName="$Wb" />
+      <field signature="int $Obfuz$RVA_Value101" newName="$xb" />
+      <field signature="int $Obfuz$RVA_Value102" newName="$Xb" />
+      <field signature="int $Obfuz$RVA_Value103" newName="$yb" />
+      <field signature="int $Obfuz$RVA_Value104" newName="$Yb" />
+    </type>
+    <type fullName="$Obfuz$ProxyCall" newFullName="$n" status="Renamed">
+      <method signature="[UniTask]Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder`1&lt;int&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_804885(int)" newName="$GA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_804885(Int32)" newStackTraceSignature="$n:$GA(Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskVoidMethodBuilder $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_7259852(int)" newName="$hA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_7259852(Int32)" newStackTraceSignature="$n:$hA(Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_8988543(object, object, int)" newName="$HA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_8988543(Object, Object, Int32)" newStackTraceSignature="$n:$HA(Object, Object, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask/Awaiter $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_1576731(nint, int)" newName="$iA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_1576731(IntPtr, Int32)" newStackTraceSignature="$n:$iA(IntPtr, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1/Awaiter&lt;int&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_14361347(nint, int)" newName="$IA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_14361347(IntPtr, Int32)" newStackTraceSignature="$n:$IA(IntPtr, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1/Awaiter&lt;[UnityEngine.CoreModule]UnityEngine.GameObject&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_6306338(nint, int)" newName="$jA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_6306338(IntPtr, Int32)" newStackTraceSignature="$n:$jA(IntPtr, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1&lt;int&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_10742262(nint, int)" newName="$JA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_10742262(IntPtr, Int32)" newStackTraceSignature="$n:$JA(IntPtr, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1&lt;int&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_48552_10742262(object, object, object, int, byte, object, int)" newName="$kA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_48552_10742262(Object, Object, Object, Int32, Byte, Object, Int32)" newStackTraceSignature="$n:$kA(Object, Object, Object, Int32, Byte, Object, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1&lt;[UnityEngine.CoreModule]UnityEngine.GameObject&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_16665_2687253(object, object, int, object, int)" newName="$KA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_16665_2687253(Object, Object, Int32, Object, Int32)" newStackTraceSignature="$n:$KA(Object, Object, Int32, Object, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1&lt;[UnityEngine.CoreModule]UnityEngine.GameObject&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_19940_2687253(object, object, int, System.Threading.CancellationToken, object, int)" newName="$lA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_19940_2687253(Object, Object, Int32, CancellationToken, Object, Int32)" newStackTraceSignature="$n:$lA(Object, Object, Int32, CancellationToken, Object, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTaskVoid $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_13443783(object, int)" newName="$LA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_13443783(Object, Int32)" newStackTraceSignature="$n:$LA(Object, Int32)" />
+      <method signature="[UniTask]Cysharp.Threading.Tasks.UniTaskVoid $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_13443783(nint, int)" newName="$mA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_13443783(IntPtr, Int32)" newStackTraceSignature="$n:$mA(IntPtr, Int32)" />
+      <method signature="[GameDataTable]GameDataTable.Sound $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_3437667(object, int, int)" newName="$MA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_3437667(Object, Int32, Int32)" newStackTraceSignature="$n:$MA(Object, Int32, Int32)" />
+      <method signature="[GameDataTable]GameDataTable.Tables $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_9557829(object, int)" newName="$nA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_9557829(Object, Int32)" newStackTraceSignature="$n:$nA(Object, Int32)" />
+      <method signature="[GameDataTable]GameDataTable.Tables $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_9557829(int)" newName="$NA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_9557829(Int32)" newStackTraceSignature="$n:$NA(Int32)" />
+      <method signature="[GameDataTable]GameDataTable.TbSound $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_6695641(object, int)" newName="$oA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_6695641(Object, Int32)" newStackTraceSignature="$n:$oA(Object, Int32)" />
+      <method signature="[GameDataTable]GameDataTable.TbUIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_13755540(object, int)" newName="$OA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_13755540(Object, Int32)" newStackTraceSignature="$n:$OA(Object, Int32)" />
+      <method signature="[GameDataTable]GameDataTable.UIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_979250(object, int, int)" newName="$pA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_979250(Object, Int32, Int32)" newStackTraceSignature="$n:$pA(Object, Int32, Int32)" />
+      <method signature="[GameLogic]GameLogic.Background $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_12384616(int)" newName="$PA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_12384616(Int32)" newStackTraceSignature="$n:$PA(Int32)" />
+      <method signature="[GameLogic]GameLogic.Bullet $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_11432544(object, int)" newName="$qA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_11432544(Object, Int32)" newStackTraceSignature="$n:$qA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.Enemy $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_3300740(object, int)" newName="$QA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_3300740(Object, Int32)" newStackTraceSignature="$n:$QA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.EventContainer $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_2468177(object, int)" newName="$rA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_2468177(Object, Int32)" newStackTraceSignature="$n:$rA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.EventContainer $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_2468177(int)" newName="$RA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_2468177(Int32)" newStackTraceSignature="$n:$RA(Int32)" />
+      <method signature="[GameLogic]GameLogic.EventGroupUI $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_6875625(object, int)" newName="$sA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_6875625(Object, Int32)" newStackTraceSignature="$n:$sA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.GameManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_9182743(int)" newName="$SA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_9182743(Int32)" newStackTraceSignature="$n:$SA(Int32)" />
+      <method signature="[GameLogic]GameLogic.GoPoolObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_10751687(int)" newName="$tA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_10751687(Int32)" newStackTraceSignature="$n:$tA(Int32)" />
+      <method signature="[GameLogic]GameLogic.GoPoolObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_10751687(object, object, int)" newName="$TA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_10751687(Object, Object, Int32)" newStackTraceSignature="$n:$TA(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.ISingletonManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_637791(int)" newName="$uA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_637791(Int32)" newStackTraceSignature="$n:$uA(Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_7937701(object, int)" newName="$UA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_7937701(Object, Int32)" newStackTraceSignature="$n:$UA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_21712_7937701(object, object, object, object, int)" newName="$vA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_21712_7937701(Object, Object, Object, Object, Int32)" newStackTraceSignature="$n:$vA(Object, Object, Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_7937701(object, object, int)" newName="$VA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_7937701(Object, Object, Int32)" newStackTraceSignature="$n:$VA(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_7937701(object, int, int)" newName="$wA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_7937701(Object, Int32, Int32)" newStackTraceSignature="$n:$wA(Object, Int32, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIForm[] $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_7356004(object, int)" newName="$WA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_7356004(Object, Int32)" newStackTraceSignature="$n:$WA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIForm[] $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_7356004(object, object, int)" newName="$xA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_7356004(Object, Object, Int32)" newStackTraceSignature="$n:$xA(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIGroup $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_11303956(object, int)" newName="$XA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_11303956(Object, Int32)" newStackTraceSignature="$n:$XA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIGroup $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_11303956(object, object, int)" newName="$yA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_11303956(Object, Object, Int32)" newStackTraceSignature="$n:$yA(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.IUIManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_13253480(int)" newName="$YA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_13253480(Int32)" newStackTraceSignature="$n:$YA(Int32)" />
+      <method signature="[GameLogic]GameLogic.ResourceContainer $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_701719(object, int)" newName="$zA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_701719(Object, Int32)" newStackTraceSignature="$n:$zA(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.ResourceContainer $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_701719(int)" newName="$ZA" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_701719(Int32)" newStackTraceSignature="$n:$ZA(Int32)" />
+      <method signature="[GameLogic]GameLogic.UguiForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_15102728(object, int)" newName="$ab" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_15102728(Object, Int32)" newStackTraceSignature="$n:$ab(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIComponent/OpenUIFormInfo $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_4094040(int)" newName="$Ab" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_4094040(Int32)" newStackTraceSignature="$n:$Ab(Int32)" />
+      <method signature="[GameLogic]GameLogic.UIComponent/OpenUIFormInfo $Obfuz$ProxyCall::@$Obfuz$Dispatch_37976_4094040(int, object, byte, object, int)" newName="$bb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_37976_4094040(Int32, Object, Byte, Object, Int32)" newStackTraceSignature="$n:$bb(Int32, Object, Byte, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIComponent/UIFormInstanceObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_21712_3975544(object, object, object, object, int)" newName="$Bb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_21712_3975544(Object, Object, Object, Object, Int32)" newStackTraceSignature="$n:$Bb(Object, Object, Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIComponent/UIFormInstanceObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_3975544(int)" newName="$cb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_3975544(Int32)" newStackTraceSignature="$n:$cb(Int32)" />
+      <method signature="[GameLogic]GameLogic.UIComponent/UIFormInstanceObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_3975544(object, object, int)" newName="$Cb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_3975544(Object, Object, Int32)" newStackTraceSignature="$n:$Cb(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_7183124(object, int)" newName="$db" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_7183124(Object, Int32)" newStackTraceSignature="$n:$db(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_7183124(object, object, int)" newName="$Db" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_7183124(Object, Object, Int32)" newStackTraceSignature="$n:$Db(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIForm $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_7183124(object, int, int)" newName="$eb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_7183124(Object, Int32, Int32)" newStackTraceSignature="$n:$eb(Object, Int32, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIForm[] $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_6601427(object, int)" newName="$Eb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_6601427(Object, Int32)" newStackTraceSignature="$n:$Eb(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIForm[] $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_6601427(object, object, int)" newName="$fb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_6601427(Object, Object, Int32)" newStackTraceSignature="$n:$fb(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIFormLogic $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_4992702(object, int)" newName="$Fb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_4992702(Object, Int32)" newStackTraceSignature="$n:$Fb(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIGroup $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_5940873(object, int)" newName="$gb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_5940873(Object, Int32)" newStackTraceSignature="$n:$gb(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIGroup/UIFormInfo $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_693592(object, int)" newName="$Gb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_693592(Object, Int32)" newStackTraceSignature="$n:$Gb(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIGroup/UIFormInfo $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_693592(int)" newName="$hb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_693592(Int32)" newStackTraceSignature="$n:$hb(Int32)" />
+      <method signature="[GameLogic]GameLogic.UIGroup/UIFormInfo $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_693592(nint, int)" newName="$Hb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_693592(IntPtr, Int32)" newStackTraceSignature="$n:$Hb(IntPtr, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIGroup/UIFormInfo $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_693592(object, object, int)" newName="$ib" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_693592(Object, Object, Int32)" newStackTraceSignature="$n:$ib(Object, Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIWidgetContainer $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_1381445(object, int)" newName="$Ib" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_1381445(Object, Int32)" newStackTraceSignature="$n:$Ib(Object, Int32)" />
+      <method signature="[GameLogic]GameLogic.UIWidgetContainer $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_1381445(int)" newName="$jb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_1381445(Int32)" newStackTraceSignature="$n:$jb(Int32)" />
+      <method signature="[GameDataTable]IDataTableManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_14617092(int)" newName="$Jb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_14617092(Int32)" newStackTraceSignature="$n:$Jb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IAudioGroup $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_10824210(object, object, int)" newName="$kb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_10824210(Object, Object, Int32)" newStackTraceSignature="$n:$kb(Object, Object, Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IAudioManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_16286842(int)" newName="$Kb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_16286842(Int32)" newStackTraceSignature="$n:$Kb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IBaseManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_15348281(int)" newName="$lb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_15348281(Int32)" newStackTraceSignature="$n:$lb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IConfigManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_16021372(int)" newName="$Lb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_16021372(Int32)" newStackTraceSignature="$n:$Lb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IDataNodeManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_3610418(int)" newName="$mb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_3610418(Int32)" newStackTraceSignature="$n:$mb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IDebuggerManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_6247329(int)" newName="$Mb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_6247329(Int32)" newStackTraceSignature="$n:$Mb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IEventManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_6533224(int)" newName="$nb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_6533224(Int32)" newStackTraceSignature="$n:$nb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IFsmManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_5969154(int)" newName="$Nb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_5969154(Int32)" newStackTraceSignature="$n:$Nb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.ILocalizationManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_1852095(int)" newName="$ob" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_1852095(Int32)" newStackTraceSignature="$n:$ob(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IObjectPool`1&lt;[GameLogic]GameLogic.GoPoolObject&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_11295968(object, object, int)" newName="$Ob" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_11295968(Object, Object, Int32)" newStackTraceSignature="$n:$Ob(Object, Object, Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IObjectPool`1&lt;[GameLogic]GameLogic.UIComponent/UIFormInstanceObject&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_168147(object, object, int)" newName="$pb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_168147(Object, Object, Int32)" newStackTraceSignature="$n:$pb(Object, Object, Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IObjectPoolManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_5052621(int)" newName="$Pb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_5052621(Int32)" newStackTraceSignature="$n:$Pb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IProcedureManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_2282353(int)" newName="$qb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_2282353(Int32)" newStackTraceSignature="$n:$qb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IResourceManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_13460362(int)" newName="$Qb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_13460362(Int32)" newStackTraceSignature="$n:$Qb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.ISceneManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_15946648(int)" newName="$rb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_15946648(Int32)" newStackTraceSignature="$n:$rb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.ISettingManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_4052084(int)" newName="$Rb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_4052084(Int32)" newStackTraceSignature="$n:$Rb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.ITimerManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_16054447(int)" newName="$sb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_16054447(Int32)" newStackTraceSignature="$n:$sb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.IUnityWrapperManager $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_12961214(int)" newName="$Sb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_12961214(Int32)" newStackTraceSignature="$n:$Sb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.Language $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_9040122(object, int)" newName="$tb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_9040122(Object, Int32)" newStackTraceSignature="$n:$tb(Object, Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.PlayAudioParams $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_8600478(int)" newName="$Tb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_8600478(Int32)" newStackTraceSignature="$n:$Tb(Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.VarInt32 $Obfuz$ProxyCall::@$Obfuz$Dispatch_25763_3543093(int, int)" newName="$ub" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_25763_3543093(Int32, Int32)" newStackTraceSignature="$n:$ub(Int32, Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.VarInt32 $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_3543093(object, object, int)" newName="$Ub" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_3543093(Object, Object, Int32)" newStackTraceSignature="$n:$Ub(Object, Object, Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.VarString $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_5654740(object, int)" newName="$vb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_5654740(Object, Int32)" newStackTraceSignature="$n:$vb(Object, Int32)" />
+      <method signature="[LFramework.Runtime]LFramework.VarString $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_5654740(object, object, int)" newName="$Vb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_5654740(Object, Object, Int32)" newStackTraceSignature="$n:$Vb(Object, Object, Int32)" />
+      <method signature="[GameDataTable]SimpleJSON.JSONNode $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_13639434(object, int)" newName="$wb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_13639434(Object, Int32)" newStackTraceSignature="$n:$wb(Object, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_12616511(object, int)" newName="$Wb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_12616511(Object, Int32)" newStackTraceSignature="$n:$Wb(Object, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_15535_12616511(object, nuint, int)" newName="$xb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_15535_12616511(Object, UIntPtr, Int32)" newStackTraceSignature="$n:$xb(Object, UIntPtr, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_25763_12616511(int, int)" newName="$Xb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_25763_12616511(Int32, Int32)" newStackTraceSignature="$n:$Xb(Int32, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_28024_12616511(object, int, float, int)" newName="$yb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_28024_12616511(Object, Int32, Single, Int32)" newStackTraceSignature="$n:$yb(Object, Int32, Single, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_12616511(nint, int)" newName="$Yb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_12616511(IntPtr, Int32)" newStackTraceSignature="$n:$Yb(IntPtr, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_12616511(object, object, int)" newName="$zb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_12616511(Object, Object, Int32)" newStackTraceSignature="$n:$zb(Object, Object, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_40964_12616511(object, byte, byte, int)" newName="$Zb" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_40964_12616511(Object, Byte, Byte, Int32)" newStackTraceSignature="$n:$Zb(Object, Byte, Byte, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_45707_12616511(object, int, object, int)" newName="$aB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_45707_12616511(Object, Int32, Object, Int32)" newStackTraceSignature="$n:$aB(Object, Int32, Object, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_12616511(object, int, int)" newName="$AB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_12616511(Object, Int32, Int32)" newStackTraceSignature="$n:$AB(Object, Int32, Int32)" />
+      <method signature="bool $Obfuz$ProxyCall::@$Obfuz$Dispatch_65367_12616511(object, object, int, int)" newName="$bB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_65367_12616511(Object, Object, Int32, Int32)" newStackTraceSignature="$n:$bB(Object, Object, Int32, Int32)" />
+      <method signature="byte[] $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_130600(object, int)" newName="$BB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_130600(Object, Int32)" newStackTraceSignature="$n:$BB(Object, Int32)" />
+      <method signature="System.Collections.Generic.KeyValuePair`2&lt;int,[LFramework.Runtime]LFramework.LFrameworkLinkedListRange`1&lt;System.Delegate&gt;&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_15660270(nint, int)" newName="$cB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_15660270(IntPtr, Int32)" newStackTraceSignature="$n:$cB(IntPtr, Int32)" />
+      <method signature="[System]System.Collections.Generic.LinkedListNode`1&lt;[GameLogic]GameLogic.UIGroup/UIFormInfo&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_11679499(object, int)" newName="$CB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_11679499(Object, Int32)" newStackTraceSignature="$n:$CB(Object, Int32)" />
+      <method signature="[System]System.Collections.Generic.LinkedListNode`1&lt;[GameLogic]GameLogic.UIGroup/UIFormInfo&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_11679499(object, object, int)" newName="$dB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_11679499(Object, Object, Int32)" newStackTraceSignature="$n:$dB(Object, Object, Int32)" />
+      <method signature="System.Delegate $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_5763132(nint, int)" newName="$DB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_5763132(IntPtr, Int32)" newStackTraceSignature="$n:$DB(IntPtr, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_12091355(object, int)" newName="$eB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_12091355(Object, Int32)" newStackTraceSignature="$n:$eB(Object, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_19243_12091355(object, object, object, int, object, object, object, int)" newName="$EB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_19243_12091355(Object, Object, Object, Int32, Object, Object, Object, Int32)" newStackTraceSignature="$n:$EB(Object, Object, Object, Int32, Object, Object, Object, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_21712_12091355(object, object, object, object, int)" newName="$fB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_21712_12091355(Object, Object, Object, Object, Int32)" newStackTraceSignature="$n:$fB(Object, Object, Object, Object, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_12091355(nint, int)" newName="$FB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_12091355(IntPtr, Int32)" newStackTraceSignature="$n:$FB(IntPtr, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_34049_12091355(object, object, object, int, object, object, int)" newName="$gB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_34049_12091355(Object, Object, Object, Int32, Object, Object, Int32)" newStackTraceSignature="$n:$gB(Object, Object, Object, Int32, Object, Object, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_46378_12091355(int, int, int)" newName="$GB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_46378_12091355(Int32, Int32, Int32)" newStackTraceSignature="$n:$GB(Int32, Int32, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_48552_12091355(object, object, object, int, byte, object, int)" newName="$hB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_48552_12091355(Object, Object, Object, Int32, Byte, Object, Int32)" newStackTraceSignature="$n:$hB(Object, Object, Object, Int32, Byte, Object, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_50754_12091355(object, object, object, int)" newName="$HB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_50754_12091355(Object, Object, Object, Int32)" newStackTraceSignature="$n:$HB(Object, Object, Object, Int32)" />
+      <method signature="int $Obfuz$ProxyCall::@$Obfuz$Dispatch_7915_12091355(object, float, object, byte, int, int)" newName="$iB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_7915_12091355(Object, Single, Object, Byte, Int32, Int32)" newStackTraceSignature="$n:$iB(Object, Single, Object, Byte, Int32, Int32)" />
+      <method signature="System.Nullable`1&lt;int&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_12445_12608605(object, int, object, object, int)" newName="$IB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_12445_12608605(Object, Int32, Object, Object, Int32)" newStackTraceSignature="$n:$IB(Object, Int32, Object, Object, Int32)" />
+      <method signature="System.Nullable`1&lt;int&gt; $Obfuz$ProxyCall::@$Obfuz$Dispatch_45707_12608605(object, int, object, int)" newName="$jB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_45707_12608605(Object, Int32, Object, Int32)" newStackTraceSignature="$n:$jB(Object, Int32, Object, Int32)" />
+      <method signature="object $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_10087402(object, int)" newName="$JB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_10087402(Object, Int32)" newStackTraceSignature="$n:$JB(Object, Int32)" />
+      <method signature="object $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_10087402(object, object, int)" newName="$kB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_10087402(Object, Object, Int32)" newStackTraceSignature="$n:$kB(Object, Object, Int32)" />
+      <method signature="float $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_3119315(object, int)" newName="$KB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_3119315(Object, Int32)" newStackTraceSignature="$n:$KB(Object, Int32)" />
+      <method signature="float $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_3119315(int)" newName="$lB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_3119315(Int32)" newStackTraceSignature="$n:$lB(Int32)" />
+      <method signature="float $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_3119315(nint, int)" newName="$LB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_3119315(IntPtr, Int32)" newStackTraceSignature="$n:$LB(IntPtr, Int32)" />
+      <method signature="float $Obfuz$ProxyCall::@$Obfuz$Dispatch_37781_3119315(float, float, float, int)" newName="$mB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_37781_3119315(Single, Single, Single, Int32)" newStackTraceSignature="$n:$mB(Single, Single, Single, Int32)" />
+      <method signature="float $Obfuz$ProxyCall::@$Obfuz$Dispatch_47418_3119315(float, float, int)" newName="$MB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_47418_3119315(Single, Single, Int32)" newStackTraceSignature="$n:$MB(Single, Single, Int32)" />
+      <method signature="string $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_11558398(object, int)" newName="$nB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_11558398(Object, Int32)" newStackTraceSignature="$n:$nB(Object, Int32)" />
+      <method signature="string $Obfuz$ProxyCall::@$Obfuz$Dispatch_16665_11558398(object, object, int, object, int)" newName="$NB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_16665_11558398(Object, Object, Int32, Object, Int32)" newStackTraceSignature="$n:$NB(Object, Object, Int32, Object, Int32)" />
+      <method signature="string $Obfuz$ProxyCall::@$Obfuz$Dispatch_36215_11558398(object, object, byte, object, int)" newName="$oB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36215_11558398(Object, Object, Byte, Object, Int32)" newStackTraceSignature="$n:$oB(Object, Object, Byte, Object, Int32)" />
+      <method signature="string $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_11558398(object, object, int)" newName="$OB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_11558398(Object, Object, Int32)" newStackTraceSignature="$n:$OB(Object, Object, Int32)" />
+      <method signature="string $Obfuz$ProxyCall::@$Obfuz$Dispatch_45707_11558398(object, int, object, int)" newName="$pB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_45707_11558398(Object, Int32, Object, Int32)" newStackTraceSignature="$n:$pB(Object, Int32, Object, Int32)" />
+      <method signature="string $Obfuz$ProxyCall::@$Obfuz$Dispatch_50754_11558398(object, object, object, int)" newName="$PB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_50754_11558398(Object, Object, Object, Int32)" newStackTraceSignature="$n:$PB(Object, Object, Object, Int32)" />
+      <method signature="string $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_11558398(object, int, int)" newName="$qB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_11558398(Object, Int32, Int32)" newStackTraceSignature="$n:$qB(Object, Int32, Int32)" />
+      <method signature="string[] $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_10976701(object, int)" newName="$QB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_10976701(Object, Int32)" newStackTraceSignature="$n:$QB(Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_4780505(object, int)" newName="$rB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_4780505(Object, Int32)" newStackTraceSignature="$n:$rB(Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_12445_4780505(object, int, object, object, int)" newName="$RB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_12445_4780505(Object, Int32, Object, Object, Int32)" newStackTraceSignature="$n:$RB(Object, Int32, Object, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_12519_4780505(object, byte, int)" newName="$sB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_12519_4780505(Object, Byte, Int32)" newStackTraceSignature="$n:$sB(Object, Byte, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_19129_4780505(object, float, int)" newName="$SB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_19129_4780505(Object, Single, Int32)" newStackTraceSignature="$n:$SB(Object, Single, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_19188_4780505(nint, object, int)" newName="$tB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_19188_4780505(IntPtr, Object, Int32)" newStackTraceSignature="$n:$tB(IntPtr, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_21712_4780505(object, object, object, object, int)" newName="$TB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_21712_4780505(Object, Object, Object, Object, Int32)" newStackTraceSignature="$n:$TB(Object, Object, Object, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_21745_4780505(object, [UnityEngine.CoreModule]UnityEngine.Vector3, int)" newName="$uB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_21745_4780505(Object, Vector3, Int32)" newStackTraceSignature="$n:$uB(Object, Vector3, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_4780505(int)" newName="$UB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_4780505(Int32)" newStackTraceSignature="$n:$UB(Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_23431_4780505(object, object, [LFramework.Runtime]LFramework.ProcedureBase[], int)" newName="$vB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_23431_4780505(Object, Object, ProcedureBase[], Int32)" newStackTraceSignature="$n:$vB(Object, Object, ProcedureBase[], Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_26461_4780505(object, object, byte, int)" newName="$VB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_26461_4780505(Object, Object, Byte, Int32)" newStackTraceSignature="$n:$VB(Object, Object, Byte, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_4780505(nint, int)" newName="$wB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_4780505(IntPtr, Int32)" newStackTraceSignature="$n:$wB(IntPtr, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_30844_4780505(nint, nuint, nuint, int)" newName="$WB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_30844_4780505(IntPtr, UIntPtr, UIntPtr, Int32)" newStackTraceSignature="$n:$WB(IntPtr, UIntPtr, UIntPtr, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_32318_4780505(object, object, float, float, int)" newName="$xB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_32318_4780505(Object, Object, Single, Single, Int32)" newStackTraceSignature="$n:$xB(Object, Object, Single, Single, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_33071_4780505(object, object, float, int)" newName="$XB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_33071_4780505(Object, Object, Single, Int32)" newStackTraceSignature="$n:$XB(Object, Object, Single, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_33801_4780505(nint, int, int)" newName="$yB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_33801_4780505(IntPtr, Int32, Int32)" newStackTraceSignature="$n:$yB(IntPtr, Int32, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_36237_4780505(object, int, object, object, byte, byte, object, int)" newName="$YB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36237_4780505(Object, Int32, Object, Object, Byte, Byte, Object, Int32)" newStackTraceSignature="$n:$YB(Object, Int32, Object, Object, Byte, Byte, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_4780505(object, object, int)" newName="$zB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_4780505(Object, Object, Int32)" newStackTraceSignature="$n:$zB(Object, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_45077_4780505(object, object, int, object, object, object, int)" newName="$ZB" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_45077_4780505(Object, Object, Int32, Object, Object, Object, Int32)" newStackTraceSignature="$n:$ZB(Object, Object, Int32, Object, Object, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_45707_4780505(object, int, object, int)" newName="$ac" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_45707_4780505(Object, Int32, Object, Int32)" newStackTraceSignature="$n:$ac(Object, Int32, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_46009_4780505(object, object, byte, object, object, int)" newName="$Ac" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_46009_4780505(Object, Object, Byte, Object, Object, Int32)" newStackTraceSignature="$n:$Ac(Object, Object, Byte, Object, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_49762_4780505(object, int, object, object, object, byte, byte, float, object, int)" newName="$bc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_49762_4780505(Object, Int32, Object, Object, Object, Byte, Byte, Single, Object, Int32)" newStackTraceSignature="$n:$bc(Object, Int32, Object, Object, Object, Byte, Byte, Single, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_50190_4780505(object, byte, [UnityEngine.CoreModule]UnityEngine.Vector3, int)" newName="$Bc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_50190_4780505(Object, Byte, Vector3, Int32)" newStackTraceSignature="$n:$Bc(Object, Byte, Vector3, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_50754_4780505(object, object, object, int)" newName="$cc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_50754_4780505(Object, Object, Object, Int32)" newStackTraceSignature="$n:$cc(Object, Object, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_4780505(object, int, int)" newName="$Cc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_4780505(Object, Int32, Int32)" newStackTraceSignature="$n:$Cc(Object, Int32, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_57430_4780505(object, [UnityEngine.CoreModule]UnityEngine.Vector2, int)" newName="$dc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_57430_4780505(Object, Vector2, Int32)" newStackTraceSignature="$n:$dc(Object, Vector2, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_60320_4780505(object, int, int, int)" newName="$Dc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_60320_4780505(Object, Int32, Int32, Int32)" newStackTraceSignature="$n:$Dc(Object, Int32, Int32, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_61360_4780505(object, float, float, int)" newName="$ec" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_61360_4780505(Object, Single, Single, Int32)" newStackTraceSignature="$n:$ec(Object, Single, Single, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_61469_4780505(object, [UnityEngine.CoreModule]UnityEngine.Quaternion, int)" newName="$Ec" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_61469_4780505(Object, Quaternion, Int32)" newStackTraceSignature="$n:$Ec(Object, Quaternion, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_62955_4780505(object, object, object, byte, int)" newName="$fc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_62955_4780505(Object, Object, Object, Byte, Int32)" newStackTraceSignature="$n:$fc(Object, Object, Object, Byte, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_63447_4780505(nint, nuint, int)" newName="$Fc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_63447_4780505(IntPtr, UIntPtr, Int32)" newStackTraceSignature="$n:$Fc(IntPtr, UIntPtr, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_65257_4780505(object, byte, object, int)" newName="$gc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_65257_4780505(Object, Byte, Object, Int32)" newStackTraceSignature="$n:$gc(Object, Byte, Object, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_65367_4780505(object, object, int, int)" newName="$Gc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_65367_4780505(Object, Object, Int32, Int32)" newStackTraceSignature="$n:$Gc(Object, Object, Int32, Int32)" />
+      <method signature="void $Obfuz$ProxyCall::@$Obfuz$Dispatch_6999_4780505(object, object, object, float, object, int)" newName="$hc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_6999_4780505(Object, Object, Object, Single, Object, Int32)" newStackTraceSignature="$n:$hc(Object, Object, Object, Single, Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Bounds $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_21290(object, int)" newName="$Hc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_21290(Object, Int32)" newStackTraceSignature="$n:$Hc(Object, Int32)" />
+      <method signature="[UnityEngine.Physics2DModule]UnityEngine.BoxCollider2D $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_16565142(object, int)" newName="$ic" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_16565142(Object, Int32)" newStackTraceSignature="$n:$ic(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Camera $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_8674810(int)" newName="$Ic" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_8674810(Int32)" newStackTraceSignature="$n:$Ic(Int32)" />
+      <method signature="[UnityEngine.UIModule]UnityEngine.Canvas $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_14829071(object, int)" newName="$jc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_14829071(Object, Int32)" newStackTraceSignature="$n:$jc(Object, Int32)" />
+      <method signature="[UnityEngine.Physics2DModule]UnityEngine.Collider2D $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_13706585(object, int)" newName="$Jc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_13706585(Object, Int32)" newStackTraceSignature="$n:$Jc(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.GameObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_11979780(object, int)" newName="$kc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_11979780(Object, Int32)" newStackTraceSignature="$n:$kc(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.GameObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_26461_11979780(object, object, byte, int)" newName="$Kc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_26461_11979780(Object, Object, Byte, Int32)" newStackTraceSignature="$n:$Kc(Object, Object, Byte, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.GameObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_11979780(nint, int)" newName="$lc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_11979780(IntPtr, Int32)" newStackTraceSignature="$n:$lc(IntPtr, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.GameObject $Obfuz$ProxyCall::@$Obfuz$Dispatch_36812_11979780(object, object, int)" newName="$Lc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_36812_11979780(Object, Object, Int32)" newStackTraceSignature="$n:$Lc(Object, Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Object $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_11700658(object, int)" newName="$mc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_11700658(Object, Int32)" newStackTraceSignature="$n:$mc(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Quaternion $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_4455527(int)" newName="$Mc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_4455527(Int32)" newStackTraceSignature="$n:$Mc(Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.RectTransform $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_12743197(object, int)" newName="$nc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_12743197(Object, Int32)" newStackTraceSignature="$n:$nc(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.TextAsset $Obfuz$ProxyCall::@$Obfuz$Dispatch_50754_3944058(object, object, object, int)" newName="$Nc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_50754_3944058(Object, Object, Object, Int32)" newStackTraceSignature="$n:$Nc(Object, Object, Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Transform $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_11509251(object, int)" newName="$oc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_11509251(Object, Int32)" newStackTraceSignature="$n:$oc(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Transform $Obfuz$ProxyCall::@$Obfuz$Dispatch_51425_11509251(object, int, int)" newName="$Oc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_51425_11509251(Object, Int32, Int32)" newStackTraceSignature="$n:$Oc(Object, Int32, Int32)" />
+      <method signature="[UnityEngine.UI]UnityEngine.UI.GraphicRaycaster $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_14442081(object, int)" newName="$pc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_14442081(Object, Int32)" newStackTraceSignature="$n:$pc(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Vector2 $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_590508(int)" newName="$Pc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_590508(Int32)" newStackTraceSignature="$n:$Pc(Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Vector3 $Obfuz$ProxyCall::@$Obfuz$Dispatch_10578_590507([UnityEngine.CoreModule]UnityEngine.Vector3, float, int)" newName="$qc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_10578_590507(Vector3, Single, Int32)" newStackTraceSignature="$n:$qc(Vector3, Single, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Vector3 $Obfuz$ProxyCall::@$Obfuz$Dispatch_11150_590507(object, int)" newName="$Qc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_11150_590507(Object, Int32)" newStackTraceSignature="$n:$Qc(Object, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Vector3 $Obfuz$ProxyCall::@$Obfuz$Dispatch_13194_590507([UnityEngine.CoreModule]UnityEngine.Vector3, [UnityEngine.CoreModule]UnityEngine.Vector3, int)" newName="$rc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_13194_590507(Vector3, Vector3, Int32)" newStackTraceSignature="$n:$rc(Vector3, Vector3, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Vector3 $Obfuz$ProxyCall::@$Obfuz$Dispatch_21745_590507(object, [UnityEngine.CoreModule]UnityEngine.Vector3, int)" newName="$Rc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_21745_590507(Object, Vector3, Int32)" newStackTraceSignature="$n:$Rc(Object, Vector3, Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Vector3 $Obfuz$ProxyCall::@$Obfuz$Dispatch_22824_590507(int)" newName="$sc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_22824_590507(Int32)" newStackTraceSignature="$n:$sc(Int32)" />
+      <method signature="[UnityEngine.CoreModule]UnityEngine.Vector3 $Obfuz$ProxyCall::@$Obfuz$Dispatch_2966_590507(nint, int)" newName="$Sc" oldStackTraceSignature="$Obfuz$ProxyCall:$Obfuz$Dispatch_2966_590507(IntPtr, Int32)" newStackTraceSignature="$n:$Sc(IntPtr, Int32)" />
+    </type>
+    <type fullName="$Obfuz$RVA$0" newFullName="$m" status="Renamed">
+      <field signature="[GameLogic]$ObfuzRVA$DataHolder2048 $RVA_Data0" newName="$V" />
+      <field signature="byte[] $RVA_Value0" newName="$w" />
+      <field signature="[GameLogic]$ObfuzRVA$DataHolder2048 $RVA_Data1" newName="$W" />
+      <field signature="byte[] $RVA_Value1" newName="$x" />
+      <field signature="[GameLogic]$ObfuzRVA$DataHolder2048 $RVA_Data2" newName="$X" />
+      <field signature="byte[] $RVA_Value2" newName="$y" />
+    </type>
+    <type fullName="$ObfuzRVA$DataHolder2048" newFullName="$L" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;" newFullName="$N" status="Renamed">
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_6 $Obfuz$WatermarkDataHolderField6" newName="$zb" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize32_10 $Obfuz$WatermarkDataHolderField10" newName="$Zb" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_5 $Obfuz$WatermarkDataHolderField5" newName="$aB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_0 $Obfuz$WatermarkDataHolderField0" newName="$AB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_11 $Obfuz$WatermarkDataHolderField11" newName="$bB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize48_7 $Obfuz$WatermarkDataHolderField7" newName="$BB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_1 $Obfuz$WatermarkDataHolderField1" newName="$cB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_4 $Obfuz$WatermarkDataHolderField4" newName="$CB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_3 $Obfuz$WatermarkDataHolderField3" newName="$dB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_9 $Obfuz$WatermarkDataHolderField9" newName="$DB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_8 $Obfuz$WatermarkDataHolderField8" newName="$eB" />
+      <field signature="[GameLogic]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_2 $Obfuz$WatermarkDataHolderField2" newName="$EB" />
+    </type>
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_2" newFullName="$N/$p" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_5" newFullName="$N/$Q" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_9" newFullName="$N/$S" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize32_10" newFullName="$N/$t" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_1" newFullName="$N/$O" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_11" newFullName="$N/$T" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_4" newFullName="$N/$q" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_6" newFullName="$N/$r" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_8" newFullName="$N/$s" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_0" newFullName="$N/$o" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_3" newFullName="$N/$P" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize48_7" newFullName="$N/$R" status="Renamed" />
+    <type fullName="GameLogic.AssetUtility" newFullName="$a.$l" status="Renamed">
+      <method signature="string GameLogic.AssetUtility::@GetActorEffectAsset(string)" newName="$Z" oldStackTraceSignature="GameLogic.AssetUtility:GetActorEffectAsset(String)" newStackTraceSignature="$a.$l:$Z(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetActorMapAsset(string)" newName="$aA" oldStackTraceSignature="GameLogic.AssetUtility:GetActorMapAsset(String)" newStackTraceSignature="$a.$l:$aA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetActorRoleAsset(string)" newName="$AA" oldStackTraceSignature="GameLogic.AssetUtility:GetActorRoleAsset(String)" newStackTraceSignature="$a.$l:$AA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetAudioBgmAsset(string)" newName="$bA" oldStackTraceSignature="GameLogic.AssetUtility:GetAudioBgmAsset(String)" newStackTraceSignature="$a.$l:$bA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetAudioSoundAsset(string)" newName="$BA" oldStackTraceSignature="GameLogic.AssetUtility:GetAudioSoundAsset(String)" newStackTraceSignature="$a.$l:$BA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetAudioUISoundAsset(string)" newName="$cA" oldStackTraceSignature="GameLogic.AssetUtility:GetAudioUISoundAsset(String)" newStackTraceSignature="$a.$l:$cA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetDataTableAsset(string)" newName="$CA" oldStackTraceSignature="GameLogic.AssetUtility:GetDataTableAsset(String)" newStackTraceSignature="$a.$l:$CA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetDllAsset(string)" newName="$dA" oldStackTraceSignature="GameLogic.AssetUtility:GetDllAsset(String)" newStackTraceSignature="$a.$l:$dA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetFontAsset(string)" newName="$DA" oldStackTraceSignature="GameLogic.AssetUtility:GetFontAsset(String)" newStackTraceSignature="$a.$l:$DA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetSceneAsset(string)" newName="$eA" oldStackTraceSignature="GameLogic.AssetUtility:GetSceneAsset(String)" newStackTraceSignature="$a.$l:$eA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetSpriteMapAsset(string)" newName="$EA" oldStackTraceSignature="GameLogic.AssetUtility:GetSpriteMapAsset(String)" newStackTraceSignature="$a.$l:$EA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetSpriteRoleAsset(string)" newName="$fA" oldStackTraceSignature="GameLogic.AssetUtility:GetSpriteRoleAsset(String)" newStackTraceSignature="$a.$l:$fA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetSpriteUIAsset(string)" newName="$FA" oldStackTraceSignature="GameLogic.AssetUtility:GetSpriteUIAsset(String)" newStackTraceSignature="$a.$l:$FA(String)" />
+      <method signature="string GameLogic.AssetUtility::@GetUIFormAsset(string)" newName="$gA" oldStackTraceSignature="GameLogic.AssetUtility:GetUIFormAsset(String)" newStackTraceSignature="$a.$l:$gA(String)" />
+    </type>
+    <type fullName="GameLogic.AudioExtension" newFullName="$a.$a" status="Renamed">
+      <field signature="System.Nullable`1&lt;int&gt; _musicSerialId" newName="$a" />
+      <method signature="System.Nullable`1&lt;int&gt; GameLogic.AudioExtension::@PlayBgm([LFramework.Runtime]LFramework.IAudioManager, int, object)" newName="$a" oldStackTraceSignature="GameLogic.AudioExtension:PlayBgm(IAudioManager, Int32, Object)" newStackTraceSignature="$a.$a:$a(IAudioManager, Int32, Object)" />
+      <method signature="void GameLogic.AudioExtension::@StopBgm([LFramework.Runtime]LFramework.IAudioManager)" newName="$A" oldStackTraceSignature="GameLogic.AudioExtension:StopBgm(IAudioManager)" newStackTraceSignature="$a.$a:$A(IAudioManager)" />
+      <method signature="System.Nullable`1&lt;int&gt; GameLogic.AudioExtension::@PlaySound([LFramework.Runtime]LFramework.IAudioManager, int, [UnityEngine.CoreModule]UnityEngine.Transform, object)" newName="$b" oldStackTraceSignature="GameLogic.AudioExtension:PlaySound(IAudioManager, Int32, Transform, Object)" newStackTraceSignature="$a.$a:$b(IAudioManager, Int32, Transform, Object)" />
+      <method signature="System.Nullable`1&lt;int&gt; GameLogic.AudioExtension::@PlayUISound([LFramework.Runtime]LFramework.IAudioManager, int, object)" newName="$B" oldStackTraceSignature="GameLogic.AudioExtension:PlayUISound(IAudioManager, Int32, Object)" newStackTraceSignature="$a.$a:$B(IAudioManager, Int32, Object)" />
+      <method signature="bool GameLogic.AudioExtension::@IsMuted([LFramework.Runtime]LFramework.IAudioManager, string)" newName="$c" oldStackTraceSignature="GameLogic.AudioExtension:IsMuted(IAudioManager, String)" newStackTraceSignature="$a.$a:$c(IAudioManager, String)" />
+      <method signature="void GameLogic.AudioExtension::@Mute([LFramework.Runtime]LFramework.IAudioManager, string, bool)" newName="$C" oldStackTraceSignature="GameLogic.AudioExtension:Mute(IAudioManager, String, Boolean)" newStackTraceSignature="$a.$a:$C(IAudioManager, String, Boolean)" />
+      <method signature="float GameLogic.AudioExtension::@GetVolume([LFramework.Runtime]LFramework.IAudioManager, string)" newName="$d" oldStackTraceSignature="GameLogic.AudioExtension:GetVolume(IAudioManager, String)" newStackTraceSignature="$a.$a:$d(IAudioManager, String)" />
+      <method signature="void GameLogic.AudioExtension::@SetVolume([LFramework.Runtime]LFramework.IAudioManager, string, float)" newName="$D" oldStackTraceSignature="GameLogic.AudioExtension:SetVolume(IAudioManager, String, Single)" newStackTraceSignature="$a.$a:$D(IAudioManager, String, Single)" />
+    </type>
+    <type fullName="GameLogic.Constant" newFullName="$a.$h" status="Renamed" />
+    <type fullName="GameLogic.Constant/AssetPriority" newFullName="$a.$h/$H" status="Renamed" />
+    <type fullName="GameLogic.Constant/Layer" newFullName="$a.$h/$i" status="Renamed">
+      <field signature="int DefaultLayerId" newName="$i" />
+      <field signature="int UILayerId" newName="$I" />
+      <field signature="int PlayerLayerId" newName="$j" />
+      <field signature="int EnemyLayerId" newName="$J" />
+    </type>
+    <type fullName="GameLogic.Constant/Setting" newFullName="$a.$h/$I" status="Renamed">
+      <field signature="System.Collections.Generic.Dictionary`2&lt;string,int&gt; AudioGroupDict" newName="$k" />
+      <field signature="string[] UIGroupNames" newName="$K" />
+    </type>
+    <type fullName="GameLogic.EventContainer" newFullName="" status="NotRenamed">
+      <field signature="[LFramework.Runtime]LFramework.LFrameworkMultiDictionary`2&lt;int,System.Delegate&gt; _eventHandlerDict" newName="$A" />
+      <field signature="object &lt;Owner&gt;k__BackingField" newName="$b" />
+      <property signature="object Owner" newName="$a" />
+    </type>
+    <type fullName="GameLogic.EventGroupLogic" newFullName="$a.$j" status="Renamed">
+      <field signature="int FireClickId" newName="$l" />
+      <method signature="void GameLogic.EventGroupLogic::FireClick([GameLogic]GameLogic.EventGroupLogic)" newName="$x" oldStackTraceSignature="GameLogic.EventGroupLogic:FireClick()" newStackTraceSignature="$a.$j:$x()" />
+    </type>
+    <type fullName="GameLogic.EventGroupUI" newFullName="$a.$J" status="Renamed">
+      <field signature="int ReturnMenuId" newName="$L" />
+      <method signature="void GameLogic.EventGroupUI::ReturnMenu([GameLogic]GameLogic.EventGroupUI)" newName="$X" oldStackTraceSignature="GameLogic.EventGroupUI:ReturnMenu()" newStackTraceSignature="$a.$J:$X()" />
+    </type>
+    <type fullName="GameLogic.EventHelper" newFullName="$a.$k" status="Renamed">
+      <field signature="[GameLogic]GameLogic.EventGroupLogic _logic" newName="$m" />
+      <field signature="[GameLogic]GameLogic.EventGroupUI _ui" newName="$M" />
+      <method signature="void GameLogic.EventHelper::@OnInit()" newName="$y" oldStackTraceSignature="GameLogic.EventHelper:OnInit()" newStackTraceSignature="$a.$k:$y()" />
+      <method signature="void GameLogic.EventHelper::@OnDestroy()" newName="$Y" oldStackTraceSignature="GameLogic.EventHelper:OnDestroy()" newStackTraceSignature="$a.$k:$Y()" />
+    </type>
+    <type fullName="GameLogic.ISingleton" newFullName="$a.$c" status="Renamed" />
+    <type fullName="GameLogic.ISingletonManager" newFullName="$a.$d" status="Renamed" />
+    <type fullName="GameLogic.ISingletonUpdate" newFullName="$a.$C" status="Renamed">
+      <method signature="void GameLogic.ISingletonUpdate::OnUpdate([GameLogic]GameLogic.ISingletonUpdate, float, float)" newName="$qd" oldStackTraceSignature="GameLogic.ISingletonUpdate:OnUpdate(Single, Single)" newStackTraceSignature="$a.$C:$qd(Single, Single)" />
+    </type>
+    <type fullName="GameLogic.IUIForm" newFullName="$a.$e" status="Renamed">
+      <property signature="int SerialId" newName="$a" />
+      <property signature="string UIFormAssetName" newName="$A" />
+      <property signature="object Handle" newName="$b" />
+      <property signature="[GameLogic]GameLogic.IUIGroup UIGroup" newName="$B" />
+      <property signature="int DepthInUIGroup" newName="$c" />
+      <property signature="bool PauseCoveredUIForm" newName="$C" />
+      <property signature="[GameLogic]GameLogic.UIFormLogic Logic" newName="$d" />
+    </type>
+    <type fullName="GameLogic.IUIGroup" newFullName="$a.$E" status="Renamed">
+      <property signature="string Name" newName="$a" />
+      <property signature="int Depth" newName="$A" />
+      <property signature="bool Pause" newName="$b" />
+      <property signature="int UIFormCount" newName="$B" />
+      <property signature="[GameLogic]GameLogic.IUIForm CurrentUIForm" newName="$c" />
+    </type>
+    <type fullName="GameLogic.IUIManager" newFullName="$a.$f" status="Renamed">
+      <property signature="int UIGroupCount" newName="$a" />
+      <property signature="float InstanceAutoReleaseInterval" newName="$A" />
+      <property signature="int InstanceCapacity" newName="$b" />
+      <property signature="float InstanceExpireTime" newName="$B" />
+      <property signature="int InstancePriority" newName="$c" />
+    </type>
+    <type fullName="GameLogic.IUIRelease" newFullName="$a.$F" status="Renamed" />
+    <type fullName="GameLogic.ProcedureChangeScene" newFullName="" status="NotRenamed">
+      <field signature="string _changeToSceneName" newName="$n" />
+      <field signature="int _loadingId" newName="$N" />
+      <field signature="[GameLogic]GameLogic.LoadingForm _loadingForm" newName="$o" />
+      <field signature="bool _isChangeSceneComplete" newName="$O" />
+    </type>
+    <type fullName="GameLogic.ProcedureChangeScene/&lt;OpenLoadingForm&gt;d__7" newFullName="" status="NotRenamed">
+      <field signature="int &lt;&gt;1__state" newName="$p" />
+      <field signature="System.Runtime.CompilerServices.AsyncVoidMethodBuilder &lt;&gt;t__builder" newName="$P" />
+      <field signature="[GameLogic]GameLogic.ProcedureChangeScene &lt;&gt;4__this" newName="$q" />
+      <field signature="[LFramework.Runtime]LFramework.IFsm`1&lt;[LFramework.Runtime]LFramework.IProcedureManager&gt; procedureOwner" newName="$Q" />
+      <field signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1/Awaiter&lt;int&gt; &lt;&gt;u__1" newName="$r" />
+    </type>
+    <type fullName="GameLogic.ProcedureGame" newFullName="" status="NotRenamed">
+      <field signature="bool _isReturn" newName="$R" />
+    </type>
+    <type fullName="GameLogic.ProcedureGameLogicLaunch" newFullName="" status="NotRenamed">
+      <field signature="bool _isInitOver" newName="$s" />
+    </type>
+    <type fullName="GameLogic.ProcedureGameLogicLaunch/&lt;InitLocalization&gt;d__5" newFullName="" status="NotRenamed">
+      <field signature="int &lt;&gt;1__state" newName="$S" />
+      <field signature="System.Runtime.CompilerServices.AsyncVoidMethodBuilder &lt;&gt;t__builder" newName="$t" />
+      <field signature="[GameLogic]GameLogic.ProcedureGameLogicLaunch &lt;&gt;4__this" newName="$T" />
+      <field signature="[UniTask]Cysharp.Threading.Tasks.UniTask/Awaiter &lt;&gt;u__1" newName="$u" />
+    </type>
+    <type fullName="GameLogic.ProcedureLogin" newFullName="" status="NotRenamed">
+      <field signature="bool _loginSuccess" newName="$U" />
+    </type>
+    <type fullName="GameLogic.ProcedureMenu" newFullName="" status="NotRenamed">
+      <field signature="bool _startGame" newName="$v" />
+    </type>
+    <type fullName="GameLogic.ResourceContainer" newFullName="" status="NotRenamed">
+      <field signature="System.Collections.Generic.List`1&lt;[UnityEngine.CoreModule]UnityEngine.Object&gt; _assetList" newName="$B" />
+      <field signature="System.Threading.CancellationTokenSource _cancellationTokenSource" newName="$c" />
+      <field signature="object &lt;Owner&gt;k__BackingField" newName="$C" />
+      <property signature="object Owner" newName="$a" />
+    </type>
+    <type fullName="GameLogic.ResourceContainer/&lt;LoadAsset&gt;d__8`1" newFullName="" status="NotRenamed">
+      <field signature="int &lt;&gt;1__state" newName="$d" />
+      <field signature="[UniTask]Cysharp.Threading.Tasks.CompilerServices.AsyncUniTaskMethodBuilder`1&lt;!0&gt; &lt;&gt;t__builder" newName="$D" />
+      <field signature="[GameLogic]GameLogic.ResourceContainer &lt;&gt;4__this" newName="$e" />
+      <field signature="string assetName" newName="$E" />
+      <field signature="int priority" newName="$f" />
+      <field signature="string packageName" newName="$F" />
+      <field signature="[UniTask]Cysharp.Threading.Tasks.UniTask`1/Awaiter&lt;!0&gt; &lt;&gt;u__1" newName="$g" />
+    </type>
+    <type fullName="GameLogic.Singleton`1" newFullName="$a.$D`1" status="Renamed">
+      <field signature="!0 _instance" newName="$G" />
+      <property signature="!0 Instance" newName="$a" />
+      <method signature="!0 GameLogic.Singleton`1::@get_Instance()" newName="$k" oldStackTraceSignature="GameLogic.Singleton`1:get_Instance()" newStackTraceSignature="$a.$D`1:$k()" />
+      <method signature="void GameLogic.Singleton`1::Init([GameLogic]GameLogic.Singleton`1&lt;!0&gt;)" newName="$K" oldStackTraceSignature="GameLogic.Singleton`1:Init()" newStackTraceSignature="$a.$D`1:$K()" />
+      <method signature="void GameLogic.Singleton`1::OnInit([GameLogic]GameLogic.Singleton`1&lt;!0&gt;)" newName="$Qd" oldStackTraceSignature="GameLogic.Singleton`1:OnInit()" newStackTraceSignature="$a.$D`1:$Qd()" />
+      <method signature="void GameLogic.Singleton`1::OnRelease([GameLogic]GameLogic.Singleton`1&lt;!0&gt;)" newName="$rd" oldStackTraceSignature="GameLogic.Singleton`1:OnRelease()" newStackTraceSignature="$a.$D`1:$rd()" />
+    </type>
+    <type fullName="GameLogic.UIExtension" newFullName="$a.$g" status="Renamed">
+      <method signature="bool GameLogic.UIExtension::@HasUIForm([GameLogic]GameLogic.IUIManager, int, string)" newName="$l" oldStackTraceSignature="GameLogic.UIExtension:HasUIForm(IUIManager, Int32, String)" newStackTraceSignature="$a.$g:$l($f, Int32, String)" />
+      <method signature="[GameLogic]GameLogic.UIForm GameLogic.UIExtension::@GetUIForm([GameLogic]GameLogic.IUIManager, int, string)" newName="$L" oldStackTraceSignature="GameLogic.UIExtension:GetUIForm(IUIManager, Int32, String)" newStackTraceSignature="$a.$g:$L($f, Int32, String)" />
+      <method signature="void GameLogic.UIExtension::@CloseUIForm([GameLogic]GameLogic.UIComponent, [GameLogic]GameLogic.UguiForm)" newName="$m" oldStackTraceSignature="GameLogic.UIExtension:CloseUIForm(UIComponent, UguiForm)" newStackTraceSignature="$a.$g:$m(UIComponent, UguiForm)" />
+      <method signature="System.Nullable`1&lt;int&gt; GameLogic.UIExtension::@OpenUIForm([GameLogic]GameLogic.IUIManager, int, object)" newName="$M" oldStackTraceSignature="GameLogic.UIExtension:OpenUIForm(IUIManager, Int32, Object)" newStackTraceSignature="$a.$g:$M($f, Int32, Object)" />
+    </type>
+    <type fullName="GameLogic.UIWidgetContainer" newFullName="" status="NotRenamed">
+      <field signature="System.Collections.Generic.List`1&lt;[GameLogic]GameLogic.UIWidget&gt; _uiWidgets" newName="$h" />
+      <field signature="[GameLogic]GameLogic.UguiForm &lt;Owner&gt;k__BackingField" newName="$H" />
+      <property signature="System.Collections.Generic.List`1&lt;[GameLogic]GameLogic.UIWidget&gt; UIWidgets" newName="$a" />
+      <property signature="[GameLogic]GameLogic.UguiForm Owner" newName="$A" />
+    </type>
+  </assembly>
+  <assembly name="Obfuz.Runtime">
+    <type fullName="&lt;PrivateImplementationDetails&gt;" newFullName="$AA" status="Renamed">
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_6 $Obfuz$WatermarkDataHolderField6" newName="$hB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize32_10 $Obfuz$WatermarkDataHolderField10" newName="$HB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_5 $Obfuz$WatermarkDataHolderField5" newName="$iB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_0 $Obfuz$WatermarkDataHolderField0" newName="$IB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_11 $Obfuz$WatermarkDataHolderField11" newName="$jB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize48_7 $Obfuz$WatermarkDataHolderField7" newName="$JB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_1 $Obfuz$WatermarkDataHolderField1" newName="$kB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_4 $Obfuz$WatermarkDataHolderField4" newName="$KB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_3 $Obfuz$WatermarkDataHolderField3" newName="$lB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_9 $Obfuz$WatermarkDataHolderField9" newName="$LB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_8 $Obfuz$WatermarkDataHolderField8" newName="$mB" />
+      <field signature="[Obfuz.Runtime]&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_2 $Obfuz$WatermarkDataHolderField2" newName="$MB" />
+    </type>
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_2" newFullName="$AA/$cA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_5" newFullName="$AA/$DA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize28_9" newFullName="$AA/$FA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize32_10" newFullName="$AA/$gA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_1" newFullName="$AA/$BA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_11" newFullName="$AA/$GA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_4" newFullName="$AA/$dA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_6" newFullName="$AA/$eA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize36_8" newFullName="$AA/$fA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_0" newFullName="$AA/$bA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize44_3" newFullName="$AA/$CA" status="Renamed" />
+    <type fullName="&lt;PrivateImplementationDetails&gt;/$Obfuz$WatermarkDataHolderSize48_7" newFullName="$AA/$EA" status="Renamed" />
+    <type fullName="Obfuz.AssertUtility" newFullName="$A.$u" status="Renamed">
+      <method signature="void Obfuz.AssertUtility::@VerifySecretKey(int, int)" newName="$tc" oldStackTraceSignature="Obfuz.AssertUtility:VerifySecretKey(Int32, Int32)" newStackTraceSignature="$A.$u:$tc(Int32, Int32)" />
+    </type>
+    <type fullName="Obfuz.ConstUtility" newFullName="$A.$U" status="Renamed">
+      <method signature="int Obfuz.ConstUtility::@GetInt(byte[], int)" newName="$Tc" oldStackTraceSignature="Obfuz.ConstUtility:GetInt(Byte[], Int32)" newStackTraceSignature="$A.$U:$Tc(Byte[], Int32)" />
+      <method signature="long Obfuz.ConstUtility::@GetLong(byte[], int)" newName="$uc" oldStackTraceSignature="Obfuz.ConstUtility:GetLong(Byte[], Int32)" newStackTraceSignature="$A.$U:$uc(Byte[], Int32)" />
+      <method signature="float Obfuz.ConstUtility::@GetFloat(byte[], int)" newName="$Uc" oldStackTraceSignature="Obfuz.ConstUtility:GetFloat(Byte[], Int32)" newStackTraceSignature="$A.$U:$Uc(Byte[], Int32)" />
+      <method signature="double Obfuz.ConstUtility::@GetDouble(byte[], int)" newName="$vc" oldStackTraceSignature="Obfuz.ConstUtility:GetDouble(Byte[], Int32)" newStackTraceSignature="$A.$U:$vc(Byte[], Int32)" />
+      <method signature="string Obfuz.ConstUtility::@GetString(byte[], int, int)" newName="$Vc" oldStackTraceSignature="Obfuz.ConstUtility:GetString(Byte[], Int32, Int32)" newStackTraceSignature="$A.$U:$Vc(Byte[], Int32, Int32)" />
+      <method signature="byte[] Obfuz.ConstUtility::@GetBytes(byte[], int, int)" newName="$wc" oldStackTraceSignature="Obfuz.ConstUtility:GetBytes(Byte[], Int32, Int32)" newStackTraceSignature="$A.$U:$wc(Byte[], Int32, Int32)" />
+      <method signature="int[] Obfuz.ConstUtility::@GetInts(byte[], int, int)" newName="$Wc" oldStackTraceSignature="Obfuz.ConstUtility:GetInts(Byte[], Int32, Int32)" newStackTraceSignature="$A.$U:$Wc(Byte[], Int32, Int32)" />
+      <method signature="void Obfuz.ConstUtility::@InitializeArray(System.Array, byte[], int, int)" newName="$xc" oldStackTraceSignature="Obfuz.ConstUtility:InitializeArray(Array, Byte[], Int32, Int32)" newStackTraceSignature="$A.$U:$xc(Array, Byte[], Int32, Int32)" />
+      <method signature="int Obfuz.ConstUtility::@CastFloatAsInt(float)" newName="$Xc" oldStackTraceSignature="Obfuz.ConstUtility:CastFloatAsInt(Single)" newStackTraceSignature="$A.$U:$Xc(Single)" />
+      <method signature="float Obfuz.ConstUtility::@CastIntAsFloat(int)" newName="$yc" oldStackTraceSignature="Obfuz.ConstUtility:CastIntAsFloat(Int32)" newStackTraceSignature="$A.$U:$yc(Int32)" />
+      <method signature="long Obfuz.ConstUtility::@CastDoubleAsLong(double)" newName="$Yc" oldStackTraceSignature="Obfuz.ConstUtility:CastDoubleAsLong(Double)" newStackTraceSignature="$A.$U:$Yc(Double)" />
+      <method signature="double Obfuz.ConstUtility::@CastLongAsDouble(long)" newName="$zc" oldStackTraceSignature="Obfuz.ConstUtility:CastLongAsDouble(Int64)" newStackTraceSignature="$A.$U:$zc(Int64)" />
+    </type>
+    <type fullName="Obfuz.DefaultDynamicEncryptionScope" newFullName="$A.$w" status="Renamed">
+      <method signature="void Obfuz.DefaultDynamicEncryptionScope::ForcePreserveAOT([Obfuz.Runtime]Obfuz.DefaultDynamicEncryptionScope&amp;)" newName="$aC" oldStackTraceSignature="Obfuz.DefaultDynamicEncryptionScope:ForcePreserveAOT()" newStackTraceSignature="$A.$w:$aC()" />
+    </type>
+    <type fullName="Obfuz.DefaultStaticEncryptionScope" newFullName="$A.$W" status="Renamed">
+      <method signature="void Obfuz.DefaultStaticEncryptionScope::ForcePreserveAOT([Obfuz.Runtime]Obfuz.DefaultStaticEncryptionScope&amp;)" newName="$AC" oldStackTraceSignature="Obfuz.DefaultStaticEncryptionScope:ForcePreserveAOT()" newStackTraceSignature="$A.$W:$AC()" />
+    </type>
+    <type fullName="Obfuz.EncryptionScopeBase" newFullName="$A.$V" status="Renamed">
+      <method signature="void Obfuz.EncryptionScopeBase::ForcePreserveAOT([Obfuz.Runtime]Obfuz.EncryptionScopeBase)" newName="$Zc" oldStackTraceSignature="Obfuz.EncryptionScopeBase:ForcePreserveAOT()" newStackTraceSignature="$A.$V:$Zc()" />
+    </type>
+    <type fullName="Obfuz.EncryptionService`1" newFullName="$A.$x`1" status="Renamed">
+      <field signature="[Obfuz.Runtime]Obfuz.IEncryptor _encryptor" newName="$fB" />
+      <property signature="[Obfuz.Runtime]Obfuz.IEncryptor Encryptor" newName="$a" />
+      <method signature="[Obfuz.Runtime]Obfuz.IEncryptor Obfuz.EncryptionService`1::@get_Encryptor()" newName="$bC" oldStackTraceSignature="Obfuz.EncryptionService`1:get_Encryptor()" newStackTraceSignature="$A.$x`1:$bC()" />
+      <method signature="void Obfuz.EncryptionService`1::@set_Encryptor([Obfuz.Runtime]Obfuz.IEncryptor)" newName="$BC" oldStackTraceSignature="Obfuz.EncryptionService`1:set_Encryptor(IEncryptor)" newStackTraceSignature="$A.$x`1:$BC($Y)" />
+      <method signature="void Obfuz.EncryptionService`1::@EncryptBlock(byte[], int, int)" newName="$cC" oldStackTraceSignature="Obfuz.EncryptionService`1:EncryptBlock(Byte[], Int32, Int32)" newStackTraceSignature="$A.$x`1:$cC(Byte[], Int32, Int32)" />
+      <method signature="void Obfuz.EncryptionService`1::@DecryptBlock(byte[], int, int)" newName="$CC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptBlock(Byte[], Int32, Int32)" newStackTraceSignature="$A.$x`1:$CC(Byte[], Int32, Int32)" />
+      <method signature="int Obfuz.EncryptionService`1::@Encrypt(int, int, int)" newName="$dC" oldStackTraceSignature="Obfuz.EncryptionService`1:Encrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$dC(Int32, Int32, Int32)" />
+      <method signature="int Obfuz.EncryptionService`1::@Decrypt(int, int, int)" newName="$DC" oldStackTraceSignature="Obfuz.EncryptionService`1:Decrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$DC(Int32, Int32, Int32)" />
+      <method signature="long Obfuz.EncryptionService`1::@Encrypt(long, int, int)" newName="$eC" oldStackTraceSignature="Obfuz.EncryptionService`1:Encrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$x`1:$eC(Int64, Int32, Int32)" />
+      <method signature="long Obfuz.EncryptionService`1::@Decrypt(long, int, int)" newName="$EC" oldStackTraceSignature="Obfuz.EncryptionService`1:Decrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$x`1:$EC(Int64, Int32, Int32)" />
+      <method signature="float Obfuz.EncryptionService`1::@Encrypt(float, int, int)" newName="$fC" oldStackTraceSignature="Obfuz.EncryptionService`1:Encrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$x`1:$fC(Single, Int32, Int32)" />
+      <method signature="float Obfuz.EncryptionService`1::@Decrypt(float, int, int)" newName="$FC" oldStackTraceSignature="Obfuz.EncryptionService`1:Decrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$x`1:$FC(Single, Int32, Int32)" />
+      <method signature="double Obfuz.EncryptionService`1::@Encrypt(double, int, int)" newName="$gC" oldStackTraceSignature="Obfuz.EncryptionService`1:Encrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$x`1:$gC(Double, Int32, Int32)" />
+      <method signature="double Obfuz.EncryptionService`1::@Decrypt(double, int, int)" newName="$GC" oldStackTraceSignature="Obfuz.EncryptionService`1:Decrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$x`1:$GC(Double, Int32, Int32)" />
+      <method signature="byte[] Obfuz.EncryptionService`1::@Encrypt(byte[], int, int, int, int)" newName="$hC" oldStackTraceSignature="Obfuz.EncryptionService`1:Encrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$hC(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.EncryptionService`1::@Decrypt(byte[], int, int, int, int)" newName="$HC" oldStackTraceSignature="Obfuz.EncryptionService`1:Decrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$HC(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.EncryptionService`1::@Encrypt(string, int, int)" newName="$iC" oldStackTraceSignature="Obfuz.EncryptionService`1:Encrypt(String, Int32, Int32)" newStackTraceSignature="$A.$x`1:$iC(String, Int32, Int32)" />
+      <method signature="string Obfuz.EncryptionService`1::@DecryptString(byte[], int, int, int, int)" newName="$IC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptString(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$IC(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="int Obfuz.EncryptionService`1::@DecryptFromRvaInt(byte[], int, int, int)" newName="$jC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptFromRvaInt(Byte[], Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$jC(Byte[], Int32, Int32, Int32)" />
+      <method signature="long Obfuz.EncryptionService`1::@DecryptFromRvaLong(byte[], int, int, int)" newName="$JC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptFromRvaLong(Byte[], Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$JC(Byte[], Int32, Int32, Int32)" />
+      <method signature="float Obfuz.EncryptionService`1::@DecryptFromRvaFloat(byte[], int, int, int)" newName="$kC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptFromRvaFloat(Byte[], Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$kC(Byte[], Int32, Int32, Int32)" />
+      <method signature="double Obfuz.EncryptionService`1::@DecryptFromRvaDouble(byte[], int, int, int)" newName="$KC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptFromRvaDouble(Byte[], Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$KC(Byte[], Int32, Int32, Int32)" />
+      <method signature="string Obfuz.EncryptionService`1::@DecryptFromRvaString(byte[], int, int, int, int)" newName="$lC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptFromRvaString(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$lC(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.EncryptionService`1::@DecryptFromRvaBytes(byte[], int, int, int, int)" newName="$LC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptFromRvaBytes(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$LC(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="void Obfuz.EncryptionService`1::@DecryptInitializeArray(System.Array, System.RuntimeFieldHandle, int, int, int)" newName="$mC" oldStackTraceSignature="Obfuz.EncryptionService`1:DecryptInitializeArray(Array, RuntimeFieldHandle, Int32, Int32, Int32)" newStackTraceSignature="$A.$x`1:$mC(Array, RuntimeFieldHandle, Int32, Int32, Int32)" />
+    </type>
+    <type fullName="Obfuz.EncryptorBase" newFullName="$A.$X" status="Renamed">
+      <property signature="int OpCodeCount" newName="$a" />
+      <method signature="int Obfuz.EncryptorBase::get_OpCodeCount([Obfuz.Runtime]Obfuz.EncryptorBase)" newName="$Sd" oldStackTraceSignature="Obfuz.EncryptorBase:get_OpCodeCount()" newStackTraceSignature="$A.$X:$Sd()" />
+      <method signature="int[] Obfuz.EncryptorBase::@ConvertToIntKey(byte[])" newName="$MC" oldStackTraceSignature="Obfuz.EncryptorBase:ConvertToIntKey(Byte[])" newStackTraceSignature="$A.$X:$MC(Byte[])" />
+      <method signature="int Obfuz.EncryptorBase::Encrypt([Obfuz.Runtime]Obfuz.EncryptorBase, int, int, int)" newName="$td" oldStackTraceSignature="Obfuz.EncryptorBase:Encrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$X:$td(Int32, Int32, Int32)" />
+      <method signature="int Obfuz.EncryptorBase::Decrypt([Obfuz.Runtime]Obfuz.EncryptorBase, int, int, int)" newName="$Td" oldStackTraceSignature="Obfuz.EncryptorBase:Decrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$X:$Td(Int32, Int32, Int32)" />
+      <method signature="long Obfuz.EncryptorBase::Encrypt([Obfuz.Runtime]Obfuz.EncryptorBase, long, int, int)" newName="$ud" oldStackTraceSignature="Obfuz.EncryptorBase:Encrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$X:$ud(Int64, Int32, Int32)" />
+      <method signature="long Obfuz.EncryptorBase::Decrypt([Obfuz.Runtime]Obfuz.EncryptorBase, long, int, int)" newName="$Ud" oldStackTraceSignature="Obfuz.EncryptorBase:Decrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$X:$Ud(Int64, Int32, Int32)" />
+      <method signature="float Obfuz.EncryptorBase::Encrypt([Obfuz.Runtime]Obfuz.EncryptorBase, float, int, int)" newName="$vd" oldStackTraceSignature="Obfuz.EncryptorBase:Encrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$X:$vd(Single, Int32, Int32)" />
+      <method signature="float Obfuz.EncryptorBase::Decrypt([Obfuz.Runtime]Obfuz.EncryptorBase, float, int, int)" newName="$Vd" oldStackTraceSignature="Obfuz.EncryptorBase:Decrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$X:$Vd(Single, Int32, Int32)" />
+      <method signature="double Obfuz.EncryptorBase::Encrypt([Obfuz.Runtime]Obfuz.EncryptorBase, double, int, int)" newName="$wd" oldStackTraceSignature="Obfuz.EncryptorBase:Encrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$X:$wd(Double, Int32, Int32)" />
+      <method signature="double Obfuz.EncryptorBase::Decrypt([Obfuz.Runtime]Obfuz.EncryptorBase, double, int, int)" newName="$Wd" oldStackTraceSignature="Obfuz.EncryptorBase:Decrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$X:$Wd(Double, Int32, Int32)" />
+      <method signature="byte[] Obfuz.EncryptorBase::Encrypt([Obfuz.Runtime]Obfuz.EncryptorBase, byte[], int, int, int, int)" newName="$xd" oldStackTraceSignature="Obfuz.EncryptorBase:Encrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$X:$xd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.EncryptorBase::Decrypt([Obfuz.Runtime]Obfuz.EncryptorBase, byte[], int, int, int, int)" newName="$Xd" oldStackTraceSignature="Obfuz.EncryptorBase:Decrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$X:$Xd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.EncryptorBase::Encrypt([Obfuz.Runtime]Obfuz.EncryptorBase, string, int, int)" newName="$yd" oldStackTraceSignature="Obfuz.EncryptorBase:Encrypt(String, Int32, Int32)" newStackTraceSignature="$A.$X:$yd(String, Int32, Int32)" />
+      <method signature="string Obfuz.EncryptorBase::DecryptString([Obfuz.Runtime]Obfuz.EncryptorBase, byte[], int, int, int, int)" newName="$Yd" oldStackTraceSignature="Obfuz.EncryptorBase:DecryptString(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$X:$Yd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="void Obfuz.EncryptorBase::EncryptBlock([Obfuz.Runtime]Obfuz.EncryptorBase, byte[], int, int)" newName="$zd" oldStackTraceSignature="Obfuz.EncryptorBase:EncryptBlock(Byte[], Int32, Int32)" newStackTraceSignature="$A.$X:$zd(Byte[], Int32, Int32)" />
+      <method signature="void Obfuz.EncryptorBase::DecryptBlock([Obfuz.Runtime]Obfuz.EncryptorBase, byte[], int, int)" newName="$Zd" oldStackTraceSignature="Obfuz.EncryptorBase:DecryptBlock(Byte[], Int32, Int32)" newStackTraceSignature="$A.$X:$Zd(Byte[], Int32, Int32)" />
+      <method signature="void Obfuz.EncryptorBase::DecryptBlock([Obfuz.Runtime]Obfuz.EncryptorBase, byte*, int, int, int)" newName="$nC" oldStackTraceSignature="Obfuz.EncryptorBase:DecryptBlock(Byte*, Int32, Int32, Int32)" newStackTraceSignature="$A.$X:$nC(Byte*, Int32, Int32, Int32)" />
+      <method signature="void Obfuz.EncryptorBase::DecryptInitializeArray([Obfuz.Runtime]Obfuz.EncryptorBase, System.Array, System.RuntimeFieldHandle, int, int, int)" newName="$aD" oldStackTraceSignature="Obfuz.EncryptorBase:DecryptInitializeArray(Array, RuntimeFieldHandle, Int32, Int32, Int32)" newStackTraceSignature="$A.$X:$aD(Array, RuntimeFieldHandle, Int32, Int32, Int32)" />
+    </type>
+    <type fullName="Obfuz.ExprUtility" newFullName="$A.$y" status="Renamed">
+      <method signature="int Obfuz.ExprUtility::@Add(int, int)" newName="$NC" oldStackTraceSignature="Obfuz.ExprUtility:Add(Int32, Int32)" newStackTraceSignature="$A.$y:$NC(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Add(long, long)" newName="$oC" oldStackTraceSignature="Obfuz.ExprUtility:Add(Int64, Int64)" newStackTraceSignature="$A.$y:$oC(Int64, Int64)" />
+      <method signature="float Obfuz.ExprUtility::@Add(float, float)" newName="$OC" oldStackTraceSignature="Obfuz.ExprUtility:Add(Single, Single)" newStackTraceSignature="$A.$y:$OC(Single, Single)" />
+      <method signature="double Obfuz.ExprUtility::@Add(double, double)" newName="$pC" oldStackTraceSignature="Obfuz.ExprUtility:Add(Double, Double)" newStackTraceSignature="$A.$y:$pC(Double, Double)" />
+      <method signature="nint Obfuz.ExprUtility::@Add(nint, nint)" newName="$PC" oldStackTraceSignature="Obfuz.ExprUtility:Add(IntPtr, IntPtr)" newStackTraceSignature="$A.$y:$PC(IntPtr, IntPtr)" />
+      <method signature="nint Obfuz.ExprUtility::@Add(nint, int)" newName="$qC" oldStackTraceSignature="Obfuz.ExprUtility:Add(IntPtr, Int32)" newStackTraceSignature="$A.$y:$qC(IntPtr, Int32)" />
+      <method signature="int Obfuz.ExprUtility::@Subtract(int, int)" newName="$QC" oldStackTraceSignature="Obfuz.ExprUtility:Subtract(Int32, Int32)" newStackTraceSignature="$A.$y:$QC(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Subtract(long, long)" newName="$rC" oldStackTraceSignature="Obfuz.ExprUtility:Subtract(Int64, Int64)" newStackTraceSignature="$A.$y:$rC(Int64, Int64)" />
+      <method signature="float Obfuz.ExprUtility::@Subtract(float, float)" newName="$RC" oldStackTraceSignature="Obfuz.ExprUtility:Subtract(Single, Single)" newStackTraceSignature="$A.$y:$RC(Single, Single)" />
+      <method signature="double Obfuz.ExprUtility::@Subtract(double, double)" newName="$sC" oldStackTraceSignature="Obfuz.ExprUtility:Subtract(Double, Double)" newStackTraceSignature="$A.$y:$sC(Double, Double)" />
+      <method signature="nint Obfuz.ExprUtility::@Subtract(nint, nint)" newName="$SC" oldStackTraceSignature="Obfuz.ExprUtility:Subtract(IntPtr, IntPtr)" newStackTraceSignature="$A.$y:$SC(IntPtr, IntPtr)" />
+      <method signature="nint Obfuz.ExprUtility::@Subtract(nint, int)" newName="$tC" oldStackTraceSignature="Obfuz.ExprUtility:Subtract(IntPtr, Int32)" newStackTraceSignature="$A.$y:$tC(IntPtr, Int32)" />
+      <method signature="int Obfuz.ExprUtility::@Multiply(int, int)" newName="$TC" oldStackTraceSignature="Obfuz.ExprUtility:Multiply(Int32, Int32)" newStackTraceSignature="$A.$y:$TC(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Multiply(long, long)" newName="$uC" oldStackTraceSignature="Obfuz.ExprUtility:Multiply(Int64, Int64)" newStackTraceSignature="$A.$y:$uC(Int64, Int64)" />
+      <method signature="float Obfuz.ExprUtility::@Multiply(float, float)" newName="$UC" oldStackTraceSignature="Obfuz.ExprUtility:Multiply(Single, Single)" newStackTraceSignature="$A.$y:$UC(Single, Single)" />
+      <method signature="double Obfuz.ExprUtility::@Multiply(double, double)" newName="$vC" oldStackTraceSignature="Obfuz.ExprUtility:Multiply(Double, Double)" newStackTraceSignature="$A.$y:$vC(Double, Double)" />
+      <method signature="nint Obfuz.ExprUtility::@Multiply(nint, nint)" newName="$VC" oldStackTraceSignature="Obfuz.ExprUtility:Multiply(IntPtr, IntPtr)" newStackTraceSignature="$A.$y:$VC(IntPtr, IntPtr)" />
+      <method signature="nint Obfuz.ExprUtility::@Multiply(nint, int)" newName="$wC" oldStackTraceSignature="Obfuz.ExprUtility:Multiply(IntPtr, Int32)" newStackTraceSignature="$A.$y:$wC(IntPtr, Int32)" />
+      <method signature="int Obfuz.ExprUtility::@Divide(int, int)" newName="$WC" oldStackTraceSignature="Obfuz.ExprUtility:Divide(Int32, Int32)" newStackTraceSignature="$A.$y:$WC(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Divide(long, long)" newName="$xC" oldStackTraceSignature="Obfuz.ExprUtility:Divide(Int64, Int64)" newStackTraceSignature="$A.$y:$xC(Int64, Int64)" />
+      <method signature="float Obfuz.ExprUtility::@Divide(float, float)" newName="$XC" oldStackTraceSignature="Obfuz.ExprUtility:Divide(Single, Single)" newStackTraceSignature="$A.$y:$XC(Single, Single)" />
+      <method signature="double Obfuz.ExprUtility::@Divide(double, double)" newName="$yC" oldStackTraceSignature="Obfuz.ExprUtility:Divide(Double, Double)" newStackTraceSignature="$A.$y:$yC(Double, Double)" />
+      <method signature="int Obfuz.ExprUtility::@DivideUn(int, int)" newName="$YC" oldStackTraceSignature="Obfuz.ExprUtility:DivideUn(Int32, Int32)" newStackTraceSignature="$A.$y:$YC(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@DivideUn(long, long)" newName="$zC" oldStackTraceSignature="Obfuz.ExprUtility:DivideUn(Int64, Int64)" newStackTraceSignature="$A.$y:$zC(Int64, Int64)" />
+      <method signature="int Obfuz.ExprUtility::@Rem(int, int)" newName="$ZC" oldStackTraceSignature="Obfuz.ExprUtility:Rem(Int32, Int32)" newStackTraceSignature="$A.$y:$ZC(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Rem(long, long)" newName="$ad" oldStackTraceSignature="Obfuz.ExprUtility:Rem(Int64, Int64)" newStackTraceSignature="$A.$y:$ad(Int64, Int64)" />
+      <method signature="float Obfuz.ExprUtility::@Rem(float, float)" newName="$Ad" oldStackTraceSignature="Obfuz.ExprUtility:Rem(Single, Single)" newStackTraceSignature="$A.$y:$Ad(Single, Single)" />
+      <method signature="double Obfuz.ExprUtility::@Rem(double, double)" newName="$bd" oldStackTraceSignature="Obfuz.ExprUtility:Rem(Double, Double)" newStackTraceSignature="$A.$y:$bd(Double, Double)" />
+      <method signature="int Obfuz.ExprUtility::@RemUn(int, int)" newName="$Bd" oldStackTraceSignature="Obfuz.ExprUtility:RemUn(Int32, Int32)" newStackTraceSignature="$A.$y:$Bd(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@RemUn(long, long)" newName="$cd" oldStackTraceSignature="Obfuz.ExprUtility:RemUn(Int64, Int64)" newStackTraceSignature="$A.$y:$cd(Int64, Int64)" />
+      <method signature="int Obfuz.ExprUtility::@Negate(int)" newName="$Cd" oldStackTraceSignature="Obfuz.ExprUtility:Negate(Int32)" newStackTraceSignature="$A.$y:$Cd(Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Negate(long)" newName="$dd" oldStackTraceSignature="Obfuz.ExprUtility:Negate(Int64)" newStackTraceSignature="$A.$y:$dd(Int64)" />
+      <method signature="float Obfuz.ExprUtility::@Negate(float)" newName="$Dd" oldStackTraceSignature="Obfuz.ExprUtility:Negate(Single)" newStackTraceSignature="$A.$y:$Dd(Single)" />
+      <method signature="double Obfuz.ExprUtility::@Negate(double)" newName="$ed" oldStackTraceSignature="Obfuz.ExprUtility:Negate(Double)" newStackTraceSignature="$A.$y:$ed(Double)" />
+      <method signature="int Obfuz.ExprUtility::@And(int, int)" newName="$Ed" oldStackTraceSignature="Obfuz.ExprUtility:And(Int32, Int32)" newStackTraceSignature="$A.$y:$Ed(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@And(long, long)" newName="$fd" oldStackTraceSignature="Obfuz.ExprUtility:And(Int64, Int64)" newStackTraceSignature="$A.$y:$fd(Int64, Int64)" />
+      <method signature="int Obfuz.ExprUtility::@Or(int, int)" newName="$Fd" oldStackTraceSignature="Obfuz.ExprUtility:Or(Int32, Int32)" newStackTraceSignature="$A.$y:$Fd(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Or(long, long)" newName="$gd" oldStackTraceSignature="Obfuz.ExprUtility:Or(Int64, Int64)" newStackTraceSignature="$A.$y:$gd(Int64, Int64)" />
+      <method signature="int Obfuz.ExprUtility::@Xor(int, int)" newName="$Gd" oldStackTraceSignature="Obfuz.ExprUtility:Xor(Int32, Int32)" newStackTraceSignature="$A.$y:$Gd(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Xor(long, long)" newName="$hd" oldStackTraceSignature="Obfuz.ExprUtility:Xor(Int64, Int64)" newStackTraceSignature="$A.$y:$hd(Int64, Int64)" />
+      <method signature="int Obfuz.ExprUtility::@Not(int)" newName="$Hd" oldStackTraceSignature="Obfuz.ExprUtility:Not(Int32)" newStackTraceSignature="$A.$y:$Hd(Int32)" />
+      <method signature="long Obfuz.ExprUtility::@Not(long)" newName="$id" oldStackTraceSignature="Obfuz.ExprUtility:Not(Int64)" newStackTraceSignature="$A.$y:$id(Int64)" />
+      <method signature="int Obfuz.ExprUtility::@ShiftLeft(int, int)" newName="$Id" oldStackTraceSignature="Obfuz.ExprUtility:ShiftLeft(Int32, Int32)" newStackTraceSignature="$A.$y:$Id(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@ShiftLeft(long, int)" newName="$jd" oldStackTraceSignature="Obfuz.ExprUtility:ShiftLeft(Int64, Int32)" newStackTraceSignature="$A.$y:$jd(Int64, Int32)" />
+      <method signature="int Obfuz.ExprUtility::@ShiftRight(int, int)" newName="$Jd" oldStackTraceSignature="Obfuz.ExprUtility:ShiftRight(Int32, Int32)" newStackTraceSignature="$A.$y:$Jd(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@ShiftRight(long, int)" newName="$kd" oldStackTraceSignature="Obfuz.ExprUtility:ShiftRight(Int64, Int32)" newStackTraceSignature="$A.$y:$kd(Int64, Int32)" />
+      <method signature="int Obfuz.ExprUtility::@ShiftRightUn(int, int)" newName="$Kd" oldStackTraceSignature="Obfuz.ExprUtility:ShiftRightUn(Int32, Int32)" newStackTraceSignature="$A.$y:$Kd(Int32, Int32)" />
+      <method signature="long Obfuz.ExprUtility::@ShiftRightUn(long, int)" newName="$ld" oldStackTraceSignature="Obfuz.ExprUtility:ShiftRightUn(Int64, Int32)" newStackTraceSignature="$A.$y:$ld(Int64, Int32)" />
+    </type>
+    <type fullName="Obfuz.IEncryptionScope" newFullName="$A.$v" status="Renamed" />
+    <type fullName="Obfuz.IEncryptor" newFullName="$A.$Y" status="Renamed">
+      <property signature="int OpCodeCount" newName="$a" />
+      <method signature="int Obfuz.IEncryptor::get_OpCodeCount([Obfuz.Runtime]Obfuz.IEncryptor)" newName="$Sd" oldStackTraceSignature="Obfuz.IEncryptor:get_OpCodeCount()" newStackTraceSignature="$A.$Y:$Sd()" />
+      <method signature="void Obfuz.IEncryptor::EncryptBlock([Obfuz.Runtime]Obfuz.IEncryptor, byte[], int, int)" newName="$zd" oldStackTraceSignature="Obfuz.IEncryptor:EncryptBlock(Byte[], Int32, Int32)" newStackTraceSignature="$A.$Y:$zd(Byte[], Int32, Int32)" />
+      <method signature="void Obfuz.IEncryptor::DecryptBlock([Obfuz.Runtime]Obfuz.IEncryptor, byte[], int, int)" newName="$Zd" oldStackTraceSignature="Obfuz.IEncryptor:DecryptBlock(Byte[], Int32, Int32)" newStackTraceSignature="$A.$Y:$Zd(Byte[], Int32, Int32)" />
+      <method signature="int Obfuz.IEncryptor::Encrypt([Obfuz.Runtime]Obfuz.IEncryptor, int, int, int)" newName="$td" oldStackTraceSignature="Obfuz.IEncryptor:Encrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$Y:$td(Int32, Int32, Int32)" />
+      <method signature="int Obfuz.IEncryptor::Decrypt([Obfuz.Runtime]Obfuz.IEncryptor, int, int, int)" newName="$Td" oldStackTraceSignature="Obfuz.IEncryptor:Decrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$Y:$Td(Int32, Int32, Int32)" />
+      <method signature="long Obfuz.IEncryptor::Encrypt([Obfuz.Runtime]Obfuz.IEncryptor, long, int, int)" newName="$ud" oldStackTraceSignature="Obfuz.IEncryptor:Encrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$Y:$ud(Int64, Int32, Int32)" />
+      <method signature="long Obfuz.IEncryptor::Decrypt([Obfuz.Runtime]Obfuz.IEncryptor, long, int, int)" newName="$Ud" oldStackTraceSignature="Obfuz.IEncryptor:Decrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$Y:$Ud(Int64, Int32, Int32)" />
+      <method signature="float Obfuz.IEncryptor::Encrypt([Obfuz.Runtime]Obfuz.IEncryptor, float, int, int)" newName="$vd" oldStackTraceSignature="Obfuz.IEncryptor:Encrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$Y:$vd(Single, Int32, Int32)" />
+      <method signature="float Obfuz.IEncryptor::Decrypt([Obfuz.Runtime]Obfuz.IEncryptor, float, int, int)" newName="$Vd" oldStackTraceSignature="Obfuz.IEncryptor:Decrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$Y:$Vd(Single, Int32, Int32)" />
+      <method signature="double Obfuz.IEncryptor::Encrypt([Obfuz.Runtime]Obfuz.IEncryptor, double, int, int)" newName="$wd" oldStackTraceSignature="Obfuz.IEncryptor:Encrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$Y:$wd(Double, Int32, Int32)" />
+      <method signature="double Obfuz.IEncryptor::Decrypt([Obfuz.Runtime]Obfuz.IEncryptor, double, int, int)" newName="$Wd" oldStackTraceSignature="Obfuz.IEncryptor:Decrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$Y:$Wd(Double, Int32, Int32)" />
+      <method signature="byte[] Obfuz.IEncryptor::Encrypt([Obfuz.Runtime]Obfuz.IEncryptor, byte[], int, int, int, int)" newName="$xd" oldStackTraceSignature="Obfuz.IEncryptor:Encrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$Y:$xd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.IEncryptor::Decrypt([Obfuz.Runtime]Obfuz.IEncryptor, byte[], int, int, int, int)" newName="$Xd" oldStackTraceSignature="Obfuz.IEncryptor:Decrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$Y:$Xd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.IEncryptor::Encrypt([Obfuz.Runtime]Obfuz.IEncryptor, string, int, int)" newName="$yd" oldStackTraceSignature="Obfuz.IEncryptor:Encrypt(String, Int32, Int32)" newStackTraceSignature="$A.$Y:$yd(String, Int32, Int32)" />
+      <method signature="string Obfuz.IEncryptor::DecryptString([Obfuz.Runtime]Obfuz.IEncryptor, byte[], int, int, int, int)" newName="$Yd" oldStackTraceSignature="Obfuz.IEncryptor:DecryptString(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$Y:$Yd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="void Obfuz.IEncryptor::DecryptInitializeArray([Obfuz.Runtime]Obfuz.IEncryptor, System.Array, System.RuntimeFieldHandle, int, int, int)" newName="$aD" oldStackTraceSignature="Obfuz.IEncryptor:DecryptInitializeArray(Array, RuntimeFieldHandle, Int32, Int32, Int32)" newStackTraceSignature="$A.$Y:$aD(Array, RuntimeFieldHandle, Int32, Int32, Int32)" />
+    </type>
+    <type fullName="Obfuz.NullEncryptor" newFullName="$A.$z" status="Renamed">
+      <field signature="byte[] _key" newName="$FB" />
+      <property signature="int OpCodeCount" newName="$a" />
+      <method signature="int Obfuz.NullEncryptor::get_OpCodeCount([Obfuz.Runtime]Obfuz.NullEncryptor)" newName="$Sd" oldStackTraceSignature="Obfuz.NullEncryptor:get_OpCodeCount()" newStackTraceSignature="$A.$z:$Sd()" />
+      <method signature="int Obfuz.NullEncryptor::Encrypt([Obfuz.Runtime]Obfuz.NullEncryptor, int, int, int)" newName="$td" oldStackTraceSignature="Obfuz.NullEncryptor:Encrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$z:$td(Int32, Int32, Int32)" />
+      <method signature="int Obfuz.NullEncryptor::Decrypt([Obfuz.Runtime]Obfuz.NullEncryptor, int, int, int)" newName="$Td" oldStackTraceSignature="Obfuz.NullEncryptor:Decrypt(Int32, Int32, Int32)" newStackTraceSignature="$A.$z:$Td(Int32, Int32, Int32)" />
+      <method signature="long Obfuz.NullEncryptor::Encrypt([Obfuz.Runtime]Obfuz.NullEncryptor, long, int, int)" newName="$ud" oldStackTraceSignature="Obfuz.NullEncryptor:Encrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$z:$ud(Int64, Int32, Int32)" />
+      <method signature="long Obfuz.NullEncryptor::Decrypt([Obfuz.Runtime]Obfuz.NullEncryptor, long, int, int)" newName="$Ud" oldStackTraceSignature="Obfuz.NullEncryptor:Decrypt(Int64, Int32, Int32)" newStackTraceSignature="$A.$z:$Ud(Int64, Int32, Int32)" />
+      <method signature="float Obfuz.NullEncryptor::Encrypt([Obfuz.Runtime]Obfuz.NullEncryptor, float, int, int)" newName="$vd" oldStackTraceSignature="Obfuz.NullEncryptor:Encrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$z:$vd(Single, Int32, Int32)" />
+      <method signature="float Obfuz.NullEncryptor::Decrypt([Obfuz.Runtime]Obfuz.NullEncryptor, float, int, int)" newName="$Vd" oldStackTraceSignature="Obfuz.NullEncryptor:Decrypt(Single, Int32, Int32)" newStackTraceSignature="$A.$z:$Vd(Single, Int32, Int32)" />
+      <method signature="double Obfuz.NullEncryptor::Encrypt([Obfuz.Runtime]Obfuz.NullEncryptor, double, int, int)" newName="$wd" oldStackTraceSignature="Obfuz.NullEncryptor:Encrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$z:$wd(Double, Int32, Int32)" />
+      <method signature="double Obfuz.NullEncryptor::Decrypt([Obfuz.Runtime]Obfuz.NullEncryptor, double, int, int)" newName="$Wd" oldStackTraceSignature="Obfuz.NullEncryptor:Decrypt(Double, Int32, Int32)" newStackTraceSignature="$A.$z:$Wd(Double, Int32, Int32)" />
+      <method signature="byte[] Obfuz.NullEncryptor::Encrypt([Obfuz.Runtime]Obfuz.NullEncryptor, byte[], int, int, int, int)" newName="$xd" oldStackTraceSignature="Obfuz.NullEncryptor:Encrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$z:$xd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.NullEncryptor::Decrypt([Obfuz.Runtime]Obfuz.NullEncryptor, byte[], int, int, int, int)" newName="$Xd" oldStackTraceSignature="Obfuz.NullEncryptor:Decrypt(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$z:$Xd(Byte[], Int32, Int32, Int32, Int32)" />
+      <method signature="byte[] Obfuz.NullEncryptor::Encrypt([Obfuz.Runtime]Obfuz.NullEncryptor, string, int, int)" newName="$yd" oldStackTraceSignature="Obfuz.NullEncryptor:Encrypt(String, Int32, Int32)" newStackTraceSignature="$A.$z:$yd(String, Int32, Int32)" />
+      <method signature="string Obfuz.NullEncryptor::DecryptString([Obfuz.Runtime]Obfuz.NullEncryptor, byte[], int, int, int, int)" newName="$Yd" oldStackTraceSignature="Obfuz.NullEncryptor:DecryptString(Byte[], Int32, Int32, Int32, Int32)" newStackTraceSignature="$A.$z:$Yd(Byte[], Int32, Int32, Int32, Int32)" />
+    </type>
+    <type fullName="Obfuz.ObfuscationInstincts" newFullName="$A.$Z" status="Renamed">
+      <method signature="string Obfuz.ObfuscationInstincts::@FullNameOf`1()" newName="$Ld" oldStackTraceSignature="Obfuz.ObfuscationInstincts:FullNameOf()" newStackTraceSignature="$A.$Z:$Ld()" />
+      <method signature="string Obfuz.ObfuscationInstincts::@NameOf`1()" newName="$md" oldStackTraceSignature="Obfuz.ObfuscationInstincts:NameOf()" newStackTraceSignature="$A.$Z:$md()" />
+      <method signature="void Obfuz.ObfuscationInstincts::@RegisterReflectionType`1()" newName="$Md" oldStackTraceSignature="Obfuz.ObfuscationInstincts:RegisterReflectionType()" newStackTraceSignature="$A.$Z:$Md()" />
+    </type>
+    <type fullName="Obfuz.ObfuscationTypeMapper" newFullName="$A.$aA" status="Renamed">
+      <field signature="System.Collections.Generic.Dictionary`2&lt;System.Type,string&gt; _type2OriginalFullName" newName="$gB" />
+      <field signature="System.Collections.Generic.Dictionary`2&lt;System.Reflection.Assembly,System.Collections.Generic.Dictionary`2&lt;string,System.Type&gt;&gt; _originalFullName2Types" newName="$GB" />
+      <method signature="void Obfuz.ObfuscationTypeMapper::@RegisterType`1(string)" newName="$nd" oldStackTraceSignature="Obfuz.ObfuscationTypeMapper:RegisterType(String)" newStackTraceSignature="$A.$aA:$nd(String)" />
+      <method signature="void Obfuz.ObfuscationTypeMapper::@RegisterType(System.Type, string)" newName="$Nd" oldStackTraceSignature="Obfuz.ObfuscationTypeMapper:RegisterType(Type, String)" newStackTraceSignature="$A.$aA:$Nd(Type, String)" />
+      <method signature="string Obfuz.ObfuscationTypeMapper::@GetOriginalTypeFullName(System.Type)" newName="$od" oldStackTraceSignature="Obfuz.ObfuscationTypeMapper:GetOriginalTypeFullName(Type)" newStackTraceSignature="$A.$aA:$od(Type)" />
+      <method signature="string Obfuz.ObfuscationTypeMapper::@GetOriginalTypeFullNameOrCurrent(System.Type)" newName="$Od" oldStackTraceSignature="Obfuz.ObfuscationTypeMapper:GetOriginalTypeFullNameOrCurrent(Type)" newStackTraceSignature="$A.$aA:$Od(Type)" />
+      <method signature="System.Type Obfuz.ObfuscationTypeMapper::@GetTypeByOriginalFullName(System.Reflection.Assembly, string)" newName="$pd" oldStackTraceSignature="Obfuz.ObfuscationTypeMapper:GetTypeByOriginalFullName(Assembly, String)" newStackTraceSignature="$A.$aA:$pd(Assembly, String)" />
+      <method signature="void Obfuz.ObfuscationTypeMapper::@Clear()" newName="$Pd" oldStackTraceSignature="Obfuz.ObfuscationTypeMapper:Clear()" newStackTraceSignature="$A.$aA:$Pd()" />
+    </type>
+  </assembly>
+</mapping>

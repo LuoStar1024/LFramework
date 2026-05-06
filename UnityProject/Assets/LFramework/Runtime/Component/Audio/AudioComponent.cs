@@ -12,36 +12,29 @@ namespace LFramework
     [AddComponentMenu("LFramework/Audio")]
     public sealed partial class AudioComponent : MonoBehaviour, ILFrameworkModule, IAudioManager, IAudioRelease
     {
-        [SerializeField]
-        private AudioMixer audioMixer = null;
+        [SerializeField] private AudioMixer audioMixer = null;
 
         private const int DefaultPriority = 0;
         private AudioListener _audioListener = null;
-        
+
         private Dictionary<string, AudioGroup> _audioGroups;
         private List<int> _audiosBeingLoaded;
         private HashSet<int> _audiosToReleaseOnLoad;
         private LoadAssetCallbacks _loadAssetCallbacks;
         private IResourceManager _resourceManager;
         private int _serial;
-        
+
         /// <summary>
         /// 获取声音组数量。
         /// </summary>
         public int AudioGroupCount
         {
-            get
-            {
-                return _audioGroups.Count;
-            }
+            get { return _audioGroups.Count; }
         }
 
         public AudioMixer AudioMixer
         {
-            get
-            {
-                return audioMixer;
-            }
+            get { return audioMixer; }
         }
 
         /// <summary>
@@ -49,18 +42,12 @@ namespace LFramework
         /// </summary>
         public int LoadingAudioCount
         {
-            get
-            {
-                return _audiosBeingLoaded.Count;
-            }
+            get { return _audiosBeingLoaded.Count; }
         }
 
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
 
         private void Awake()
@@ -76,7 +63,7 @@ namespace LFramework
         public void OnInit()
         {
             _audioListener = gameObject.GetOrAddComponent<AudioListener>();
-            
+
             _audioGroups = new Dictionary<string, AudioGroup>(StringComparer.Ordinal);
             _audiosBeingLoaded = new List<int>();
             _audiosToReleaseOnLoad = new HashSet<int>();
@@ -209,10 +196,11 @@ namespace LFramework
             Transform tempTrans = audioGroup.transform;
             tempTrans.SetParent(gameObject.transform);
             tempTrans.localScale = Vector3.one;
-            
+
             if (audioMixer != null)
             {
-                AudioMixerGroup[] audioMixerGroups = audioMixer.FindMatchingGroups(Utility.Text.Format("Master/{0}", audioGroupName));
+                AudioMixerGroup[] audioMixerGroups =
+                    audioMixer.FindMatchingGroups(Utility.Text.Format("Master/{0}", audioGroupName));
                 if (audioMixerGroups.Length > 0)
                 {
                     audioGroup.AudioMixerGroup = audioMixerGroups[0];
@@ -222,11 +210,12 @@ namespace LFramework
                     Log.Warning("Can not find audio mixer group 'Master/{0}'.", audioGroupName);
                 }
             }
+
             audioGroup.AudioGroupName = audioGroupName;
             audioGroup.AvoidBeingReplacedBySamePriority = audioGroupAvoidBeingReplacedBySamePriority;
             audioGroup.Mute = audioGroupMute;
             audioGroup.Volume = audioGroupVolume;
-            
+
             for (int i = 0; i < audioAgentHelperCount; i++)
             {
                 audioGroup.AddAudioAgentHelper(this, audioMixer, i);
@@ -439,7 +428,7 @@ namespace LFramework
         {
             return PlayAudio(audioAssetName, audioGroupName, priority, playAudioParams, null, worldPosition, userData);
         }
-        
+
         /// <summary>
         /// 停止播放声音。
         /// </summary>
@@ -569,7 +558,7 @@ namespace LFramework
 
             throw new LFrameworkException(Utility.Text.Format("Can not find audio '{0}'.", serialId));
         }
-        
+
         /// <summary>
         /// 释放声音资源。
         /// </summary>

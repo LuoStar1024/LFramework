@@ -34,6 +34,7 @@ namespace GameLogic
 
         protected override void OnRelease()
         {
+            Log.Info("OnRelease");
             if (_goObjectPool != null)
             {
                 var childCount = transform.childCount;
@@ -43,6 +44,7 @@ namespace GameLogic
                 }
 
                 _goObjectPool.ReleaseAllUnused();
+                GameEntry.ObjectPool.DestroyObjectPool(_goObjectPool);
                 _goObjectPool = null;
             }
 
@@ -59,6 +61,7 @@ namespace GameLogic
             // Log.Error($"{itemDatas.Name}");
             var x = GameEntry.DataTable.TbSound.Get(1);
             Debug.LogError(x.GroupName.ToString());
+            Log.Info("测试01");
 
             _score = 0;
             _timer = -1000;
@@ -86,16 +89,20 @@ namespace GameLogic
             var playerPrefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Player"));
             _prefabDict.Add("Player", playerPrefab);
 
-            var bulletPrefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("PlayerBullet"));
+            var bulletPrefab =
+                await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("PlayerBullet"));
             _prefabDict.Add("PlayerBullet", bulletPrefab);
 
-            var enemy1Prefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_1"));
+            var enemy1Prefab =
+                await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_1"));
             _prefabDict.Add("Enemy_1", enemy1Prefab);
 
-            var enemy2Prefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_2"));
+            var enemy2Prefab =
+                await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_2"));
             _prefabDict.Add("Enemy_2", enemy2Prefab);
 
-            var enemyBossPrefab = await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_Boss"));
+            var enemyBossPrefab =
+                await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_Boss"));
             _prefabDict.Add("Enemy_Boss", enemyBossPrefab);
 
             // 产生玩家
@@ -138,6 +145,7 @@ namespace GameLogic
                     Log.Error($"{enemyName} Asset is null");
                     return;
                 }
+
                 go = Instantiate(goPrefab, transform, true);
                 _goObjectPool.Register(GoPoolObject.Create(enemyName, go), true);
             }
@@ -145,6 +153,7 @@ namespace GameLogic
             {
                 go = (GameObject)goObject.Target;
             }
+
             go.GetComponent<Enemy>().SetStartPos(new Vector3(Random.Range(-2.5f, 2.5f), 7, 0));
         }
 
@@ -159,6 +168,7 @@ namespace GameLogic
                     Log.Error("PlayerBullet Asset is null");
                     return null;
                 }
+
                 var go = Instantiate(goPrefab, transform, true);
                 _goObjectPool.Register(GoPoolObject.Create("PlayerBullet", go), true);
                 return go;

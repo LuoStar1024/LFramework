@@ -16,12 +16,13 @@ namespace LFramework
         }
 
         public Action<float> ProgressCallback => _progressCallback;
-        
+
         public Action<bool> LoadSuccessCallBack => _loadSuccessCallBack;
-        
+
         public object UserData => _userData;
 
-        public static LoadSceneInfo Create(object userData, Action<float> progressCallback, Action<bool> loadSuccessCallBack)
+        public static LoadSceneInfo Create(object userData, Action<float> progressCallback,
+            Action<bool> loadSuccessCallBack)
         {
             LoadSceneInfo loadSceneInfo = ReferencePool.Acquire<LoadSceneInfo>();
             loadSceneInfo._progressCallback = progressCallback;
@@ -29,7 +30,7 @@ namespace LFramework
             loadSceneInfo._userData = userData;
             return loadSceneInfo;
         }
-        
+
         public void Clear()
         {
             _progressCallback = null;

@@ -4,19 +4,21 @@ namespace GameEditor
 {
     internal sealed class SortConfig
     {
-        public static readonly Dictionary<SortType, SortType> SortTypeChangeByNameHandler = new Dictionary<SortType, SortType>
-        {
-            { SortType.None, SortType.AscByName },
-            { SortType.AscByName, SortType.DescByName },
-            { SortType.DescByName, SortType.AscByName }
-        };
+        public static readonly Dictionary<SortType, SortType> SortTypeChangeByNameHandler =
+            new Dictionary<SortType, SortType>
+            {
+                { SortType.None, SortType.AscByName },
+                { SortType.AscByName, SortType.DescByName },
+                { SortType.DescByName, SortType.AscByName }
+            };
 
-        public static readonly Dictionary<SortType, SortType> SortTypeChangeByPathHandler = new Dictionary<SortType, SortType>
-        {
-            { SortType.None, SortType.AscByPath },
-            { SortType.AscByPath, SortType.DescByPath },
-            { SortType.DescByPath, SortType.AscByPath }
-        };
+        public static readonly Dictionary<SortType, SortType> SortTypeChangeByPathHandler =
+            new Dictionary<SortType, SortType>
+            {
+                { SortType.None, SortType.AscByPath },
+                { SortType.AscByPath, SortType.DescByPath },
+                { SortType.DescByPath, SortType.AscByPath }
+            };
 
         public static readonly Dictionary<SortType, short> SortTypeGroup = new Dictionary<SortType, short>
         {

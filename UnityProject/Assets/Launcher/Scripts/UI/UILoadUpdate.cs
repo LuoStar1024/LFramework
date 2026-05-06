@@ -8,17 +8,13 @@ namespace Launcher
     /// </summary>
     public class UILoadUpdate : UIBase
     {
-        [SerializeField]
-        private Scrollbar scrollbarProgress;
+        [SerializeField] private Scrollbar scrollbarProgress;
 
-        [SerializeField]
-        private Text textDesc;
+        [SerializeField] private Text textDesc;
 
-        [SerializeField]
-        private Text textAppId;
+        [SerializeField] private Text textAppId;
 
-        [SerializeField]
-        private Text textResId;
+        [SerializeField] private Text textResId;
 
         public override void OnEnter(object param)
         {

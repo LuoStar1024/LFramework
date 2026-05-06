@@ -8,7 +8,7 @@ namespace GameLogic
     public class ProcedureMenu : ProcedureBase
     {
         private bool _startGame = false;
-        
+
         /// <summary>
         /// 由菜单界面回调触发，通知流程开始进入游戏场景。
         /// </summary>
@@ -16,7 +16,7 @@ namespace GameLogic
         {
             _startGame = true;
         }
-        
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
@@ -28,7 +28,8 @@ namespace GameLogic
             GameEntry.UI.OpenUIForm(AssetUtility.GetUIFormAsset("MenuForm"), Constant.Setting.UIGroupNormal, this);
         }
 
-        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
+        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds,
+            float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 

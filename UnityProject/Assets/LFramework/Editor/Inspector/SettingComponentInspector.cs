@@ -15,7 +15,7 @@ namespace LFramework.Editor
                 EditorGUILayout.HelpBox("Available during runtime only.", MessageType.Info);
                 return;
             }
-            
+
             SettingComponent t = (SettingComponent)target;
 
             if (IsPrefabInHierarchy(t.gameObject))

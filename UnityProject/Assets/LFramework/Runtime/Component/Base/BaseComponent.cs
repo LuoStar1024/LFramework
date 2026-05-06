@@ -9,50 +9,34 @@ namespace LFramework
     [AddComponentMenu("LFramework/Base")]
     public sealed class BaseComponent : MonoBehaviour, ILFrameworkModule, IBaseManager
     {
-        [SerializeField]
-        private int frameRate = 30;
+        [SerializeField] private int frameRate = 30;
 
-        [SerializeField]
-        private float gameSpeed = 1f;
+        [SerializeField] private float gameSpeed = 1f;
 
-        [SerializeField]
-        private bool runInBackground = true;
+        [SerializeField] private bool runInBackground = true;
 
-        [SerializeField]
-        private bool neverSleep = true;
-        
-        private const int DefaultDpi = 96;  // default windows dpi
+        [SerializeField] private bool neverSleep = true;
+
+        private const int DefaultDpi = 96; // default windows dpi
 
         private float _gameSpeedBeforePause = 1f;
-        
+
         /// <summary>
         /// 获取或设置游戏帧率。
         /// </summary>
         public int FrameRate
         {
-            get
-            {
-                return frameRate;
-            }
-            set
-            {
-                Application.targetFrameRate = frameRate = value;
-            }
+            get { return frameRate; }
+            set { Application.targetFrameRate = frameRate = value; }
         }
-        
+
         /// <summary>
         /// 获取或设置游戏速度。
         /// </summary>
         public float GameSpeed
         {
-            get
-            {
-                return gameSpeed;
-            }
-            set
-            {
-                Time.timeScale = gameSpeed = value >= 0f ? value : 0f;
-            }
+            get { return gameSpeed; }
+            set { Time.timeScale = gameSpeed = value >= 0f ? value : 0f; }
         }
 
         /// <summary>
@@ -60,10 +44,7 @@ namespace LFramework
         /// </summary>
         public bool IsGamePaused
         {
-            get
-            {
-                return gameSpeed <= 0f;
-            }
+            get { return gameSpeed <= 0f; }
         }
 
         /// <summary>
@@ -71,10 +52,7 @@ namespace LFramework
         /// </summary>
         public bool IsNormalGameSpeed
         {
-            get
-            {
-                return gameSpeed == 1f;
-            }
+            get { return gameSpeed == 1f; }
         }
 
         /// <summary>
@@ -82,14 +60,8 @@ namespace LFramework
         /// </summary>
         public bool RunInBackground
         {
-            get
-            {
-                return runInBackground;
-            }
-            set
-            {
-                Application.runInBackground = runInBackground = value;
-            }
+            get { return runInBackground; }
+            set { Application.runInBackground = runInBackground = value; }
         }
 
         /// <summary>
@@ -97,30 +69,24 @@ namespace LFramework
         /// </summary>
         public bool NeverSleep
         {
-            get
-            {
-                return neverSleep;
-            }
+            get { return neverSleep; }
             set
             {
                 neverSleep = value;
                 Screen.sleepTimeout = value ? SleepTimeout.NeverSleep : SleepTimeout.SystemSetting;
             }
         }
-        
+
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
-        
+
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<IBaseManager>(this);
         }
-        
+
         public void OnInit()
         {
             Utility.Converter.ScreenDpi = Screen.dpi;
@@ -128,7 +94,7 @@ namespace LFramework
             {
                 Utility.Converter.ScreenDpi = DefaultDpi;
             }
-            
+
             Application.targetFrameRate = frameRate;
             Time.timeScale = gameSpeed;
             Application.runInBackground = runInBackground;
@@ -137,14 +103,12 @@ namespace LFramework
 
         public void OnUpdate(float elapseSeconds, float realElapseSeconds)
         {
-            
         }
 
         public void Shutdown()
         {
-            
         }
-        
+
         /// <summary>
         /// 暂停游戏。
         /// </summary>

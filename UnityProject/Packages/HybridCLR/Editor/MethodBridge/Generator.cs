@@ -559,6 +559,11 @@ namespace HybridCLR.Editor.MethodBridge
             {
                 return CallingConvention.Winapi;
             }
+            if (monoPInvokeCallbackAttr.ConstructorArguments.Count == 0)
+            {
+                Debug.LogError($"MonoPInvokeCallbackAttribute on method {method.FullName} has no constructor arguments. Using CallingConvention.Winapi as default.");
+                return CallingConvention.Winapi;
+            }
             object delegateTypeSig = monoPInvokeCallbackAttr.ConstructorArguments[0].Value;
 
             TypeDef delegateTypeDef;
@@ -580,7 +585,7 @@ namespace HybridCLR.Editor.MethodBridge
                 throw new NotSupportedException($"Unsupported delegate type: {delegateTypeSig}");
             }
             var attr = delegateTypeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName == "System.Runtime.InteropServices.UnmanagedFunctionPointerAttribute");
-            if (attr == null)
+            if (attr == null || attr.ConstructorArguments.Count == 0)
             {
                 return CallingConvention.Winapi;
             }
@@ -638,7 +643,7 @@ namespace HybridCLR.Editor.MethodBridge
                 sharedMethod.Init();
                 sharedMethod = ToIsomorphicMethod(sharedMethod);
 
-                CallingConvention callingConv = (CallingConvention)((int)(method.MethodSig.CallingConvention &  dnlib.DotNet.CallingConvention.Mask) + 1);
+                CallingConvention callingConv = (CallingConvention)((int)((method.Callvention ?? method.MethodSig.CallingConvention) &  dnlib.DotNet.CallingConvention.Mask) + 1);
                 string signature = MakeCalliSignature(sharedMethod, callingConv);
 
                 if (!methodsBySig.TryGetValue(signature, out var arm))

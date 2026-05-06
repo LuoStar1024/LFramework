@@ -12,7 +12,7 @@ namespace LFramework
         /// 获取声音组数量。
         /// </summary>
         int AudioGroupCount { get; }
-        
+
         /// <summary>
         /// 是否存在指定声音组。
         /// </summary>
@@ -121,7 +121,7 @@ namespace LFramework
         /// <param name="worldPosition">声音所在的世界坐标。</param>
         /// <returns>声音的序列编号。</returns>
         int PlayAudio(string audioAssetName, string audioGroupName, Vector3 worldPosition);
-        
+
         /// <summary>
         /// 播放声音。
         /// </summary>
@@ -202,7 +202,7 @@ namespace LFramework
         /// <returns>声音的序列编号。</returns>
         int PlayAudio(string audioAssetName, string audioGroupName, int priority, PlayAudioParams playAudioParams,
             Vector3 worldPosition, object userData);
-        
+
         /// <summary>
         /// 停止播放声音。
         /// </summary>

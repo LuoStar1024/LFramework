@@ -9,7 +9,10 @@ namespace GameEditor
     {
         private const float K_ICON_WIDTH = 18f;
         private const float K_ROW_HEIGHTS = 20f;
-        private readonly GUIStyle _stateGuiStyle = new GUIStyle { richText = true, alignment = TextAnchor.MiddleCenter };
+
+        private readonly GUIStyle _stateGuiStyle = new GUIStyle
+            { richText = true, alignment = TextAnchor.MiddleCenter };
+
         public AssetViewItem assetRoot;
 
         public AssetTreeView(TreeViewState state, MultiColumnHeader multicolumnHeader) : base(state, multicolumnHeader)
@@ -144,7 +147,9 @@ namespace GameEditor
                     GUI.Label(cellRect, ReferenceFinderData.GetInfoByState(item.data.state), _stateGuiStyle);
                     break;
                 case MyColumns.RefCount:
-                    GUI.Label(cellRect, ResourceReferenceInfo.Data.GetRefCount(item.data, (item.parent as AssetViewItem)?.data), _stateGuiStyle);
+                    GUI.Label(cellRect,
+                        ResourceReferenceInfo.Data.GetRefCount(item.data, (item.parent as AssetViewItem)?.data),
+                        _stateGuiStyle);
                     break;
             }
         }

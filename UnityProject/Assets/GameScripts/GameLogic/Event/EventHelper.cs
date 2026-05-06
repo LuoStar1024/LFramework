@@ -6,7 +6,7 @@ namespace GameLogic
     {
         private static EventGroupLogic _logic;
         private static EventGroupUI _ui;
-        
+
         public static void OnInit()
         {
             _logic = new EventGroupLogic();

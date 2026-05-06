@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 #if UNITY_2019_1_OR_NEWER
 using UnityEngine.UIElements;
+
 #else
 using UnityEngine.Experimental.UIElements;
 #endif
@@ -17,8 +18,10 @@ namespace GameEditor
         static Type m_guiViewType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.GUIView");
 #if UNITY_2020_1_OR_NEWER
         static Type m_iWindowBackendType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.IWindowBackend");
+
         static PropertyInfo m_windowBackend = m_guiViewType.GetProperty("windowBackend",
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
         static PropertyInfo m_viewVisualTree = m_iWindowBackendType.GetProperty("visualTree",
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 #else
@@ -27,12 +30,14 @@ namespace GameEditor
 #endif
         static FieldInfo m_imguiContainerOnGui = typeof(IMGUIContainer).GetField("m_OnGUIHandler",
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
         static ScriptableObject m_currentToolbar;
 
         /// <summary>
         /// Callback for toolbar OnGUI method.
         /// </summary>
         public static Action OnToolbarGUI;
+
         public static Action OnToolbarGUILeft;
         public static Action OnToolbarGUIRight;
 
@@ -53,7 +58,8 @@ namespace GameEditor
                 if (m_currentToolbar != null)
                 {
 #if UNITY_2021_1_OR_NEWER
-                    var root = m_currentToolbar.GetType().GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance);
+                    var root = m_currentToolbar.GetType()
+                        .GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance);
                     var rawRoot = root.GetValue(m_currentToolbar);
                     var mRoot = rawRoot as VisualElement;
                     RegisterCallback("ToolbarZoneLeftAlign", OnToolbarGUILeft);
@@ -65,16 +71,15 @@ namespace GameEditor
 
                         var parent = new VisualElement()
                         {
-                            style = {
+                            style =
+                            {
                                 flexGrow = 1,
                                 flexDirection = FlexDirection.Row,
                             }
                         };
                         var container = new IMGUIContainer();
                         container.style.flexGrow = 1;
-                        container.onGUIHandler += () => {
-                            cb?.Invoke();
-                        };
+                        container.onGUIHandler += () => { cb?.Invoke(); };
                         parent.Add(container);
                         toolbarZone.Add(parent);
                     }
@@ -97,7 +102,7 @@ namespace GameEditor
 					handler -= OnGUI;
 					handler += OnGUI;
 					m_imguiContainerOnGui.SetValue(container, handler);
-					
+
 #endif
                 }
             }
@@ -259,6 +264,7 @@ namespace GameEditor
             {
                 handler();
             }
+
             GUILayout.EndHorizontal();
         }
 
@@ -269,6 +275,7 @@ namespace GameEditor
             {
                 handler();
             }
+
             GUILayout.EndHorizontal();
         }
     }

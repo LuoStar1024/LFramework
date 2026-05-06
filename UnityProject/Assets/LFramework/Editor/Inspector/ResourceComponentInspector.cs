@@ -32,7 +32,7 @@ namespace LFramework.Editor
         private SerializedProperty _useSystemUnloadUnusedAssets;
 
         private int _resourceModeIndex = 0;
-        
+
         private int _packageNameIndex = 0;
         private string[] _packageNames;
 
@@ -43,7 +43,7 @@ namespace LFramework.Editor
             serializedObject.Update();
 
             ResourceComponent t = (ResourceComponent)target;
-            
+
             EditorGUI.BeginDisabledGroup(EditorApplication.isPlayingOrWillChangePlaymode);
             {
                 EditorGUILayout.PropertyField(_isEditorSimulate);
@@ -53,7 +53,7 @@ namespace LFramework.Editor
                     EditorGUILayout.HelpBox("Editor resource mode is enabled. Some options are disabled.",
                         MessageType.Warning);
                 }
-                
+
                 if (EditorApplication.isPlaying && IsPrefabInHierarchy(t.gameObject))
                 {
                     EditorGUILayout.EnumPopup("Resource Mode", t.ResourceMode);
@@ -72,16 +72,16 @@ namespace LFramework.Editor
                 {
                     EditorGUILayout.PropertyField(_updatableWhilePlaying);
                 }
-                
+
                 if (_resourceMode.enumValueIndex == (int)ResourceMode.WebPlayMode)
                 {
                     EditorGUILayout.PropertyField(_loadResourceWayWebGL);
                 }
-                
+
                 EditorGUILayout.PropertyField(_encryptionType);
             }
             EditorGUI.EndDisabledGroup();
-            
+
             _packageNames = GetBuildPackageNames().ToArray();
             _packageNameIndex = Array.IndexOf(_packageNames, _defaultPackageName.stringValue);
             if (_packageNameIndex < 0)
@@ -101,7 +101,7 @@ namespace LFramework.Editor
             {
                 EditorGUILayout.HelpBox("Package Name is null.", MessageType.Error);
             }
-            
+
             EditorGUI.BeginDisabledGroup(EditorApplication.isPlayingOrWillChangePlaymode);
             {
                 EditorGUILayout.PropertyField(_downloadingMaxNum);
@@ -167,7 +167,7 @@ namespace LFramework.Editor
                 }
             }
             EditorGUI.EndDisabledGroup();
-            
+
             float minUnloadUnusedAssetsInterval = EditorGUILayout.Slider("Min Unload Unused Assets Interval",
                 _minUnloadUnusedAssetsInterval.floatValue, 0f, 3600f);
             if (!Mathf.Approximately(minUnloadUnusedAssetsInterval, _minUnloadUnusedAssetsInterval.floatValue))
@@ -195,7 +195,7 @@ namespace LFramework.Editor
                     _maxUnloadUnusedAssetsInterval.floatValue = maxUnloadUnusedAssetsInterval;
                 }
             }
-            
+
             EditorGUILayout.PropertyField(_useSystemUnloadUnusedAssets);
 
             if (EditorApplication.isPlaying && IsPrefabInHierarchy(t.gameObject))
@@ -255,14 +255,15 @@ namespace LFramework.Editor
 
         private void RefreshModes()
         {
-            _resourceModeIndex = Mathf.Clamp(_resourceMode.enumValueIndex - ResourceModePopupOffset, 0, ResourceModeNames.Length - 1);
+            _resourceModeIndex = Mathf.Clamp(_resourceMode.enumValueIndex - ResourceModePopupOffset, 0,
+                ResourceModeNames.Length - 1);
         }
 
         private void RefreshTypeNames()
         {
             serializedObject.ApplyModifiedProperties();
         }
-        
+
         /// <summary>
         /// 获取构建包名称列表，用于下拉可选择
         /// </summary>
@@ -274,6 +275,7 @@ namespace LFramework.Editor
             {
                 result.Add(package.PackageName);
             }
+
             return result;
         }
     }

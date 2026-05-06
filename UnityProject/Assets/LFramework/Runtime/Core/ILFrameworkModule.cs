@@ -9,16 +9,13 @@
         /// 获取游戏框架模块优先级。
         /// </summary>
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
-        int Priority
-        {
-            get;
-        }
-        
+        int Priority { get; }
+
         /// <summary>
         /// 初始化游戏框架模块。
         /// </summary>
         void OnInit();
-        
+
         /// <summary>
         /// 游戏框架模块轮询。
         /// </summary>

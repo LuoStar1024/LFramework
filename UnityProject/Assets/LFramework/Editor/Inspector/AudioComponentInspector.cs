@@ -24,7 +24,7 @@ namespace LFramework.Editor
                         AudioMixerGroupGenerator.Generate(t.AudioMixer);
                     }
                 }
-                
+
                 EditorGUILayout.PropertyField(_audioMixer);
             }
             EditorGUI.EndDisabledGroup();
@@ -54,7 +54,8 @@ namespace LFramework.Editor
                         EditorGUILayout.LabelField("Playing / Total",
                             string.Format("{0} / {1}", runtimeAudioGroup.PlayingAudioAgentCount,
                                 runtimeAudioGroup.AudioAgentCount));
-                        EditorGUILayout.LabelField("Free Agent Count", runtimeAudioGroup.FreeAudioAgentCount.ToString());
+                        EditorGUILayout.LabelField("Free Agent Count",
+                            runtimeAudioGroup.FreeAudioAgentCount.ToString());
 
                         AudioAgent[] audioAgents = runtimeAudioGroup.GetAllAudioAgents();
                         for (int i = 0; i < audioAgents.Length; i++)
@@ -64,7 +65,9 @@ namespace LFramework.Editor
                                 ? (audioAgent.IsPaused ? "Paused" : "Playing")
                                 : "Idle";
                             string bindingState = audioAgent.IsFollowingBindingEntity ? "Binding" : "World";
-                            string audioName = string.IsNullOrEmpty(audioAgent.AudioName) ? "None" : audioAgent.AudioName;
+                            string audioName = string.IsNullOrEmpty(audioAgent.AudioName)
+                                ? "None"
+                                : audioAgent.AudioName;
                             EditorGUILayout.LabelField(string.Format("Agent {0}", i),
                                 string.Format("State:{0}, Serial:{1}, Priority:{2}, Audio:{3}, Mode:{4}", state,
                                     audioAgent.SerialId, audioAgent.Priority, audioName, bindingState));

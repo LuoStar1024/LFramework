@@ -6,7 +6,7 @@ namespace GameLogic
     public class GameInfoForm : UguiForm
     {
         [SerializeField] private Text txtScore;
-        
+
         [SerializeField] private Image[] imgBombs;
 
         public void SetScore(int score)

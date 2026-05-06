@@ -11,10 +11,7 @@ namespace Launcher
     {
         public override bool UseNativeDialog
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
 
         protected override void OnEnter(ProcedureOwner procedureOwner)
@@ -22,7 +19,7 @@ namespace Launcher
             base.OnEnter(procedureOwner);
 
             Log.Info("框架流程启动！");
-            
+
             // 初始化启动器界面，后续资源更新、下载、提示都依赖这里的 UI。
             LauncherMgr.Initialize();
 
@@ -36,7 +33,7 @@ namespace Launcher
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-            
+
             // 启动器入口只做一次性准备，下一帧立刻交给启动过渡流程。
             ChangeState<ProcedureSplash>(procedureOwner);
         }
@@ -52,9 +49,10 @@ namespace Launcher
                 {
                     localizationComponent.Language = localizationComponent.SystemLanguage;
                 }
+
                 return;
             }
-            
+
             Language language = localizationComponent.Language;
             var settingComponent = LFrameworkEntry.GetModule<ISettingManager>();
             if (settingComponent.HasSetting("Language"))
@@ -66,25 +64,25 @@ namespace Launcher
                 }
                 catch (Exception e)
                 {
-                    Log.Error("Init language error, reason {0}",e.ToString());
+                    Log.Error("Init language error, reason {0}", e.ToString());
                 }
             }
-            
+
             if (language != Language.English
                 && language != Language.ChineseSimplified
                 && language != Language.ChineseTraditional)
             {
                 // 若是暂不支持的语言，则使用英语
                 language = Language.English;
-            
+
                 settingComponent.SetString("Language", language.ToString());
                 settingComponent.Save();
             }
-            
+
             localizationComponent.Language = language;
             Log.Info("Init language settings complete, current language is '{0}'.", language.ToString());
         }
-        
+
         private void InitSound()
         {
             var soundComponent = LFrameworkEntry.GetModule<IAudioManager>();

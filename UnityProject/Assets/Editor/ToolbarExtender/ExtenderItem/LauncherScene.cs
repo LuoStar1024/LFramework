@@ -8,15 +8,16 @@ namespace GameEditor
     public partial class ToolbarExtender
     {
         private static GUIContent _launcherSceneBtContent;
-        
+
         private const string PreviousSceneKey = "LFPreviousScenePath"; // 用于存储之前场景路径的键
         private const string IsLauncherBtn = "LFIsLauncher"; // 用于存储之前是否按下launcher
         private const string LauncherSceneName = "Launcher";
         // private const string LauncherScenePath = "Assets/Launcher/Scenes/Launcher.unity";
-        
+
         static void InitLauncherScene()
         {
-            _launcherSceneBtContent = EditorGUIUtility.TrTextContentWithIcon($"启动: {LauncherSceneName}", "启动默认初始场景", "PlayButton");
+            _launcherSceneBtContent =
+                EditorGUIUtility.TrTextContentWithIcon($"启动: {LauncherSceneName}", "启动默认初始场景", "PlayButton");
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
             EditorApplication.quitting += OnEditorQuit;
         }
@@ -35,7 +36,7 @@ namespace GameEditor
             {
                 return;
             }
-            
+
             // 记录当前场景路径到 EditorPrefs
             var activeScene = SceneManager.GetActiveScene();
             if (activeScene.isLoaded && activeScene.name != LauncherSceneName)
@@ -43,7 +44,7 @@ namespace GameEditor
                 EditorPrefs.SetString(PreviousSceneKey, activeScene.path);
                 EditorPrefs.SetBool(IsLauncherBtn, true);
             }
-            
+
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
                 var sceneToOpen = LauncherSceneName;
@@ -76,7 +77,7 @@ namespace GameEditor
                 }
             }
         }
-        
+
         private static void OnPlayModeStateChanged(PlayModeStateChange state)
         {
             if (state == PlayModeStateChange.EnteredEditMode)

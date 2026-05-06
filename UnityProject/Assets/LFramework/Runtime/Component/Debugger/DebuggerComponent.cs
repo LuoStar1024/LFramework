@@ -10,21 +10,17 @@ namespace LFramework
     [AddComponentMenu("LFramework/Debugger")]
     public sealed partial class DebuggerComponent : MonoBehaviour, ILFrameworkModule, IDebuggerManager
     {
-        [SerializeField] 
-        private GUISkin skin = null;
+        [SerializeField] private GUISkin skin = null;
 
-        [SerializeField] 
-        private DebuggerActiveWindowType activeWindow = DebuggerActiveWindowType.AlwaysOpen;
+        [SerializeField] private DebuggerActiveWindowType activeWindow = DebuggerActiveWindowType.AlwaysOpen;
 
-        [SerializeField] 
-        private bool showFullWindow = false;
+        [SerializeField] private bool showFullWindow = false;
 
-        [SerializeField] 
-        private ConsoleWindow consoleWindow = new ConsoleWindow();
+        [SerializeField] private ConsoleWindow consoleWindow = new ConsoleWindow();
 
         private DebuggerWindowGroup _debuggerWindowRoot;
         private bool _activeWindow;
-        
+
         /// <summary>
         /// 默认调试器漂浮框大小。
         /// </summary>
@@ -118,7 +114,7 @@ namespace LFramework
                 enabled = value;
             }
         }
-        
+
         /// <summary>
         /// 调试器窗口根结点。
         /// </summary>
@@ -162,17 +158,14 @@ namespace LFramework
             get { return _windowScale; }
             set { _windowScale = value; }
         }
-        
+
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return -1;
-            }
+            get { return -1; }
         }
 
         public void OnInit()
@@ -201,12 +194,12 @@ namespace LFramework
             _activeWindow = false;
             _debuggerWindowRoot.Shutdown();
         }
-        
+
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<IDebuggerManager>(this);
         }
-        
+
         private void Start()
         {
             RegisterDebuggerWindow("Console", consoleWindow);

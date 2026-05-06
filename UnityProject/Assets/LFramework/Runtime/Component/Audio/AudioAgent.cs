@@ -16,7 +16,7 @@ namespace LFramework
         private float _volumeWhenPause = 0f;
         private bool _applicationPauseFlag = false;
         private bool _isPaused;
-        
+
         private AudioGroup _audioGroup;
         private IAudioRelease _audioRelease;
         private int _serialId;
@@ -182,7 +182,7 @@ namespace LFramework
             get { return _audioSource.dopplerLevel; }
             set { _audioSource.dopplerLevel = value; }
         }
-        
+
         /// <summary>
         /// 获取或设置声音代理辅助器所在的混音组。
         /// </summary>
@@ -373,7 +373,7 @@ namespace LFramework
             SpatialBlend = AudioConstant.DefaultSpatialBlend;
             MaxDistance = AudioConstant.DefaultMaxDistance;
             DopplerLevel = AudioConstant.DefaultDopplerLevel;
-            
+
             _cachedTransform.localPosition = Vector3.zero;
             _audioSource.clip = null;
             _bindingTrans = null;
@@ -427,7 +427,7 @@ namespace LFramework
         {
             Volume = _audioGroup.Volume * _volumeInAudioGroup;
         }
-        
+
         private void Awake()
         {
             _cachedTransform = transform;
@@ -454,7 +454,7 @@ namespace LFramework
         {
             _applicationPauseFlag = pause;
         }
-        
+
         private void UpdateAgentPosition()
         {
             if (_bindingTrans == null)

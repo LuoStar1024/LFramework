@@ -3,10 +3,8 @@ using HybridCLR.Editor;
 using HybridCLR.Editor.Commands;
 #endif
 using System.IO;
-#if ENABLE_OBFUZ
 using Obfuz.Settings;
 using Obfuz4HybridCLR;
-#endif
 using System.Collections.Generic;
 using HybridCLR.Editor;
 using HybridCLR.Editor.Installer;
@@ -64,46 +62,48 @@ namespace LFramework.Editor
 
         #endregion
 
-#if ENABLE_OBFUZ
-    #region Obfuz/Define Symbols
-    /// <summary>
-    /// 禁用Obfuz宏定义。
-    /// </summary>
-    [MenuItem("Obfuz/Define Symbols/Disable Obfuz", false, 30)]
-    public static void DisableObfuz()
-    {
-        ScriptingDefineSymbols.RemoveScriptingDefineSymbol(EnableObfuzScriptingDefineSymbol);
-        ObfuzSettings.Instance.buildPipelineSettings.enable = false;
-    }
+        #region Obfuz/Define Symbols
 
-    /// <summary>
-    /// 开启Obfuz宏定义。
-    /// </summary>
-    [MenuItem("Obfuz/Define Symbols/Enable Obfuz", false, 31)]
-    public static void EnableObfuz()
-    {
-        ScriptingDefineSymbols.RemoveScriptingDefineSymbol(EnableObfuzScriptingDefineSymbol);
-        ScriptingDefineSymbols.AddScriptingDefineSymbol(EnableObfuzScriptingDefineSymbol);
-        ObfuzSettings.Instance.buildPipelineSettings.enable = true;
-    }
-    #endregion
-#endif
+        /// <summary>
+        /// 禁用Obfuz宏定义。
+        /// </summary>
+        [MenuItem("Obfuz/Define Symbols/Disable Obfuz", false, 30)]
+        public static void DisableObfuz()
+        {
+            ScriptingDefineSymbols.RemoveScriptingDefineSymbol(EnableObfuzScriptingDefineSymbol);
+            ObfuzSettings.Instance.buildPipelineSettings.enable = false;
+            ObfuzSettings.Save();
+        }
+
+        /// <summary>
+        /// 开启Obfuz宏定义。
+        /// </summary>
+        [MenuItem("Obfuz/Define Symbols/Enable Obfuz", false, 31)]
+        public static void EnableObfuz()
+        {
+            ScriptingDefineSymbols.RemoveScriptingDefineSymbol(EnableObfuzScriptingDefineSymbol);
+            ScriptingDefineSymbols.AddScriptingDefineSymbol(EnableObfuzScriptingDefineSymbol);
+            ObfuzSettings.Instance.buildPipelineSettings.enable = true;
+            ObfuzSettings.Save();
+        }
+
+        #endregion
 
         [MenuItem("HybridCLR/Build/BuildAssets And CopyTo AssemblyTextAssetPath")]
         public static void BuildAndCopyDlls()
         {
 #if ENABLE_HYBRIDCLR
-        BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
-        CompileDllCommand.CompileDll(target);
-        CopyAOTHotUpdateDlls(target);
+            BuildTarget target = EditorUserBuildSettings.activeBuildTarget;
+            CompileDllCommand.CompileDll(target);
+            CopyAOTHotUpdateDlls(target);
 #endif
         }
 
         public static void BuildAndCopyDlls(BuildTarget target)
         {
 #if ENABLE_HYBRIDCLR
-        CompileDllCommand.CompileDll(target);
-        CopyAOTHotUpdateDlls(target);
+            CompileDllCommand.CompileDll(target);
+            CopyAOTHotUpdateDlls(target);
 #endif
         }
 
@@ -130,7 +130,7 @@ namespace LFramework.Editor
  obfuscationRelativeAssemblyNames.Contains(assName) ? obfuscatedHotUpdateDllPath : hotUpdateDllPath;
             string srcFile = $"{srcDir}/{assName}.dll";
             string dstFile =
- Application.dataPath +"/"+ TEngine.Settings.UpdateSetting.AssemblyTextAssetPath  + $"/{assName}.dll.bytes";
+ Application.dataPath +"/"+ ConfigComponent.EditorUpdateConfig.AssemblyTextAssetPath  + $"/{assName}.dll.bytes";
             if (File.Exists(srcFile))
             {
                 File.Copy(srcFile, dstFile, true);
@@ -145,39 +145,43 @@ namespace LFramework.Editor
         public static void CopyAOTAssembliesToAssetPath()
         {
 #if ENABLE_HYBRIDCLR
-        var target = EditorUserBuildSettings.activeBuildTarget;
-        string aotAssembliesSrcDir = SettingsUtil.GetAssembliesPostIl2CppStripDir(target);
-        string aotAssembliesDstDir = Application.dataPath +"/"+ ConfigComponent.EditorUpdateConfig.AssemblyTextAssetPath;
+            var target = EditorUserBuildSettings.activeBuildTarget;
+            string aotAssembliesSrcDir = SettingsUtil.GetAssembliesPostIl2CppStripDir(target);
+            string aotAssembliesDstDir =
+                Application.dataPath + "/" + ConfigComponent.EditorUpdateConfig.AssemblyTextAssetPath;
 
-        foreach (var dll in ConfigComponent.EditorUpdateConfig.AotMetaAssemblies)
-        {
-            string srcDllPath = $"{aotAssembliesSrcDir}/{dll}";
-            if (!System.IO.File.Exists(srcDllPath))
+            foreach (var dll in ConfigComponent.EditorUpdateConfig.AotMetaAssemblies)
             {
-                Debug.LogError($"ab中添加AOT补充元数据dll:{srcDllPath} 时发生错误,文件不存在。裁剪后的AOT dll在BuildPlayer时才能生成，因此需要你先构建一次游戏App后再打包。");
-                continue;
+                string srcDllPath = $"{aotAssembliesSrcDir}/{dll}";
+                if (!System.IO.File.Exists(srcDllPath))
+                {
+                    Debug.LogError(
+                        $"ab中添加AOT补充元数据dll:{srcDllPath} 时发生错误,文件不存在。裁剪后的AOT dll在BuildPlayer时才能生成，因此需要你先构建一次游戏App后再打包。");
+                    continue;
+                }
+
+                string dllBytesPath = $"{aotAssembliesDstDir}/{dll}.bytes";
+                System.IO.File.Copy(srcDllPath, dllBytesPath, true);
+                Debug.Log($"[CopyAOTAssembliesToStreamingAssets] copy AOT dll {srcDllPath} -> {dllBytesPath}");
             }
-            string dllBytesPath = $"{aotAssembliesDstDir}/{dll}.bytes";
-            System.IO.File.Copy(srcDllPath, dllBytesPath, true);
-            Debug.Log($"[CopyAOTAssembliesToStreamingAssets] copy AOT dll {srcDllPath} -> {dllBytesPath}");
-        }
 #endif
         }
 
         public static void CopyHotUpdateAssembliesToAssetPath()
         {
 #if ENABLE_HYBRIDCLR
-        var target = EditorUserBuildSettings.activeBuildTarget;
+            var target = EditorUserBuildSettings.activeBuildTarget;
 
-        string hotfixDllSrcDir = SettingsUtil.GetHotUpdateDllsOutputDirByTarget(target);
-        string hotfixAssembliesDstDir = Application.dataPath +"/"+ ConfigComponent.EditorUpdateConfig.AssemblyTextAssetPath;
-        foreach (var dll in SettingsUtil.HotUpdateAssemblyFilesExcludePreserved)
-        {
-            string dllPath = $"{hotfixDllSrcDir}/{dll}";
-            string dllBytesPath = $"{hotfixAssembliesDstDir}/{dll}.bytes";
-            System.IO.File.Copy(dllPath, dllBytesPath, true);
-            Debug.Log($"[CopyHotUpdateAssembliesToStreamingAssets] copy hotfix dll {dllPath} -> {dllBytesPath}");
-        }
+            string hotfixDllSrcDir = SettingsUtil.GetHotUpdateDllsOutputDirByTarget(target);
+            string hotfixAssembliesDstDir =
+                Application.dataPath + "/" + ConfigComponent.EditorUpdateConfig.AssemblyTextAssetPath;
+            foreach (var dll in SettingsUtil.HotUpdateAssemblyFilesExcludePreserved)
+            {
+                string dllPath = $"{hotfixDllSrcDir}/{dll}";
+                string dllBytesPath = $"{hotfixAssembliesDstDir}/{dll}.bytes";
+                System.IO.File.Copy(dllPath, dllBytesPath, true);
+                Debug.Log($"[CopyHotUpdateAssembliesToStreamingAssets] copy hotfix dll {dllPath} -> {dllBytesPath}");
+            }
 #endif
         }
     }

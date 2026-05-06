@@ -16,7 +16,8 @@ namespace LFramework
         /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
-        public async void LoadAsset(string assetName, int priority, LoadAssetCallbacks loadAssetCallbacks, object userData,
+        public async void LoadAsset(string assetName, int priority, LoadAssetCallbacks loadAssetCallbacks,
+            object userData,
             string packageName = "")
         {
             if (string.IsNullOrEmpty(assetName))
@@ -28,15 +29,17 @@ namespace LFramework
             {
                 throw new LFrameworkException("Load asset callbacks is invalid.");
             }
-            
+
             if (!CheckAssetValid(assetName, packageName))
             {
                 string errorMessage = Utility.Text.Format("Could not found assetName [{0}].", assetName);
                 Log.Error(errorMessage);
                 if (loadAssetCallbacks.LoadAssetFailureCallback != null)
                 {
-                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage, userData);
+                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage,
+                        userData);
                 }
+
                 return;
             }
 
@@ -50,7 +53,8 @@ namespace LFramework
             if (assetObject != null)
             {
                 await UniTask.Yield();
-                loadAssetCallbacks.LoadAssetSuccessCallback(assetName, assetObject.Target, Time.time - duration, userData);
+                loadAssetCallbacks.LoadAssetSuccessCallback(assetName, assetObject.Target, Time.time - duration,
+                    userData);
                 return;
             }
 
@@ -62,10 +66,12 @@ namespace LFramework
             {
                 _assetLoadingHashSet.Remove(assetObjectKey);
 
-                string errorMessage = Utility.Text.Format("Can not load asset '{0}' because :'{1}'.", assetName, assetInfo.Error);
+                string errorMessage = Utility.Text.Format("Can not load asset '{0}' because :'{1}'.", assetName,
+                    assetInfo.Error);
                 if (loadAssetCallbacks.LoadAssetFailureCallback != null)
                 {
-                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage, userData);
+                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage,
+                        userData);
                     return;
                 }
 
@@ -88,7 +94,8 @@ namespace LFramework
                 string errorMessage = Utility.Text.Format("Can not load asset '{0}'.", assetName);
                 if (loadAssetCallbacks.LoadAssetFailureCallback != null)
                 {
-                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotReady, errorMessage, userData);
+                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotReady, errorMessage,
+                        userData);
                     return;
                 }
 
@@ -119,7 +126,8 @@ namespace LFramework
         /// <param name="loadAssetCallbacks">加载资源回调函数集。</param>
         /// <param name="userData">用户自定义数据。</param>
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
-        public async void LoadAsset(string assetName, Type assetType, int priority, LoadAssetCallbacks loadAssetCallbacks,
+        public async void LoadAsset(string assetName, Type assetType, int priority,
+            LoadAssetCallbacks loadAssetCallbacks,
             object userData, string packageName = "")
         {
             if (string.IsNullOrEmpty(assetName))
@@ -131,15 +139,17 @@ namespace LFramework
             {
                 throw new LFrameworkException("Load asset callbacks is invalid.");
             }
-            
+
             if (!CheckAssetValid(assetName, packageName))
             {
                 string errorMessage = Utility.Text.Format("Could not found assetName [{0}].", assetName);
                 Log.Error(errorMessage);
                 if (loadAssetCallbacks.LoadAssetFailureCallback != null)
                 {
-                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage, userData);
+                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage,
+                        userData);
                 }
+
                 return;
             }
 
@@ -153,7 +163,8 @@ namespace LFramework
             if (assetObject != null)
             {
                 await UniTask.Yield();
-                loadAssetCallbacks.LoadAssetSuccessCallback(assetName, assetObject.Target, Time.time - duration, userData);
+                loadAssetCallbacks.LoadAssetSuccessCallback(assetName, assetObject.Target, Time.time - duration,
+                    userData);
                 return;
             }
 
@@ -165,10 +176,12 @@ namespace LFramework
             {
                 _assetLoadingHashSet.Remove(assetObjectKey);
 
-                string errorMessage = Utility.Text.Format("Can not load asset '{0}' because :'{1}'.", assetName, assetInfo.Error);
+                string errorMessage = Utility.Text.Format("Can not load asset '{0}' because :'{1}'.", assetName,
+                    assetInfo.Error);
                 if (loadAssetCallbacks.LoadAssetFailureCallback != null)
                 {
-                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage, userData);
+                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotExist, errorMessage,
+                        userData);
                     return;
                 }
 
@@ -191,7 +204,8 @@ namespace LFramework
                 string errorMessage = Utility.Text.Format("Can not load asset '{0}'.", assetName);
                 if (loadAssetCallbacks.LoadAssetFailureCallback != null)
                 {
-                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotReady, errorMessage, userData);
+                    loadAssetCallbacks.LoadAssetFailureCallback(assetName, LoadResourceStatus.NotReady, errorMessage,
+                        userData);
                     return;
                 }
 
@@ -233,7 +247,7 @@ namespace LFramework
             {
                 throw new LFrameworkException("Asset name is invalid.");
             }
-            
+
             if (!CheckAssetValid(assetName, packageName))
             {
                 Log.Error($"Could not found assetName [{assetName}].");
@@ -284,14 +298,15 @@ namespace LFramework
         /// <param name="packageName">指定资源包的名称。不传使用默认资源包</param>
         /// <typeparam name="T">要加载资源的类型。</typeparam>
         /// <returns>异步资源实例。</returns>
-        public async UniTask<T> LoadAsset<T>(string assetName, int priority, CancellationToken cancellationToken = default,
+        public async UniTask<T> LoadAsset<T>(string assetName, int priority,
+            CancellationToken cancellationToken = default,
             string packageName = "") where T : UnityEngine.Object
         {
             if (string.IsNullOrEmpty(assetName))
             {
                 throw new LFrameworkException("Asset name is invalid.");
             }
-            
+
             if (!CheckAssetValid(assetName, packageName))
             {
                 Log.Error($"Could not found assetName [{assetName}].");
@@ -312,7 +327,8 @@ namespace LFramework
             _assetLoadingHashSet.Add(assetObjectKey);
 
             AssetHandle handle = GetAssetHandle<T>(assetName, packageName: packageName);
-            bool cancelOrFailed = await handle.ToUniTask(cancellationToken: cancellationToken).AttachExternalCancellation(cancellationToken).SuppressCancellationThrow();
+            bool cancelOrFailed = await handle.ToUniTask(cancellationToken: cancellationToken)
+                .AttachExternalCancellation(cancellationToken).SuppressCancellationThrow();
 
             if (cancelOrFailed)
             {
@@ -406,10 +422,10 @@ namespace LFramework
                 _performGCCollect = true;
             }
         }
-        
-        
+
+
         private readonly TimeoutController _timeoutController = new TimeoutController();
-        
+
         private async UniTask TryWaitingLoading(string assetObjectKey)
         {
             if (_assetLoadingHashSet.Contains(assetObjectKey))
@@ -433,7 +449,7 @@ namespace LFramework
                 }
             }
         }
-        
+
         /// <summary>
         /// 获取异步资源句柄。
         /// </summary>
@@ -456,8 +472,9 @@ namespace LFramework
             var package = YooAssets.GetPackage(packageName);
             return package.LoadAssetAsync(assetName, assetType);
         }
-        
-        private async UniTaskVoid InvokeProgress(string assetName, AssetHandle assetHandle, LoadAssetUpdateCallback loadAssetUpdateCallback, object userData)
+
+        private async UniTaskVoid InvokeProgress(string assetName, AssetHandle assetHandle,
+            LoadAssetUpdateCallback loadAssetUpdateCallback, object userData)
         {
             if (string.IsNullOrEmpty(assetName))
             {

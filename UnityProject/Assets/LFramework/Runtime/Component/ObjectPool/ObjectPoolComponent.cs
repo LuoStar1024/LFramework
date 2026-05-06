@@ -26,19 +26,16 @@ namespace LFramework
         {
             get { return _objectPools.Count; }
         }
-        
+
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return 6;
-            }
+            get { return 6; }
         }
-        
+
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<IObjectPoolManager>(this);
@@ -48,7 +45,7 @@ namespace LFramework
         {
             _objectPools = new Dictionary<TypeNamePair, ObjectPoolBase>();
             _cachedAllObjectPools = new List<ObjectPoolBase>();
-            _objectPoolComparer = ObjectPoolComparer; 
+            _objectPoolComparer = ObjectPoolComparer;
         }
 
         /// <summary>

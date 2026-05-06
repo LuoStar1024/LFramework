@@ -34,7 +34,7 @@
         /// 获取是否暂停被覆盖的界面。
         /// </summary>
         bool PauseCoveredUIForm { get; }
-        
+
         /// <summary>
         /// 获取界面逻辑。
         /// </summary>

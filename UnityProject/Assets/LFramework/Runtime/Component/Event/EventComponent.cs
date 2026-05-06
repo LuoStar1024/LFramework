@@ -18,10 +18,7 @@ namespace LFramework
         /// </summary>
         public int EventHandlerCount
         {
-            get
-            {
-                return _eventPool.EventHandlerCount;
-            }
+            get { return _eventPool.EventHandlerCount; }
         }
 
         /// <summary>
@@ -29,10 +26,7 @@ namespace LFramework
         /// </summary>
         public int EventCount
         {
-            get
-            {
-                return _eventPool.EventCount;
-            }
+            get { return _eventPool.EventCount; }
         }
 
         /// <summary>
@@ -41,10 +35,7 @@ namespace LFramework
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return 7;
-            }
+            get { return 7; }
         }
 
         private void Awake()
@@ -116,7 +107,7 @@ namespace LFramework
         {
             _eventPool.Subscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -128,7 +119,7 @@ namespace LFramework
         {
             _eventPool.Subscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -141,7 +132,7 @@ namespace LFramework
         {
             _eventPool.Subscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -155,7 +146,7 @@ namespace LFramework
         {
             _eventPool.Subscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -166,11 +157,12 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
         {
             _eventPool.Subscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -182,11 +174,12 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
         {
             _eventPool.Subscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -199,11 +192,12 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
         {
             _eventPool.Subscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 订阅事件处理函数。
         /// </summary>
@@ -217,7 +211,8 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
+        public void Subscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
         {
             _eventPool.Subscribe(id, handler);
         }
@@ -252,7 +247,7 @@ namespace LFramework
         {
             _eventPool.Unsubscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -264,7 +259,7 @@ namespace LFramework
         {
             _eventPool.Unsubscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -277,7 +272,7 @@ namespace LFramework
         {
             _eventPool.Unsubscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -291,7 +286,7 @@ namespace LFramework
         {
             _eventPool.Unsubscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -302,11 +297,12 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5> handler)
         {
             _eventPool.Unsubscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -318,11 +314,12 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6> handler)
         {
             _eventPool.Unsubscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -335,11 +332,12 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7> handler)
         {
             _eventPool.Unsubscribe(id, handler);
         }
-        
+
         /// <summary>
         /// 取消订阅事件处理函数。
         /// </summary>
@@ -353,7 +351,8 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
+        public void Unsubscribe<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id,
+            Action<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8> handler)
         {
             _eventPool.Unsubscribe(id, handler);
         }
@@ -396,7 +395,7 @@ namespace LFramework
         {
             _eventPool.Fire(id, arg1);
         }
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -409,7 +408,7 @@ namespace LFramework
         {
             _eventPool.Fire(id, arg1, arg2);
         }
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -424,7 +423,7 @@ namespace LFramework
         {
             _eventPool.Fire(id, arg1, arg2, arg3);
         }
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -441,7 +440,7 @@ namespace LFramework
         {
             _eventPool.Fire(id, arg1, arg2, arg3, arg4);
         }
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -456,11 +455,12 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4,
+            TArg5 arg5)
         {
             _eventPool.Fire(id, arg1, arg2, arg3, arg4, arg5);
         }
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -477,11 +477,12 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6)
         {
             _eventPool.Fire(id, arg1, arg2, arg3, arg4, arg5, arg6);
         }
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -500,11 +501,12 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
         {
             _eventPool.Fire(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
         }
-        
+
         /// <summary>
         /// 抛出事件，这个操作是线程安全的，即使不在主线程中抛出，也可保证在主线程中回调事件处理函数，但事件会在抛出后的下一帧分发。
         /// </summary>
@@ -525,7 +527,8 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
+        public void Fire<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2,
+            TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
         {
             _eventPool.Fire(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
         }
@@ -549,7 +552,7 @@ namespace LFramework
         {
             _eventPool.FireNow(id, arg1);
         }
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -562,7 +565,7 @@ namespace LFramework
         {
             _eventPool.FireNow(id, arg1, arg2);
         }
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -577,7 +580,7 @@ namespace LFramework
         {
             _eventPool.FireNow(id, arg1, arg2, arg3);
         }
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -594,7 +597,7 @@ namespace LFramework
         {
             _eventPool.FireNow(id, arg1, arg2, arg3, arg4);
         }
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -609,11 +612,12 @@ namespace LFramework
         /// <typeparam name="TArg3">事件参数3类型。</typeparam>
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
-        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4,
+            TArg5 arg5)
         {
             _eventPool.FireNow(id, arg1, arg2, arg3, arg4, arg5);
         }
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -630,11 +634,12 @@ namespace LFramework
         /// <typeparam name="TArg4">事件参数4类型。</typeparam>
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
-        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6)
         {
             _eventPool.FireNow(id, arg1, arg2, arg3, arg4, arg5, arg6);
         }
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -653,11 +658,12 @@ namespace LFramework
         /// <typeparam name="TArg5">事件参数5类型。</typeparam>
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
-        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3,
+            TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
         {
             _eventPool.FireNow(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
         }
-        
+
         /// <summary>
         /// 抛出事件立即模式，这个操作不是线程安全的，事件会立刻分发。
         /// </summary>
@@ -678,7 +684,8 @@ namespace LFramework
         /// <typeparam name="TArg6">事件参数6类型。</typeparam>
         /// <typeparam name="TArg7">事件参数7类型。</typeparam>
         /// <typeparam name="TArg8">事件参数8类型。</typeparam>
-        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
+        public void FireNow<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(int id, TArg1 arg1, TArg2 arg2,
+            TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
         {
             _eventPool.FireNow(id, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
         }

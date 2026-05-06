@@ -16,17 +16,17 @@ namespace LFramework
         /// 获取或设置调试器漂浮框大小。
         /// </summary>
         Rect IconRect { get; set; }
-        
+
         /// <summary>
         /// 获取或设置调试器窗口大小。
         /// </summary>
         Rect WindowRect { get; set; }
-        
+
         /// <summary>
         /// 获取或设置调试器窗口缩放比例。
         /// </summary>
         float WindowScale { get; set; }
-        
+
         /// <summary>
         /// 调试器窗口根结点。
         /// </summary>

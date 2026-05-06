@@ -1,34 +1,38 @@
 ﻿#region Class Documentation
+
 /************************************************************************************************************
 Class Name:     CommandLineReader.cs
 Type:           Util, Static
 Definition:
-                CommandLineReader.cs give the ability to access [Custom Arguments] sent 
+                CommandLineReader.cs give the ability to access [Custom Arguments] sent
                 through the command line. Simply add your custom arguments under the
                 keyword '-CustomArgs:' and seperate them by ';'.
 Example:
                 C:\Program Files (x86)\Unity\Editor\Unity.exe [ProjectLocation] -executeMethod [Your entrypoint] -quit -CustomArgs:Language=en_US;Version=1.02
-                
+
 Example1:
                 set WORKSPACE=.
                 set UNITYEDITOR_PATH=G:/UnityEditor/2021.3.20f1c1/Editor
                 set LOGFILE=./build.log
                 set BUILDROOT=G:/github/TEngine/UnityProject/Bundles
 
-                %UNITYEDITOR_PATH%/Unity.exe %WORKSPACE%/UnityProject -logFile %LOGFILE% -executeMethod TEngine.ReleaseTools.BuildPackage -quit -batchmode -CustomArgs:Language=en_US;Version=1.02;outputRoot=%BUILDROOT%
+                %UNITYEDITOR_PATH%/Unity.exe -projectPath %WORKSPACE%/UnityProject -logFile %LOGFILE% -executeMethod GameEditor.ReleaseTools.BuildPackage -quit -batchmode -CustomArgs:platform=Windows;packageVersion=1.02;outputRoot=%BUILDROOT%
 
                 @REM for /f "delims=[" %%i in (%LOGFILE%) do echo %%i
 
                 pause
 ************************************************************************************************************/
+
 #endregion
 
 #region Using
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using Debug = UnityEngine.Debug;
+
 #endregion
 
 namespace GameEditor
@@ -42,6 +46,7 @@ namespace GameEditor
         //Config
         private const string CUSTOM_ARGS_PREFIX = "-CustomArgs:";
         private const char CUSTOM_ARGS_SEPARATOR = ';';
+        private const char CUSTOM_ARG_KEY_VALUE_SEPARATOR = '=';
 
         public static string[] GetCommandLineArgs()
         {
@@ -65,42 +70,63 @@ namespace GameEditor
 
         public static Dictionary<string, string> GetCustomArguments()
         {
-            Dictionary<string, string> customArgsDict = new Dictionary<string, string>();
+            Dictionary<string, string> customArgsDict =
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
             string[] commandLineArgs = GetCommandLineArgs();
-            string[] customArgs;
-            string[] customArgBuffer;
-            string customArgsStr = "";
+            string[] customArgsRows = commandLineArgs
+                .Where(row => row.StartsWith(CUSTOM_ARGS_PREFIX, StringComparison.OrdinalIgnoreCase))
+                .ToArray();
 
-            try
-            {
-                customArgsStr = commandLineArgs.Where(row => row.Contains(CUSTOM_ARGS_PREFIX)).Single();
-            }
-            catch (Exception e)
+            if (customArgsRows.Length == 0)
             {
                 Debug.LogError(
                     "CommandLineReader.cs - GetCustomArguments() - Can't retrieve any custom arguments in the command line [" +
-                    commandLineArgs + "]. Exception: " + e);
+                    GetCommandLine() + "].");
                 return customArgsDict;
             }
 
-            customArgsStr = customArgsStr.Replace(CUSTOM_ARGS_PREFIX, "");
-            customArgs = customArgsStr.Split(CUSTOM_ARGS_SEPARATOR);
-
-            foreach (string customArg in customArgs)
+            foreach (string customArgsRow in customArgsRows)
             {
-                customArgBuffer = customArg.Split('=');
-                if (customArgBuffer.Length == 2)
+                string customArgsStr = customArgsRow.Substring(CUSTOM_ARGS_PREFIX.Length);
+                string[] customArgs = customArgsStr.Split(new[] { CUSTOM_ARGS_SEPARATOR },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string customArg in customArgs)
                 {
-                    customArgsDict.Add(customArgBuffer[0], customArgBuffer[1]);
-                }
-                else
-                {
-                    Debug.LogWarning("CommandLineReader.cs - GetCustomArguments() - The custom argument [" + customArg +
-                                     "] seem to be malformed.");
+                    string[] customArgBuffer = customArg.Split(new[] { CUSTOM_ARG_KEY_VALUE_SEPARATOR }, 2);
+                    if (customArgBuffer.Length == 2 && !string.IsNullOrWhiteSpace(customArgBuffer[0]))
+                    {
+                        string key = customArgBuffer[0].Trim();
+                        string value = customArgBuffer[1].Trim();
+                        if (customArgsDict.ContainsKey(key))
+                        {
+                            Debug.LogWarning(
+                                "CommandLineReader.cs - GetCustomArguments() - Duplicate custom argument [" +
+                                key + "] will be overwritten.");
+                        }
+
+                        customArgsDict[key] = value;
+                    }
+                    else
+                    {
+                        Debug.LogWarning("CommandLineReader.cs - GetCustomArguments() - The custom argument [" +
+                                         customArg +
+                                         "] seem to be malformed.");
+                    }
                 }
             }
 
             return customArgsDict;
+        }
+
+        public static bool TryGetCustomArgument(string argumentName, out string argument)
+        {
+            return GetCustomArguments().TryGetValue(argumentName, out argument);
+        }
+
+        public static string GetCustomArgument(string argumentName, string defaultValue)
+        {
+            return TryGetCustomArgument(argumentName, out var argument) ? argument : defaultValue;
         }
 
         /// <summary>

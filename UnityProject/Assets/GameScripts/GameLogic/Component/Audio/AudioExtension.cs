@@ -18,7 +18,7 @@ namespace GameLogic
                 Log.Warning("Can not load music '{0}' from data table.", musicId.ToString());
                 return null;
             }
-            
+
             PlayAudioParams playAudioParams = PlayAudioParams.Create();
             playAudioParams.Priority = 64;
             playAudioParams.Loop = true;
@@ -41,7 +41,8 @@ namespace GameLogic
             _musicSerialId = null;
         }
 
-        public static int? PlaySound(this IAudioManager audioComponent, int audioId, Transform bindingTrans = null, object userData = null)
+        public static int? PlaySound(this IAudioManager audioComponent, int audioId, Transform bindingTrans = null,
+            object userData = null)
         {
             var cfgAudio = GameEntry.DataTable.TbSound.Get(audioId);
             if (cfgAudio == null)
@@ -49,7 +50,7 @@ namespace GameLogic
                 Log.Warning("Can not load audio '{0}' from data table.", audioId.ToString());
                 return null;
             }
-            
+
             PlayAudioParams playAudioParams = PlayAudioParams.Create();
             playAudioParams.Priority = cfgAudio.Priority;
             playAudioParams.Loop = cfgAudio.Loop;
@@ -68,7 +69,7 @@ namespace GameLogic
                 Log.Warning("Can not load UI audio '{0}' from data table.", uiAudioId.ToString());
                 return null;
             }
-            
+
             PlayAudioParams playAudioParams = PlayAudioParams.Create();
             playAudioParams.Priority = cfgAudio.Priority;
             playAudioParams.Loop = false;

@@ -11,12 +11,10 @@ namespace LFramework
     [AddComponentMenu("LFramework/Procedure")]
     public sealed class ProcedureComponent : MonoBehaviour, ILFrameworkModule, IProcedureManager
     {
-        [SerializeField]
-        private string[] availableProcedureTypeNames = null;
+        [SerializeField] private string[] availableProcedureTypeNames = null;
 
-        [SerializeField]
-        private string entranceProcedureTypeName = null;
-        
+        [SerializeField] private string entranceProcedureTypeName = null;
+
         private IFsmManager _fsmManager;
         private IFsm<IProcedureManager> _procedureFsm;
         private ProcedureBase _entranceProcedure = null;
@@ -68,17 +66,14 @@ namespace LFramework
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return -2;
-            }
+            get { return -2; }
         }
 
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<IProcedureManager>(this);
         }
-        
+
         private IEnumerator Start()
         {
             ProcedureBase[] procedures = new ProcedureBase[availableProcedureTypeNames.Length];

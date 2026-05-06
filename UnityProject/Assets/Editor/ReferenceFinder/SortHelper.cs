@@ -27,7 +27,8 @@ namespace GameEditor
             SortedAsset.Clear();
         }
 
-        public static void ChangeSortType(short sortGroup, Dictionary<SortType, SortType> handler, ref SortType recoverType)
+        public static void ChangeSortType(short sortGroup, Dictionary<SortType, SortType> handler,
+            ref SortType recoverType)
         {
             if (SortConfig.SortTypeGroup[CurSortType] == sortGroup)
             {
@@ -42,9 +43,11 @@ namespace GameEditor
             recoverType = CurSortType;
         }
 
-        public static void SortByName() => ChangeSortType(SortConfig.TYPE_BY_NAME_GROUP, SortConfig.SortTypeChangeByNameHandler, ref NameType);
+        public static void SortByName() => ChangeSortType(SortConfig.TYPE_BY_NAME_GROUP,
+            SortConfig.SortTypeChangeByNameHandler, ref NameType);
 
-        public static void SortByPath() => ChangeSortType(SortConfig.TYPE_BY_PATH_GROUP, SortConfig.SortTypeChangeByPathHandler, ref PathType);
+        public static void SortByPath() => ChangeSortType(SortConfig.TYPE_BY_PATH_GROUP,
+            SortConfig.SortTypeChangeByPathHandler, ref PathType);
 
         public static void SortChild(ReferenceFinderData.AssetDescription data)
         {

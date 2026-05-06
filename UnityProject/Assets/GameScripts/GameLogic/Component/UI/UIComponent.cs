@@ -13,21 +13,17 @@ namespace GameLogic
     [AddComponentMenu("LFramework/UI")]
     public sealed partial class UIComponent : MonoBehaviour, ILFrameworkModule, IUIManager, IUIRelease
     {
-        [SerializeField]
-        private float instanceAutoReleaseInterval = 60f;
+        [SerializeField] private float instanceAutoReleaseInterval = 60f;
 
-        [SerializeField]
-        private int instanceCapacity = 16;
+        [SerializeField] private int instanceCapacity = 16;
 
-        [SerializeField]
-        private float instanceExpireTime = 60f;
+        [SerializeField] private float instanceExpireTime = 60f;
 
-        [SerializeField]
-        private int instancePriority = 0;
-        
+        [SerializeField] private int instancePriority = 0;
+
         private const int DefaultPriority = 0;
         private readonly List<IUIForm> _internalUIFormResults = new List<IUIForm>();
-        
+
         private Dictionary<string, UIGroup> _uiGroups;
         private Dictionary<int, string> _uiFormsBeingLoaded;
         private HashSet<int> _uiFormsToReleaseOnLoad;
@@ -89,10 +85,7 @@ namespace GameLogic
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return 0;
-            }
+            get { return 0; }
         }
 
         private void Awake()
@@ -121,7 +114,8 @@ namespace GameLogic
             _uiFormsBeingLoaded = new Dictionary<int, string>();
             _uiFormsToReleaseOnLoad = new HashSet<int>();
             _recycleQueue = new Queue<IUIForm>();
-            _loadAssetCallbacks = new LoadAssetCallbacks(LoadAssetSuccessCallback, LoadAssetFailureCallback, LoadAssetUpdateCallback);
+            _loadAssetCallbacks = new LoadAssetCallbacks(LoadAssetSuccessCallback, LoadAssetFailureCallback,
+                LoadAssetUpdateCallback);
             _objectPoolManager = null;
             _resourceManager = null;
             _instancePool = null;
@@ -163,6 +157,7 @@ namespace GameLogic
                 uiForm.OnRecycle();
                 _instancePool.Unspawn(uiForm.Handle);
             }
+
             _instancePool.ReleaseAllUnused();
             _uiGroups.Clear();
             _uiFormsBeingLoaded.Clear();
@@ -444,7 +439,7 @@ namespace GameLogic
             {
                 uiGroup.Value.InternalGetUIForms(uiFormAssetName, _internalUIFormResults);
             }
-            
+
             foreach (IUIForm uiForm in _internalUIFormResults)
             {
                 results.Add((UIForm)uiForm);
@@ -488,7 +483,7 @@ namespace GameLogic
             {
                 uiGroup.Value.InternalGetAllUIForms(_internalUIFormResults);
             }
-            
+
             foreach (IUIForm uiForm in _internalUIFormResults)
             {
                 results.Add((UIForm)uiForm);
@@ -940,7 +935,7 @@ namespace GameLogic
 
             _instancePool.SetPriority(uiFormInstance, priority);
         }
-        
+
         /// <summary>
         /// 释放界面。
         /// </summary>

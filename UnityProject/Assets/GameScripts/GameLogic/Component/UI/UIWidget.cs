@@ -12,10 +12,7 @@ namespace GameLogic
 
         public bool IsOpen
         {
-            get
-            {
-                return _available;
-            }
+            get { return _available; }
         }
 
         /// <summary>
@@ -23,10 +20,7 @@ namespace GameLogic
         /// </summary>
         public bool Visible
         {
-            get
-            {
-                return _available && _visible;
-            }
+            get { return _available && _visible; }
             set
             {
                 if (!_available)
@@ -34,10 +28,12 @@ namespace GameLogic
                     Log.Warning("UI widget '{0}' is not available.", this.gameObject.name);
                     return;
                 }
+
                 if (_visible == value)
                 {
                     return;
                 }
+
                 _visible = value;
                 InternalSetVisible(value);
             }
@@ -48,10 +44,7 @@ namespace GameLogic
         /// </summary>
         public Transform CachedTransform
         {
-            get
-            {
-                return _cachedTransform;
-            }
+            get { return _cachedTransform; }
         }
 
         /// <summary>

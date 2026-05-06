@@ -192,6 +192,7 @@ namespace GameEditor
                 ClearCache();
                 ClearAllAtlas();
             }
+
             _atlasMap.Clear();
             ScanExistingSprites();
 
@@ -243,10 +244,10 @@ namespace GameEditor
         {
             var currentPath = Path.GetDirectoryName(assetPath)?.Replace("\\", "/");
 
-            if(string.IsNullOrEmpty(currentPath)) return;
+            if (string.IsNullOrEmpty(currentPath)) return;
             var tempRootDirArr = new List<string>(Config.sourceAtlasRootDir);
             tempRootDirArr.AddRange(Config.rootChildAtlasDir);
-            
+
             // 遍历所有根目录，向上查找并标记父级图集
             foreach (var rootPath in tempRootDirArr)
             {
@@ -257,6 +258,7 @@ namespace GameEditor
                 {
                     continue;
                 }
+
                 // 向上遍历目录树
                 while (tempCurrentPath != null && tempCurrentPath.StartsWith(tempPath))
                 {
@@ -266,6 +268,7 @@ namespace GameEditor
                     {
                         MarkDirty(parentAtlasName, isCreateNew);
                     }
+
                     tempCurrentPath = Path.GetDirectoryName(tempCurrentPath)?.Replace("\\", "/");
                 }
             }
@@ -307,6 +310,7 @@ namespace GameEditor
                     {
                         GenerateAtlas(atlasName, false);
                     }
+
                     _dirtyAtlasNames.Remove(atlasName);
                 }
 
@@ -318,6 +322,7 @@ namespace GameEditor
                     {
                         GenerateAtlas(atlasName, true);
                     }
+
                     _dirtyAtlasNamesNeedCreateNew.Remove(atlasName);
                 }
             }
@@ -368,7 +373,7 @@ namespace GameEditor
             var outputPath = $"{Config.outputAtlasDir}/{atlasName}.spriteatlas";
             var outputPathV2 = outputPath.Replace(".spriteatlas", ".spriteatlasv2");
             string deletePath = outputPath;
-            
+
             // 根据配置决定使用 V1 还是 V2 格式
             if (Config.enableV2)
             {
@@ -386,17 +391,17 @@ namespace GameEditor
             {
                 AssetDatabase.DeleteAsset(deletePath);
             }
-            
+
             var sprites = LoadValidSprites(atlasName);
             EnsureOutputDirectory();
-            
+
             // 如果没有精灵，删除图集文件
             if (sprites.Count == 0)
             {
                 DeleteAtlas(deletePath);
                 return;
             }
-            
+
             AssetDatabase.Refresh();
             EditorApplication.delayCall += () => { InternalGenerateAtlas(atlasName, sprites, outputPath); };
         }
@@ -413,7 +418,7 @@ namespace GameEditor
         {
             SpriteAtlasAsset spriteAtlasAsset = null;
             SpriteAtlas atlas = null;
-            
+
             // V2 格式处理
             if (Config.enableV2)
             {
@@ -471,6 +476,7 @@ namespace GameEditor
                     {
                         atlas.Remove(olds);
                     }
+
                     ConfigureAtlasSettings(atlas);
                     atlas.Add(sprites.ToArray());
                     atlas.SetIsVariant(false);
@@ -484,16 +490,16 @@ namespace GameEditor
                     AssetDatabase.CreateAsset(atlas, outputPath);
                 }
             }
-            
+
             EditorUtility.SetDirty(atlas);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            
+
             if (File.Exists(outputPath))
             {
                 _atlasPathMap[atlasName] = outputPath;
             }
-            
+
             if (Config.enableLogging)
             {
                 Debug.Log($"<b>[Generate Atlas]</b>: {atlasName} ({sprites.Count} sprites)");
@@ -526,6 +532,7 @@ namespace GameEditor
 
                 return allSprites;
             }
+
             return new List<Sprite>();
         }
 
@@ -657,12 +664,14 @@ namespace GameEditor
                 {
                     continue;
                 }
+
                 var relativePath = assetPath.Substring(tempPath.Length + 1).Split('/');
                 // 根目录下文件不处理
                 if (relativePath.Length < 2)
                 {
                     return null;
                 }
+
                 // 提取目录部分（排除文件名）
                 var directories = relativePath.Take(relativePath.Length - 1);
                 var atlasNames = string.Join("_", directories);
@@ -670,6 +679,7 @@ namespace GameEditor
                 var rootFolderName = Path.GetFileName(tempPath);
                 return $"{rootFolderName}_{atlasNames}";
             }
+
             return null;
         }
 
@@ -724,6 +734,7 @@ namespace GameEditor
                     return;
                 }
             }
+
             if (isCreateNew)
             {
                 _dirtyAtlasNamesNeedCreateNew.Add(atlasName);
@@ -761,6 +772,7 @@ namespace GameEditor
                     .DefaultIfEmpty()
                     .Max();
             }
+
             return DateTime.MinValue;
         }
 
@@ -775,6 +787,7 @@ namespace GameEditor
             {
                 return new FileInfo(atlasPath).LastWriteTime;
             }
+
             return DateTime.MinValue;
         }
 
@@ -842,11 +855,13 @@ namespace GameEditor
                 {
                     continue;
                 }
+
                 var relativePath = directoryPath.Substring(rootPath.Length + 1).Split('/');
                 var atlasNamePart = string.Join("_", relativePath);
                 var rootFolderName = Path.GetFileName(rootPath);
                 return $"{rootFolderName}_{atlasNamePart}";
             }
+
             return null;
         }
 
@@ -865,18 +880,21 @@ namespace GameEditor
                 {
                     continue;
                 }
+
                 var relativePath = spritePath.Substring(tempPath.Length + 1).Split('/');
                 // 根目录下文件不处理
                 if (relativePath.Length < 2)
                 {
                     return null;
                 }
+
                 // 使用文件名（不含扩展名）作为图集名称的一部分
                 relativePath[^1] = Path.GetFileNameWithoutExtension(spritePath);
                 var atlasNames = string.Join("_", relativePath);
                 var rootFolderName = Path.GetFileName(tempPath);
                 return $"{rootFolderName}_{atlasNames}";
             }
+
             return null;
         }
 
@@ -888,7 +906,8 @@ namespace GameEditor
         private static bool CheckIsNeedGenerateSingleAtlas(string spritePath)
         {
             return !CheckIsExcludeFolder(spritePath)
-                   && Config.singleAtlasDir.Any(key => spritePath.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0);
+                   && Config.singleAtlasDir.Any(key =>
+                       spritePath.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         /// <summary>
@@ -899,7 +918,8 @@ namespace GameEditor
         private static bool CheckIsNeedGenerateRootChildDirAtlas(string spritePath)
         {
             return !CheckIsExcludeFolder(spritePath)
-                   && Config.rootChildAtlasDir.Any(key => spritePath.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0);
+                   && Config.rootChildAtlasDir.Any(key =>
+                       spritePath.IndexOf(key, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         /// <summary>
@@ -926,6 +946,7 @@ namespace GameEditor
                     }
                 }
             }
+
             return null;
         }
 
@@ -944,6 +965,7 @@ namespace GameEditor
                     return true;
                 }
             }
+
             return false;
         }
 

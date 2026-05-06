@@ -6,7 +6,7 @@ namespace GameLogic
     public class MenuForm : UguiForm
     {
         private ProcedureMenu _procedureMenu = null;
-        
+
         public void OnStartBtnClick()
         {
             PlayUISound(1001);
@@ -26,7 +26,7 @@ namespace GameLogic
         protected internal override void OnOpen(object userData)
         {
             base.OnOpen(userData);
-            
+
             _procedureMenu = (ProcedureMenu)userData;
             if (_procedureMenu == null)
             {
@@ -38,7 +38,7 @@ namespace GameLogic
         protected internal override void OnClose(bool isShutdown, object userData)
         {
             _procedureMenu = null;
-            
+
             base.OnClose(isShutdown, userData);
         }
     }

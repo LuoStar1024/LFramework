@@ -251,7 +251,7 @@ namespace GameLogic
         /// <returns>界面的序列编号。</returns>
         int OpenUIForm(string uiFormAssetName, string uiGroupName, int priority, bool pauseCoveredUIForm,
             object userData);
-        
+
         /// <summary>
         /// 打开界面。（可等待）
         /// </summary>

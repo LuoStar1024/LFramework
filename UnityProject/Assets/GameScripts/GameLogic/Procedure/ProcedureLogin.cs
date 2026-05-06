@@ -8,7 +8,7 @@ namespace GameLogic
     public class ProcedureLogin : ProcedureBase
     {
         private bool _loginSuccess = false;
-        
+
         /// <summary>
         /// 登录成功后由界面回调触发，通知流程进入下一阶段。
         /// </summary>
@@ -16,7 +16,7 @@ namespace GameLogic
         {
             _loginSuccess = true;
         }
-        
+
         protected override void OnEnter(IFsm<IProcedureManager> procedureOwner)
         {
             base.OnEnter(procedureOwner);
@@ -26,7 +26,8 @@ namespace GameLogic
             GameEntry.UI.OpenUIForm(AssetUtility.GetUIFormAsset("LoginForm"), Constant.Setting.UIGroupNormal, this);
         }
 
-        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds, float realElapseSeconds)
+        protected override void OnUpdate(IFsm<IProcedureManager> procedureOwner, float elapseSeconds,
+            float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
 

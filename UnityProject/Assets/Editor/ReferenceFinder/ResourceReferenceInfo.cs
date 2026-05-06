@@ -13,8 +13,7 @@ namespace GameEditor
         public static readonly ReferenceFinderData Data = new ReferenceFinderData();
         private static bool _initializedData;
 
-        [SerializeField]
-        private TreeViewState _treeViewState;
+        [SerializeField] private TreeViewState _treeViewState;
 
         public bool needUpdateAssetTree;
         public bool needUpdateState = true;
@@ -37,7 +36,8 @@ namespace GameEditor
             InitGUIStyleIfNeeded();
             DrawOptionBar();
             UpdateAssetTree();
-            mAssetTreeView?.OnGUI(new Rect(0, _toolbarGUIStyle.fixedHeight, position.width, position.height - _toolbarGUIStyle.fixedHeight));
+            mAssetTreeView?.OnGUI(new Rect(0, _toolbarGUIStyle.fixedHeight, position.width,
+                position.height - _toolbarGUIStyle.fixedHeight));
         }
 
         [MenuItem("LFramework/查找资产引用 _F10", false, 10)]
@@ -124,7 +124,8 @@ namespace GameEditor
                             string[] guids = AssetDatabase.FindAssets(null, folder);
                             foreach (string guid in guids)
                             {
-                                if (!selectedAssetGuid.Contains(guid) && !Directory.Exists(AssetDatabase.GUIDToAssetPath(guid)))
+                                if (!selectedAssetGuid.Contains(guid) &&
+                                    !Directory.Exists(AssetDatabase.GUIDToAssetPath(guid)))
                                     selectedAssetGuid.Add(guid);
                             }
                         }
@@ -149,13 +150,15 @@ namespace GameEditor
                 {
                     if (_treeViewState == null)
                         _treeViewState = new TreeViewState();
-                    MultiColumnHeaderState headerState = AssetTreeView.CreateDefaultMultiColumnHeaderState(position.width, _isDepend);
+                    MultiColumnHeaderState headerState =
+                        AssetTreeView.CreateDefaultMultiColumnHeaderState(position.width, _isDepend);
                     ClickColumn multiColumnHeader = new ClickColumn(headerState);
                     mAssetTreeView = new AssetTreeView(_treeViewState, multiColumnHeader);
                 }
                 else
                 {
-                    MultiColumnHeaderState headerState = AssetTreeView.CreateDefaultMultiColumnHeaderState(position.width, _isDepend);
+                    MultiColumnHeaderState headerState =
+                        AssetTreeView.CreateDefaultMultiColumnHeaderState(position.width, _isDepend);
                     ClickColumn multiColumnHeader = new ClickColumn(headerState);
                     mAssetTreeView.multiColumnHeader = multiColumnHeader;
                 }
@@ -184,15 +187,18 @@ namespace GameEditor
                             matName += kv.Value.Name + "<--->";
                         }
 
-                        string tempInfo = $"name  <color=green>[{kv.Key}]</color>, type: <color=orange>[{kv.Value.Type}]</color>, count: <color=red>[{kv.Value.Count}]</color>";
+                        string tempInfo =
+                            $"name  <color=green>[{kv.Key}]</color>, type: <color=orange>[{kv.Value.Type}]</color>, count: <color=red>[{kv.Value.Count}]</color>";
                         sb.AppendLine(tempInfo);
                     }
                 }
 
                 if (totalPrefab > 0)
-                    sb.Insert(0, $"预制体总数  <color=red>[{totalPrefab}]</color>  预制体详情  <color=green>[{prefabName}]</color> \r\n");
+                    sb.Insert(0,
+                        $"预制体总数  <color=red>[{totalPrefab}]</color>  预制体详情  <color=green>[{prefabName}]</color> \r\n");
                 if (totalMat > 0)
-                    sb.Insert(0, $"材质总数  <color=red>[{totalMat}]</color>  材质详情  <color=green>[{matName}]</color>  \r\n");
+                    sb.Insert(0,
+                        $"材质总数  <color=red>[{totalMat}]</color>  材质详情  <color=green>[{matName}]</color>  \r\n");
                 string str = sb.ToString();
                 if (!string.IsNullOrEmpty(str))
                     Debug.Log(str);
@@ -210,7 +216,8 @@ namespace GameEditor
             }
 
             bool preIsDepend = _isDepend;
-            _isDepend = GUILayout.Toggle(_isDepend, _isDepend ? "依赖模式" : "引用模式", _toolbarButtonGUIStyle, GUILayout.Width(100));
+            _isDepend = GUILayout.Toggle(_isDepend, _isDepend ? "依赖模式" : "引用模式", _toolbarButtonGUIStyle,
+                GUILayout.Width(100));
             if (preIsDepend != _isDepend)
                 OnModelSelect();
             if (GUILayout.Button("展开", _toolbarButtonGUIStyle))
@@ -257,7 +264,8 @@ namespace GameEditor
 
             ++elementCount;
             ReferenceFinderData.AssetDescription referenceData = Data.assetDict[guid];
-            AssetViewItem root = new AssetViewItem { id = elementCount, displayName = referenceData.name, data = referenceData, depth = depth };
+            AssetViewItem root = new AssetViewItem
+                { id = elementCount, displayName = referenceData.name, data = referenceData, depth = depth };
             List<string> childGuids = _isDepend ? referenceData.dependencies : referenceData.references;
             _parentAssetIsAdd.Add(guid);
             foreach (string childGuid in childGuids)
@@ -276,7 +284,8 @@ namespace GameEditor
                     }
                 }
 
-                if (AssetDatabase.GUIDToAssetPath(childGuid).EndsWith(".prefab") && !AssetDatabase.GUIDToAssetPath(childGuid).Contains("_gen_render") && depth < 2)
+                if (AssetDatabase.GUIDToAssetPath(childGuid).EndsWith(".prefab") &&
+                    !AssetDatabase.GUIDToAssetPath(childGuid).Contains("_gen_render") && depth < 2)
                 {
                     listInfo.Type = "prefab";
                     listInfo.Count = 1;

@@ -35,12 +35,12 @@ namespace LFramework
             {
                 get { return _playAudioParams; }
             }
-            
+
             public Transform BindingTrans
             {
                 get { return _bindingTrans; }
             }
-            
+
             public Vector3 WorldPosition
             {
                 get { return _worldPosition; }

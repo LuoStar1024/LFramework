@@ -22,7 +22,8 @@
         /// </summary>
         /// <param name="loadBinarySuccessCallback">加载二进制资源成功回调函数。</param>
         /// <param name="loadBinaryFailureCallback">加载二进制资源失败回调函数。</param>
-        public LoadBinaryCallbacks(LoadBinarySuccessCallback loadBinarySuccessCallback, LoadBinaryFailureCallback loadBinaryFailureCallback)
+        public LoadBinaryCallbacks(LoadBinarySuccessCallback loadBinarySuccessCallback,
+            LoadBinaryFailureCallback loadBinaryFailureCallback)
         {
             if (loadBinarySuccessCallback == null)
             {
@@ -38,10 +39,7 @@
         /// </summary>
         public LoadBinarySuccessCallback LoadBinarySuccessCallback
         {
-            get
-            {
-                return _loadBinarySuccessCallback;
-            }
+            get { return _loadBinarySuccessCallback; }
         }
 
         /// <summary>
@@ -49,10 +47,7 @@
         /// </summary>
         public LoadBinaryFailureCallback LoadBinaryFailureCallback
         {
-            get
-            {
-                return _loadBinaryFailureCallback;
-            }
+            get { return _loadBinaryFailureCallback; }
         }
     }
 }

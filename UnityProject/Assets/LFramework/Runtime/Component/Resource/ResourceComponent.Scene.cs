@@ -100,7 +100,8 @@ namespace LFramework
             SceneHandle subScene;
             if (string.IsNullOrEmpty(packageName))
             {
-                subScene = YooAssets.LoadSceneAsync(sceneAssetName, LoadSceneMode.Additive, LocalPhysicsMode.None, false,
+                subScene = YooAssets.LoadSceneAsync(sceneAssetName, LoadSceneMode.Additive, LocalPhysicsMode.None,
+                    false,
                     (uint)priority);
             }
             else
@@ -114,11 +115,12 @@ namespace LFramework
                 subScene = package.LoadSceneAsync(sceneAssetName, LoadSceneMode.Additive, LocalPhysicsMode.None, false,
                     (uint)priority);
             }
-            
+
             subScene.Completed += handle =>
             {
                 duration = Time.time - duration;
-                if (handle.Status == EOperationStatus.Succeed && handle.SceneObject.IsValid() && handle.SceneObject.isLoaded)
+                if (handle.Status == EOperationStatus.Succeed && handle.SceneObject.IsValid() &&
+                    handle.SceneObject.isLoaded)
                 {
                     loadSceneCallbacks.LoadSceneSuccessCallback(sceneAssetName, duration, userData);
                     return;
@@ -173,7 +175,7 @@ namespace LFramework
             {
                 throw new LFrameworkException("Unload scene callbacks is invalid.");
             }
-            
+
             _subScenes.TryGetValue(sceneAssetName, out SceneHandle subScene);
             if (subScene != null)
             {

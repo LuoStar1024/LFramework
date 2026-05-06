@@ -11,7 +11,7 @@ namespace GameLogic
             goPoolObject.Initialize(name, target);
             return goPoolObject;
         }
-        
+
         protected override void Release(bool isShutdown)
         {
             GameObject go = (GameObject)Target;

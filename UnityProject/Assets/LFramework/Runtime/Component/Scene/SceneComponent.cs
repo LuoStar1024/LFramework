@@ -18,9 +18,11 @@ namespace LFramework
         private LoadSceneCallbacks _loadSceneCallbacks;
         private UnloadSceneCallbacks _unloadSceneCallbacks;
         private IResourceManager _resourceManager;
-        
-        
-        private readonly SortedDictionary<string, int> _sceneOrder = new SortedDictionary<string, int>(StringComparer.Ordinal);
+
+
+        private readonly SortedDictionary<string, int> _sceneOrder =
+            new SortedDictionary<string, int>(StringComparer.Ordinal);
+
         private Camera _mainCamera = null;
         private Scene _frameworkScene = default(Scene);
 
@@ -29,12 +31,9 @@ namespace LFramework
         /// </summary>
         public Camera MainCamera
         {
-            get
-            {
-                return _mainCamera;
-            }
+            get { return _mainCamera; }
         }
-        
+
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
@@ -43,11 +42,11 @@ namespace LFramework
         {
             get { return 2; }
         }
-        
+
         private void Awake()
         {
             LFrameworkEntry.RegisterModule<ISceneManager>(this);
-            
+
             _frameworkScene = SceneManager.GetSceneAt(0);
             if (!_frameworkScene.IsValid())
             {
@@ -96,7 +95,7 @@ namespace LFramework
             _loadingSceneAssetNames.Clear();
             _unloadingSceneAssetNames.Clear();
         }
-        
+
         /// <summary>
         /// 获取场景名称。
         /// </summary>
@@ -261,7 +260,7 @@ namespace LFramework
             {
                 throw new LFrameworkException("You must set resource manager first.");
             }
-            
+
             return _resourceManager.HasAsset(sceneAssetName) != HasAssetResult.NotExist;
         }
 
@@ -300,7 +299,8 @@ namespace LFramework
         public void LoadScene(string sceneAssetName, object userData, Action<float> progressCallback = null,
             Action<bool> loadSuccessCallBack = null)
         {
-            LoadScene(sceneAssetName, ResourceConstant.DefaultPriority, userData, progressCallback, loadSuccessCallBack);
+            LoadScene(sceneAssetName, ResourceConstant.DefaultPriority, userData, progressCallback,
+                loadSuccessCallBack);
         }
 
         /// <summary>
@@ -311,7 +311,8 @@ namespace LFramework
         /// <param name="userData">用户自定义数据。</param>
         /// <param name="progressCallback">加载进度回调。</param>
         /// <param name="loadSuccessCallBack">加载完成回调。</param>
-        public void LoadScene(string sceneAssetName, int priority, object userData, Action<float> progressCallback = null,
+        public void LoadScene(string sceneAssetName, int priority, object userData,
+            Action<float> progressCallback = null,
             Action<bool> loadSuccessCallBack = null)
         {
             if (string.IsNullOrEmpty(sceneAssetName))
@@ -408,7 +409,8 @@ namespace LFramework
                 return;
             }
 
-            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) || !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
+            if (!sceneAssetName.StartsWith("Assets/", StringComparison.Ordinal) ||
+                !sceneAssetName.EndsWith(".unity", StringComparison.Ordinal))
             {
                 Log.Error("Scene asset name '{0}' is invalid.", sceneAssetName);
                 return;
@@ -501,13 +503,14 @@ namespace LFramework
         {
             _loadingSceneAssetNames.Remove(sceneAssetName);
             _loadedSceneAssetNames.Add(sceneAssetName);
-            
+
             if (!_sceneOrder.ContainsKey(sceneAssetName))
             {
                 _sceneOrder.Add(sceneAssetName, 0);
             }
+
             RefreshSceneOrder();
-            
+
             LoadSceneInfo loadSceneInfo = (LoadSceneInfo)userData;
             if (loadSceneInfo == null)
             {
@@ -552,7 +555,7 @@ namespace LFramework
         {
             _unloadingSceneAssetNames.Remove(sceneAssetName);
             _loadedSceneAssetNames.Remove(sceneAssetName);
-            
+
             _sceneOrder.Remove(sceneAssetName);
             RefreshSceneOrder();
         }
@@ -560,7 +563,7 @@ namespace LFramework
         private void UnloadSceneFailureCallback(string sceneAssetName, object userData)
         {
             _unloadingSceneAssetNames.Remove(sceneAssetName);
-            
+
             Log.Error(Utility.Text.Format("Unload scene failure, scene asset name '{0}'.",
                 sceneAssetName));
         }

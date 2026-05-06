@@ -1,5 +1,132 @@
 # ReleaseLog
 
+## 8.11.0
+
+Release Date: 2026-02-28.
+
+### Runtime
+
+- [fix] fix methodPointer of Full Generic Sharing Method may not be initialized in some cases, which leads to methodPointerCallByInterp not initialized correctly.
+- [fix] handle intrinsic System.Array.UnsafeMov specially. It will raise unbox exception if runs this generic method at interpreter mod.
+- [fix] adjust data type at stack top after JitHelper::UnsafeCast and JitHelper::UnsafeEnumCastLong.
+- [fix] **6000.3.x**: fix bug of comparing MVAR in IsSameOverrideType
+
+## 8.10.0
+
+Release Date: 2026-02-24.
+
+### Runtime
+
+- fix: fix bug of computing interface vtable implement when re-implements interface in child class.
+- fix: for arrays whose element type is a value type, `ldelema` no longer performs type-matching checks.
+Although this does not strictly follow the ECMA-335 specification, it is consistent with the behavior of Mono and CoreCLR.
+- fix: fix bug that didn't handle RuntimeOptionId::MaxInlineableMethodBodySize in RuntimeConfig::GetRuntimeOption and RuntimeConfig::SetRuntimeOption.
+- fix: assign FindImageByAssembly result to image in PreJitClass
+- fix: use strict bounds in CheckMulOverflow for int32 and uint32
+- fix: fix arguments overflow when method argument count > 256 in InvokeDelegateBeginInvoke.
+
+### Editor
+
+- [new]: support BuildTarget GameCoreXboxOne and GameCoreXboxSeries.
+
+## 8.9.0
+
+Release Date: 2026-01-12.
+
+### Runtime
+
+- [fix] **Unity 6.3.x**: fix bug that didn't handle interpreter type in GlobalMetadata::GetNestedTypes
+- [fix] **Unity 6.3.x**: fix crash on GlobalMetadata::GetMethodHandleFromMethodInfo because it maybe passed null as methodInfo in setup vtable.
+- [fix] **TUANJIE**: fix IL2CPP_ASSERT fail in Class::GetVirtualMethod when klass is generic class and not initialized, at this time klass->vtable_count == 0
+- [fix] **TUANJIE**: fix the bug that didn't initialize method->klass->rgctx_data after GenericMetadata::InflateRGCTXMethod
+- [change] **TUANJIE**: [merge] merge il2cpp changes from tuanjie 1.6.7 to 1.6.8
+
+## 8.8.0
+
+Release Date: 2025-12-14.
+
+### Runtime
+
+- [new] support 6000.3.x
+- [new] add instructions for ldfld and stfld while field offset >= 2^16
+- [fix] fix offset overflow issue for ldflda, ldfld, stfld while offset >= 2^16
+- [fix] fix bug of comparing array rank
+
+### Editor
+
+- [new] support 6000.3.x
+- [fix] fix deprecated warning of `PlayerSettings.GetScriptingBackend(BuildTargetGroup)` in Unity 6000
+
+## 8.7.0
+
+Release Date: 2025-11-03.
+
+### Runtime
+
+- [fix] fix a crash issue in IH_object_ctor caused by `ctx.GetCurbb()->insts` may be empty in obfuscated code
+- [merge] **Unity 6000***: merge il2cpp changes from 6000.0.44 to 6000.0.60
+- [merge] **TuanJie**: merge il2cpp changes from tuanjie 1.6.5 to 1.6.7
+
+### Editor
+
+- [fix] fix raising NullReferenceException in generating MethodBridge for MonoPInvokeCallbackAttribute while constructor arguments is empty.
+
+## 8.6.0
+
+Release Date: 2025-09-27.
+
+### Runtime
+
+- [fix] fix the crash in InterpreterDelegateInvoke when compiled in Release mode on Xcode 26.x. This bug is caused by an optimization issue in the newer Clang version.
+- [fix] [tuanjie] fix a bug on tuanjie that calling Init of Il2CppClass `Nullable<EnumType`> may not init Il2CppClass of EnumType, which causes crash when box `Nullable<EnumType>`
+- [fix] [tuanjie] fix bug that computation of method index in Class::GetGenericInstanceMethodFromDefintion. tuanjie 1.6.4 only fixes it when IL2CPP_ENABLE_LAZY_INIT.
+- [merge] merge il2cpp of tuanjie changes from 1.6.0-1.6.4
+
+### Editor
+
+- [fix] fix the bug that BashUtil.CopyDir calls UnityEditor.FileUtil.CopyFileOrDirectory failed when parent directory of dst does not exist.
+
+## 8.5.1
+
+Release Date: 2025-08-25.
+
+### Runtime
+
+- [fix] **CRITICAL!!!** fixed stack calculation bug in instinct transform for `System.Activator.CreateInstance<T>()` when T is value type.
+
+### Editor
+
+- [fix] fixed PInvokeAnalyzer bug in computing PInvoke function calling conventions.
+
+## 8.5.0
+
+Release Date: 2025-08-20.
+
+### Runtime
+
+- [new] AOTHomologousImage supports custom image format
+- [fix] Throw an exception when the number of function parameters exceeds 255, as the parameter count type in il2cpp is uint8_t.
+- [fix] fix  incorrect type conversions for MethodInfo.parameter_count and Il2CppMethodDefinition.parameterCount.
+
+### Editor
+
+- [change] BashUtil::CopyDir replaces CopyWithCheckLongFile with CopyUnityEditor.FileUtil.CopyFileOrDirectory
+
+## 8.4.0
+
+Release Date: 2025-07-26.
+
+### Runtime
+
+- **[new] IMPORTANT! support custom image format**
+- [change] the type of field `offset` of ldsfld, stfld, ldthreadlocalfld、stthreadlocalfld changed from uint16_t to uint32_t so that supports class with huge static fields.
+- [opt] optimize to use NewValueTypeVar_Ctor_0 for new zero-argument value type and System.Activator.CreateInstance&lt;T&gt;()
+- [opt] optimize new ValueType with zero arguments.
+
+### Editor
+
+- [fix] fix the issue that `Texture Compression` option in Build Settings was changed after running `HybridCLR/Generate/All` on Android platform
+
 ## 8.3.0
 
 Release Date: 2025-07-04.

@@ -13,59 +13,43 @@ namespace LFramework
     [AddComponentMenu("LFramework/Resource")]
     public sealed partial class ResourceComponent : MonoBehaviour, ILFrameworkModule, IResourceManager
     {
-        [SerializeField] 
-        private bool isEditorSimulate = true;
-        
-        [SerializeField] 
-        private ResourceMode resourceMode;
-        
-        [SerializeField] 
-        private bool updatableWhilePlaying;
+        [SerializeField] private bool isEditorSimulate = true;
 
-        [SerializeField] 
-        private LoadResourceWayWebGL loadResourceWayWebGL;
-        
-        [SerializeField] 
-        private EncryptionType encryptionType = EncryptionType.None;
-        
-        [SerializeField]
-        private string defaultPackageName = "DefaultPackage";
-        
-        [SerializeField]
-        private int downloadingMaxNum = 10;
-        
-        [SerializeField]
-        private int failedTryAgain = 3;
+        [SerializeField] private ResourceMode resourceMode;
 
-        [SerializeField]
-        private long milliseconds = 30;
-        
-        [SerializeField]
-        private float assetAutoReleaseInterval = 60f;
+        [SerializeField] private bool updatableWhilePlaying;
 
-        [SerializeField]
-        private int assetCapacity = 64;
+        [SerializeField] private LoadResourceWayWebGL loadResourceWayWebGL;
 
-        [SerializeField]
-        private float assetExpireTime = 60f;
+        [SerializeField] private EncryptionType encryptionType = EncryptionType.None;
 
-        [SerializeField]
-        private int assetPriority = 0;
-        
-        [SerializeField]
-        private float minUnloadUnusedAssetsInterval = 60f;
+        [SerializeField] private string defaultPackageName = "DefaultPackage";
 
-        [SerializeField]
-        private float maxUnloadUnusedAssetsInterval = 300f;
-        
-        [SerializeField]
-        private bool useSystemUnloadUnusedAssets = true;
-        
+        [SerializeField] private int downloadingMaxNum = 10;
+
+        [SerializeField] private int failedTryAgain = 3;
+
+        [SerializeField] private long milliseconds = 30;
+
+        [SerializeField] private float assetAutoReleaseInterval = 60f;
+
+        [SerializeField] private int assetCapacity = 64;
+
+        [SerializeField] private float assetExpireTime = 60f;
+
+        [SerializeField] private int assetPriority = 0;
+
+        [SerializeField] private float minUnloadUnusedAssetsInterval = 60f;
+
+        [SerializeField] private float maxUnloadUnusedAssetsInterval = 300f;
+
+        [SerializeField] private bool useSystemUnloadUnusedAssets = true;
+
         private string _updatePrefixUrl;
         private string _fallbackUpdatePrefixUrl;
         private string _applicableGameVersion;
         private int _internalResourceVersion;
-        
+
         private float _lastUnloadUnusedAssetsOperationElapseSeconds = 0f;
         private AsyncOperation _asyncOperation = null;
         private bool _forceUnloadUnusedAssets = false;
@@ -74,7 +58,7 @@ namespace LFramework
 
         private string _packageVersion;
         private ResourceDownloaderOperation _downloader;
-        
+
         /// <summary>
         /// 资源包列表。
         /// </summary>
@@ -84,7 +68,7 @@ namespace LFramework
         /// 资源信息列表。
         /// </summary>
         private Dictionary<string, AssetInfo> _assetInfoDict = null;
-        
+
         /// <summary>
         /// 正在加载的资源列表。
         /// </summary>
@@ -109,27 +93,48 @@ namespace LFramework
                 return resourceMode;
             }
         }
-        
+
+#if UNITY_EDITOR
+        private static ResourceComponent _instance;
+
+        public static ResourceComponent Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = UnityEngine.Object.FindObjectOfType<ResourceComponent>();
+
+                    if (_instance != null)
+                    {
+                        return _instance;
+                    }
+                }
+
+                return _instance;
+            }
+        }
+
+        public static ResourceMode EditorResourceMode
+        {
+            get { return Instance != null ? Instance.resourceMode : ResourceMode.Unspecified; }
+        }
+#endif
+
         /// <summary>
         /// 是否边玩边下载。
         /// </summary>
         public bool UpdatableWhilePlaying
         {
-            get
-            {
-                return updatableWhilePlaying;
-            }
+            get { return updatableWhilePlaying; }
         }
-        
+
         /// <summary>
         /// WebGL平台加载本地资源/加载远程资源。
         /// </summary>
         public LoadResourceWayWebGL LoadResourceWayWebGL
         {
-            get
-            {
-                return loadResourceWayWebGL;
-            }
+            get { return loadResourceWayWebGL; }
         }
 
         /// <summary>
@@ -137,63 +142,42 @@ namespace LFramework
         /// </summary>
         public EncryptionType EncryptionType
         {
-            get
-            {
-                return encryptionType;
-            }
+            get { return encryptionType; }
         }
 
         public string UpdatePrefixUrl
         {
-            get
-            {
-                return _updatePrefixUrl;
-            }
+            get { return _updatePrefixUrl; }
         }
-        
+
         /// <summary>
         /// 获取或设置资源更新下载地址。
         /// </summary>
         public string FallbackUpdatePrefixUrl
         {
-            get
-            {
-                return _fallbackUpdatePrefixUrl;
-            }
+            get { return _fallbackUpdatePrefixUrl; }
         }
 
         public string ApplicableGameVersion
         {
-            get
-            {
-                return _applicableGameVersion;
-            }
+            get { return _applicableGameVersion; }
         }
 
         public int InternalResourceVersion
         {
-            get
-            {
-                return _internalResourceVersion;
-            }
+            get { return _internalResourceVersion; }
         }
 
         public string DefaultPackageName
         {
-            get
-            {
-                return defaultPackageName;
-            }
+            get { return defaultPackageName; }
         }
 
         public long Milliseconds
         {
-            get
-            {
-                return milliseconds;
-            }
+            get { return milliseconds; }
         }
-        
+
         /// <summary>
         /// 获取或设置无用资源释放的最小间隔时间，以秒为单位。
         /// </summary>
@@ -229,17 +213,14 @@ namespace LFramework
             get => _downloader;
             set => _downloader = value;
         }
-        
+
         /// <summary>
         /// 获取游戏框架模块优先级。
         /// </summary>
         /// <remarks>优先级较高的模块会优先轮询，并且关闭操作会后进行。</remarks>
         public int Priority
         {
-            get
-            {
-                return 3;
-            }
+            get { return 3; }
         }
 
         private void Awake()
@@ -252,7 +233,7 @@ namespace LFramework
             var configManager = LFrameworkEntry.GetModule<IConfigManager>();
             _updatePrefixUrl = configManager.UpdateConfig.GetResDownLoadPath();
             _fallbackUpdatePrefixUrl = configManager.UpdateConfig.GetFallbackResDownLoadPath();
-            
+
             Initialize();
         }
 
@@ -272,8 +253,12 @@ namespace LFramework
         public void OnUpdate(float elapseSeconds, float realElapseSeconds)
         {
             _lastUnloadUnusedAssetsOperationElapseSeconds += Time.unscaledDeltaTime;
-            if (_asyncOperation == null && (_forceUnloadUnusedAssets || _lastUnloadUnusedAssetsOperationElapseSeconds >= maxUnloadUnusedAssetsInterval ||
-                                            _preorderUnloadUnusedAssets && _lastUnloadUnusedAssetsOperationElapseSeconds >= minUnloadUnusedAssetsInterval))
+            if (_asyncOperation == null && (_forceUnloadUnusedAssets ||
+                                            _lastUnloadUnusedAssetsOperationElapseSeconds >=
+                                            maxUnloadUnusedAssetsInterval ||
+                                            _preorderUnloadUnusedAssets &&
+                                            _lastUnloadUnusedAssetsOperationElapseSeconds >=
+                                            minUnloadUnusedAssetsInterval))
             {
                 Log.Info("Unload unused assets...");
                 _forceUnloadUnusedAssets = false;
@@ -318,6 +303,7 @@ namespace LFramework
             {
                 defaultPackage = YooAssets.CreatePackage(packageName);
             }
+
             YooAssets.SetDefaultPackage(defaultPackage);
 
             IObjectPoolManager objectPoolManager = LFrameworkEntry.GetModule<IObjectPoolManager>();
@@ -357,17 +343,19 @@ namespace LFramework
                 var buildResult = EditorSimulateModeHelper.SimulateBuild(packageName);
                 var packageRoot = buildResult.PackageRootDirectory;
                 var createParameters = new EditorSimulateModeParameters();
-                createParameters.EditorFileSystemParameters = FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
+                createParameters.EditorFileSystemParameters =
+                    FileSystemParameters.CreateDefaultEditorFileSystemParameters(packageRoot);
                 initializationOperation = package.InitializeAsync(createParameters);
             }
-            
+
             IDecryptionServices decryptionServices = CreateDecryptionServices();
-            
+
             // 单机运行模式
             if (playMode == EPlayMode.OfflinePlayMode)
             {
                 var createParameters = new OfflinePlayModeParameters();
-                createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryptionServices);
+                createParameters.BuildinFileSystemParameters =
+                    FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryptionServices);
                 initializationOperation = package.InitializeAsync(createParameters);
             }
 
@@ -378,8 +366,10 @@ namespace LFramework
                 string fallbackHostServer = FallbackUpdatePrefixUrl;
                 IRemoteServices remoteServices = new RemoteServices(defaultHostServer, fallbackHostServer);
                 var createParameters = new HostPlayModeParameters();
-                createParameters.BuildinFileSystemParameters = FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryptionServices);
-                createParameters.CacheFileSystemParameters = FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices, decryptionServices);
+                createParameters.BuildinFileSystemParameters =
+                    FileSystemParameters.CreateDefaultBuildinFileSystemParameters(decryptionServices);
+                createParameters.CacheFileSystemParameters =
+                    FileSystemParameters.CreateDefaultCacheFileSystemParameters(remoteServices, decryptionServices);
                 initializationOperation = package.InitializeAsync(createParameters);
             }
 
@@ -395,14 +385,19 @@ namespace LFramework
                 Log.Info("=======================WEIXINMINIGAME=======================");
                 // 注意：如果有子目录，请修改此处！
                 string packageRoot = $"{WeChatWASM.WX.env.USER_DATA_PATH}/__GAME_FILE_CACHE";
-                createParameters.WebServerFileSystemParameters = WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, webDecryptionServices);
+                createParameters.WebServerFileSystemParameters =
+ WechatFileSystemCreater.CreateFileSystemParameters(packageRoot, remoteServices, webDecryptionServices);
 #else
                 Log.Info("=======================UNITY_WEBGL=======================");
                 if (LoadResourceWayWebGL == LoadResourceWayWebGL.Remote)
                 {
-                    createParameters.WebRemoteFileSystemParameters = FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices, webDecryptionServices);
+                    createParameters.WebRemoteFileSystemParameters =
+                        FileSystemParameters.CreateDefaultWebRemoteFileSystemParameters(remoteServices,
+                            webDecryptionServices);
                 }
-                createParameters.WebServerFileSystemParameters = FileSystemParameters.CreateDefaultWebServerFileSystemParameters(webDecryptionServices);
+
+                createParameters.WebServerFileSystemParameters =
+                    FileSystemParameters.CreateDefaultWebServerFileSystemParameters(webDecryptionServices);
 #endif
                 initializationOperation = package.InitializeAsync(createParameters);
             }
@@ -431,7 +426,7 @@ namespace LFramework
 
             return package.GetPackageVersion();
         }
-        
+
         /// <summary>
         /// 异步更新最新包的版本。
         /// </summary>
@@ -447,21 +442,22 @@ namespace LFramework
                 : YooAssets.GetPackage(customPackageName);
             return package.RequestPackageVersionAsync(appendTimeTicks, timeout);
         }
-        
+
         /// <summary>
         /// 向网络端请求并更新清单
         /// </summary>
         /// <param name="packageVersion">更新的包裹版本</param>
         /// <param name="timeout">超时时间（默认值：60秒）</param>
         /// <param name="customPackageName">指定资源包的名称。不传使用默认资源包</param>
-        public UpdatePackageManifestOperation UpdatePackageManifestAsync(string packageVersion, int timeout = 60, string customPackageName = "")
+        public UpdatePackageManifestOperation UpdatePackageManifestAsync(string packageVersion, int timeout = 60,
+            string customPackageName = "")
         {
             var package = string.IsNullOrEmpty(customPackageName)
                 ? YooAssets.GetPackage(this.DefaultPackageName)
                 : YooAssets.GetPackage(customPackageName);
             return package.UpdatePackageManifestAsync(packageVersion, timeout);
         }
-        
+
         /// <summary>
         /// 创建资源下载器，用于下载当前资源版本所有的资源包文件。
         /// </summary>
@@ -481,7 +477,7 @@ namespace LFramework
             Downloader = package.CreateResourceDownloader(downloadingMaxNum, failedTryAgain);
             return Downloader;
         }
-        
+
         /// <summary>
         /// 清理包裹未使用的缓存文件。
         /// </summary>
@@ -496,7 +492,7 @@ namespace LFramework
                 : YooAssets.GetPackage(customPackageName);
             return package.ClearCacheFilesAsync(clearMode);
         }
-        
+
         /// <summary>
         /// 检查资源是否存在。
         /// </summary>
@@ -567,7 +563,7 @@ namespace LFramework
                     return EPlayMode.OfflinePlayMode;
             }
         }
-        
+
         /// <summary>
         /// 创建解密服务。
         /// </summary>
@@ -580,7 +576,7 @@ namespace LFramework
                 _ => null
             };
         }
-        
+
         /// <summary>
         /// 创建Web解密服务。
         /// </summary>
@@ -593,7 +589,7 @@ namespace LFramework
                 _ => null
             };
         }
-        
+
         #region 获取资源信息
 
         /// <summary>
@@ -713,7 +709,7 @@ namespace LFramework
                 return assetInfo;
             }
         }
-        
+
         /// <summary>
         /// 获取资源定位地址的缓存Key。
         /// </summary>
@@ -729,13 +725,13 @@ namespace LFramework
 
             return $"{packageName}/{assetName}";
         }
-        
+
         #endregion
 
         public List<string> GetLoadingAssetInfo()
         {
             List<string> result = new List<string>(_assetLoadingHashSet.Count);
-            
+
             foreach (var assetInfo in _assetLoadingHashSet)
             {
                 result.Add(assetInfo);

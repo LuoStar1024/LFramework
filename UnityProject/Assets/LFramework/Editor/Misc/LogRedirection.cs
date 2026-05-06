@@ -136,7 +136,7 @@ namespace LFramework.Editor
             }
 
             FieldInfo consoleWindowFieldInfo =
- consoleWindowType.GetField("ms_ConsoleWindow", BindingFlags.Static | BindingFlags.NonPublic);
+                consoleWindowType.GetField("ms_ConsoleWindow", BindingFlags.Static | BindingFlags.NonPublic);
             if (consoleWindowFieldInfo == null)
             {
                 return null;
@@ -154,7 +154,7 @@ namespace LFramework.Editor
             }
 
             FieldInfo activeTextFieldInfo =
- consoleWindowType.GetField("m_ActiveText", BindingFlags.Instance | BindingFlags.NonPublic);
+                consoleWindowType.GetField("m_ActiveText", BindingFlags.Instance | BindingFlags.NonPublic);
             if (activeTextFieldInfo == null)
             {
                 return null;

@@ -12,34 +12,33 @@ namespace GameLogic
     {
         private readonly List<UnityEngine.Object> _assetList = new List<UnityEngine.Object>();
         private CancellationTokenSource _cancellationTokenSource;
-        
-        public object Owner
-        {
-            get;
-            private set;
-        }
-        
+
+        public object Owner { get; private set; }
+
         public static ResourceContainer Create(object owner)
         {
             ResourceContainer resourceContainer = ReferencePool.Acquire<ResourceContainer>();
             resourceContainer.Owner = owner;
             return resourceContainer;
         }
-        
+
         public void Clear()
         {
             UnloadAllAssets();
             _assetList.Clear();
             Owner = null;
         }
-        
-        public async UniTask<T> LoadAsset<T>(string assetName, int priority = 0, string packageName = "") where T : UnityEngine.Object
+
+        public async UniTask<T> LoadAsset<T>(string assetName, int priority = 0, string packageName = "")
+            where T : UnityEngine.Object
         {
             if (_cancellationTokenSource == null)
             {
                 _cancellationTokenSource = new CancellationTokenSource();
             }
-            T asset = await GameEntry.Resource.LoadAsset<T>(assetName, priority, _cancellationTokenSource.Token, packageName);
+
+            T asset = await GameEntry.Resource.LoadAsset<T>(assetName, priority, _cancellationTokenSource.Token,
+                packageName);
             _assetList.Add(asset);
             return asset;
         }
@@ -58,8 +57,10 @@ namespace GameLogic
                 {
                     GameEntry.Resource.UnloadAsset(asset);
                 }
+
                 _assetList.Clear();
             }
+
             if (_cancellationTokenSource != null)
             {
                 _cancellationTokenSource.Cancel();

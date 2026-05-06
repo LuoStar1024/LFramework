@@ -11,9 +11,9 @@ namespace LFramework.Editor
     public class UpdateConfigEditor : UnityEditor.Editor
     {
 #if ENABLE_HYBRIDCLR
-        public List<string> HotUpdateAssemblies = new() {};
-        public List<string> AOTMetaAssemblies = new() {};
-        
+        public List<string> HotUpdateAssemblies = new() { };
+        public List<string> AOTMetaAssemblies = new() { };
+
         private void OnEnable()
         {
             // 获取当前编辑的 ScriptableObject 实例
@@ -41,7 +41,7 @@ namespace LFramework.Editor
 
                 // 标记对象为“已修改”，确保修改能被保存
                 EditorUtility.SetDirty(updateSetting);
-                
+
                 bool isHotChanged = !HotUpdateAssemblies.SequenceEqual(updateSetting.HotUpdateAssemblies);
                 bool isAOTChanged = !AOTMetaAssemblies.SequenceEqual(updateSetting.AotMetaAssemblies);
                 if (isHotChanged)
@@ -53,8 +53,10 @@ namespace LFramework.Editor
                         string assemblyNameWithoutExtension = assemblyName.Substring(0, assemblyName.LastIndexOf('.'));
                         HybridCLRSettings.Instance.hotUpdateAssemblies[i] = assemblyNameWithoutExtension;
                     }
+
                     Debug.Log("HotUpdateAssemblies changed");
                 }
+
                 if (isAOTChanged)
                 {
                     HybridCLRSettings.Instance.patchAOTAssemblies = updateSetting.AotMetaAssemblies.ToArray();
@@ -87,7 +89,7 @@ namespace LFramework.Editor
                 Log.Error("Can not find UpdateConfig");
                 return;
             }
-            
+
             HybridCLRSettings.Instance.hotUpdateAssemblies = updateSetting.HotUpdateAssemblies.ToArray();
             for (int i = 0; i < updateSetting.HotUpdateAssemblies.Count; i++)
             {
@@ -95,12 +97,12 @@ namespace LFramework.Editor
                 string assemblyNameWithoutExtension = assemblyName.Substring(0, assemblyName.LastIndexOf('.'));
                 HybridCLRSettings.Instance.hotUpdateAssemblies[i] = assemblyNameWithoutExtension;
             }
-            
+
             HybridCLRSettings.Instance.patchAOTAssemblies = updateSetting.AotMetaAssemblies.ToArray();
             HybridCLRSettings.Save();
             EditorUtility.SetDirty(HybridCLRSettings.Instance);
             AssetDatabase.SaveAssets();
-            
+
             Debug.Log("HotUpdateAssemblies changed");
         }
     }

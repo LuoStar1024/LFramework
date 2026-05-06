@@ -26,7 +26,7 @@ namespace LFramework.Editor
             serializedObject.Update();
 
             BaseComponent t = (BaseComponent)target;
-            
+
             int frameRate = EditorGUILayout.IntSlider("Frame Rate", _frameRate.intValue, 1, 120);
             if (frameRate != _frameRate.intValue)
             {

@@ -10,16 +10,13 @@ namespace Launcher
     {
         public override bool UseNativeDialog
         {
-            get
-            {
-                return true;
-            }
+            get { return true; }
         }
 
         protected override void OnUpdate(ProcedureOwner procedureOwner, float elapseSeconds, float realElapseSeconds)
         {
             base.OnUpdate(procedureOwner, elapseSeconds, realElapseSeconds);
-            
+
             // Splash 仅作为短暂过渡，下一步开始初始化资源包。
             ChangeState<ProcedureInitPackage>(procedureOwner);
         }
