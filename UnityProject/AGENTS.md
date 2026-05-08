@@ -2,30 +2,37 @@
 
 请使用中文写提案和回答。
 
-这个文件为 Codex 处理当前 LFramework Unity 项目提供指导。当前项目基于 LFramework + HybridCLR + YooAsset + UniTask + Luban 构建。
+这个文件为当前 LFramework Unity 项目提供指导，用于处理此项目中的代码。当前项目基于 LFramework + HybridCLR + YooAsset + UniTask + Luban 构建。
 
 ---
 
-## 强制工作流
+## 强制工作流（所有任务必须遵守）
 
-所有任务先判断等级，再按等级获取项目规范，最后实现或输出方案。
+所有任务先判断等级，再按等级获取项目规范，再实现或输出方案，最后在验证。
 
 ### 第零步：判断任务等级
 
 | 等级 | 判断标准 | 知识查询策略 |
 |------|----------|--------------|
 | L1 简单 | typo 修正、注释修改、日志文本调整、局部变量改名，且不涉及框架 API、生命周期、资源路径、UI 节点、事件定义或生成代码 | 可跳过查询，直接处理 |
-| L2 调用 | 调用已知 API、单一模块局部修改、单个 UI 或资源调用点调整 | 使用 `lframework-dev` skill，只查相关主题 |
-| L3 功能 | 新功能开发、跨文件修改、新增 UI/资源/事件/流程/配置表逻辑 | 使用 `lframework-dev` skill，查询全部相关主题 |
-| L4 架构 | 新模块设计、系统重构、多模块协作、启动流程或架构决策 | 使用 `lframework-dev` skill，并行查询多个主题 |
+| L2 调用 | 调用已知 API、单一模块局部修改、单个 UI 或资源调用点调整 | 使用 `lframework-dev` skill，只查直接相关主题的推荐用法和注意事项 |
+| L3 功能 | 新功能开发、跨文件修改、新增 UI/资源/事件/流程/配置表逻辑 | 使用 `lframework-dev` skill，查询完整相关调用链的推荐用法和注意事项 |
+| L4 架构 | 新模块设计、系统重构、多模块协作、启动流程或架构决策 | 使用 `lframework-dev` skill，并行查询架构和多个相关模块 |
 
-判断原则：不确定时上调一级。只要涉及 LFramework 模块、GameEntry、YooAsset、UI 生命周期、Luban、HybridCLR、ReferencePool、EventContainer 或 ResourceContainer，就至少按 L2 处理。
+判断原则：宁可高估等级，不可低估。不确定时上调一级。
 
 ### 第一步：按等级获取规范
 
 L1 任务可直接进入第二步。L2-L4 必须使用 `lframework-dev` skill。
 
 知识源：`.codex/skills/lframework-dev/references/`。这是当前项目给 Codex 使用的精炼文档，唯一权威来源。
+
+阅读粒度：
+
+- 一般情况下，只需要阅读相关模块 reference 的 `GameLogic 推荐用法` 和 `注意事项`。
+- 架构、启动链路、分层边界相关任务读取 `architecture.md` 的相关小节。
+- 只有当代码编译失败，或任务依赖精确的重载、枚举值、序列化字段、回调参数、资源路径、Unity 生命周期顺序时，才继续阅读同一 reference 的 `API 速查` 和 `源码路径`，并打开源码确认。
+- 如果 reference 未覆盖目标主题，先读取最接近模块的推荐用法和注意事项，再以当前源码为准确认实现。
 
 会话内缓存：
 
@@ -37,30 +44,32 @@ L1 任务可直接进入第二步。L2-L4 必须使用 `lframework-dev` skill。
 
 | 场景 | 必读 reference |
 |------|----------------|
-| 项目架构、启动流程、分层边界 | `architecture.md`, `module-lifecycle.md` |
-| 新增或修改框架模块 | `module-lifecycle.md`, `extension-practices.md` |
+| 项目架构、启动流程、分层边界 | `architecture.md` |
+| 新增或修改框架模块 | `architecture.md` 加最接近的 `module/*.md` |
 | GameEntry、Runtime/Core、Component 边界 | `architecture.md` |
-| YooAsset 资源加载、卸载、资源包 | `resource.md` |
-| UI 窗口、UIForm、UguiForm、UIWidget | `ui.md`, `resource.md`, `event.md` |
-| 事件发布订阅、生命周期订阅 | `event.md` |
-| ReferencePool 或 IReference 对象 | `reference-pool.md` |
-| ObjectPool 对象池 | `objectpool.md`, `reference-pool.md` |
-| Procedure 流程 | `procedure.md`, `fsm.md` |
-| FSM 状态机 | `fsm.md` |
-| Luban 配置表 | `datatable.md`, `resource.md` |
-| 场景加载卸载 | `scene.md`, `resource.md` |
-| 音频播放 | `audio.md` |
-| 定时器 | `timer.md` |
-| 本地化 | `localization.md` |
-| Singleton 管理器 | `singleton.md` |
-| DataNode 状态树 | `datanode.md` |
-| Base/Config/Setting 配置 | `base.md`, `config.md`, `setting.md` |
-| Debugger 或排障 | `debugger.md`, `troubleshooting.md` |
-| 完整运行链路 | `workflow-recipes.md` |
+| YooAsset 资源加载、卸载、资源包 | `module/resource.md` |
+| UI 窗口、UIForm、UguiForm、UIWidget | `module/ui.md`, `module/resource.md`, `module/event.md` |
+| 事件发布订阅、生命周期订阅 | `module/event.md` |
+| ReferencePool 或 IReference 对象 | `module/reference-pool.md` |
+| ObjectPool 对象池 | `module/objectpool.md`, `module/reference-pool.md` |
+| Procedure 流程 | `module/procedure.md`, `module/fsm.md` |
+| FSM 状态机 | `module/fsm.md` |
+| Luban 配置表 | `module/datatable.md`, `module/resource.md` |
+| 场景加载卸载 | `module/scene.md`, `module/resource.md` |
+| 音频播放 | `module/audio.md` |
+| 定时器 | `module/timer.md` |
+| 本地化 | `module/localization.md` |
+| Singleton 管理器 | `module/singleton.md` |
+| DataNode 状态树 | `module/datanode.md` |
+| Base/Setting 配置 | `module/base.md`, `module/setting.md` |
+| UnityWrapper 协程包装 | `module/unitywrapper.md` |
+| HybridCLR、Launcher、资源更新流程 | `architecture.md`, `module/resource.md` |
+| Debugger 或排障 | 受影响模块的 `module/*.md`；必要时按 `源码路径` 打开源码确认 |
+| 完整运行链路 | `architecture.md` 加受影响模块 reference |
 
 ### 第二步：验证实际代码并实现
 
-references 是优先知识源，但涉及精确签名、重载、字段名、序列化字段、生成代码、YooAsset/HybridCLR 行为时，必须搜索并阅读实际 `.cs` 文件。
+基于 `lframework-dev` skill 返回的规范编写实现。
 
 当 reference 与代码实际 API 冲突时：
 
@@ -124,7 +133,8 @@ references 是优先知识源，但涉及精确签名、重载、字段名、序
 11. 不要绕过 `UIComponent` 直接 `Destroy` 已纳入 UI 管理的窗口实例。
 12. `GameEntry.DataTable` 访问 Luban `Tables` 前，配置表 `TextAsset` 必须已经加载进资源池。
 13. Runtime 框架层不要依赖 GameLogic；GameLogic 可以依赖 Runtime 暴露的接口和 `GameEntry` facade。
-14. 涉及 HybridCLR、Launcher、资源更新流程时，必须先查启动链路和实际代码，避免破坏热更边界。
+14. 日志打印遵守分层边界：GameLogic 和 Launcher 统一使用 `Log` 静态类；LFramework 框架内部使用 Unity 自带的 `Debug`。
+15. 涉及 HybridCLR、Launcher、资源更新流程时，必须先查启动链路和实际代码，避免破坏热更边界。
 
 ---
 
@@ -146,7 +156,7 @@ GameEntry.Start()
   -> StartProcedure<ProcedureGameLogicLaunch>()
 ```
 
-`GameEntry` 缓存的内置模块包括 `Base`、`Config`、`DataNode`、`Debugger`、`Event`、`Fsm`、`Localization`、`ObjectPool`、`Procedure`、`Resource`、`Scene`、`Setting`、`Audio`、`Timer`、`Unity`。
+`GameEntry` 缓存的内置模块包括 `Audio`、`Base`、`Config`、`DataNode`、`Debugger`、`Event`、`Fsm`、`Localization`、`ObjectPool`、`Procedure`、`ReferencePool`、`Resource`、`Scene`、`Setting`、`Timer`、`UnityWrapper`。
 
 `GameEntry` 缓存的自定义模块包括 `DataTable`、`UI`、`Singleton`。
 
@@ -177,8 +187,7 @@ GameEntry.Start()
 
 记录字段：
 
-- 问题现象
-- 文档位置
-- 正确 API
-- 验证路径
-- 建议修正
+- 问题现象：错误表现或报错信息。
+- 文档位置：哪篇 reference 文档哪一节。
+- 正确 API：经代码验证后的正确用法。
+- 建议修正：文档应该改成什么表诉。

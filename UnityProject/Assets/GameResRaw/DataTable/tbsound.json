@@ -10,6 +10,36 @@
     "max_distance": 100
   },
   {
+    "id": 10002,
+    "asset_name": "weapon_enemy",
+    "group_name": 2,
+    "priority": 0,
+    "loop": false,
+    "volume": 1,
+    "spatial_blend": 0,
+    "max_distance": 100
+  },
+  {
+    "id": 10003,
+    "asset_name": "explosion_enemy",
+    "group_name": 2,
+    "priority": 0,
+    "loop": false,
+    "volume": 1,
+    "spatial_blend": 0,
+    "max_distance": 100
+  },
+  {
+    "id": 10004,
+    "asset_name": "explosion_player",
+    "group_name": 2,
+    "priority": 0,
+    "loop": false,
+    "volume": 1,
+    "spatial_blend": 0,
+    "max_distance": 100
+  },
+  {
     "id": 1,
     "asset_name": "music_menu",
     "group_name": 1,

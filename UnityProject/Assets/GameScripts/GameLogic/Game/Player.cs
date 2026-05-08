@@ -1,4 +1,3 @@
-using System;
 using LFramework;
 using UnityEngine;
 
@@ -6,6 +5,9 @@ namespace GameLogic
 {
     public class Player : MonoBehaviour
     {
+        private const int WeaponSoundId = 10001;
+        private const int ExplosionSoundId = 10004;
+
         [SerializeField] private float speed;
 
         [SerializeField] private int hp;
@@ -20,6 +22,7 @@ namespace GameLogic
         private Vector3 _targetPosition = Vector3.zero;
         private Vector3 _cachePos = Vector3.zero;
         private float _timer = 0;
+        private bool _isDead;
 
         private void Start()
         {
@@ -40,11 +43,16 @@ namespace GameLogic
 
         private void Update()
         {
+            if (_isDead)
+            {
+                return;
+            }
+
             _timer += Time.deltaTime;
             if (_timer >= fireInterval)
             {
                 _timer -= fireInterval;
-                GameEntry.Audio.PlaySound(10001, this.transform);
+                GameEntry.Audio.PlaySound(WeaponSoundId, transform);
                 for (int i = 0; i < transWeapons.Length; i++)
                 {
                     Fire(transWeapons[i].position);
@@ -83,9 +91,30 @@ namespace GameLogic
         {
             if (other.CompareTag(Constant.Layer.EnemyLayerName))
             {
-                Destroy(gameObject);
-                GameEntry.Timer.AddTimer(0.5f, OnGameOverDelayComplete);
+                Hit();
             }
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.collider.CompareTag(Constant.Layer.EnemyLayerName))
+            {
+                Hit();
+            }
+        }
+
+        public void Hit()
+        {
+            if (_isDead)
+            {
+                return;
+            }
+
+            _isDead = true;
+            GameEntry.Audio.PlaySound(ExplosionSoundId, transform);
+            GameManager.Instance.ClearPlayer(gameObject);
+            Destroy(gameObject);
+            GameEntry.Timer.AddTimer(0.5f, OnGameOverDelayComplete);
         }
 
         private static void OnGameOverDelayComplete()

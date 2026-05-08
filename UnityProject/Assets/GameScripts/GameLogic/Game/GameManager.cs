@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using LFramework;
@@ -18,6 +17,7 @@ namespace GameLogic
 
         private bool _isGameOver = false;
         private int _score = 0;
+        private GameObject _player = null;
 
         private void Awake()
         {
@@ -93,6 +93,10 @@ namespace GameLogic
                 await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("PlayerBullet"));
             _prefabDict.Add("PlayerBullet", bulletPrefab);
 
+            var enemyBulletPrefab =
+                await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("EnemyBullet"));
+            _prefabDict.Add("EnemyBullet", enemyBulletPrefab);
+
             var enemy1Prefab =
                 await _resourceContainer.LoadAsset<GameObject>(AssetUtility.GetActorRoleAsset("Enemy_1"));
             _prefabDict.Add("Enemy_1", enemy1Prefab);
@@ -116,6 +120,7 @@ namespace GameLogic
             var go = Instantiate(playerPrefab, transform, true);
             go.name = "Player";
             go.transform.position = new Vector3(0, -3.5f, 0);
+            _player = go;
         }
 
         private void CreateEnemy()
@@ -154,23 +159,33 @@ namespace GameLogic
                 go = (GameObject)goObject.Target;
             }
 
-            go.GetComponent<Enemy>().SetStartPos(new Vector3(Random.Range(-2.5f, 2.5f), 7, 0));
+            go.GetComponent<Enemy>().SetStartPos(new Vector3(Random.Range(-2.5f, 2.5f), 7, 0), enemyName);
         }
 
         public GameObject GetBullet()
         {
-            var goObject = _goObjectPool.Spawn("PlayerBullet");
+            return GetPooledGameObject("PlayerBullet");
+        }
+
+        public GameObject GetEnemyBullet()
+        {
+            return GetPooledGameObject("EnemyBullet");
+        }
+
+        private GameObject GetPooledGameObject(string objectName)
+        {
+            var goObject = _goObjectPool.Spawn(objectName);
             if (goObject == null)
             {
-                if (!_prefabDict.TryGetValue("PlayerBullet", out var goPrefab))
+                if (!_prefabDict.TryGetValue(objectName, out var goPrefab) || goPrefab == null)
                 {
                     // 需要加载资源
-                    Log.Error("PlayerBullet Asset is null");
+                    Log.Error($"{objectName} Asset is null");
                     return null;
                 }
 
                 var go = Instantiate(goPrefab, transform, true);
-                _goObjectPool.Register(GoPoolObject.Create("PlayerBullet", go), true);
+                _goObjectPool.Register(GoPoolObject.Create(objectName, go), true);
                 return go;
             }
 
@@ -180,6 +195,26 @@ namespace GameLogic
         public void HideGo(GameObject go)
         {
             _goObjectPool.Unspawn(go);
+        }
+
+        public bool TryGetPlayerPosition(out Vector3 position)
+        {
+            if (_player == null)
+            {
+                position = Vector3.zero;
+                return false;
+            }
+
+            position = _player.transform.position;
+            return true;
+        }
+
+        public void ClearPlayer(GameObject player)
+        {
+            if (_player == player)
+            {
+                _player = null;
+            }
         }
 
         public void AddScore()
